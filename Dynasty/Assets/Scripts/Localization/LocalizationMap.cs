@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-
-public class LocalizationMap
+using System.IO;
+public class LocalizationMap<ValueType>
 {
-    private SortedDictionary<string, string> map{get; set;}
-    private static LocalizationMap _instance;
+    private SortedDictionary<string, ValueType> map{get; set;}
+    private static LocalizationMap<ValueType> _instance;
     private static readonly object _lock = new object();
     private bool isChanged = false;
     public bool IsChanged{
@@ -13,29 +13,29 @@ public class LocalizationMap
     public delegate void ChangeLanguageText();
     public event ChangeLanguageText OnLanguageChanged;
     private LocalizationMap(){
-        map = new SortedDictionary<string, string>();
+        map = new SortedDictionary<string, ValueType>();
     }
-    public static LocalizationMap GetInstance(){
+    public static LocalizationMap<ValueType> GetInstance(){
         if(_instance == null){
             lock (_lock)
             {
                 if (_instance == null)
                 {
-                    _instance = new LocalizationMap();
+                    _instance = new LocalizationMap<ValueType>();
                 }
             }
         }
         return _instance;
     }
-    public void Change(SortedDictionary<string, string> map){
+    public void Change(SortedDictionary<string, ValueType> map){
         this.map = map;
         isChanged = true;
         OnLanguageChanged?.Invoke();
     }
-    public string GetValue(string key){
+    public ValueType GetValue(string key){
         if(map.ContainsKey(key)){
             return map[key];
         }
-        return "";
+        return default(ValueType);
     }
 }

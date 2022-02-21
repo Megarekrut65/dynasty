@@ -3,5 +3,8 @@
         "Династія",
         "Behaviour",
         "Prefs"
-    ]
+    ],
+    "files.exclude": {
+        "**/*.meta": true
+      }
 }
