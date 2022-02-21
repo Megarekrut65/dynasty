@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameLoad : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private Slider loadSlider;
+    [SerializeField]
+    private string sceneName;
     void Start()
     {
-        
+        loadSlider.value = 0;
+        StartCoroutine("LoadData");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    IEnumerator LoadData(){
+        while(loadSlider.value != 100){
+            yield return new WaitForSeconds(0.05f);
+            loadSlider.value++;
+        }
         
+        SceneManager.LoadScene(this.sceneName, LoadSceneMode.Single);
     }
 }
