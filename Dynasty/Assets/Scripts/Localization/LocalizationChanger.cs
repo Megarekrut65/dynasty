@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ public class LocalizationChanger<ValueType>{
         if(language == currentLanguage) return;
         currentLanguage = language;
         PlayerPrefs.SetString(languageKey, language);
-        string path = Application.streamingAssetsPath + folder + "/" + language + ".json";
+        string path = Application.streamingAssetsPath +"/"+ folder + "/" + language + ".json";
         string jsonData;
         // if (Application.platform == RuntimePlatform.Android)
         // {
@@ -30,8 +31,11 @@ public class LocalizationChanger<ValueType>{
         jsonData = File.ReadAllText(path);
         LocalizationList<ValueType> list = JsonUtility.FromJson<LocalizationList<ValueType>>(jsonData);
         SortedDictionary<string, ValueType> map = new SortedDictionary<string, ValueType>();
-        for(int i = 0; i < list.items.Length; i++){
-            map.Add(list.items[i].key, list.items[i].value);
+        if(list.items != null){
+            for(int i = 0; i < list.items.Length; i++){
+                map.Add(list.items[i].key, list.items[i].value);
+                UnityEngine.Debug.Log(list.items[i].value);
+            }
         }
         LocalizationMap<ValueType>.GetInstance().Change(map);
     }

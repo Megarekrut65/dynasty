@@ -10,6 +10,11 @@ public class LocalizationMap<ValueType>
     public bool IsChanged{
         get{return isChanged;}
     }
+    public SortedDictionary<string, ValueType> Map{
+        get{
+            return map;
+        }
+    }
     public delegate void ChangeLanguageText();
     public event ChangeLanguageText OnLanguageChanged;
     private LocalizationMap(){

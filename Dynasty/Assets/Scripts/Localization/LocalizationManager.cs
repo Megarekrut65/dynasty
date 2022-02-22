@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,11 @@ public class LocalizationManager : MonoBehaviour
     private static string languageKey = "Language";
 
     public void ChangeLanguage(string language){
-        LocalizationChanger<string> changer = new LocalizationChanger<string>("/Languages");
+        Change<string>( language, "Languages");
+        Change<CardData>( language, "Languages/Cards");
+    }
+    private void Change<ValueType>(string language, string folder){
+        LocalizationChanger<ValueType> changer = new LocalizationChanger<ValueType>(folder);
         changer.ChangeLanguage(language);
     }
      void Awake()
@@ -31,7 +36,11 @@ public class LocalizationManager : MonoBehaviour
         }
         if(!LocalizationMap<string>.GetInstance().IsChanged)
         {
-            ChangeLanguage(PlayerPrefs.GetString(languageKey));
+            Change<string>(PlayerPrefs.GetString(languageKey), "Languages");
+        }
+        if(!LocalizationMap<CardData>.GetInstance().IsChanged)
+        {
+            Change<CardData>(PlayerPrefs.GetString(languageKey), "Languages/Cards");
         }
     }
 }
