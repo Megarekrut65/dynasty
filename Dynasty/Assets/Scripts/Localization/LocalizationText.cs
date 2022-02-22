@@ -23,7 +23,7 @@ public class LocalizationText : MonoBehaviour
         UpdateText();
     }
  
-    private void OnDestroy()
+    void OnDestroy()
     {
         LocalizationMap<string>.GetInstance().OnLanguageChanged -= UpdateText;
     }

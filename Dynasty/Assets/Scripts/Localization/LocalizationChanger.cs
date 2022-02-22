@@ -17,18 +17,17 @@ public class LocalizationChanger<ValueType>{
         PlayerPrefs.SetString(languageKey, language);
         string path = Application.streamingAssetsPath +"/"+ folder + "/" + language + ".json";
         string jsonData;
-        // if (Application.platform == RuntimePlatform.Android)
-        // {
-        //     WWW reader = new WWW(path);
-        //     while (!reader.isDone) { }
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            WWW reader = new WWW(path);
+            while (!reader.isDone) { }
  
-        //     jsonData = reader.text;
-        // }
-        // else
-        // {
-            
-        // }
-        jsonData = File.ReadAllText(path);
+            jsonData = reader.text;
+        }
+        else
+        {
+            jsonData = File.ReadAllText(path);
+        }
         LocalizationList<ValueType> list = JsonUtility.FromJson<LocalizationList<ValueType>>(jsonData);
         SortedDictionary<string, ValueType> map = new SortedDictionary<string, ValueType>();
         if(list.items != null){

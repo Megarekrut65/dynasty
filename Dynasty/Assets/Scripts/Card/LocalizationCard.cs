@@ -12,6 +12,11 @@ public class LocalizationCard : MonoBehaviour
     private Text nameText;
     [SerializeField]
     private Text descriptionText;
+    public string Key{
+        set{
+            key = value;
+        }
+    }
  
     void Awake()
     {
