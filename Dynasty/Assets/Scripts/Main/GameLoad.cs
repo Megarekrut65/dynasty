@@ -18,7 +18,7 @@ public class GameLoad : MonoBehaviour
 
     IEnumerator LoadData(){
         while(loadSlider.value != 100){
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.01f);
             loadSlider.value++;
         }
         

@@ -4,7 +4,7 @@ public class CardData{
     public string name;
     public string description;
     public override string ToString()
-   {
-      return "name: {"+name + "}, description::{" + description + "}";
-   }
+    {
+        return "name: {"+name + "}, description:{" + description + "}";
+    }
 }

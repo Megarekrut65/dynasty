@@ -34,7 +34,6 @@ public class LocalizationChanger<ValueType>{
         if(list.items != null){
             for(int i = 0; i < list.items.Length; i++){
                 map.Add(list.items[i].key, list.items[i].value);
-                UnityEngine.Debug.Log(list.items[i].value);
             }
         }
         LocalizationMap<ValueType>.GetInstance().Change(map);
