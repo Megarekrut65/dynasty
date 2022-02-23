@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2065,6 +2065,7 @@ MonoBehaviour:
   cardObject: {fileID: 2617461779509550573, guid: a232f4edf9d7a5746be6c66aeb1c628a, type: 3}
   content: {fileID: 1331799292}
   scrollRect: {fileID: 1149238979}
+  blackBoard: {fileID: 3437451923446761814, guid: 2ebe4a4c0bdf5364dacca9f9f0f314bb, type: 3}
 --- !u!1 &1690092064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,7 +2282,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40

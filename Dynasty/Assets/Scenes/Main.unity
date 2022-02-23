@@ -450,6 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadSlider: {fileID: 1681328208}
   sceneName: Menu
+  manager: {fileID: 1297383824}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

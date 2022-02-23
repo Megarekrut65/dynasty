@@ -7,10 +7,22 @@ using UnityEngine;
 public class LocalizationManager : MonoBehaviour
 {
     private static string languageKey = "Language";
-
+    private bool isReady = true;
+    public bool Ready{
+        get{
+            return isReady;
+        }
+    }
     public void ChangeLanguage(string language){
+        if(!isReady) return;
+        isReady = false;
+        StartCoroutine( ChangeCoroutine(language));
+    }
+    IEnumerator ChangeCoroutine(string language){
         Change<string>( language, "Languages");
         Change<CardData>( language, "Languages/Cards");
+        yield return null;
+        isReady = true;
     }
     private void Change<ValueType>(string language, string folder){
         LocalizationChanger<ValueType> changer = new LocalizationChanger<ValueType>(folder);

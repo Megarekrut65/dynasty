@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - ButtonScript
     - CardsGenerator
     - GameLoad
+    - LanguageLoader
     - LocalizationButton
     - LocalizationCard
     - LocalizationManager
@@ -68,9 +69,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
+      Script: {instanceID: 0}
+    - Class: 111
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 1516}
@@ -79,21 +84,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1728}
     - Class: 114
+      Script: {instanceID: 1730}
+    - Class: 114
       Script: {instanceID: 1862}
     - Class: 114
-      Script: {instanceID: 2256}
+      Script: {instanceID: 2258}
     - Class: 114
-      Script: {instanceID: 2684}
+      Script: {instanceID: 2688}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2838}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 2900}
+      Script: {instanceID: 2904}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3350}
+    - Class: 114
+      Script: {instanceID: 25058}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -121,9 +130,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
+      Script: {instanceID: 0}
+    - Class: 111
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 1516}
@@ -134,37 +147,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1730}
     - Class: 114
-      Script: {instanceID: 2256}
+      Script: {instanceID: 1930}
     - Class: 114
-      Script: {instanceID: 2684}
+      Script: {instanceID: 2258}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2492}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2688}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 2838}
     - Class: 114
-      Script: {instanceID: 3156}
+      Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3358}
+      Script: {instanceID: 3160}
     - Class: 114
-      Script: {instanceID: 3696}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3780}
+      Script: {instanceID: 3362}
     - Class: 114
-      Script: {instanceID: 4300}
+      Script: {instanceID: 3700}
     - Class: 114
-      Script: {instanceID: 4524}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 4730}
+      Script: {instanceID: 4304}
     - Class: 114
-      Script: {instanceID: 4996}
+      Script: {instanceID: 4528}
     - Class: 114
-      Script: {instanceID: 33260}
+      Script: {instanceID: 4734}
     - Class: 114
-      Script: {instanceID: 49874}
+      Script: {instanceID: 5000}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -207,19 +220,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1862}
     - Class: 114
-      Script: {instanceID: 2256}
+      Script: {instanceID: 2258}
     - Class: 114
-      Script: {instanceID: 2684}
+      Script: {instanceID: 2688}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3780}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 4306}
+      Script: {instanceID: 4310}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -260,21 +273,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1730}
     - Class: 114
-      Script: {instanceID: 2256}
+      Script: {instanceID: 2258}
     - Class: 114
-      Script: {instanceID: 2684}
+      Script: {instanceID: 2688}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2838}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3780}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 4996}
+      Script: {instanceID: 5000}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -390,6 +403,12 @@ ScriptsOnlyBuild:
     className: LocalizationManager
   - hash:
       serializedVersion: 2
+      Hash: 4ce15e99c635d2567873d27549d1f16f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TextResizing
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -424,6 +443,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 3e261910b71b6154e93deffd905d006d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CardsGenerator
   - hash:
       serializedVersion: 2
       Hash: cfdd0010efd7b54c2b7512656dbc9119
@@ -678,7 +703,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 3f107f6e6ff2672efce3d5605863addd
+      Hash: bfbcf6e42667c03a599077232e41779c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameLoad
@@ -846,16 +871,10 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 4ce15e99c635d2567873d27549d1f16f
+      Hash: 3a0e8aa46ceb3ecb071fab362b79141f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: TextResizing
-  - hash:
-      serializedVersion: 2
-      Hash: 5b368a69e244143643a32a174b293bd7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CardsGenerator
+    className: LanguageLoader
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity
