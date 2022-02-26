@@ -15,6 +15,7 @@ public class CardsGenerator : MonoBehaviour {
     [SerializeField]
     private GameObject blackBoard;
     private GameObject _canvas;
+
     void Start(){
         _canvas = GameObject.Find("Canvas");
         StartCoroutine(Generate());
