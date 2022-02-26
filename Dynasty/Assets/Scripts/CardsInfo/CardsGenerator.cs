@@ -5,32 +5,24 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardsGenerator : MonoBehaviour {
-    [SerializeField]
+public class CardsGenerator{
     private GameObject cardObject;
-    [SerializeField]
     private GameObject content;
-    [SerializeField]
-    private ScrollRect scrollRect;
-    [SerializeField]
-    private GameObject blackBoard;
-    private GameObject _canvas;
-
-    void Start(){
-        _canvas = GameObject.Find("Canvas");
-        StartCoroutine(Generate());
+    public CardsGenerator(GameObject cardObject, GameObject content){
+        this.cardObject = cardObject;
+        this.content = content;
     }
-    IEnumerator Generate(){
-        LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
+    public List<GameObject> Generate(){
+        List<GameObject> list = new List<GameObject>();
         var keys = LocalizationMap<CardData>.GetInstance().Map.Keys;
         foreach(var key in keys){
-            GameObject obj = Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
             obj.GetComponent<LocalizationCard>().Key = key;
             obj.GetComponent<RectTransform>().sizeDelta = new Vector2 (305f/2, 495f/2);
             obj.transform.SetParent(content.transform, false);
+            list.Add(obj);
         }
-        scrollRect.normalizedPosition = new Vector2(0, 0);
-        yield return new WaitForSeconds(0.5f);
-        loadBoard.Destroy();
+        return list;
     }
+
 }
