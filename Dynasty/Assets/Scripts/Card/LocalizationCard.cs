@@ -27,17 +27,17 @@ public class LocalizationCard : MonoBehaviour
     private CardData card;
     void Awake()
     {
-        LocalizationMap<CardData>.GetInstance().OnLanguageChanged += UpdateText;
+        //LocalizationMap<CardData>.GetInstance().OnLanguageChanged += UpdateText;
     }
  
     void Start()
     {
-        UpdateText();
+        //UpdateText();
     }
  
     private void OnDestroy()
     {
-        LocalizationMap<CardData>.GetInstance().OnLanguageChanged -= UpdateText;
+        //LocalizationMap<CardData>.GetInstance().OnLanguageChanged -= UpdateText;
     }
     private void SetIcon(Image icon, string value){
         if(icon == null) return;

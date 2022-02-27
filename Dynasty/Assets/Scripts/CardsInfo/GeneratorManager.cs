@@ -23,6 +23,7 @@ public class GeneratorManager : MonoBehaviour {
     }
     IEnumerator Generate(){
         LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
+        yield return new WaitForSeconds(0.5f);
         CardsGenerator generator = new CardsGenerator(cardObject, content);
         cards = generator.Generate();
         scrollRect.normalizedPosition = new Vector2(0, 0);
