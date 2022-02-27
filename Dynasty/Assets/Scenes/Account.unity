@@ -379,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f6d9d897cc14946b982680027ef82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1249970997}
   language: en_US
 --- !u!114 &662285672
 MonoBehaviour:
@@ -560,49 +559,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1249970996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1249970998}
-  - component: {fileID: 1249970997}
-  m_Layer: 0
-  m_Name: LocalizationManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1249970997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249970996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef5dacfac4803f4ba8971a3901ded7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1249970998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249970996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8103974, y: 0.2967126, z: -6.0777426}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606674991
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f6d9d897cc14946b982680027ef82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1249970997}
   language: ru_RU
 --- !u!114 &1606674994
 MonoBehaviour:
@@ -789,7 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ad671106ffcf146a10028e4a1d2636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1249970997}
+  manager: {fileID: 0}
   blackBoard: {fileID: 3437451923446761814, guid: 2ebe4a4c0bdf5364dacca9f9f0f314bb, type: 3}
 --- !u!1 &1750978181
 GameObject:
@@ -906,7 +861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f6d9d897cc14946b982680027ef82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1249970997}
   language: uk_UK
 --- !u!114 &1900124708
 MonoBehaviour:

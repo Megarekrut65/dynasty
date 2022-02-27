@@ -10,9 +10,11 @@ public class LocalizationChanger<ValueType>{
     private static string languageKey = "Language";
     public LocalizationChanger(string folder){
         this.folder = folder;
+        map = new SortedDictionary<string, ValueType>();
     }
-    public void ChangeLanguage(string language){
-        if(language == currentLanguage) return;
+    private SortedDictionary<string, ValueType> map;
+    public SortedDictionary<string, ValueType> GetLanguage(string language){
+        if(language == currentLanguage) return map;
         currentLanguage = language;
         PlayerPrefs.SetString(languageKey, language);
         string path = Application.streamingAssetsPath +"/"+ folder + "/" + language + ".json";
@@ -29,12 +31,12 @@ public class LocalizationChanger<ValueType>{
             jsonData = File.ReadAllText(path);
         }
         LocalizationList<ValueType> list = JsonUtility.FromJson<LocalizationList<ValueType>>(jsonData);
-        SortedDictionary<string, ValueType> map = new SortedDictionary<string, ValueType>();
+        map.Clear();
         if(list.items != null){
             for(int i = 0; i < list.items.Length; i++){
                 map.Add(list.items[i].key, list.items[i].value);
             }
         }
-        LocalizationMap<ValueType>.GetInstance().Change(map);
+        return map;
     }
 }

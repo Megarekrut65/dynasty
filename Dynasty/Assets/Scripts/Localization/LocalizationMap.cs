@@ -1,46 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-public class LocalizationMap<ValueType>
-{
-    private SortedDictionary<string, ValueType> map{get; set;}
-    private static LocalizationMap<ValueType> _instance;
-    private static readonly object _lock = new object();
-    private bool isChanged = false;
-    public bool IsChanged{
-        get{return isChanged;}
-    }
-    public SortedDictionary<string, ValueType> Map{
+using UnityEngine;
+
+public class LocalizationMap{
+    private SortedDictionary<string, string> wordMap{get; set;} = new SortedDictionary<string, string>();
+    private SortedDictionary<string, CardData> cardMap{get; set;} = new SortedDictionary<string, CardData>();
+    public SortedDictionary<string, string> WordMap{
         get{
-            return map;
+            return wordMap;
         }
     }
-    public delegate void ChangeLanguageText();
-    public event ChangeLanguageText OnLanguageChanged;
-    private LocalizationMap(){
-        map = new SortedDictionary<string, ValueType>();
-    }
-    public static LocalizationMap<ValueType> GetInstance(){
-        if(_instance == null){
-            lock (_lock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new LocalizationMap<ValueType>();
-                }
-            }
+    public SortedDictionary<string, CardData> CardMap{
+        get{
+            return cardMap;
         }
-        return _instance;
     }
-    public void Change(SortedDictionary<string, ValueType> map){
-        this.map = map;
-        isChanged = true;
-        OnLanguageChanged?.Invoke();
+
+   
+    public void Change(SortedDictionary<string, string> wordMap, SortedDictionary<string, CardData> cardMap){
+        this.wordMap = wordMap;
+        this.cardMap = cardMap;
     }
-    public ValueType GetValue(string key){
-        if(map.ContainsKey(key)){
-            return map[key];
+    public string GetWord(string key){
+        if(wordMap.ContainsKey(key)){
+            return wordMap[key];
         }
-        return default(ValueType);
+        return default(string);
     }
+    public CardData GetCard(string key){
+        if(cardMap.ContainsKey(key)){
+            return cardMap[key];
+        }
+        return default(CardData);
+    }
+    
 }

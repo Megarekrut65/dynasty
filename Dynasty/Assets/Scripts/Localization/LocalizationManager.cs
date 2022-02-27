@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,22 +14,24 @@ public class LocalizationManager : MonoBehaviour
             return isReady;
         }
     }
+    public static LocalizationManager instance;
+    private LocalizationChanger<string> wordChanger = new LocalizationChanger<string>("Languages");
+    private LocalizationChanger<CardData> cardChanger= new LocalizationChanger<CardData>("Languages/Cards");
+    public LocalizationMap map = new LocalizationMap();
+    public delegate void ChangeLanguageText();
+    public event ChangeLanguageText OnLanguageChanged;
     public void ChangeLanguage(string language){
         if(!isReady) return;
         isReady = false;
         StartCoroutine( ChangeCoroutine(language));
     }
     IEnumerator ChangeCoroutine(string language){
-        Change<string>( language, "Languages");
-        Change<CardData>( language, "Languages/Cards");
+        map.Change(wordChanger.GetLanguage(language), cardChanger.GetLanguage(language));
         yield return null;
         isReady = true;
+        OnLanguageChanged?.Invoke();
     }
-    private void Change<ValueType>(string language, string folder){
-        LocalizationChanger<ValueType> changer = new LocalizationChanger<ValueType>(folder);
-        changer.ChangeLanguage(language);
-    }
-     void Awake()
+    void Awake()
     {
         if (!PlayerPrefs.HasKey(languageKey))
         {
@@ -46,13 +49,20 @@ public class LocalizationManager : MonoBehaviour
                 PlayerPrefs.SetString(languageKey, "en_US");
             }
         }
-        if(!LocalizationMap<string>.GetInstance().IsChanged)
+        if (instance == null) {
+            instance = this;
+            ChangeLanguage(PlayerPrefs.GetString(languageKey));
+        } else if (instance != this)
         {
-            Change<string>(PlayerPrefs.GetString(languageKey), "Languages");
+            Destroy (gameObject);
         }
-        if(!LocalizationMap<CardData>.GetInstance().IsChanged)
-        {
-            Change<CardData>(PlayerPrefs.GetString(languageKey), "Languages/Cards");
-        }
+
+        DontDestroyOnLoad (gameObject);
+    }
+    public string GetWord(string key){
+        return map.GetWord(key);
+    }
+    public CardData GetCard(string key){
+        return map.GetCard(key);
     }
 }

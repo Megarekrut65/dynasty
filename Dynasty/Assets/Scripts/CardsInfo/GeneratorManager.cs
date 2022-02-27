@@ -26,8 +26,26 @@ public class GeneratorManager : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         CardsGenerator generator = new CardsGenerator(cardObject, content);
         cards = generator.Generate();
-        scrollRect.normalizedPosition = new Vector2(0, 0);
         yield return new WaitForSeconds(0.5f);
+        foreach(var card in cards){
+            card.GetComponent<LocalizationCard>().UpdateText();
+        }
+        SelectColor(2);
         loadBoard.Destroy();
+    }
+    public void MakeInvisible(){
+        foreach(var card in cards){
+            card.SetActive(false);
+        }
+        scrollRect.normalizedPosition = new Vector2(0, 0);
+    }
+    public void SelectColor(int value){
+        MakeInvisible();
+        foreach(var card in cards){
+            if(Math.Sign(card.GetComponent<LocalizationCard>().Card.amount) == value - 1){
+                card.SetActive(true);
+            }
+        }
+        scrollRect.normalizedPosition = new Vector2(0, 0);
     }
 }

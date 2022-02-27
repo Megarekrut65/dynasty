@@ -15,7 +15,7 @@ public class LocalizationText : MonoBehaviour
         {
             text = GetComponent<Text>();
         }
-        LocalizationMap<string>.GetInstance().OnLanguageChanged += UpdateText;
+        LocalizationManager.instance.OnLanguageChanged += UpdateText;
     }
  
     void Start()
@@ -25,7 +25,7 @@ public class LocalizationText : MonoBehaviour
  
     void OnDestroy()
     {
-        LocalizationMap<string>.GetInstance().OnLanguageChanged -= UpdateText;
+        LocalizationManager.instance.OnLanguageChanged -= UpdateText;
     }
  
     virtual protected void UpdateText()
@@ -35,6 +35,6 @@ public class LocalizationText : MonoBehaviour
         {
             text = GetComponent<Text>();
         }
-        text.text = LocalizationMap<string>.GetInstance().GetValue(key);
+        text.text = LocalizationManager.instance.GetWord(key);
     }
 }

@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class LanguageLoader : MonoBehaviour {
     [SerializeField]
-    private LocalizationManager manager;
-    [SerializeField]
     private GameObject blackBoard;
     private GameObject _canvas;
     void Start()
@@ -18,7 +16,7 @@ public class LanguageLoader : MonoBehaviour {
 
     IEnumerator LoadData(){
         LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
-        while(!manager.Ready){
+        while(!LocalizationManager.instance.Ready){
             yield return new WaitForSeconds(0.005f);
         }
         loadBoard.Destroy();

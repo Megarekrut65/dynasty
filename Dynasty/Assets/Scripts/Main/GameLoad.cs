@@ -10,8 +10,6 @@ public class GameLoad : MonoBehaviour
     private Slider loadSlider;
     [SerializeField]
     private string sceneName;
-    [SerializeField]
-    private LocalizationManager manager;
     void Start()
     {
         loadSlider.value = 0;
@@ -21,9 +19,9 @@ public class GameLoad : MonoBehaviour
     IEnumerator LoadData(){
         while(loadSlider.value != 100){
             yield return new WaitForSeconds(0.005f);
-            if(manager.Ready)
+            if(LocalizationManager.instance.Ready)
                 loadSlider.value+= 10;
-            else if(loadSlider.value < 90)  loadSlider.value++;
+            else if(loadSlider.value < 90) loadSlider.value++;
         }
         
         SceneManager.LoadScene(this.sceneName, LoadSceneMode.Single);

@@ -25,20 +25,12 @@ public class LocalizationCard : MonoBehaviour
         }
     }
     private CardData card;
-    void Awake()
-    {
-        //LocalizationMap<CardData>.GetInstance().OnLanguageChanged += UpdateText;
+    public CardData Card{
+        get{
+            return card;
+        }
     }
  
-    void Start()
-    {
-        //UpdateText();
-    }
- 
-    private void OnDestroy()
-    {
-        //LocalizationMap<CardData>.GetInstance().OnLanguageChanged -= UpdateText;
-    }
     private void SetIcon(Image icon, string value){
         if(icon == null) return;
        switch (value) {
@@ -99,10 +91,10 @@ public class LocalizationCard : MonoBehaviour
        }
         amountText.text = text + amount.ToString();
     }
-    virtual protected void UpdateText()
+    public void UpdateText()
     {
         if (nameText == null || descriptionText == null) return;
-        card = LocalizationMap<CardData>.GetInstance().GetValue(key);
+        card = LocalizationManager.instance.GetCard(key);
         if(card == null) return;
         SetText();
         SetAmount();

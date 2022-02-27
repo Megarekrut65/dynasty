@@ -14,7 +14,7 @@ public class CardsGenerator{
     }
     public List<GameObject> Generate(){
         List<GameObject> list = new List<GameObject>();
-        var keys = LocalizationMap<CardData>.GetInstance().Map.Keys;
+        var keys = LocalizationManager.instance.map.CardMap.Keys;
         foreach(var key in keys){
             GameObject obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
             obj.GetComponent<LocalizationCard>().Key = key;
