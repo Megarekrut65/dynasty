@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ public class GeneratorManager : MonoBehaviour {
     private GameObject _canvas;
     private List<GameObject> cards;
     private ResizingData data = new ResizingData(1000);
+    private int currentColor = -2;
+    private string currentName = "";
 
     void Start(){
         _canvas = GameObject.Find("Canvas");
@@ -33,7 +36,7 @@ public class GeneratorManager : MonoBehaviour {
             card.GetComponent<LocalizationCard>().UpdateText();
             card.GetComponent<ResizingTextCard>().Resize(data);
         }
-        SelectColor(2);
+        SelectColor(0);
         loadBoard.Destroy();
     }
     public void MakeInvisible(){
@@ -43,9 +46,19 @@ public class GeneratorManager : MonoBehaviour {
         scrollRect.normalizedPosition = new Vector2(0, 0);
     }
     public void SelectColor(int value){
+        currentColor = value - 2;
+        Filter();
+    }
+    public void SelectName(String name){
+        currentName = name;
+        Filter();
+    }
+    private void Filter(){
         MakeInvisible();
         foreach(var card in cards){
-            if(Math.Sign(card.GetComponent<LocalizationCard>().Card.amount) == value - 1){
+            CardData data = card.GetComponent<LocalizationCard>().Card;
+            if( (Math.Sign(data.amount) == currentColor || currentColor == -2)
+            && data.name.ToLower().Contains(currentName.ToLower())){
                 card.SetActive(true);
             }
         }
