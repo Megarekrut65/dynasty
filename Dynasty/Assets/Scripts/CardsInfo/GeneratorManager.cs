@@ -26,8 +26,10 @@ public class GeneratorManager : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         CardsGenerator generator = new CardsGenerator(cardObject, content);
         cards = generator.Generate();
+        MakeInvisible();
         yield return new WaitForSeconds(0.5f);
         foreach(var card in cards){
+            yield return null;
             card.GetComponent<LocalizationCard>().UpdateText();
         }
         SelectColor(2);
@@ -47,5 +49,6 @@ public class GeneratorManager : MonoBehaviour {
             }
         }
         scrollRect.normalizedPosition = new Vector2(0, 0);
+        scrollRect.horizontalNormalizedPosition = 0;
     }
 }

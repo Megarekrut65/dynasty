@@ -10,7 +10,8 @@ ScriptsOnlyBuild:
     - LocalizationManager
     - LocalizationText
     - OpenScene
-    - TextResizing
+    - ResizingManager
+    - ResizingTextCard
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -170,8 +171,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 3958}
-    - Class: 114
       Script: {instanceID: 4308}
     - Class: 114
       Script: {instanceID: 4534}
@@ -179,6 +178,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4740}
     - Class: 114
       Script: {instanceID: 5006}
+    - Class: 114
+      Script: {instanceID: 22748}
+    - Class: 114
+      Script: {instanceID: 22750}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -874,6 +877,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 7b93384d577be504dee204c51c5b53b5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ResizingTextCard
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ResizingManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity
