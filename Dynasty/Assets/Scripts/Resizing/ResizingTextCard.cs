@@ -8,21 +8,21 @@ public class ResizingTextCard : MonoBehaviour {
     private Text text;
     [SerializeField]
     private Text title;
-    private ResizingManager manager;
-    void Start(){
-        manager = GameObject.Find("ResizingManager").GetComponent<ResizingManager>();
-        manager.data.OnChanged += ChangeText;
+    private ResizingData data;
+    public void Resize(ResizingData data){
+        this.data = data;
+        data.OnChanged += ChangeText;
         StartCoroutine(MakeTextSameSize());
     }
      IEnumerator MakeTextSameSize(){
         yield return null;
 
         int size = text.cachedTextGenerator.fontSizeUsedForBestFit;
-        manager.data.MinFontSize = size;
+        data.MinFontSize = size;
         ChangeText();
      }
      void ChangeText(){
-         text.resizeTextMaxSize = Math.Min(manager.data.MinFontSize,
+         text.resizeTextMaxSize = Math.Min(data.MinFontSize,
             title.cachedTextGenerator.fontSizeUsedForBestFit);
      }
 }

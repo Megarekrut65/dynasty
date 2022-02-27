@@ -24,5 +24,4 @@ public class CardsGenerator{
         }
         return list;
     }
-
 }

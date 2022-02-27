@@ -16,6 +16,7 @@ public class GeneratorManager : MonoBehaviour {
     private GameObject blackBoard;
     private GameObject _canvas;
     private List<GameObject> cards;
+    private ResizingData data = new ResizingData(1000);
 
     void Start(){
         _canvas = GameObject.Find("Canvas");
@@ -26,11 +27,11 @@ public class GeneratorManager : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         CardsGenerator generator = new CardsGenerator(cardObject, content);
         cards = generator.Generate();
-        MakeInvisible();
         yield return new WaitForSeconds(0.5f);
         foreach(var card in cards){
             yield return null;
             card.GetComponent<LocalizationCard>().UpdateText();
+            card.GetComponent<ResizingTextCard>().Resize(data);
         }
         SelectColor(2);
         loadBoard.Destroy();
