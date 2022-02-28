@@ -9,17 +9,7 @@ public class LocalizationCard : MonoBehaviour
 {
     [SerializeField]
     private string key;
-    [SerializeField]
-    private Text nameText;
-    [SerializeField]
-    private Text descriptionText;
-    [SerializeField]
-    private Image[] icons = new Image[4];
-    [SerializeField]
-    private Image amountImage;
-    [SerializeField]
-    private Text amountText;
-    public string Key{
+        public string Key{
         set{
             key = value;
         }
@@ -30,8 +20,25 @@ public class LocalizationCard : MonoBehaviour
             return card;
         }
     }
+    [Header("Sprites Data")]
+    [SerializeField]
+    private Sprite[] sprites = new Sprite[4];
+    [SerializeField]
+    private Sprite[] types = new Sprite[2];
+    [Header("Card parts")]
+    [SerializeField]
+    private Text nameText;
+    [SerializeField]
+    private Text descriptionText;
+    [SerializeField]
+    private Image[] icons = new Image[4];
+    [SerializeField]
+    private Image amountImage;
+    [SerializeField]
+    private Text amountText;
+
  
-    private void SetIcon(Image icon, string value){
+    private void SetColor(Image icon, string value){
         if(icon == null) return;
        switch (value) {
            case "+":
@@ -57,15 +64,33 @@ public class LocalizationCard : MonoBehaviour
                break;
        }
     }
+    private void SetIconSprites(){
+        SetSprite(card.move, 0);
+        SetSprite(card.mix, 1);
+        SetSprite(card.cover, 2);
+        SetSprite(card.drop, 3);
+    }
+    private void SetSprite(string value, int index){
+        if(value != "none"){
+            icons[index].sprite = sprites[index];
+        }
+    }
     private void SetIcons(){
-        SetIcon(icons[0], card.move);
-        SetIcon(icons[1], card.mix);
-        SetIcon(icons[2], card.cover);
-        SetIcon(icons[3], card.drop);
+        SetIconColors();
+        SetIconSprites();
+    }
+    private void SetIconColors(){
+        SetColor(icons[0], card.move);
+        SetColor(icons[1], card.mix);
+        SetColor(icons[2], card.cover);
+        SetColor(icons[3], card.drop);
     }
     private void SetText(){
         nameText.text = card.name;
         descriptionText.text = card.description.Replace('#', '\n');
+    }
+    private void SetType(){
+        amountImage.sprite = card.type == "R"?types[0]:types[1];
     }
     private void SetAmount(){
         int amount = card.amount;
@@ -73,16 +98,16 @@ public class LocalizationCard : MonoBehaviour
         string text = "";
        switch (sign) {
             case 0:{
-                SetIcon(amountImage, "0");
+                SetColor(amountImage, "0");
            }
                break;
             case 1:{
                 text = "+";
-                SetIcon(amountImage, "+");
+                SetColor(amountImage, "+");
            }
                break;
             case -1:{
-                SetIcon(amountImage, "-");
+                SetColor(amountImage, "-");
            }
                break;
            default :
@@ -90,6 +115,7 @@ public class LocalizationCard : MonoBehaviour
                break;
        }
         amountText.text = text + amount.ToString();
+        SetType();
     }
     public void UpdateText()
     {

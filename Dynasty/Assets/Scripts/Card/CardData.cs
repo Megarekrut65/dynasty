@@ -3,6 +3,7 @@ using System;
 public class CardData{
     public string name;
     public string description;
+    public string type;
     public string move;
     public string mix;
     public int amount;
