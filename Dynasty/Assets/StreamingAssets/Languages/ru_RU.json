@@ -6,6 +6,10 @@
         {"key":"all","value":"Все"},
         {"key":"green","value":"Зеленые"},
         {"key":"yellow","value":"Желтые"},
-        {"key":"red","value":"Красные"}
+        {"key":"red","value":"Красные"},
+        {"key":"wall","value":"стена"},
+        {"key":"building","value":"здание"},
+        {"key":"monster","value":"монстр"},
+        {"key":"knight","value":"рыцар"}
     ]
 }

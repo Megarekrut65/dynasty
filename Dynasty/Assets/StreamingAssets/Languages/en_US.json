@@ -6,6 +6,10 @@
         {"key":"all","value":"All"},
         {"key":"green","value":"Green"},
         {"key":"yellow","value":"Yellow"},
-        {"key":"red","value":"Red"}
+        {"key":"red","value":"Red"},
+        {"key":"wall","value":"wall"},
+        {"key":"building","value":"building"},
+        {"key":"monster","value":"monster"},
+        {"key":"knight","value":"knight"}
     ]
 }

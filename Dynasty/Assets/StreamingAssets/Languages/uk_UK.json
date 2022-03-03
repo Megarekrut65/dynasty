@@ -6,6 +6,10 @@
         {"key":"all","value":"Всі"},
         {"key":"green","value":"Зелені"},
         {"key":"yellow","value":"Жовті"},
-        {"key":"red","value":"Червоні"}
+        {"key":"red","value":"Червоні"},
+        {"key":"wall","value":"стіна"},
+        {"key":"building","value":"будівля"},
+        {"key":"monster","value":"монстр"},
+        {"key":"knight","value":"лицар"}
     ]
 }

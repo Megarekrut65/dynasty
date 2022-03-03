@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - ButtonScript
+    - DeskManager
     - FilterLocalization
     - GameLoad
     - GeneratorManager
@@ -12,6 +13,7 @@ ScriptsOnlyBuild:
     - LocalizationText
     - OpenScene
     - ResizingTextCard
+    - TableManager
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -90,19 +92,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1732}
     - Class: 114
-      Script: {instanceID: 2688}
+      Script: {instanceID: 2686}
     - Class: 114
-      Script: {instanceID: 2838}
+      Script: {instanceID: 2836}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 2860}
     - Class: 114
-      Script: {instanceID: 2906}
+      Script: {instanceID: 2904}
     - Class: 114
-      Script: {instanceID: 3104}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3352}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3968}
+      Script: {instanceID: 3966}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -153,37 +155,100 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1760}
     - Class: 114
-      Script: {instanceID: 2688}
+      Script: {instanceID: 2686}
     - Class: 114
-      Script: {instanceID: 2838}
+      Script: {instanceID: 2836}
+    - Class: 114
+      Script: {instanceID: 2860}
     - Class: 114
       Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 2864}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3104}
+      Script: {instanceID: 3160}
     - Class: 114
-      Script: {instanceID: 3162}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3352}
+      Script: {instanceID: 3362}
     - Class: 114
-      Script: {instanceID: 3364}
+      Script: {instanceID: 3700}
     - Class: 114
-      Script: {instanceID: 3702}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 4310}
     - Class: 114
-      Script: {instanceID: 4312}
+      Script: {instanceID: 4536}
     - Class: 114
-      Script: {instanceID: 4538}
+      Script: {instanceID: 4742}
     - Class: 114
-      Script: {instanceID: 4744}
+      Script: {instanceID: 5010}
     - Class: 114
-      Script: {instanceID: 5012}
+      Script: {instanceID: 5092}
+    - Class: 114
+      Script: {instanceID: 5296}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Game.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1452}
+    - Class: 114
+      Script: {instanceID: 1454}
+    - Class: 114
+      Script: {instanceID: 1726}
+    - Class: 114
+      Script: {instanceID: 1732}
+    - Class: 114
+      Script: {instanceID: 1760}
+    - Class: 114
+      Script: {instanceID: 2686}
+    - Class: 114
+      Script: {instanceID: 2836}
+    - Class: 114
+      Script: {instanceID: 2860}
+    - Class: 114
+      Script: {instanceID: 3102}
+    - Class: 114
+      Script: {instanceID: 3350}
+    - Class: 114
+      Script: {instanceID: 3784}
+    - Class: 114
+      Script: {instanceID: 5010}
     - Class: 114
       Script: {instanceID: 5296}
     - Class: 114
-      Script: {instanceID: 25700}
+      Script: {instanceID: 17452}
+    - Class: 114
+      Script: {instanceID: 25444}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -226,17 +291,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1864}
     - Class: 114
-      Script: {instanceID: 2688}
+      Script: {instanceID: 2686}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 2860}
     - Class: 114
-      Script: {instanceID: 3104}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3352}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 4318}
+      Script: {instanceID: 4316}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -279,19 +344,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1732}
     - Class: 114
-      Script: {instanceID: 2688}
+      Script: {instanceID: 2686}
     - Class: 114
-      Script: {instanceID: 2838}
+      Script: {instanceID: 2836}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 2860}
     - Class: 114
-      Script: {instanceID: 3104}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3352}
+      Script: {instanceID: 3350}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3784}
     - Class: 114
-      Script: {instanceID: 5012}
+      Script: {instanceID: 5010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -827,6 +892,12 @@ ScriptsOnlyBuild:
     className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
+      Hash: 2a57ead295fc8cd9a6a1e4902ca08e7b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FilterLocalization
+  - hash:
+      serializedVersion: 2
       Hash: 63bdc2cf3273aa9bf650350f19d2af61
     assemblyName: Unity.2D.PixelPerfect.dll
     namespaceName: UnityEngine.U2D
@@ -893,14 +964,21 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 2a57ead295fc8cd9a6a1e4902ca08e7b
+      Hash: a1e48b33fb7f7ab4c95b5c859496f36e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: FilterLocalization
+    className: TableManager
+  - hash:
+      serializedVersion: 2
+      Hash: 23e99074f6d5c24bbd929c0842ff48f2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DeskManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Account.unity
   - Assets/Scenes/CardsInfo.unity
+  - Assets/Scenes/Game.unity
   playerPath: D:/dynasty/Dynasty/Dynasty.apk
