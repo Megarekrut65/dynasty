@@ -1,6 +1,11 @@
 {
     "items":[
         {"key":"game-name","value":"Династія"},
-        {"key":"text","value":"Привіт, світ!"}
+        {"key":"text","value":"Привіт, світ!"},
+        {"key":"card-name","value":"Ім'я картки..."},
+        {"key":"all","value":"Всі"},
+        {"key":"green","value":"Зелені"},
+        {"key":"yellow","value":"Жовті"},
+        {"key":"red","value":"Червоні"}
     ]
 }

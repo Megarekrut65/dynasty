@@ -27,13 +27,12 @@ public class GeneratorManager : MonoBehaviour {
     }
     IEnumerator Generate(){
         LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.001f);
         CardsGenerator generator = new CardsGenerator(cardObject, content);
         cards = generator.Generate();
-        yield return new WaitForSeconds(0.5f);
         foreach(var card in cards){
-            yield return null;
             card.GetComponent<LocalizationCard>().UpdateText();
+            yield return new WaitForSeconds(0.001f);
             card.GetComponent<ResizingTextCard>().Resize(data);
         }
         SelectColor(0);

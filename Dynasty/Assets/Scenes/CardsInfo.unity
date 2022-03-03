@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 375637685}
   - component: {fileID: 375637684}
   - component: {fileID: 375637683}
+  - component: {fileID: 375637686}
   m_Layer: 5
   m_Name: Filter
   m_TagString: Untagged
@@ -575,6 +576,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 375637686}
+        m_TargetAssemblyTypeName: FilterLocalization, Assembly-CSharp
+        m_MethodName: ChangeText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &375637684
 MonoBehaviour:
@@ -614,6 +627,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375637681}
   m_CullTransparentMesh: 1
+--- !u!114 &375637686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375637681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f260ee3f5a9f8d41a7c52b0beea6015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 1748603977}
+  filter: {fileID: 375637683}
 --- !u!1 &522572845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,6 +2414,7 @@ GameObject:
   - component: {fileID: 1860227985}
   - component: {fileID: 1860227987}
   - component: {fileID: 1860227986}
+  - component: {fileID: 1860227988}
   m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
@@ -2455,3 +2483,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860227984}
   m_CullTransparentMesh: 1
+--- !u!114 &1860227988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860227984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b178000df5f0d44f9ce64da58f7e56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: card-name

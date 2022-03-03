@@ -1,6 +1,11 @@
 {
     "items":[
         {"key":"game-name","value":"Dynasty"},
-        {"key":"text","value":"Hello, world!"}
+        {"key":"text","value":"Hello, world!"},
+        {"key":"card-name","value":"Card name..."},
+        {"key":"all","value":"All"},
+        {"key":"green","value":"Green"},
+        {"key":"yellow","value":"Yellow"},
+        {"key":"red","value":"Red"}
     ]
 }

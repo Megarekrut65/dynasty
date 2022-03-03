@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - ButtonScript
+    - FilterLocalization
     - GameLoad
     - GeneratorManager
     - LanguageLoader
@@ -146,6 +147,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1726}
     - Class: 114
+      Script: {instanceID: 1730}
+    - Class: 114
       Script: {instanceID: 1732}
     - Class: 114
       Script: {instanceID: 1760}
@@ -179,6 +182,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5012}
     - Class: 114
       Script: {instanceID: 5296}
+    - Class: 114
+      Script: {instanceID: 25700}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -442,12 +447,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: IKManager2D
-  - hash:
-      serializedVersion: 2
-      Hash: 83f0212a5da57df45905f0118ce76945
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SearchCard
   - hash:
       serializedVersion: 2
       Hash: a1aa98c78061c6f03a8c124cda576e67
@@ -892,6 +891,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 2a57ead295fc8cd9a6a1e4902ca08e7b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FilterLocalization
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity

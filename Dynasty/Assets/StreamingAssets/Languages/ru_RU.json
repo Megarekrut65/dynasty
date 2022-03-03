@@ -1,6 +1,11 @@
 {
     "items":[
         {"key":"game-name","value":"Династия"},
-        {"key":"text","value":"Hello, world!"}
+        {"key":"text","value":"Hello, world!"},
+        {"key":"card-name","value":"Имя карты..."},
+        {"key":"all","value":"Все"},
+        {"key":"green","value":"Зеленые"},
+        {"key":"yellow","value":"Желтые"},
+        {"key":"red","value":"Красные"}
     ]
 }
