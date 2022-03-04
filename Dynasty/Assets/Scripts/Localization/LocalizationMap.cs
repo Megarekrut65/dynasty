@@ -17,10 +17,16 @@ public class LocalizationMap{
         }
     }
 
-   
-    public void Change(SortedDictionary<string, string> wordMap, SortedDictionary<string, CardData> cardMap){
+    public LocalizationMap(SortedDictionary<string, CardParameters> parameters){
+        foreach(var item in parameters){
+            cardMap.Add(item.Key, new CardData(item.Key, item.Value));
+        }
+    }
+    public void Change(SortedDictionary<string, string> wordMap, SortedDictionary<string, CardInfo> cardMap){
         this.wordMap = wordMap;
-        this.cardMap = cardMap;
+        foreach(var item in cardMap){
+            this.cardMap[item.Key].Change(item.Value);
+        }
     }
     public string GetWord(string key){
         if(wordMap.ContainsKey(key)){

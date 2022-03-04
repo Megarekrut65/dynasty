@@ -17,7 +17,10 @@ public class LocalizationChanger<ValueType>{
         if(language == currentLanguage) return map;
         currentLanguage = language;
         PlayerPrefs.SetString(languageKey, language);
-        string path = Application.streamingAssetsPath +"/"+ folder + "/" + language + ".json";
+        return GetValue(language);
+    }
+    public SortedDictionary<string, ValueType> GetValue(string valuePath){
+        string path = Application.streamingAssetsPath +"/"+ folder + "/" + valuePath + ".json";
         string jsonData;
         if (Application.platform == RuntimePlatform.Android)
         {

@@ -16,8 +16,9 @@ public class LocalizationManager : MonoBehaviour
     }
     public static LocalizationManager instance;
     private LocalizationChanger<string> wordChanger = new LocalizationChanger<string>("Languages");
-    private LocalizationChanger<CardData> cardChanger= new LocalizationChanger<CardData>("Languages/Cards");
-    public LocalizationMap map = new LocalizationMap();
+    private LocalizationChanger<CardInfo> cardChanger= new LocalizationChanger<CardInfo>("Languages/Cards");
+    private string parametersPath = "parameters";
+    public LocalizationMap map;
     public delegate void ChangeLanguageText();
     public event ChangeLanguageText OnLanguageChanged;
     public void ChangeLanguage(string language){
@@ -51,6 +52,9 @@ public class LocalizationManager : MonoBehaviour
         }
         if (instance == null) {
             instance = this;
+            var cardParametersChanger= new LocalizationChanger<CardParameters>("Cards");
+            var parameters = cardParametersChanger.GetValue(parametersPath);
+            map = new LocalizationMap(parameters);
             ChangeLanguage(PlayerPrefs.GetString(languageKey));
         } else if (instance != this)
         {
