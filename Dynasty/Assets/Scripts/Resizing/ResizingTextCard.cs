@@ -12,15 +12,10 @@ public class ResizingTextCard : MonoBehaviour {
     public void Resize(ResizingData data){
         this.data = data;
         data.OnChanged += ChangeText;
-        StartCoroutine(MakeTextSameSize());
-    }
-     IEnumerator MakeTextSameSize(){
-        yield return null;
-
         int size = text.cachedTextGenerator.fontSizeUsedForBestFit;
         data.MinFontSize = size;
         ChangeText();
-     }
+    }
      void ChangeText(){
          text.resizeTextMaxSize = Math.Min(data.MinFontSize,
             title.cachedTextGenerator.fontSizeUsedForBestFit);

@@ -12,6 +12,7 @@ public class LocalizationCard : MonoBehaviour
         public string Key{
         set{
             key = value;
+            card = LocalizationManager.instance.GetCard(key);
         }
     }
     private CardData card;
@@ -21,8 +22,6 @@ public class LocalizationCard : MonoBehaviour
         }
     }
     [Header("Sprites Data")]
-    [SerializeField]
-    private Sprite[] sprites = new Sprite[4];
     [SerializeField]
     private Sprite[] types = new Sprite[2];
     [Header("Card parts")]
@@ -64,20 +63,8 @@ public class LocalizationCard : MonoBehaviour
                break;
        }
     }
-    // private void SetIconSprites(){
-    //     SetSprite(card.move, 0);
-    //     SetSprite(card.mix, 1);
-    //     SetSprite(card.cover, 2);
-    //     SetSprite(card.drop, 3);
-    // }
-    // private void SetSprite(string value, int index){
-    //     if(value != "none"){
-    //         icons[index].sprite = sprites[index];
-    //     }
-    // }
     private void SetIcons(){
         SetIconColors();
-        //SetIconSprites();
     }
     private void SetIconColors(){
         SetColor(icons[0], card.move);
@@ -120,10 +107,10 @@ public class LocalizationCard : MonoBehaviour
     public void UpdateText()
     {
         if (nameText == null || descriptionText == null) return;
-        card = LocalizationManager.instance.GetCard(key);
-        if(card == null) return;
-        SetText();
-        SetAmount();
-        SetIcons();
+        if(card != null){
+            SetText();
+            SetAmount();
+            SetIcons();
+        }
     }
 }

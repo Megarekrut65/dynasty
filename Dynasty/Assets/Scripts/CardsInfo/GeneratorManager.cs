@@ -20,6 +20,8 @@ public class GeneratorManager : MonoBehaviour {
     private ResizingData data = new ResizingData(1000);
     private int currentColor = -2;
     private string currentName = "";
+    [SerializeField]
+    private Text logText;
 
     void Start(){
         _canvas = GameObject.Find("Canvas");
@@ -31,11 +33,14 @@ public class GeneratorManager : MonoBehaviour {
         CardsGenerator generator = new CardsGenerator(cardObject, content);
         cards = generator.Generate();
         foreach(var card in cards){
+            logText.text = card.GetComponent<LocalizationCard>().Card.name;
             card.GetComponent<LocalizationCard>().UpdateText();
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.01f);
             card.GetComponent<ResizingTextCard>().Resize(data);
+            yield return new WaitForSeconds(0.001f);
         }
-        SelectColor(0);
+        currentColor = - 2;
+        yield return new WaitForSeconds(0.1f);
         loadBoard.Destroy();
     }
     public void MakeInvisible(){

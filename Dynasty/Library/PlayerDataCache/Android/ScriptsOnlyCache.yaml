@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - ButtonScript
+    - CameraZoom
     - DeskManager
     - FilterLocalization
     - GameLoad
@@ -31,6 +32,14 @@ ScriptsOnlyBuild:
     - Unity.Cloud.Collaborate.UserInterface.CollaborateWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    Unity.Timeline.Editor.dll:
+    - TimelinePreferences
+    - TimelineProjectSettings
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -44,10 +53,12 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.Dropdown
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
@@ -82,8 +93,6 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1452}
-    - Class: 114
       Script: {instanceID: 1454}
     - Class: 114
       Script: {instanceID: 1726}
@@ -92,19 +101,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1732}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2836}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2840}
     - Class: 114
-      Script: {instanceID: 2904}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 3102}
+      Script: {instanceID: 2908}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 3966}
+      Script: {instanceID: 3358}
+    - Class: 114
+      Script: {instanceID: 3974}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -155,37 +166,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1760}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2836}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2840}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 3102}
+      Script: {instanceID: 2866}
     - Class: 114
-      Script: {instanceID: 3160}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3166}
     - Class: 114
-      Script: {instanceID: 3362}
+      Script: {instanceID: 3358}
     - Class: 114
-      Script: {instanceID: 3700}
+      Script: {instanceID: 3370}
     - Class: 114
-      Script: {instanceID: 3784}
+      Script: {instanceID: 3708}
     - Class: 114
-      Script: {instanceID: 4310}
+      Script: {instanceID: 3792}
     - Class: 114
-      Script: {instanceID: 4536}
+      Script: {instanceID: 4318}
     - Class: 114
-      Script: {instanceID: 4742}
+      Script: {instanceID: 4544}
     - Class: 114
-      Script: {instanceID: 5010}
+      Script: {instanceID: 4750}
     - Class: 114
-      Script: {instanceID: 5092}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 5296}
+      Script: {instanceID: 5104}
+    - Class: 114
+      Script: {instanceID: 5310}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -230,25 +243,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1760}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2836}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2840}
     - Class: 114
-      Script: {instanceID: 3102}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 3784}
+      Script: {instanceID: 3358}
     - Class: 114
-      Script: {instanceID: 5010}
+      Script: {instanceID: 3792}
     - Class: 114
-      Script: {instanceID: 5296}
+      Script: {instanceID: 5020}
     - Class: 114
-      Script: {instanceID: 17452}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 25444}
+      Script: {instanceID: 5310}
+    - Class: 114
+      Script: {instanceID: 5714}
+    - Class: 114
+      Script: {instanceID: 5780}
+    - Class: 114
+      Script: {instanceID: 18076}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -278,30 +297,40 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1452}
-    - Class: 114
       Script: {instanceID: 1454}
     - Class: 114
       Script: {instanceID: 1718}
     - Class: 114
-      Script: {instanceID: 1864}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 1866}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2252}
     - Class: 114
-      Script: {instanceID: 3102}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 3784}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 4316}
+      Script: {instanceID: 3106}
+    - Class: 114
+      Script: {instanceID: 3358}
+    - Class: 114
+      Script: {instanceID: 3792}
+    - Class: 114
+      Script: {instanceID: 4324}
+    - Class: 114
+      Script: {instanceID: 4892}
+    - Class: 114
+      Script: {instanceID: 5298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -336,27 +365,27 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1452}
-    - Class: 114
       Script: {instanceID: 1454}
     - Class: 114
       Script: {instanceID: 1726}
     - Class: 114
       Script: {instanceID: 1732}
     - Class: 114
-      Script: {instanceID: 2686}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2836}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2840}
     - Class: 114
-      Script: {instanceID: 3102}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 3784}
+      Script: {instanceID: 3358}
     - Class: 114
-      Script: {instanceID: 5010}
+      Script: {instanceID: 3792}
+    - Class: 114
+      Script: {instanceID: 5026}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -376,10 +405,10 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: 699619b86d9359741a4f58540298c80b
+      Hash: cf9f5cf2c3145a37ac07f00e50e460f9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
-    className: Text
+    className: AspectRatioFitter
   - hash:
       serializedVersion: 2
       Hash: a6e561615949734e9f12f9b61661f43e
@@ -490,6 +519,12 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 699619b86d9359741a4f58540298c80b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
+  - hash:
+      serializedVersion: 2
       Hash: f1d735cc1a21c3704ab52568f4fbfcf8
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -520,12 +555,6 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: cf9f5cf2c3145a37ac07f00e50e460f9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: AspectRatioFitter
-  - hash:
-      serializedVersion: 2
       Hash: d91fcd9ac7bd86d3d771dd6171620fad
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -538,7 +567,7 @@ ScriptsOnlyBuild:
     className: EventSystem
   - hash:
       serializedVersion: 2
-      Hash: 3e261910b71b6154e93deffd905d006d
+      Hash: 534c3796c583515a05bc75661f6e0e42
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GeneratorManager
@@ -880,7 +909,13 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: b2acf89bf375048fb6430144fe3a3dcb
+      Hash: 23e99074f6d5c24bbd929c0842ff48f2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DeskManager
+  - hash:
+      serializedVersion: 2
+      Hash: a92fd3ab3d95baa239231876d2e91007
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LocalizationCard
@@ -940,6 +975,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: a1e48b33fb7f7ab4c95b5c859496f36e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TableManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -964,16 +1005,10 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: a1e48b33fb7f7ab4c95b5c859496f36e
+      Hash: 218048bd93e908746781901d78cf0f9b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: TableManager
-  - hash:
-      serializedVersion: 2
-      Hash: 23e99074f6d5c24bbd929c0842ff48f2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DeskManager
+    className: CameraZoom
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity

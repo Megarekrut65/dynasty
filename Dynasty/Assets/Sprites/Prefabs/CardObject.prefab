@@ -238,7 +238,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 50246e985c2fe5d4bb0ff04af74bcce3, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 100
     m_Alignment: 4
@@ -960,11 +960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: king
-  sprites:
-  - {fileID: 21300000, guid: fffd1065eb7909945939fb26e0b3bc1a, type: 3}
-  - {fileID: 21300000, guid: 525b11009bec32342985f045c29ba302, type: 3}
-  - {fileID: 21300000, guid: 27b856024eaaef04d928dc8a97b132cf, type: 3}
-  - {fileID: 21300000, guid: 1aa2e0cb4f572ec40ac58cd3a94f5348, type: 3}
   types:
   - {fileID: 21300000, guid: d5c40c8eb940a3d4084aefe2baf744dd, type: 3}
   - {fileID: 21300000, guid: fd126c61d171f644c8e52f59c860bfcc, type: 3}
