@@ -64,20 +64,20 @@ public class LocalizationCard : MonoBehaviour
                break;
        }
     }
-    private void SetIconSprites(){
-        SetSprite(card.move, 0);
-        SetSprite(card.mix, 1);
-        SetSprite(card.cover, 2);
-        SetSprite(card.drop, 3);
-    }
-    private void SetSprite(string value, int index){
-        if(value != "none"){
-            icons[index].sprite = sprites[index];
-        }
-    }
+    // private void SetIconSprites(){
+    //     SetSprite(card.move, 0);
+    //     SetSprite(card.mix, 1);
+    //     SetSprite(card.cover, 2);
+    //     SetSprite(card.drop, 3);
+    // }
+    // private void SetSprite(string value, int index){
+    //     if(value != "none"){
+    //         icons[index].sprite = sprites[index];
+    //     }
+    // }
     private void SetIcons(){
         SetIconColors();
-        SetIconSprites();
+        //SetIconSprites();
     }
     private void SetIconColors(){
         SetColor(icons[0], card.move);
