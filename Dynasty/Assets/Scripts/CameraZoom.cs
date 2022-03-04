@@ -1,30 +1,42 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 public class CameraZoom : MonoBehaviour {
+    private int min = 150;
+    private int max = 500;
     [SerializeField]
-    private Camera cam;
-    private Touch oldTouch1;
-    private Touch oldTouch2;
-    void Update()
-    {
-        if (Input.touchCount <= 0)
-        {
-            return;
-        }     
-        Touch newTouch1 = Input.GetTouch(0);
-        Touch newTouch2 = Input.GetTouch(1);
-        if (newTouch2.phase == TouchPhase.Began)
-        {
-            oldTouch2 = newTouch2;
-            oldTouch1 = newTouch1;
-            return;
-        }
-        float oldDistance = Vector2.Distance(oldTouch1.position, oldTouch2.position);
-        float newDistance = Vector2.Distance(newTouch1.position, newTouch2.position);
-        float offset = newDistance - oldDistance;
-        float scaleFactor = offset / 100f;
-        cam.orthographicSize *= scaleFactor;
-        oldTouch1 = newTouch1;
-        oldTouch2 = newTouch2;
-    }
+    private Camera mainCamera;
+
+	private float touchesPrevPosDifference; 
+    private float touchesCurPosDifference;
+    private float zoomModifier;
+
+	private Vector2 firstTouchPrevPos;
+    private Vector2 secondTouchPrevPos;
+
+	[SerializeField]
+	private float zoomModifierSpeed = 0.1f;
+	void Update () {
+		
+		if (Input.touchCount == 2) {
+			Touch firstTouch = Input.GetTouch (0);
+			Touch secondTouch = Input.GetTouch (1);
+
+			firstTouchPrevPos = firstTouch.position - firstTouch.deltaPosition;
+			secondTouchPrevPos = secondTouch.position - secondTouch.deltaPosition;
+
+			touchesPrevPosDifference = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
+			touchesCurPosDifference = (firstTouch.position - secondTouch.position).magnitude;
+
+			zoomModifier = (firstTouch.deltaPosition - secondTouch.deltaPosition).magnitude * zoomModifierSpeed;
+
+			if (touchesPrevPosDifference > touchesCurPosDifference)
+				mainCamera.orthographicSize += zoomModifier;
+			if (touchesPrevPosDifference < touchesCurPosDifference)
+				mainCamera.orthographicSize -= zoomModifier;
+			
+		}
+
+		mainCamera.orthographicSize = Mathf.Clamp (mainCamera.orthographicSize, min, max);
+	}
 }
