@@ -20,11 +20,13 @@ public class CameraZoom : MonoBehaviour {
 	
 	void Start(){
 		targetSize = mainCamera.orthographicSize;
+		if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer){
+			zoomModifierSpeed /= 40f;
+		}
 	}
 	void Update() {
 		if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer){
 			if (Input.touchCount == 2) {
-				zoomModifierSpeed /= 40f;
 				float zoomModifier = CountZoom();
 				if (touchesPrevPosDifference > touchesCurPosDifference){
 					targetSize += zoomModifier;

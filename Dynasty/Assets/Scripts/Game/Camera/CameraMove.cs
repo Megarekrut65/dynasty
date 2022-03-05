@@ -35,6 +35,6 @@ public class CameraMove : MonoBehaviour {
                 cameraTransform.position.z);
         }
         if(stop) targetPosition = cameraTransform.position;
-        cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPosition, Time.deltaTime);
+        cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPosition, speed*Time.deltaTime);
     }
 }

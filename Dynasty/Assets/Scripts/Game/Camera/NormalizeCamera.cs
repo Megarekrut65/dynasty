@@ -5,14 +5,14 @@ IPointerDownHandler, IPointerUpHandler {
     [SerializeField]
     private Transform cameraTransform;
     [SerializeField]
-    private CameraMove cameraMove;
+    private CameraController controller;
     public void OnPointerUp(PointerEventData eventData)
     {
-        cameraMove.Stop = false;
+        controller.Stop = false;
     }
     public void OnPointerDown(PointerEventData eventData)
     {   
-        cameraMove.Stop = true;
+        controller.Stop = true;
         cameraTransform.position = new Vector3(0f, 0f, cameraTransform.position.z);
     }
 }
