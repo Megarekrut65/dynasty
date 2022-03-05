@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 50463341}
   - component: {fileID: 50463342}
   m_Layer: 5
-  m_Name: Table
+  m_Name: UnderCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,10 +154,10 @@ RectTransform:
   m_Father: {fileID: 579118318}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.432, y: 0.30200002}
-  m_AnchorMax: {x: 0.615, y: 0.69600004}
-  m_AnchoredPosition: {x: -1.5, y: 0.49015808}
-  m_SizeDelta: {x: 0.5800171, y: 0}
+  m_AnchorMin: {x: 0.52950317, y: 0.30200002}
+  m_AnchorMax: {x: 0.71400005, y: 0.69600004}
+  m_AnchoredPosition: {x: -0.648407, y: 0.000038146973}
+  m_SizeDelta: {x: -1.0119691, y: -0.000052928925}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &50463342
 MonoBehaviour:
@@ -342,7 +342,7 @@ Camera:
   far clip plane: 10
   field of view: 114
   orthographic: 1
-  orthographic size: 500
+  orthographic size: 200
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -382,11 +382,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 570252262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca11b5ca2684704ea6d937e88100920, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c7daa2267ea144a80527db4696ff65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 570252264}
-  zoomModifierSpeed: 0.5
+  min: 150
+  max: 800
+  zoomModifierSpeed: 200
 --- !u!1 &579118314
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,10 +927,10 @@ RectTransform:
   m_Father: {fileID: 579118318}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.065000005, y: 0.30200002}
-  m_AnchorMax: {x: 0.18628784, y: 0.69600004}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.34836856, y: 0.30200002}
+  m_AnchorMax: {x: 0.4711799, y: 0.69600004}
+  m_AnchoredPosition: {x: -0.4615326, y: 0.49020386}
+  m_SizeDelta: {x: -1.0330057, y: -0.000041007996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5661800588421517822
 MonoBehaviour:

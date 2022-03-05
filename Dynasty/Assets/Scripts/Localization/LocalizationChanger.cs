@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
 public class LocalizationChanger<ValueType>{
     private string currentLanguage;
     private string folder;
@@ -21,18 +22,7 @@ public class LocalizationChanger<ValueType>{
     }
     public SortedDictionary<string, ValueType> GetValue(string valuePath){
         string path = Application.streamingAssetsPath +"/"+ folder + "/" + valuePath + ".json";
-        string jsonData;
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            WWW reader = new WWW(path);
-            while (!reader.isDone) { }
- 
-            jsonData = reader.text;
-        }
-        else
-        {
-            jsonData = File.ReadAllText(path);
-        }
+        string jsonData = AllFileReader.Read(path);
         LocalizationList<ValueType> list = JsonUtility.FromJson<LocalizationList<ValueType>>(jsonData);
         map.Clear();
         if(list.items != null){

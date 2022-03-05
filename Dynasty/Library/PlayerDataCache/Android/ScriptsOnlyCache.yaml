@@ -37,6 +37,8 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    Unity.Timeline.Editor.dll:
+    - TimelineProjectSettings
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -260,11 +262,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5336}
     - Class: 114
-      Script: {instanceID: 5694}
-    - Class: 114
       Script: {instanceID: 5742}
     - Class: 114
       Script: {instanceID: 5808}
+    - Class: 114
+      Script: {instanceID: 25974}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -966,12 +968,6 @@ ScriptsOnlyBuild:
     className: BufferManager
   - hash:
       serializedVersion: 2
-      Hash: 6af738cf155b73a4dc84d310b2f0130b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraZoom
-  - hash:
-      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1006,6 +1002,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraMove
+  - hash:
+      serializedVersion: 2
+      Hash: 80622a70c6eaf3e52bd240fe860dfedb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraZoom
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity

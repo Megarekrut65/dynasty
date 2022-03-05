@@ -22,9 +22,6 @@ public class Table {
             desk.Push(item);
             data.Remove(item);
         }
-        foreach(var card in desk){
-            UnityEngine.Debug.Log(card.data);
-        }
     }
     public Card TakeCardFromDesk(){
         var item = desk.Pop();
