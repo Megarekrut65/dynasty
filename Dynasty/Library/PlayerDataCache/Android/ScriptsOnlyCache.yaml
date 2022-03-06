@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - CameraController
     - CameraMove
     - CameraZoom
+    - Desk
     - DeskManager
     - FilterLocalization
     - GameLoad
@@ -274,11 +275,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5384}
     - Class: 114
-      Script: {instanceID: 5750}
+      Script: {instanceID: 5534}
     - Class: 114
-      Script: {instanceID: 5816}
+      Script: {instanceID: 5752}
     - Class: 114
-      Script: {instanceID: 25418}
+      Script: {instanceID: 5818}
+    - Class: 114
+      Script: {instanceID: 24670}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -998,6 +1001,12 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 14ba50d17b824fa2035ecefb8c05942e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
@@ -1010,7 +1019,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: a1e48b33fb7f7ab4c95b5c859496f36e
+      Hash: 32de8b92ec8315c4afb8c676fda27dc9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TableManager
@@ -1040,10 +1049,16 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 14ba50d17b824fa2035ecefb8c05942e
+      Hash: 7836bf13d5d2c278e735255d583b6321
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: CameraController
+    className: Desk
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CardClick
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity

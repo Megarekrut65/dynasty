@@ -13,7 +13,9 @@ public class Table {
         List<Card> data = new List<Card>();
         var map = LocalizationManager.instance.map.CardMap;
         foreach(var item in map){
-            data.Add(new Card(item.Value, item.Key));
+            for(int i = 0; i < item.Value.count; i++){
+                data.Add(new Card(item.Value, item.Key));
+            }
         }
         System.Random rnd = new System.Random();
         while(data.Count != 0){
@@ -22,9 +24,17 @@ public class Table {
             desk.Push(item);
             data.Remove(item);
         }
+        UnityEngine.Debug.Log(desk.Count);
     }
     public Card TakeCardFromDesk(){
         var item = desk.Pop();
         return item;
+    }
+    public void AddCardToPlayer(Player player, Card card){
+        playerDesk[player].Add(card);
+    }
+    public void DropCard(Player player, Card card){
+        playerDesk[player].Remove(card);
+        drop.Add(card);
     }
 }
