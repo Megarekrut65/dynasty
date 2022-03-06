@@ -18,4 +18,8 @@ public class Player {
         }
         else desk.AddCard(card);
     }
+    public void AddCoins(int coins){
+        this.coins += coins;
+        desk.SetCoins(coins);
+    }
 }

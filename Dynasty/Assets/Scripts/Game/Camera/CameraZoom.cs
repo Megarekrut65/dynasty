@@ -40,7 +40,7 @@ public class CameraZoom : MonoBehaviour {
 			targetSize -= Input.GetAxis("Mouse ScrollWheel") * zoomModifierSpeed;
 		}
 		targetSize = Mathf.Clamp (targetSize, min, max);
-		mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, Time.deltaTime);
+		mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, 20f*Time.deltaTime);
 	}
 	private float CountZoom(){
 		Touch firstTouch = Input.GetTouch(0);
