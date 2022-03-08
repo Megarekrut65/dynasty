@@ -3321,7 +3321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 570252265}
-  controller: {fileID: 0}
+  controller: {fileID: 570252267}
 --- !u!114 &1865894741
 MonoBehaviour:
   m_ObjectHideFlags: 0

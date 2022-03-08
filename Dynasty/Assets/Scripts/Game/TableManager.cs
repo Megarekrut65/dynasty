@@ -18,6 +18,7 @@ public class TableManager : MonoBehaviour {
     private Table table;
     private CardManager cardManager;
     private EffectsGenerator effectsGenerator;
+    private bool pause = false;
     void Start(){
         cardManager = new CardManager(container, cardObject);
         players = new List<Player>();
@@ -43,10 +44,15 @@ public class TableManager : MonoBehaviour {
         }
     }
     public void TakeCardFromDesk(){
-        if(gameManager.GameOver) return;
+        if(gameManager.GameOver || pause) return;
+        pause = true;
         var card = table.TakeCardFromDesk();
         cardManager.CreateCard(card);
-        cardManager.AddClickToCard(card, effectsGenerator.GetEffect(NextPlayer(), card));
+        cardManager.AddClickToCard(card, () => {
+            bool res = effectsGenerator.GetEffect(NextPlayer(), card)();
+            pause = false;
+            return res;
+        });
         if(card.key == "inevitable-end"){
             gameManager.GameOver = true;
         }

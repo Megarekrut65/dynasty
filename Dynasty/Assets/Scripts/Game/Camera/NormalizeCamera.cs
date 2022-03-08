@@ -5,7 +5,7 @@ IPointerDownHandler, IPointerUpHandler {
     [SerializeField]
     private Transform cameraTransform;
     [SerializeField]
-    private CameraController controller;
+    private CameraMove controller;
     public void OnPointerUp(PointerEventData eventData)
     {
         controller.Stop = false;
