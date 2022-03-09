@@ -11,28 +11,27 @@ public class TableManager : MonoBehaviour {
     private GameObject container;
     [SerializeField]
     private Desk[] playerDesks = new Desk[6];
-    private int playerCount = 6;
-    private List<Player> players;
-    private string[] nicknames = new string[6];
-    private int index = 0;
     private Table table;
     private CardManager cardManager;
     private EffectsGenerator effectsGenerator;
     private bool pause = false;
+    private List<CardBot> bots = new List<CardBot>();
     void Start(){
         cardManager = new CardManager(container, cardObject);
-        players = new List<Player>();
-        for(int i = 0; i < nicknames.Length; i++){
-            nicknames[i] = "Player" + UnityEngine.Random.Range(0, 1000);
-        }
-        for(int i = 0; i < playerCount; i++){
-            players.Add(new Player(nicknames[i], playerDesks[i]));
+        gameManager.CreatePlayers();
+        var players = gameManager.Players;
+        for(int i = 0; i < players.Count; i++){
+            players[i].SetDesk(playerDesks[i]);
         }
         table = new Table(players);
         effectsGenerator = new EffectsGenerator(gameManager, cardManager, table);
-        AddStartCards();
+        AddStartCards(players);
+        int playerCount = players.Count - gameManager.BotCount;
+        for(int i = playerCount; i < players.Count; i++){
+            bots.Add(new CardBot(players[i], gameManager, ()=>TakeCardFromDesk()));
+        }
     }
-    private void AddStartCards(){
+    private void AddStartCards(List<Player> players){
         string avoidKey = "avoid-inevitable";
         CardData avoid = LocalizationManager.instance.GetCard(avoidKey);
         foreach(var player in players){
@@ -43,26 +42,19 @@ public class TableManager : MonoBehaviour {
             table.AddCardToPlayer(player, card);
         }
     }
-    public void TakeCardFromDesk(){
-        if(gameManager.GameOver || pause) return;
+    public Card TakeCardFromDesk(){
+        if(gameManager.GameOver || pause) return null;
         pause = true;
         var card = table.TakeCardFromDesk();
         cardManager.CreateCard(card);
         cardManager.AddClickToCard(card, () => {
-            bool res = effectsGenerator.GetEffect(NextPlayer(), card)();
+            bool res = effectsGenerator.GetEffect(gameManager.NextPlayer(), card)();
             pause = false;
             return res;
         });
         if(card.key == "inevitable-end"){
             gameManager.GameOver = true;
         }
-    }
-    
-    private Player NextPlayer(){
-        Player player = players[index++];
-        if(index >= playerCount){
-            index = 0;
-        }
-        return player;
+        return card;
     }
 }

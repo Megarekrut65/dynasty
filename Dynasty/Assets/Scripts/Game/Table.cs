@@ -22,12 +22,12 @@ public class Table {
         }
         List<Card> data = new List<Card>();
         var map = LocalizationManager.instance.map.CardMap;
-        Card end = null;
+        //Card end = null;
         foreach(var item in map){
-            if(item.Key == "inevitable-end"){
+            /*if(item.Key == "inevitable-end"){
                 end = new Card(item.Value, item.Key);
                 continue;
-            }
+            }*/
             for(int i = 0; i < item.Value.count; i++){
                 data.Add(new Card(item.Value, item.Key));
             }
@@ -39,7 +39,7 @@ public class Table {
             desk.Add(item);
             data.Remove(item);
         }
-        if(end != null) desk.Insert(desk.Count - 10, end);
+        //if(end != null) desk.Insert(desk.Count - 10, end);
     }
     public void InsertToDesk(Card card){
         desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);

@@ -27,7 +27,6 @@
     {"key":"green-pandora's-box", "value":{"name":"Скринька Пандори", "description":"ЗАМІШАЙ одну ворожу З-картку"}},
     {"key":"robin-hood", "value":{"name":"Робін Гуд", "description":"ЗАБЕР�? одну ворожу З-картку"}},
     {"key":"oversight", "value":{"name":"Необачність", "description":"ЗАМІШАЙ одну свою З-картку"}},
-    {"key":"look-ahead", "value":{"name":"Погляд Вперед", "description":"ВІЗЬМ�? три картки з колоди. В�?БЕР�? одну для себе. Інші поверни назад"}},
     {"key":"fairy-army", "value":{"name":"Казкове Військо", "description":"ЗАБЕР�? картку Король"}},
     {"key":"pharmacy", "value":{"name":"Ліки", "description":"Лікує все"}},
     {"key":"treasure", "value":{"name":"Скарб", "description":"Мовчання - золото"}},

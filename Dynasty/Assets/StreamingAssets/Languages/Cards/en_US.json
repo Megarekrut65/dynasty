@@ -27,7 +27,6 @@
     {"key":"green-pandora's-box", "value":{"name":"Pandora's Box", "description":"MIX one enemy R-card"}},
     {"key":"robin-hood", "value":{"name":"Robin Hood", "description":"TAKE AWAY one enemy R-card"}},
     {"key":"oversight", "value":{"name":"Oversight", "description":"MIX one your R-card"}},
-    {"key":"look-ahead", "value":{"name":"Look Ahead", "description":"TAKE three cards from the deck. CHOOSE one for yourself. TURN others back"}},
     {"key":"fairy-army", "value":{"name":"Fairy Army", "description":"TAKE AWAY King card"}},
     {"key":"pharmacy", "value":{"name":"Pharmacy", "description":"Cures everything"}},
     {"key":"treasure", "value":{"name":"Treasure", "description":"Silence is golden"}},

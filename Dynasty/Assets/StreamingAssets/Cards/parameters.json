@@ -27,7 +27,6 @@
     {"key":"green-pandora's-box", "value":{"type":"A", "count":"2", "move":"none", "mix":"yes", "amount":"3", "cover":"none", "drop":"none"}},
     {"key":"robin-hood", "value":{"type":"A", "count":"4", "move":"none", "mix":"none", "amount":"2", "cover":"none", "drop":"none"}},
     {"key":"oversight", "value":{"type":"A", "count":"4", "move":"none", "mix":"none", "amount":"1", "cover":"none", "drop":"none"}},
-    {"key":"look-ahead", "value":{"type":"A", "count":"2", "move":"none", "mix":"none", "amount":"2", "cover":"none", "drop":"none"}},
     {"key":"fairy-army", "value":{"type":"A", "count":"2", "move":"none", "mix":"yes", "amount":"3", "cover":"none", "drop":"none"}},
     {"key":"pharmacy", "value":{"type":"A", "count":"12", "move":"none", "mix":"yes", "amount":"1", "cover":"none", "drop":"none"}},
     {"key":"treasure", "value":{"type":"A", "count":"2", "move":"none", "mix":"yes", "amount":"5", "cover":"none", "drop":"none"}},

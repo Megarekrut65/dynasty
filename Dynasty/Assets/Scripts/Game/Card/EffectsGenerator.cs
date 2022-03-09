@@ -31,6 +31,7 @@ public class EffectsGenerator {
                     cardManager.DeleteCardFromTable(card);
                     table.DropCard(player, card);
                 }else table.AddCardToPlayer(player, card);
+                gameManager.CallNext();
                 return true;
             };
         }

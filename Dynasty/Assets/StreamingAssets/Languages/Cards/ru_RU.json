@@ -27,7 +27,6 @@
     {"key":"green-pandora's-box", "value":{"name":"Ящик Пандоры", "description":"ЗАМЕШАЙ одну вражескую О-карту"}},
     {"key":"robin-hood", "value":{"name":"Робин Гуд", "description":"ЗАБЕР�? одну О-карту у врага"}},
     {"key":"oversight", "value":{"name":"Оплошность", "description":"ЗАМЕШАЙ одну свою О-карту"}},
-    {"key":"look-ahead", "value":{"name":"Взгляд Вперед", "description":"ВОЗЬМ�? три карты из колоды. ВЫБЕР�? одину для себя. ПОВЕРН�? другие назад"}},
     {"key":"fairy-army", "value":{"name":"Сказочная армия", "description":"ЗАБЕР�? карту Король"}},
     {"key":"pharmacy", "value":{"name":"Лекарство", "description":"Лечит все"}},
     {"key":"treasure", "value":{"name":"Сокровище", "description":"Молчание - золото"}},

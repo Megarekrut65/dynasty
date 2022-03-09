@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player {
-    private string nickname;
+    public string nickname;
     private Desk desk;
     private int coins = 0;
     
-    public Player(string nickname, Desk desk){
-        this.desk = desk;
+    public Player(string nickname){
         this.nickname = nickname;
+    }
+    public void SetDesk(Desk desk){
+        this.desk = desk;
         desk.SetName(nickname);
     }
     public void AddCard(Card card){
