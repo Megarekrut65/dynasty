@@ -1,88 +1,599 @@
 {
-    "items":[
-    {"key":"encampment", "value":{"name":"Привал", "description":"ЗАБЕР�? ворожого лицаря"}},
-    {"key":"temple", "value":{"name":"Храм", "description":"Будівля"}},
-    {"key":"bunker", "value":{"name":"Бункер", "description":"Будівля.#НАКР�?Й свою З-картку"}},
-    {"key":"light-wizard", "value":{"name":"Світлий Чаклун", "description":"ЗАМІШАЙ картку Темний Чаклун"}},
-    {"key":"dungeon-keys", "value":{"name":"Ключі від Підземелля", "description":"ЗАБЕР�? картку Підземелля.#ЗАМІШАЙ картку Таємний Скарб"}},
-    {"key":"secret-treasure", "value":{"name":"Таємний Скарб", "description":"Якщо у одного гравця є ця карта разом із картою Підземелля, він отримає 6 монет"}},
-    {"key":"dungeon", "value":{"name":"Підземелля", "description":"Будівля.#НАКР�?Й будь-чию З-картку"}},
-    {"key":"gate", "value":{"name":"Брама", "description":"Будівля"}},
-    {"key":"village", "value":{"name":"Хутір", "description":"Будівля"}},
-    {"key":"castle", "value":{"name":"Замок", "description":"Будівля.#ЗАБЕР�? картку Король"}},
-    {"key":"swordsman", "value":{"name":"Мечник", "description":"Лицар"}},
-    {"key":"crusader", "value":{"name":"Хрестоносець", "description":"Лицар"}},
-    {"key":"equestrian", "value":{"name":"Вершник", "description":"Лицар"}},
-    {"key":"king", "value":{"name":"Король", "description":"Усі нові лицарі будуть твоїми"}},
-    {"key":"fountain", "value":{"name":"Фонтан", "description":"Будівля"}},
-    {"key":"tower", "value":{"name":"Вежа", "description":"Будівля.#ЗБЕР�? одну картку Лучник"}},
-    {"key":"archer", "value":{"name":"Лучник", "description":"Лицар"}},
-    {"key":"bridge", "value":{"name":"Міст", "description":"Будівля"}},
-    {"key":"prison", "value":{"name":"В'язниця", "description":"Будівля.#НАКР�?Й будь-чию З-картку"}},
-    {"key":"dragon", "value":{"name":"Дракон", "description":"Шаленіє від золота"}},
-    {"key":"hunter", "value":{"name":"Мисливець", "description":"СК�?НЬ свого монстра"}},
-    {"key":"step-ahead", "value":{"name":"Крок Вперед", "description":"ВІЗЬМ�? ще одну картку з колоди"}},
-    {"key":"look-back", "value":{"name":"Погляд Назад", "description":"ВІЗЬМ�? будь-яку скинуту З-картку"}},
-    {"key":"current", "value":{"name":"Потік", "description":"СК�?НЬ свою З-картку"}},
-    {"key":"green-pandora's-box", "value":{"name":"Скринька Пандори", "description":"ЗАМІШАЙ одну ворожу З-картку"}},
-    {"key":"robin-hood", "value":{"name":"Робін Гуд", "description":"ЗАБЕР�? одну ворожу З-картку"}},
-    {"key":"oversight", "value":{"name":"Необачність", "description":"ЗАМІШАЙ одну свою З-картку"}},
-    {"key":"fairy-army", "value":{"name":"Казкове Військо", "description":"ЗАБЕР�? картку Король"}},
-    {"key":"pharmacy", "value":{"name":"Ліки", "description":"Лікує все"}},
-    {"key":"treasure", "value":{"name":"Скарб", "description":"Мовчання - золото"}},
-    {"key":"ice-cream", "value":{"name":"Морозиво", "description":"Ммм... Смакота"}},
-    {"key":"bag-of-gold", "value":{"name":"Мішок Золота", "description":"Багато грошей не буває"}},
-    {"key":"genie", "value":{"name":"Джин", "description":"Три бажання для тебе"}},
-    {"key":"hero", "value":{"name":"Герой", "description":"СК�?НЬ картку Дракон"}},
-    {"key":"avoid-inevitable", "value":{"name":"Уникнути Неминучого", "description":"МОЖЕШ СК�?НУТ�? цю картку, щоб ЗАМІШАТ�? картку Неминучий Кінець"}},
-    {"key":"magic-hat", "value":{"name":"Магічний Капелюх", "description":"НАКР�?Й будь-чию картку"}},
-    {"key":"invisible-cloak", "value":{"name":"Невидимий Плащ", "description":"Твоїх лицарів не можна перемістити"}},
-    {"key":"totem", "value":{"name":"Тотем", "description":"Твої З-картки не можна скинути"}},
-    {"key":"gold-mountain", "value":{"name":"Золота Гора", "description":"СК�?НЬ іншу картку Золота Гора.#ЗАБЕР�? картку Дракон"}},
-    {"key":"grail", "value":{"name":"Грааль", "description":"Усі гравці скидають по-одній картці"}},
-    {"key":"illusion", "value":{"name":"Ілюзія", "description":"Суперники ЗАМІШУЮТЬ по одній своїй картці"}},
-    {"key":"inevitable-end", "value":{"name":"Неминучий Кінець", "description":"Кінець гри..."}},
-    {"key":"king-sword", "value":{"name":"Меч Короля", "description":"ЗАБЕР�? картку Король"}},
-    {"key":"boarding-party", "value":{"name":"На Абордаж", "description":"Усі гравці скидають по дві власні картки"}},
-    {"key":"royal-rebellion", "value":{"name":"Бунт", "description":"ЗБЕР�? одного лицаря.#ЗАМІШАЙ картку Король"}},
-    {"key":"reliable-plan", "value":{"name":"Надійний План", "description":"ЗАБЕР�? одну картку ворога.#ПЕРЕМІСТ�? одну свою до нього"}},
-    {"key":"magic-sphere", "value":{"name":"Магічна Сфера", "description":"ПЕРЕМІСТ�? одну свою картку до ворога"}},
-    {"key":"hocus-pocus", "value":{"name":"Фокус Покус", "description":"ВІЗЬМ�? ще одну картку з будь-якого місця в колоді"}},
-    {"key":"wand", "value":{"name":"Чарівна Паличка", "description":"СК�?НЬ будь-чию картку"}},
-    {"key":"dracula", "value":{"name":"Дракула", "description":"Мисливець не скидає ваших монстрів.#ПЕРЕМІСТ�? всі свої картки Кажан і Ворона ворогам"}},
-    {"key":"snake", "value":{"name":"Змія", "description":"Монстр.#ЗАБЕР�? усі картки Змія"}},
-    {"key":"crow", "value":{"name":"Ворона", "description":"Монстр"}},
-    {"key":"cerberus", "value":{"name":"Цербер", "description":"Монстр.#Гравець з трьома картками Цербер втратить дві монети"}},
-    {"key":"locusts", "value":{"name":"Сарана", "description":"Монстр.#ЗАМІШАЙ одну картку кожного гравця"}},
-    {"key":"siren", "value":{"name":"Сирена", "description":"Монстр.#Картка На Абордаж не працює для тебе"}},
-    {"key":"curses", "value":{"name":"Прокльон", "description":"НАКР�?Й свою картку"}},
-    {"key":"dark-wizard", "value":{"name":"Темний Чаклун", "description":"ЗАМІШАЙ картку Світлий Чаклун"}},
-    {"key":"bear", "value":{"name":"Ведмідь", "description":"Монстр.#ЗАМІШАЙ свого монстра"}},
-    {"key":"hydra", "value":{"name":"Гідра", "description":"Монстр.#ПЕРЕМІСТ�? усіх нових монстрів до ворогів"}},
-    {"key":"zombie", "value":{"name":"Зомбі", "description":"Монстр"}},
-    {"key":"slime", "value":{"name":"Слизь", "description":"Монстр.#НАКР�?Й будь-чию картку"}},
-    {"key":"black-sun-castle", "value":{"name":"Замок Чорного Сонця", "description":"Будівля.#Картка Артилерія не скидає ваші будівлі"}},
-    {"key":"hut", "value":{"name":"Хатина", "description":"Будівля.#НАКР�?Й свого монстра"}},
-    {"key":"bat", "value":{"name":"Кажан", "description":"Монстр"}},
-    {"key":"black-cat", "value":{"name":"Чорна Кішка", "description":"Монстр.#НАКР�?Й З-картку ворога"}},
-    {"key":"flame-wall", "value":{"name":"Стіна Полум’я", "description":"Будівля"}},
-    {"key":"water-wall", "value":{"name":"Стіна Води", "description":"Будівля"}},
-    {"key":"air-wall", "value":{"name":"Стіна Повітря", "description":"Будівля"}},
-    {"key":"earthen-wall", "value":{"name":"Стіна Землі", "description":"Будівля"}},
-    {"key":"four-elements", "value":{"name":"Чотири Елементи", "description":"ЗАБЕР�? усі картки Стін"}},
-    {"key":"robber", "value":{"name":"Грабіжник", "description":"Гроші є? А якщо знайду?"}},
-    {"key":"royal-poison", "value":{"name":"Королівська Отрута", "description":"ЗАМІШАЙ картку Король та всіх лицарів"}},
-    {"key":"poison", "value":{"name":"Отрута", "description":"СК�?НЬ свою З-картку"}},
-    {"key":"poisonous-flower", "value":{"name":"Отруйна Квітка", "description":"Відчуйте отруту в кожній клітинці свого тіла..."}},
-    {"key":"explosion", "value":{"name":"Вибух", "description":"СК�?НЬ будь-чию картку, яка НАКР�?ВАЄ іншу"}},
-    {"key":"dark-genie", "value":{"name":"Темний Джин", "description":"Твоє бажання ніколи не збудеться"}},
-    {"key":"killer", "value":{"name":"Вбивця", "description":"СК�?НЬ свого лицаря"}},
-    {"key":"victim", "value":{"name":"Жертва", "description":"ВІЗЬМ�? ще дві карти з колоди"}},
-    {"key":"dark-sign", "value":{"name":"Темний Знак", "description":"ЗАМІШАЙ дві картки ворога.#СК�?НЬ свою картку"}},
-    {"key":"hell", "value":{"name":"Пекло", "description":"СК�?НЬ по дві картки кожного гравця"}},
-    {"key":"artillery", "value":{"name":"Артилерія", "description":"СК�?НЬ свою будівлю"}},
-    {"key":"death", "value":{"name":"Смерть", "description":"Вмирати так само природно, як жити"}},
-    {"key":"wolf-spirit", "value":{"name":"Вовчий Дух", "description":"ПЕРЕМІСТ�? свою картку до ворога"}},
-    {"key":"cemetery", "value":{"name":"Кладовище", "description":"ЗАМІШАЙ будь-чию картку"}},
-    {"key":"red-pandora's-box", "value":{"name":"Скринька Пандори", "description":"ЗАМІШАЙ свою картку"}}]
-    }
+    "items": [
+        {
+            "key": "encampment",
+            "value": {
+                "name": "Привал",
+                "description": "ЗАБЕР�? ворожого лицаря"
+            }
+        },
+        {
+            "key": "temple",
+            "value": {
+                "name": "Храм",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "bunker",
+            "value": {
+                "name": "Бункер",
+                "description": "Будівля.#НАКР�?Й свою З-картку"
+            }
+        },
+        {
+            "key": "light-wizard",
+            "value": {
+                "name": "Світлий Чаклун",
+                "description": "ЗАМІШАЙ картку Темний Чаклун"
+            }
+        },
+        {
+            "key": "dungeon-keys",
+            "value": {
+                "name": "Ключі від Підземелля",
+                "description": "ЗАБЕР�? картку Підземелля.#ЗАМІШАЙ картку Таємний Скарб"
+            }
+        },
+        {
+            "key": "secret-treasure",
+            "value": {
+                "name": "Таємний Скарб",
+                "description": "Якщо у одного гравця є ця карта разом із картою Підземелля, він отримає 6 монет"
+            }
+        },
+        {
+            "key": "dungeon",
+            "value": {
+                "name": "Підземелля",
+                "description": "Будівля.#НАКР�?Й будь-чию З-картку"
+            }
+        },
+        {
+            "key": "gate",
+            "value": {
+                "name": "Брама",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "village",
+            "value": {
+                "name": "Хутір",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "castle",
+            "value": {
+                "name": "Замок",
+                "description": "Будівля.#ЗАБЕР�? картку Король"
+            }
+        },
+        {
+            "key": "swordsman",
+            "value": {
+                "name": "Мечник",
+                "description": "Лицар"
+            }
+        },
+        {
+            "key": "crusader",
+            "value": {
+                "name": "Хрестоносець",
+                "description": "Лицар"
+            }
+        },
+        {
+            "key": "equestrian",
+            "value": {
+                "name": "Вершник",
+                "description": "Лицар"
+            }
+        },
+        {
+            "key": "king",
+            "value": {
+                "name": "Король",
+                "description": "Усі нові лицарі будуть твоїми"
+            }
+        },
+        {
+            "key": "fountain",
+            "value": {
+                "name": "Фонтан",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "tower",
+            "value": {
+                "name": "Вежа",
+                "description": "Будівля.#ЗБЕР�? одну картку Лучник"
+            }
+        },
+        {
+            "key": "archer",
+            "value": {
+                "name": "Лучник",
+                "description": "Лицар"
+            }
+        },
+        {
+            "key": "bridge",
+            "value": {
+                "name": "Міст",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "prison",
+            "value": {
+                "name": "В'язниця",
+                "description": "Будівля.#НАКР�?Й будь-чию З-картку"
+            }
+        },
+        {
+            "key": "dragon",
+            "value": {
+                "name": "Дракон",
+                "description": "Шаленіє від золота"
+            }
+        },
+        {
+            "key": "hunter",
+            "value": {
+                "name": "Мисливець",
+                "description": "СК�?НЬ свого монстра"
+            }
+        },
+        {
+            "key": "step-ahead",
+            "value": {
+                "name": "Крок Вперед",
+                "description": "ВІЗЬМ�? ще одну картку з колоди"
+            }
+        },
+        {
+            "key": "look-back",
+            "value": {
+                "name": "Погляд Назад",
+                "description": "ВІЗЬМ�? будь-яку скинуту З-картку"
+            }
+        },
+        {
+            "key": "current",
+            "value": {
+                "name": "Потік",
+                "description": "СК�?НЬ свою З-картку"
+            }
+        },
+        {
+            "key": "green-pandora's-box",
+            "value": {
+                "name": "Скринька Пандори",
+                "description": "ЗАМІШАЙ одну ворожу З-картку"
+            }
+        },
+        {
+            "key": "robin-hood",
+            "value": {
+                "name": "Робін Гуд",
+                "description": "ЗАБЕР�? одну ворожу З-картку"
+            }
+        },
+        {
+            "key": "oversight",
+            "value": {
+                "name": "Необачність",
+                "description": "ЗАМІШАЙ одну свою З-картку"
+            }
+        },
+        {
+            "key": "fairy-army",
+            "value": {
+                "name": "Казкове Військо",
+                "description": "ЗАБЕР�? картку Король"
+            }
+        },
+        {
+            "key": "pharmacy",
+            "value": {
+                "name": "Ліки",
+                "description": "Лікує все"
+            }
+        },
+        {
+            "key": "treasure",
+            "value": {
+                "name": "Скарб",
+                "description": "Мовчання - золото"
+            }
+        },
+        {
+            "key": "ice-cream",
+            "value": {
+                "name": "Морозиво",
+                "description": "Ммм... Смакота"
+            }
+        },
+        {
+            "key": "bag-of-gold",
+            "value": {
+                "name": "Мішок Золота",
+                "description": "Багато грошей не буває"
+            }
+        },
+        {
+            "key": "genie",
+            "value": {
+                "name": "Джин",
+                "description": "Три бажання для тебе"
+            }
+        },
+        {
+            "key": "hero",
+            "value": {
+                "name": "Герой",
+                "description": "СК�?НЬ картку Дракон"
+            }
+        },
+        {
+            "key": "avoid-inevitable",
+            "value": {
+                "name": "Уникнути Неминучого",
+                "description": "МОЖЕШ СК�?НУТ�? цю картку, щоб ЗАМІШАТ�? картку Неминучий Кінець"
+            }
+        },
+        {
+            "key": "magic-hat",
+            "value": {
+                "name": "Магічний Капелюх",
+                "description": "НАКР�?Й будь-чию картку"
+            }
+        },
+        {
+            "key": "invisible-cloak",
+            "value": {
+                "name": "Невидимий Плащ",
+                "description": "Твоїх лицарів не можна перемістити"
+            }
+        },
+        {
+            "key": "totem",
+            "value": {
+                "name": "Тотем",
+                "description": "Твої З-картки не можна скинути"
+            }
+        },
+        {
+            "key": "gold-mountain",
+            "value": {
+                "name": "Золота Гора",
+                "description": "СК�?НЬ іншу картку Золота Гора.#ЗАБЕР�? картку Дракон"
+            }
+        },
+        {
+            "key": "grail",
+            "value": {
+                "name": "Грааль",
+                "description": "Усі гравці скидають по-одній картці"
+            }
+        },
+        {
+            "key": "illusion",
+            "value": {
+                "name": "Ілюзія",
+                "description": "Суперники ЗАМІШУЮТЬ по одній своїй картці"
+            }
+        },
+        {
+            "key": "inevitable-end",
+            "value": {
+                "name": "Неминучий Кінець",
+                "description": "Кінець гри..."
+            }
+        },
+        {
+            "key": "king-sword",
+            "value": {
+                "name": "Меч Короля",
+                "description": "ЗАБЕР�? картку Король"
+            }
+        },
+        {
+            "key": "boarding-party",
+            "value": {
+                "name": "На Абордаж",
+                "description": "Усі гравці скидають по дві власні картки"
+            }
+        },
+        {
+            "key": "royal-rebellion",
+            "value": {
+                "name": "Бунт",
+                "description": "ЗБЕР�? одного лицаря.#ЗАМІШАЙ картку Король"
+            }
+        },
+        {
+            "key": "reliable-plan",
+            "value": {
+                "name": "Надійний План",
+                "description": "ЗАБЕР�? одну картку ворога.#ПЕРЕМІСТ�? одну свою до нього"
+            }
+        },
+        {
+            "key": "magic-sphere",
+            "value": {
+                "name": "Магічна Сфера",
+                "description": "ПЕРЕМІСТ�? одну свою картку до ворога"
+            }
+        },
+        {
+            "key": "hocus-pocus",
+            "value": {
+                "name": "Фокус Покус",
+                "description": "ВІЗЬМ�? ще одну картку з будь-якого місця в колоді"
+            }
+        },
+        {
+            "key": "wand",
+            "value": {
+                "name": "Чарівна Паличка",
+                "description": "СК�?НЬ будь-чию картку"
+            }
+        },
+        {
+            "key": "dracula",
+            "value": {
+                "name": "Дракула",
+                "description": "Мисливець не скидає ваших монстрів.#ПЕРЕМІСТ�? всі свої картки Кажан і Ворона ворогам"
+            }
+        },
+        {
+            "key": "snake",
+            "value": {
+                "name": "Змія",
+                "description": "Монстр.#ЗАБЕР�? усі картки Змія"
+            }
+        },
+        {
+            "key": "crow",
+            "value": {
+                "name": "Ворона",
+                "description": "Монстр"
+            }
+        },
+        {
+            "key": "cerberus",
+            "value": {
+                "name": "Цербер",
+                "description": "Монстр.#Гравець з трьома картками Цербер втратить дві монети"
+            }
+        },
+        {
+            "key": "locusts",
+            "value": {
+                "name": "Сарана",
+                "description": "Монстр.#ЗАМІШАЙ одну картку кожного гравця"
+            }
+        },
+        {
+            "key": "siren",
+            "value": {
+                "name": "Сирена",
+                "description": "Монстр.#Картка На Абордаж не працює для тебе"
+            }
+        },
+        {
+            "key": "curses",
+            "value": {
+                "name": "Прокльон",
+                "description": "НАКР�?Й свою картку"
+            }
+        },
+        {
+            "key": "dark-wizard",
+            "value": {
+                "name": "Темний Чаклун",
+                "description": "ЗАМІШАЙ картку Світлий Чаклун"
+            }
+        },
+        {
+            "key": "bear",
+            "value": {
+                "name": "Ведмідь",
+                "description": "Монстр.#ЗАМІШАЙ свого монстра"
+            }
+        },
+        {
+            "key": "hydra",
+            "value": {
+                "name": "Гідра",
+                "description": "Монстр.#ПЕРЕМІСТ�? усіх нових монстрів до ворогів"
+            }
+        },
+        {
+            "key": "zombie",
+            "value": {
+                "name": "Зомбі",
+                "description": "Монстр"
+            }
+        },
+        {
+            "key": "slime",
+            "value": {
+                "name": "Слизь",
+                "description": "Монстр.#НАКР�?Й будь-чию картку"
+            }
+        },
+        {
+            "key": "black-sun-castle",
+            "value": {
+                "name": "Замок Чорного Сонця",
+                "description": "Будівля.#Картка Артилерія не скидає ваші будівлі"
+            }
+        },
+        {
+            "key": "hut",
+            "value": {
+                "name": "Хатина",
+                "description": "Будівля.#НАКР�?Й свого монстра"
+            }
+        },
+        {
+            "key": "bat",
+            "value": {
+                "name": "Кажан",
+                "description": "Монстр"
+            }
+        },
+        {
+            "key": "black-cat",
+            "value": {
+                "name": "Чорна Кішка",
+                "description": "Монстр.#НАКР�?Й З-картку ворога"
+            }
+        },
+        {
+            "key": "flame-wall",
+            "value": {
+                "name": "Стіна Полум’я",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "water-wall",
+            "value": {
+                "name": "Стіна Води",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "air-wall",
+            "value": {
+                "name": "Стіна Повітря",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "earthen-wall",
+            "value": {
+                "name": "Стіна Землі",
+                "description": "Будівля"
+            }
+        },
+        {
+            "key": "four-elements",
+            "value": {
+                "name": "Чотири Елементи",
+                "description": "ЗАБЕР�? усі картки Стін"
+            }
+        },
+        {
+            "key": "robber",
+            "value": {
+                "name": "Грабіжник",
+                "description": "Гроші є? А якщо знайду?"
+            }
+        },
+        {
+            "key": "royal-poison",
+            "value": {
+                "name": "Королівська Отрута",
+                "description": "ЗАМІШАЙ картку Король та всіх лицарів"
+            }
+        },
+        {
+            "key": "poison",
+            "value": {
+                "name": "Отрута",
+                "description": "СК�?НЬ свою З-картку"
+            }
+        },
+        {
+            "key": "poisonous-flower",
+            "value": {
+                "name": "Отруйна Квітка",
+                "description": "Відчуйте отруту в кожній клітинці свого тіла..."
+            }
+        },
+        {
+            "key": "explosion",
+            "value": {
+                "name": "Вибух",
+                "description": "СК�?НЬ будь-чию картку, яка НАКР�?ВАЄ іншу"
+            }
+        },
+        {
+            "key": "dark-genie",
+            "value": {
+                "name": "Темний Джин",
+                "description": "Твоє бажання ніколи не збудеться"
+            }
+        },
+        {
+            "key": "killer",
+            "value": {
+                "name": "Вбивця",
+                "description": "СК�?НЬ свого лицаря"
+            }
+        },
+        {
+            "key": "victim",
+            "value": {
+                "name": "Жертва",
+                "description": "ВІЗЬМ�? ще дві карти з колоди"
+            }
+        },
+        {
+            "key": "dark-sign",
+            "value": {
+                "name": "Темний Знак",
+                "description": "ЗАМІШАЙ дві картки ворога.#СК�?НЬ свою картку"
+            }
+        },
+        {
+            "key": "hell",
+            "value": {
+                "name": "Пекло",
+                "description": "СК�?НЬ по дві картки кожного гравця"
+            }
+        },
+        {
+            "key": "artillery",
+            "value": {
+                "name": "Артилерія",
+                "description": "СК�?НЬ свою будівлю"
+            }
+        },
+        {
+            "key": "death",
+            "value": {
+                "name": "Смерть",
+                "description": "Вмирати так само природно, як жити"
+            }
+        },
+        {
+            "key": "wolf-spirit",
+            "value": {
+                "name": "Вовчий Дух",
+                "description": "ПЕРЕМІСТ�? свою картку до ворога"
+            }
+        },
+        {
+            "key": "cemetery",
+            "value": {
+                "name": "Кладовище",
+                "description": "ЗАМІШАЙ будь-чию картку"
+            }
+        },
+        {
+            "key": "red-pandora's-box",
+            "value": {
+                "name": "Скринька Пандори",
+                "description": "ЗАМІШАЙ свою картку"
+            }
+        }
+    ]
+}

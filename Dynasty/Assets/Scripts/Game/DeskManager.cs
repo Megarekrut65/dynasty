@@ -10,6 +10,6 @@ IPointerDownHandler, IPointerUpHandler {
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        manager.TakeCardFromDesk();
+        if(manager.PlayerRound()) manager.TakeCardFromDesk();
     }
 }

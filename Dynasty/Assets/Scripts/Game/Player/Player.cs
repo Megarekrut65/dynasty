@@ -14,6 +14,7 @@ public class Player {
         desk.SetName(nickname);
     }
     public void AddCard(Card card){
+        if(card == null) return;
         if(card.data.type == "A"){
             coins += card.data.amount;
             desk.SetCoins(coins);
