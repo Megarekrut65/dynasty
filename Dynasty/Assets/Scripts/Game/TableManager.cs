@@ -7,6 +7,8 @@ public class TableManager : MonoBehaviour
     private GameObject cardObject;
     [SerializeField]
     private GameManager gameManager;
+    [SerializeField]
+    private CardAnimationManager animationManager;
     [Header("Card places")]
     [SerializeField]
     private GameObject container;
@@ -27,13 +29,14 @@ public class TableManager : MonoBehaviour
             players[i].SetDesk(playerDesks[i]);
         }
         table = new Table(players);
-        effectsGenerator = new EffectsGenerator(gameManager, cardManager, table);
+        effectsGenerator = new EffectsGenerator(gameManager, cardManager, table, animationManager);
         AddStartCards(players);
         int playerCount = players.Count - gameManager.BotCount;
         for (int i = playerCount; i < players.Count; i++)
         {
             bots.Add(new CardBot(players[i], gameManager, () => TakeCardFromDesk()));
         }
+        gameManager.CallNext();
     }
     private void AddStartCards(List<Player> players)
     {
@@ -44,8 +47,12 @@ public class TableManager : MonoBehaviour
             Card card = new Card(avoid, avoidKey);
             cardManager.CreateCard(card);
             cardManager.AddClickToCard(card, effectsGenerator.GetEffect(player, card));
-            player.AddCard(card);
-            table.AddCardToPlayer(player, card);
+            animationManager.PlayCardHideShowAnimation(card.obj, () =>
+            {
+                player.AddCard(card);
+                table.AddCardToPlayer(player, card);
+                return true;
+            }, () => { return true; });
         }
     }
     public bool PlayerRound()
@@ -65,6 +72,7 @@ public class TableManager : MonoBehaviour
         gameManager.Pause = true;
         var card = table.TakeCardFromDesk();
         cardManager.CreateCard(card);
+        animationManager.PlayCardFromDesk(card.obj, () => { return true; });
         cardManager.AddClickToCard(card, () =>
         {
             bool res = effectsGenerator.GetEffect(gameManager.NextPlayer(), card)();

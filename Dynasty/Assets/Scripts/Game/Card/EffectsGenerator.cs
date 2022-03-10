@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Collections;
 public class EffectsGenerator : SimpleEffectsGenerator
 {
-    public EffectsGenerator(GameManager gameManager, CardManager cardManager, Table table)
-        : base(gameManager, cardManager, table) { }
+    public EffectsGenerator(GameManager gameManager,
+    CardManager cardManager, Table table, CardAnimationManager animationManager)
+        : base(gameManager, cardManager, table, animationManager) { }
     public Func<bool> GetEffect(Player player, Card card)
     {
         switch (card.key)
@@ -63,10 +64,11 @@ public class EffectsGenerator : SimpleEffectsGenerator
     {
         foreach (var card in cards)
         {
+            yield return new WaitForSeconds(0.5f);
             player.AddCard(card);
             table.AddCardToPlayer(player, card);
-            yield return new WaitForSeconds(0.1f);
         }
+        yield return new WaitForSeconds(1f);
         gameManager.CallNext();
     }
     private Func<bool> KnightEffect(Player player, Card card)

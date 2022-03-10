@@ -32,11 +32,12 @@ public class Table
         Card keys = new Card(map["step-ahead"], "step-ahead");
         foreach (var item in map)
         {
-            if (item.Key == "snake")
+            if (item.Key == "gold-mountain")
             {
                 for (int i = 0; i < item.Value.count; i++) toEnd.Add(new Card(item.Value, item.Key));
                 continue;
             }
+            //if (item.Value.type == "A" && item.Value.mix == "none") continue;
             for (int i = 0; i < item.Value.count; i++)
             {
                 data.Add(new Card(item.Value, item.Key));

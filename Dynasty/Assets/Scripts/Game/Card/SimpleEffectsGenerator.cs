@@ -8,12 +8,15 @@ public class SimpleEffectsGenerator
     protected GameManager gameManager;
     protected CardManager cardManager;
     protected Table table;
+    protected CardAnimationManager animationManager;
 
-    public SimpleEffectsGenerator(GameManager gameManager, CardManager cardManager, Table table)
+    public SimpleEffectsGenerator(GameManager gameManager,
+        CardManager cardManager, Table table, CardAnimationManager animationManager)
     {
         this.gameManager = gameManager;
         this.cardManager = cardManager;
         this.table = table;
+        this.animationManager = animationManager;
     }
     protected Func<bool> CardMoreEffect(int more, Player player, Card card, bool other = true)
     {
@@ -31,8 +34,12 @@ public class SimpleEffectsGenerator
             Card take = table.GetCardFromPlayer(key);
             if (take != null)
             {
-                cardManager.DeleteCardFromTable(take);
-                table.DropCard(take);
+                animationManager.PlayDropCard(take.obj, () =>
+                {
+                    cardManager.DeleteCardFromTable(take);
+                    table.DropCard(take);
+                    return true;
+                });
             }
             if (other) return OtherEffect(player, card)();
             return true;
@@ -45,8 +52,12 @@ public class SimpleEffectsGenerator
             Card take = table.GetCardFromPlayer(key);
             if (take != null)
             {
-                player.AddCard(take);
-                table.AddCardToPlayer(player, take);
+                animationManager.PlayCardHideShowAnimation(take.obj, () =>
+                {
+                    player.AddCard(take);
+                    table.AddCardToPlayer(player, take);
+                    return true;
+                }, () => { return true; });
             }
             if (other) return OtherEffect(player, card)();
             return true;
@@ -70,8 +81,12 @@ public class SimpleEffectsGenerator
             Card mix = table.GetCardFromPlayer(key);
             if (mix != null)
             {
-                cardManager.DeleteCardFromTable(mix);
-                table.InsertToDesk(mix);
+                animationManager.PlayCardHideAnimation(mix.obj, () =>
+                {
+                    InsertCard(mix);
+                    return true;
+                });
+
             }
             if (other) return OtherEffect(player, card)();
             return true;
@@ -83,16 +98,54 @@ public class SimpleEffectsGenerator
         {
             //Use effect
             //after effect
-            player.AddCard(card);
+
             if (card.data.type == "A")
             {
-                cardManager.DeleteCardFromTable(card);
-                if (card.data.mix == "yes") table.InsertToDesk(card);
-                else table.DropCardFromPlayer(player, card);
+                player.AddCard(card);
+                if (card.data.mix == "yes")
+                {
+                    animationManager.PlayCardToDesk(card.obj, () =>
+                    {
+                        InsertCard(card);
+                        if (callNext) gameManager.StartCoroutine(Next());
+                        return true;
+                    });
+                }
+                else
+                {
+                    animationManager.PlayDropCard(card.obj, () =>
+                    {
+                        cardManager.DeleteCardFromTable(card);
+                        table.DropCardFromPlayer(player, card);
+                        if (callNext) gameManager.StartCoroutine(Next());
+                        return true;
+                    });
+                }
             }
-            else table.AddCardToPlayer(player, card);
-            if (callNext) gameManager.CallNext();
+            else
+            {
+                animationManager.PlayCardHideShowAnimation(card.obj, () =>
+                {
+                    player.AddCard(card);
+                    table.AddCardToPlayer(player, card);
+                    return true;
+                }, () =>
+                {
+                    if (callNext) gameManager.StartCoroutine(Next());
+                    return true;
+                });
+            }
             return true;
         };
+    }
+    protected void InsertCard(Card card)
+    {
+        cardManager.DeleteCardFromTable(card);
+        table.InsertToDesk(card);
+    }
+    IEnumerator Next()
+    {
+        yield return new WaitForSeconds(1f);
+        gameManager.CallNext();
     }
 }

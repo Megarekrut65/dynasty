@@ -866,6 +866,7 @@ GameObject:
   - component: {fileID: 671966270444492898}
   - component: {fileID: 8983876781578251421}
   - component: {fileID: 2070534835895840462}
+  - component: {fileID: 3290718415910938793}
   m_Layer: 5
   m_Name: CardObject
   m_TagString: Untagged
@@ -1015,6 +1016,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 0.6151466
+--- !u!111 &3290718415910938793
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617461779509550573}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: c9d338a8920354a40b10796659ab1902, type: 2}
+  - {fileID: 7400000, guid: d0856be16e7fccc4386461a66914538c, type: 2}
+  - {fileID: 7400000, guid: 9e2a1dfb557417e44a6d70f494ac8967, type: 2}
+  - {fileID: 7400000, guid: f42b59801f662cb4ab8a286f7e8e216c, type: 2}
+  - {fileID: 7400000, guid: 1477550145af51641a3f47472181794f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2617461779683693645
 GameObject:
   m_ObjectHideFlags: 0

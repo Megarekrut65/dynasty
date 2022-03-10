@@ -1,0 +1,20 @@
+using System.Collections;
+using System;
+using UnityEngine;
+
+public class CardAnimation : MonoBehaviour
+{
+    public void Play(string name, Func<bool> end)
+    {
+        var animation = gameObject.GetComponent<Animation>();
+        StartCoroutine(CallEnd(end, name, animation));
+    }
+    IEnumerator CallEnd(Func<bool> end, string name, Animation animation)
+    {
+
+        animation.Play(name);
+        yield return new WaitForSeconds(animation[name].length);
+        animation.Stop(name);
+        end();
+    }
+}
