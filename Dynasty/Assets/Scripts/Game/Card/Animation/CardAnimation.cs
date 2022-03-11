@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CardAnimation : MonoBehaviour
 {
-    public void Play(string name, Func<bool> end)
+    public void Play(string name, Action end)
     {
         var animation = gameObject.GetComponent<Animation>();
         StartCoroutine(CallEnd(end, name, animation));
     }
-    IEnumerator CallEnd(Func<bool> end, string name, Animation animation)
+    IEnumerator CallEnd(Action end, string name, Animation animation)
     {
 
         animation.Play(name);

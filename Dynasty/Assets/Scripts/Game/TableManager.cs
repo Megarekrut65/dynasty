@@ -17,6 +17,7 @@ public class TableManager : MonoBehaviour
     private Table table;
     private CardManager cardManager;
     private EffectsGenerator effectsGenerator;
+    private AnimationEffectGenerator animationEffectGenerator;
 
     private List<CardBot> bots = new List<CardBot>();
     void Start()
@@ -29,12 +30,13 @@ public class TableManager : MonoBehaviour
             players[i].SetDesk(playerDesks[i]);
         }
         table = new Table(players);
-        effectsGenerator = new EffectsGenerator(gameManager, cardManager, table, animationManager);
+        animationEffectGenerator = new AnimationEffectGenerator(gameManager, cardManager, table, animationManager);
+        effectsGenerator = new EffectsGenerator(gameManager, cardManager, table, animationEffectGenerator);
         AddStartCards(players);
         int playerCount = players.Count - gameManager.BotCount;
         for (int i = playerCount; i < players.Count; i++)
         {
-            bots.Add(new CardBot(players[i], gameManager, () => TakeCardFromDesk()));
+            bots.Add(new CardBot(players[i], gameManager, table, TakeCardFromDesk));
         }
         gameManager.CallNext();
     }
@@ -46,13 +48,8 @@ public class TableManager : MonoBehaviour
         {
             Card card = new Card(avoid, avoidKey);
             cardManager.CreateCard(card);
-            cardManager.AddClickToCard(card, effectsGenerator.GetEffect(player, card));
-            animationManager.PlayCardHideShowAnimation(card.obj, () =>
-            {
-                player.AddCard(card);
-                table.AddCardToPlayer(player, card);
-                return true;
-            }, () => { return true; });
+            cardManager.AddClickToCard(card, effectsGenerator.GetEffect(player, card), new Vector4(0f, 0f, 0f, 0f));
+            animationEffectGenerator.AddCardToPlayerAnimated(card, player, () => { });
         }
     }
     public bool PlayerRound()
@@ -72,12 +69,12 @@ public class TableManager : MonoBehaviour
         gameManager.Pause = true;
         var card = table.TakeCardFromDesk();
         cardManager.CreateCard(card);
-        animationManager.PlayCardFromDesk(card.obj, () => { return true; });
+        animationManager.PlayCardFromDesk(card.obj, () => { });
         cardManager.AddClickToCard(card, () =>
         {
             bool res = effectsGenerator.GetEffect(gameManager.NextPlayer(), card)();
             return res;
-        });
+        }, gameManager.GetNextPlayer().GetColor());
         if (card.key == "inevitable-end")
         {
             gameManager.GameOver = true;

@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
             pause = value;
         }
     }
-
     void Start()
     {
 

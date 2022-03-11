@@ -11,9 +11,19 @@ public class Desk : MonoBehaviour
     private Text coins;
     [SerializeField]
     private GameObject container;
+    [SerializeField]
+    private Color color;
+    public Color PlayerColor
+    {
+        get
+        {
+            return color;
+        }
+    }
     void Start()
     {
         coins.text = "0";
+        nameLabel.color = color;
     }
     public void AddCard(Card card)
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class CardManager
 {
     private GameObject container;
@@ -24,10 +25,14 @@ public class CardManager
         MonoBehaviour.Destroy(card.obj);
         card.obj = null;
     }
-    public void AddClickToCard(Card card, Func<bool> func)
+    public void AddClickToCard(Card card, Func<bool> func, Color color)
     {
         CardClick cardClick = card.obj.AddComponent<CardClick>() as CardClick;
         ButtonScript buttonScript = card.obj.AddComponent<ButtonScript>() as ButtonScript;
+        Outline outline = card.obj.AddComponent<Outline>();
+        if (color.a > 0f) color.a = 0.5f;
+        outline.effectColor = color;
+        outline.effectDistance = new Vector2(7f, 7f);
         Func<bool> click = () =>
         {
             bool res = func();
@@ -35,6 +40,7 @@ public class CardManager
             {
                 MonoBehaviour.Destroy(cardClick);
                 MonoBehaviour.Destroy(buttonScript);
+                MonoBehaviour.Destroy(outline);
             }
             return res;
         };

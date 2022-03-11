@@ -16,7 +16,7 @@ public class CardAnimationManager : MonoBehaviour
             if (anim[name] == null) anim.AddClip(clip, name);
         }
     }
-    public void PlayCardHideShowAnimation(GameObject obj, Func<bool> afterHide, Func<bool> afterShow)
+    public void PlayCardHideShowAnimation(GameObject obj, Action afterHide, Action afterShow)
     {
         AddAnimation(obj, "CardHideAnimation");
         AddAnimation(obj, "CardShowAnimation");
@@ -25,40 +25,38 @@ public class CardAnimationManager : MonoBehaviour
          {
              afterHide();
              cardAnimation.Play("CardShowAnimation", DestroyContainer(afterShow, cardAnimation));
-             return true;
          });
     }
-    public void PlayCardHideAnimation(GameObject obj, Func<bool> afterHide)
+    public void PlayCardHideAnimation(GameObject obj, Action afterHide)
     {
         AddAnimation(obj, "CardHideAnimation");
         CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
         cardAnimation.Play("CardHideAnimation", DestroyContainer(afterHide, cardAnimation));
     }
-    public void PlayCardFromDesk(GameObject obj, Func<bool> after)
+    public void PlayCardFromDesk(GameObject obj, Action after)
     {
         AddAnimation(obj, "CardFromDeskAnimation");
         CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
         cardAnimation.Play("CardFromDeskAnimation", DestroyContainer(after, cardAnimation));
     }
-    public void PlayCardToDesk(GameObject obj, Func<bool> after)
+    public void PlayCardToDesk(GameObject obj, Action after)
     {
         AddAnimation(obj, "CardToDeskAnimation");
         CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
         cardAnimation.Play("CardToDeskAnimation", DestroyContainer(after, cardAnimation));
     }
-    public void PlayDropCard(GameObject obj, Func<bool> after)
+    public void PlayDropCard(GameObject obj, Action after)
     {
         AddAnimation(obj, "CardToDropAnimation");
         CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
         cardAnimation.Play("CardToDropAnimation", DestroyContainer(after, cardAnimation));
     }
-    private Func<bool> DestroyContainer(Func<bool> func, CardAnimation cardAnimation)
+    private Action DestroyContainer(Action func, CardAnimation cardAnimation)
     {
         return () =>
         {
             func();
             Destroy(cardAnimation);
-            return true;
         };
     }
 }

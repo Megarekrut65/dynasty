@@ -6,7 +6,6 @@ public class Player
     public string nickname;
     private Desk desk;
     private int coins = 0;
-
     public Player(string nickname)
     {
         this.nickname = nickname;
@@ -30,5 +29,9 @@ public class Player
     {
         this.coins += coins;
         desk.SetCoins(coins);
+    }
+    public Color GetColor()
+    {
+        return desk.PlayerColor;
     }
 }
