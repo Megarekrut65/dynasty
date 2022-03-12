@@ -21,10 +21,8 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return card.type == CardType.KNIGHT ||
-			card.key == "king" ||
-			card.key == "royal-poison";
-		}, 3);
+			return card.key == "victim";
+		}, 0);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);

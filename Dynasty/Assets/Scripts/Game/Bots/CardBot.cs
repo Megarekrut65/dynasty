@@ -23,7 +23,7 @@ public class CardBot {
 	}
 	IEnumerator ClickOnCard() {
 		Card card = takeCard();
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(gameManager.WaitTime);
 		if (card != null) {
 			if (card.key == "inevitable-end") {
 				Card avoid = table.FindCardInPlayer(player, "avoid-inevitable");

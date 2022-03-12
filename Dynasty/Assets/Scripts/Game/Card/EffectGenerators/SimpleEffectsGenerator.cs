@@ -76,33 +76,14 @@ public class SimpleEffectsGenerator {
 			if (other) OtherEffect(player, card)();
 		};
 	}
-	protected Action CallNext(bool callNext) {
+	protected Action CallNext(bool callNext = true) {
 		return () => {
 			if (callNext) gameManager.StartCoroutine(Next());
 		};
 	}
 	IEnumerator Next() {
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1f);
 		gameManager.CallNext();
 	}
-	protected void TakeAllAnimated(Player player, List<Card> cards) {
-		gameManager.StartCoroutine(TakeAll(player, cards));
-	}
-	IEnumerator TakeAll(Player player, List<Card> cards) {
-		foreach (var card in cards) {
-			yield return new WaitForSeconds(0.5f);
-			anim.AddCardToPlayerAnimated(card, player, GameAction.EMPTY);
-		}
-		CallNext(true)();
-	}
-	protected void MixAllAnimated(List<Card> cards) {
-		gameManager.StartCoroutine(MixAll(cards));
-	}
-	IEnumerator MixAll(List<Card> cards) {
-		foreach (var card in cards) {
-			yield return new WaitForSeconds(0.4f);
-			anim.InsertPlayerCardToDeskAnimated(card, GameAction.EMPTY);
-		}
-		CallNext(true)();
-	}
+
 }

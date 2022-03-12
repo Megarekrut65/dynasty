@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections;
 using System;
 using UnityEngine;
 
@@ -16,20 +18,20 @@ public class AnimationEffectGenerator {
 	}
 
 	public void AddCardToPlayerAnimated(Card card, Player player, Action end) {
-		animationManager.PlayCardHideShowAnimation(card.obj, () => {
+		animationManager.PlayCardHideShowAnimation(card?.obj, () => {
 			player.AddCard(card);
 			table.AddCardToPlayer(player, card);
 		}, end);
 	}
 	public void InsertCardToDeskAnimated(Card card, Action end) {
-		animationManager.PlayCardToDesk(card.obj, () => {
+		animationManager.PlayCardToDesk(card?.obj, () => {
 			cardManager.DeleteCardFromTable(card);
 			table.InsertToDesk(card);
 			end();
 		});
 	}
 	public void InsertPlayerCardToDeskAnimated(Card card, Action end) {
-		animationManager.PlayCardHideAnimation(card.obj, () => {
+		animationManager.PlayCardHideAnimation(card?.obj, () => {
 			cardManager.DeleteCardFromTable(card);
 			table.InsertToDesk(card);
 			end();
@@ -48,9 +50,29 @@ public class AnimationEffectGenerator {
 		});
 	}
 	private void DropAnimated(Card card, Action action) {
-		animationManager.PlayDropCard(card.obj, () => {
+		animationManager.PlayDropCard(card?.obj, () => {
 			cardManager.DeleteCardFromTable(card);
 			action();
 		});
+	}
+	public void TakeAllAnimated(Player player, List<Card> cards, Action end) {
+		gameManager.StartCoroutine(TakeAll(player, cards, end));
+	}
+	IEnumerator TakeAll(Player player, List<Card> cards, Action end) {
+		foreach (var card in cards) {
+			yield return new WaitForSeconds(0.4f);
+			AddCardToPlayerAnimated(card, player, GameAction.EMPTY);
+		}
+		end();
+	}
+	public void MixAllAnimated(List<Card> cards, Action end) {
+		gameManager.StartCoroutine(MixAll(cards, end));
+	}
+	IEnumerator MixAll(List<Card> cards, Action end) {
+		foreach (var card in cards) {
+			yield return new WaitForSeconds(0.4f);
+			InsertPlayerCardToDeskAnimated(card, GameAction.EMPTY);
+		}
+		end();
 	}
 }

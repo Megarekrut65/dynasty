@@ -37,6 +37,8 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 				return KnightEffect(player, card);
 			case "step-ahead":
 				return CardMoreEffect(1, player, card);
+			case "victim":
+				return CardMoreEffect(2, player, card);
 			case "snake":
 				return SnakeEffect(player, card);
 			case "cerberus":
@@ -54,14 +56,14 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			var knights = table.GetAllCardsFromPlayers(null, c => c.type == CardType.KNIGHT);
 			var king = table.GetCardFromPlayer("king");
 			knights.Add(king);
-			MixAllAnimated(knights);
+			anim.MixAllAnimated(knights, CallNext());
 			return OtherEffect(player, card, false)();
 		};
 	}
 	private Func<bool> FourElementsEffect(Player player, Card card) {
 		return () => {
 			var elements = table.GetAllCardsFromPlayers(player, c => c.type == CardType.WALL);
-			TakeAllAnimated(player, elements);
+			anim.TakeAllAnimated(player, elements, CallNext());
 			return OtherEffect(player, card, false)();
 		};
 	}
@@ -78,7 +80,7 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			Player snake = table.GetPlayerWithCard("snake");
 			if (snake != null && snake.nickname != player.nickname) {
 				var snakes = table.GetAllCardsFromPlayer(snake, c => c.key == "snake");
-				TakeAllAnimated(player, snakes);
+				anim.TakeAllAnimated(player, snakes, CallNext());
 				return OtherEffect(player, card, false)();
 			}
 			return OtherEffect(player, card)();

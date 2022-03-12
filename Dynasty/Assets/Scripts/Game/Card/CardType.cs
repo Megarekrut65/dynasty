@@ -8,24 +8,19 @@ class CardType {
 	public static string GetType(CardData data) {
 		string name = data.name.ToLower();
 		string description = data.description;
-		if (name.Contains(LocalizationManager.instance.GetWord(CardType.WALL))) {
+		if (name.Contains(Wall)) {
 			return CardType.WALL;
 		}
-		if (description.Contains(LocalizationManager.instance.GetWord(CardType.MONSTER))) {
+		if (description.Contains(Monster)) {
 			return CardType.MONSTER;
 		}
-		if (description.Contains(LocalizationManager.instance.GetWord(CardType.KNIGHT))) {
+		if (description.Contains(Knight)) {
 			return CardType.KNIGHT;
 		}
-		if (description.Contains(LocalizationManager.instance.GetWord(CardType.BUILDING))) {
+		if (description.Contains(Building)) {
 			return CardType.BUILDING;
 		}
 		return CardType.NONE;
-	}
-	private static string None {
-		get {
-			return LocalizationManager.instance.GetWord(CardType.NONE);
-		}
 	}
 	private static string Monster {
 		get {
