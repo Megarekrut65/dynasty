@@ -1,15 +1,48 @@
 {
-    "items":[
-        {"key":"game-name","value":"Dynasty"},
-        {"key":"text","value":"Hello, world!"},
-        {"key":"card-name","value":"Card name..."},
-        {"key":"all","value":"All"},
-        {"key":"green","value":"Green"},
-        {"key":"yellow","value":"Yellow"},
-        {"key":"red","value":"Red"},
-        {"key":"wall","value":"wall"},
-        {"key":"building","value":"building"},
-        {"key":"monster","value":"monster"},
-        {"key":"knight","value":"knight"}
+    "items": [
+        {
+            "key": "game-name",
+            "value": "Dynasty"
+        },
+        {
+            "key": "text",
+            "value": "Hello, world!"
+        },
+        {
+            "key": "card-name",
+            "value": "Card name..."
+        },
+        {
+            "key": "all",
+            "value": "All"
+        },
+        {
+            "key": "green",
+            "value": "Green"
+        },
+        {
+            "key": "yellow",
+            "value": "Yellow"
+        },
+        {
+            "key": "red",
+            "value": "Red"
+        },
+        {
+            "key": "wall",
+            "value": "wall"
+        },
+        {
+            "key": "building",
+            "value": "Building"
+        },
+        {
+            "key": "monster",
+            "value": "Monster"
+        },
+        {
+            "key": "knight",
+            "value": "Knight"
+        }
     ]
 }

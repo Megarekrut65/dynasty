@@ -5,20 +5,19 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LanguageLoader : MonoBehaviour {
-    [SerializeField]
-    private GameObject blackBoard;
-    private GameObject _canvas;
-    void Start()
-    {
-        _canvas = GameObject.Find("Canvas");
-        StartCoroutine("LoadData");
-    }
+	[SerializeField]
+	private GameObject blackBoard;
+	private GameObject _canvas;
+	void Start() {
+		_canvas = GameObject.Find("Canvas");
+		StartCoroutine("LoadData");
+	}
 
-    IEnumerator LoadData(){
-        LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
-        while(!LocalizationManager.instance.Ready){
-            yield return new WaitForSeconds(0.005f);
-        }
-        loadBoard.Destroy();
-    }
+	IEnumerator LoadData() {
+		LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
+		while (!LocalizationManager.instance.Ready) {
+			yield return new WaitForSeconds(0.005f);
+		}
+		loadBoard.Destroy();
+	}
 }

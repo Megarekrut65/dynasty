@@ -1,15 +1,48 @@
 {
-    "items":[
-        {"key":"game-name","value":"Династія"},
-        {"key":"text","value":"Привіт, світ!"},
-        {"key":"card-name","value":"Ім'я картки..."},
-        {"key":"all","value":"Всі"},
-        {"key":"green","value":"Зелені"},
-        {"key":"yellow","value":"Жовті"},
-        {"key":"red","value":"Червоні"},
-        {"key":"wall","value":"стіна"},
-        {"key":"building","value":"будівля"},
-        {"key":"monster","value":"монстр"},
-        {"key":"knight","value":"лицар"}
+    "items": [
+        {
+            "key": "game-name",
+            "value": "Династія"
+        },
+        {
+            "key": "text",
+            "value": "Привіт, світ!"
+        },
+        {
+            "key": "card-name",
+            "value": "Ім'я картки..."
+        },
+        {
+            "key": "all",
+            "value": "Всі"
+        },
+        {
+            "key": "green",
+            "value": "Зелені"
+        },
+        {
+            "key": "yellow",
+            "value": "Жовті"
+        },
+        {
+            "key": "red",
+            "value": "Червоні"
+        },
+        {
+            "key": "wall",
+            "value": "стіна"
+        },
+        {
+            "key": "building",
+            "value": "Будівля"
+        },
+        {
+            "key": "monster",
+            "value": "Монстр"
+        },
+        {
+            "key": "knight",
+            "value": "Лицар"
+        }
     ]
 }

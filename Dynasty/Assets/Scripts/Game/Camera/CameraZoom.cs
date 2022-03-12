@@ -5,44 +5,43 @@ using System.Collections;
 using UnityEngine.EventSystems;
 public class CameraZoom : MonoBehaviour {
 
-    [SerializeField]
-    private Camera mainCamera;
+	[SerializeField]
+	private Camera mainCamera;
 	private float targetSize;
-	private float touchesPrevPosDifference; 
-    private float touchesCurPosDifference;
+	private float touchesPrevPosDifference;
+	private float touchesCurPosDifference;
 	[Header("Settings")]
 	[SerializeField]
 	private int min = 150;
 	[SerializeField]
-    private int max = 500;
+	private int max = 500;
 	[SerializeField]
 	private float zoomModifierSpeed = 0.1f;
-	
-	void Start(){
+
+	void Start() {
 		targetSize = mainCamera.orthographicSize;
-		if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer){
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
 			zoomModifierSpeed /= 40f;
 		}
-	}
+	} 
 	void Update() {
-		if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer){
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
 			if (Input.touchCount == 2) {
 				float zoomModifier = CountZoom();
-				if (touchesPrevPosDifference > touchesCurPosDifference){
+				if (touchesPrevPosDifference > touchesCurPosDifference) {
 					targetSize += zoomModifier;
 				}
-				if (touchesPrevPosDifference < touchesCurPosDifference){
+				if (touchesPrevPosDifference < touchesCurPosDifference) {
 					targetSize -= zoomModifier;
 				}
 			}
-		}
-		else{
+		} else {
 			targetSize -= Input.GetAxis("Mouse ScrollWheel") * zoomModifierSpeed;
 		}
-		targetSize = Mathf.Clamp (targetSize, min, max);
-		mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, 20f*Time.deltaTime);
+		targetSize = Mathf.Clamp(targetSize, min, max);
+		mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, 20f * Time.deltaTime);
 	}
-	private float CountZoom(){
+	private float CountZoom() {
 		Touch firstTouch = Input.GetTouch(0);
 		Touch secondTouch = Input.GetTouch(1);
 		Vector2 firstTouchPrevPos = firstTouch.position - firstTouch.deltaPosition;
