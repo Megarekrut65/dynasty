@@ -34,7 +34,7 @@ public class CardManager {
 		cardClick.Click = click;
 		cardClick.CanClick = canClick;
 	}
-	private Outline CreateOutline(Card card, Color color) {
+	public static Outline CreateOutline(Card card, Color color) {
 		Outline outline = card.obj.AddComponent<Outline>();
 		if (color.a > 0f) color.a = 0.5f;
 		outline.effectColor = color;

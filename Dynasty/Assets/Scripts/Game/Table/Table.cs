@@ -21,8 +21,8 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return card.key == "victim";
-		}, 0);
+			return card.key == "dungeon";
+		}, 6);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
@@ -103,6 +103,14 @@ public class Table {
 			List<Card> cards = item.Value.FindAll(comparator);
 			item.Value.RemoveAll(comparator);
 			res.AddRange(cards);
+		}
+
+		return res;
+	}
+	public Dictionary<Player, List<Card>> FilterAllCardsInPlayers(Predicate<Card> comparator) {
+		Dictionary<Player, List<Card>> res = new Dictionary<Player, List<Card>>();
+		foreach (var item in playerDesk) {
+			res[item.Key] = item.Value.FindAll(comparator);
 		}
 
 		return res;

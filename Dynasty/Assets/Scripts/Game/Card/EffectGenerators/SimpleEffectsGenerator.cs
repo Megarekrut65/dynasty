@@ -8,6 +8,7 @@ public class SimpleEffectsGenerator {
 	protected GameManager gameManager;
 	protected CardManager cardManager;
 	protected Table table;
+	protected SelectManager selectManager;
 
 	public SimpleEffectsGenerator(GameManager gameManager,
 		CardManager cardManager, Table table, AnimationEffectGenerator anim) {
@@ -15,6 +16,7 @@ public class SimpleEffectsGenerator {
 		this.cardManager = cardManager;
 		this.table = table;
 		this.anim = anim;
+		this.selectManager = new SelectManager(table);
 	}
 	protected Func<bool> CardMoreEffect(int more, Player player, Card card, bool other = true) {
 		return () => {

@@ -47,9 +47,21 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 				return FourElementsEffect(player, card);
 			case "royal-poison":
 				return RoyalPoisonEffect(player, card);
+			case "dungeon":
+				return DungeonEffect(player, card);
 			default:
 				return OtherEffect(player, card);
 		}
+	}
+	private Func<bool> DungeonEffect(Player player, Card card) {
+		return () => {
+			selectManager.SelectAllCover(player, gameManager.Players,
+				(id) => {
+					UnityEngine.Debug.Log("id: " + id);
+					CallNext(true)();
+				}, gameManager.IsPlayer(player));
+			return OtherEffect(player, card, false)();
+		};
 	}
 	private Func<bool> RoyalPoisonEffect(Player player, Card card) {
 		return () => {
