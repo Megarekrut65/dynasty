@@ -1,11 +1,11 @@
 
 class CardType
 {
-    private const string NONE = "none";
-    private const string MONSTER = "monster";
-    private const string KNIGHT = "knight";
-    private const string WALL = "wall";
-    private const string BUILDING = "building";
+    public const string NONE = "none";
+    public const string MONSTER = "monster";
+    public const string KNIGHT = "knight";
+    public const string WALL = "wall";
+    public const string BUILDING = "building";
     public static string GetType(CardData data)
     {
         string name = data.name.ToLower();

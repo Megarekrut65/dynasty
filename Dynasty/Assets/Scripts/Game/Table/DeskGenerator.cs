@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeskGenerator
 {
-    public static List<Card> Generate(string[] toStart, int pos)
+    public static List<Card> Generate(Func<Card, bool> check, int pos)
     {
         List<Card> desk = new List<Card>();
         List<Card> data = new List<Card>();
@@ -12,7 +12,8 @@ public class DeskGenerator
         List<Card> container = new List<Card>();//
         foreach (var item in map)
         {
-            if (Array.FindIndex(toStart, (i) => item.Key.Contains(i)) != -1)
+            var card = new Card(item.Value, item.Key);
+            if (check(card))
             {
                 for (int i = 0; i < item.Value.count; i++) container.Add(new Card(item.Value, item.Key));
                 continue;

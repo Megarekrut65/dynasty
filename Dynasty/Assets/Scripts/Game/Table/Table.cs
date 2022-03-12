@@ -26,7 +26,7 @@ public class Table
         {
             playerDesk.Add(player, new List<Card>());
         }
-        desk = DeskGenerator.Generate(new string[] { "gold-mo", "end" }, 7);
+        desk = DeskGenerator.Generate((card) => { return false; }, 3);
     }
     public void InsertToDesk(Card card)
     {
@@ -111,10 +111,27 @@ public class Table
         }
         return null;
     }
-    public List<Card> GetAllCardFromPlayer(Player player, Predicate<Card> comparator)
+    public List<Card> GetAllCardsFromPlayer(Player player, Predicate<Card> comparator)
     {
         List<Card> cards = playerDesk[player].FindAll(comparator);
         playerDesk[player].RemoveAll(comparator);
         return cards;
+    }
+    public List<Card> FindAllCardsInPlayer(Player player, Predicate<Card> comparator)
+    {
+        return playerDesk[player].FindAll(comparator);
+    }
+    public List<Card> GetAllCardsFromPlayers(Player owner, Predicate<Card> comparator)
+    {
+        List<Card> res = new List<Card>();
+        foreach (var item in playerDesk)
+        {
+            if (item.Key.nickname == owner.nickname) continue;
+            List<Card> cards = item.Value.FindAll(comparator);
+            item.Value.RemoveAll(comparator);
+            res.AddRange(cards);
+        }
+
+        return res;
     }
 }

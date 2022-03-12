@@ -27,7 +27,7 @@ public class CardBot
     IEnumerator ClickOnCard()
     {
         Card card = takeCard();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         if (card != null)
         {
             if (card.key == "inevitable-end")
@@ -41,12 +41,9 @@ public class CardBot
     }
     IEnumerator Click(Card card)
     {
-        ButtonScript buttonScript = card.obj.GetComponent<ButtonScript>();
         CardClick cardClick = card.obj.GetComponent<CardClick>();
-        buttonScript.OnPointerDown(null);
         cardClick.OnPointerDown(null);
         yield return new WaitForSeconds(0.1f);
-        buttonScript.OnPointerUp(null);
         cardClick.OnPointerUp(null);
     }
 }

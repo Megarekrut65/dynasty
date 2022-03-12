@@ -28,7 +28,7 @@ public class Player
     public void AddCoins(int coins)
     {
         this.coins += coins;
-        desk.SetCoins(coins);
+        desk.SetCoins(this.coins);
     }
     public Color GetColor()
     {

@@ -42,9 +42,32 @@ public class EffectsGenerator : SimpleEffectsGenerator
                 return CardMoreEffect(1, player, card);
             case "snake":
                 return SnakeEffect(player, card);
+            case "cerberus":
+                return CerberusEffect(player, card);
+            case "four-elements":
+                return FourElementsEffect(player, card);
             default:
                 return OtherEffect(player, card);
         }
+    }
+    private Func<bool> FourElementsEffect(Player player, Card card)
+    {
+        return () =>
+        {
+            var elements = table.GetAllCardsFromPlayers(player, c => c.type == CardType.WALL);
+            gameManager.StartCoroutine(TakeAll(player, elements));
+            return OtherEffect(player, card, false)();
+        };
+    }
+    private Func<bool> CerberusEffect(Player player, Card card)
+    {
+        return () =>
+        {
+            var cerberus = table.FindAllCardsInPlayer(player, c => c.key == "cerberus");
+            if (cerberus.Count >= 2)
+                player.AddCoins(-2);
+            return OtherEffect(player, card)();
+        };
     }
     private Func<bool> SnakeEffect(Player player, Card card)
     {
@@ -53,7 +76,7 @@ public class EffectsGenerator : SimpleEffectsGenerator
             Player snake = table.GetPlayerWithCard("snake");
             if (snake != null && snake.nickname != player.nickname)
             {
-                var snakes = table.GetAllCardFromPlayer(snake, c => c.key == "snake");
+                var snakes = table.GetAllCardsFromPlayer(snake, c => c.key == "snake");
                 gameManager.StartCoroutine(TakeAll(player, snakes));
                 return OtherEffect(player, card, false)();
             }

@@ -56,6 +56,28 @@ public class GameManager : MonoBehaviour
             pause = value;
         }
     }
+    [SerializeField]
+    private GameObject cardPlace;
+    public GameObject CardPlace
+    {
+        get
+        {
+            return cardPlace;
+        }
+    }
+    [SerializeField]
+    private bool makeBig = true;
+    public bool MakeBig
+    {
+        get
+        {
+            return makeBig;
+        }
+    }
+    public void ChangeBigCard(bool change)
+    {
+        makeBig = change;
+    }
     void Start()
     {
 

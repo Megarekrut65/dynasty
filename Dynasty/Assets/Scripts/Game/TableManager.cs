@@ -48,7 +48,9 @@ public class TableManager : MonoBehaviour
         {
             Card card = new Card(avoid, avoidKey);
             cardManager.CreateCard(card);
-            cardManager.AddClickToCard(card, effectsGenerator.GetEffect(player, card), new Vector4(0f, 0f, 0f, 0f));
+            cardManager.AddClickToCard(card,
+                effectsGenerator.GetEffect(player, card), new Vector4(0f, 0f, 0f, 0f),
+                player.nickname == players[0].nickname);
             animationEffectGenerator.AddCardToPlayerAnimated(card, player, () => { });
         }
     }
@@ -69,12 +71,17 @@ public class TableManager : MonoBehaviour
         gameManager.Pause = true;
         var card = table.TakeCardFromDesk();
         cardManager.CreateCard(card);
-        animationManager.PlayCardFromDesk(card.obj, () => { });
+        animationManager.PlayCardFromDesk(card.obj, () =>
+        {
+            if (gameManager.MakeBig)
+                card.obj.transform.SetParent(gameManager.CardPlace.transform, false);
+        });
         cardManager.AddClickToCard(card, () =>
         {
             bool res = effectsGenerator.GetEffect(gameManager.NextPlayer(), card)();
             return res;
-        }, gameManager.GetNextPlayer().GetColor());
+        }, gameManager.GetNextPlayer().GetColor(),
+            gameManager.GetNextPlayer().nickname == gameManager.Players[0].nickname);
         if (card.key == "inevitable-end")
         {
             gameManager.GameOver = true;

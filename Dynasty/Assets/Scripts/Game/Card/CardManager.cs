@@ -17,34 +17,36 @@ public class CardManager
     public void DeleteCardFromTable(Card card)
     {
         CardClick cardClick = card.obj.GetComponent<CardClick>();
-        ButtonScript buttonScript = card.obj.GetComponent<ButtonScript>();
         if (cardClick != null) MonoBehaviour.Destroy(cardClick);
-        if (buttonScript != null) MonoBehaviour.Destroy(buttonScript);
         //card.obj.SetActive(false);
         //cardPool.Push(card.obj);
         MonoBehaviour.Destroy(card.obj);
         card.obj = null;
     }
-    public void AddClickToCard(Card card, Func<bool> func, Color color)
+    public void AddClickToCard(Card card, Func<bool> func, Color color, bool canClick)
     {
         CardClick cardClick = card.obj.AddComponent<CardClick>() as CardClick;
-        ButtonScript buttonScript = card.obj.AddComponent<ButtonScript>() as ButtonScript;
-        Outline outline = card.obj.AddComponent<Outline>();
-        if (color.a > 0f) color.a = 0.5f;
-        outline.effectColor = color;
-        outline.effectDistance = new Vector2(7f, 7f);
+        var outline = CreateOutline(card, color);
         Func<bool> click = () =>
         {
             bool res = func();
             if (res)
             {
                 MonoBehaviour.Destroy(cardClick);
-                MonoBehaviour.Destroy(buttonScript);
                 MonoBehaviour.Destroy(outline);
             }
             return res;
         };
         cardClick.Click = click;
+        cardClick.CanClick = canClick;
+    }
+    private Outline CreateOutline(Card card, Color color)
+    {
+        Outline outline = card.obj.AddComponent<Outline>();
+        if (color.a > 0f) color.a = 0.5f;
+        outline.effectColor = color;
+        outline.effectDistance = new Vector2(7f, 7f);
+        return outline;
     }
     public void CreateCard(Card card)
     {
