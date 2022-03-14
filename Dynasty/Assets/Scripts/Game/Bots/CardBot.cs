@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class CardBot {
@@ -27,15 +28,49 @@ public class CardBot {
 		if (card != null) {
 			if (card.key == "inevitable-end") {
 				Card avoid = table.FindCardInPlayer(player, "avoid-inevitable");
-				if (avoid != null) yield return Click(avoid);
-				else yield return Click(card);
-			} else yield return Click(card);
+				if (avoid != null) yield return Click(avoid.obj.GetComponent<CardClick>());
+				else yield return Click(card.obj.GetComponent<CardClick>());
+			} else {
+				yield return Click(card.obj.GetComponent<CardClick>());
+				if (card.needSelect) {
+					card.needSelect = false;
+					yield return new WaitForSeconds(2f);
+					var data = RandomSelect();
+					if (data != null) yield return Click(data.selectClick);
+				}
+			}
 		}
 	}
-	IEnumerator Click(Card card) {
-		CardClick cardClick = card.obj.GetComponent<CardClick>();
-		cardClick.OnPointerDown(null);
+	private SelectData FindBestSelect() {
+		var type = SelectManager.LastType;
+		switch (type) {
+			case "mix": return FindBestMix();
+			case "move": return FindBestMove();
+			case "cover": return FindBestCover();
+			case "drop": return FindBestDrop();
+			default: return null;
+		}
+	}
+	private SelectData FindBestCover() {
+		return null;
+	}
+	private SelectData FindBestMove() {
+		return null;
+	}
+	private SelectData FindBestMix() {
+		return null;
+	}
+	private SelectData FindBestDrop() {
+		return null;
+	}
+	private SelectData RandomSelect() {
+		var data = SelectManager.LastSelecting;
+		if (data.Count == 0) return null;
+		return data[UnityEngine.Random.Range(0, data.Count)];
+	}
+	IEnumerator Click(object cardClick) {
+		(cardClick as IPointerDownHandler).OnPointerDown(null);
 		yield return new WaitForSeconds(0.1f);
-		cardClick.OnPointerUp(null);
+		(cardClick as IPointerUpHandler).OnPointerUp(null);
 	}
 }

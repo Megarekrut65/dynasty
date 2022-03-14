@@ -22,7 +22,7 @@ public class Table {
 		}
 		desk = DeskGenerator.Generate((card) => {
 			return card.key == "dungeon";
-		}, 6);
+		}, 3);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);

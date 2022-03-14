@@ -7,7 +7,8 @@ public class Card {
 	private static int _id = 0;
 	public int id;
 	public GameObject obj = null;
-
+	public bool needSelect = false;
+	public Card underCard = null;
 	public Card(CardData data, string key) {
 		id = _id++;
 		this.key = key;

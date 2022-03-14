@@ -55,6 +55,7 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 	}
 	private Func<bool> DungeonEffect(Player player, Card card) {
 		return () => {
+			card.needSelect = true;
 			selectManager.SelectAllCover(player, gameManager.Players,
 				(id) => {
 					UnityEngine.Debug.Log("id: " + id);
