@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 public class EffectsGenerator : SimpleEffectsGenerator {
 	public EffectsGenerator(GameManager gameManager,
 	CardManager cardManager, Table table, AnimationEffectGenerator anim)
@@ -47,23 +48,41 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 				return FourElementsEffect(player, card);
 			case "royal-poison":
 				return RoyalPoisonEffect(player, card);
-			case "dungeon":
-				return DungeonEffect(player, card);
+			case "encampment":
+				return EncampmentEffect(player, card);
+			case "tower":
+				return TowerEffect(player, card);
+			case "robin-hood":
+				return RobinHoodEffect(player, card);
+			// case "dungeon":
+			// 	return DungeonEffect(player, card);
 			default:
 				return OtherEffect(player, card);
 		}
 	}
-	private Func<bool> DungeonEffect(Player player, Card card) {
-		return () => {
-			card.needSelect = true;
-			selectManager.SelectAllCover(player, gameManager.Players,
-				(id) => {
-					UnityEngine.Debug.Log("id: " + id);
-					CallNext(true)();
-				}, gameManager.IsPlayer(player));
-			return OtherEffect(player, card, false)();
-		};
+	private Func<bool> RobinHoodEffect(Player player, Card card) {
+		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
+			player, gameManager.GetEnemies(player), card);
 	}
+	private Func<bool> TowerEffect(Player player, Card card) {
+		return TakeAwayCardSelectEffect((c) => c.key == "archer",
+			player, gameManager.GetEnemies(player), card);
+	}
+	private Func<bool> EncampmentEffect(Player player, Card card) {
+		return TakeAwayCardSelectEffect((c) => c.type == CardType.KNIGHT,
+			player, gameManager.GetEnemies(player), card);
+	}
+	// private Func<bool> DungeonEffect(Player player, Card card) {
+	// 	return () => {
+	// 		card.needSelect = true;
+	// 		selectManager.SelectAllCover(player, gameManager.Players,
+	// 			(id) => {
+	// 				UnityEngine.Debug.Log("id: " + id);
+	// 				CallNext(true)();
+	// 			}, gameManager.IsPlayer(player));
+	// 		return OtherEffect(player, card, false)();
+	// 	};
+	// }
 	private Func<bool> RoyalPoisonEffect(Player player, Card card) {
 		return () => {
 			var knights = table.GetAllCardsFromPlayers(null, c => c.type == CardType.KNIGHT);

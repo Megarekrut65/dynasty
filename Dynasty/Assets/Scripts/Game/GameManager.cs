@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 	public delegate void NextRound();
@@ -116,5 +117,8 @@ public class GameManager : MonoBehaviour {
 	public bool IsPlayer(Player player) {
 		int index = players.FindIndex((pl) => pl.Equals(player));
 		return (index < playerCount);
+	}
+	public List<Player> GetEnemies(Player player) {
+		return players.Where(p => !p.Equals(player)).ToList();
 	}
 }

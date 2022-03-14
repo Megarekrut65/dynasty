@@ -34,9 +34,12 @@ public class CardBot {
 				yield return Click(card.obj.GetComponent<CardClick>());
 				if (card.needSelect) {
 					card.needSelect = false;
-					yield return new WaitForSeconds(2f);
 					var data = RandomSelect();
-					if (data != null) yield return Click(data.selectClick);
+					yield return new WaitForSeconds(1f);
+					if (data != null) {
+						yield return new WaitForSeconds(1f);
+						yield return Click(data.selectClick);
+					}
 				}
 			}
 		}

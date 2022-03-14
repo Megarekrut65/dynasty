@@ -253,13 +253,6 @@
             }
         },
         {
-            "key": "invisible-cloak",
-            "value": {
-                "name": "Невидимий Плащ",
-                "description": "Твоїх лицарів не можна перемістити"
-            }
-        },
-        {
             "key": "totem",
             "value": {
                 "name": "Тотем",

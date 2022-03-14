@@ -34,9 +34,23 @@ public class SimpleEffectsGenerator {
 			return true;
 		};
 	}
+	protected Func<bool> TakeAwayCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+									Card card, bool other = true) {
+		return () => {
+			card.needSelect = true;
+			selectManager.SelectMove(predicate, player, players,
+				(id) => {
+					var take = table.GetCardFromPlayer(id);
+					if (take != null)
+						anim.AddCardToPlayerAnimated(take, player, CallNext(other));
+					else CallNext(other)();
+				}, gameManager.IsPlayer(player));
+			return OtherEffect(player, card, false)();
+		};
+	}
 	protected Func<bool> TakeAwayCardEffect(string key, Player player, Card card, bool other = true) {
 		return () => {
-			Card take = table.GetCardFromPlayer(key);
+			var take = table.GetCardFromPlayer(key);
 			if (take != null)
 				anim.AddCardToPlayerAnimated(take, player, Other(other, player, card));
 			else Other(other, player, card)();

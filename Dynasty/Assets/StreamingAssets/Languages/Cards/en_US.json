@@ -1,88 +1,592 @@
 {
-    "items":[
-    {"key":"encampment", "value":{"name":"Encampment", "description":"TAKE AWAY the enemy knight"}},
-    {"key":"temple", "value":{"name":"Temple", "description":"Building"}},
-    {"key":"bunker", "value":{"name":"Bunker", "description":"Building.#COVER your R-card"}},
-    {"key":"light-wizard", "value":{"name":"Light Wizard", "description":"MIX the Dark Wizard card"}},
-    {"key":"dungeon-keys", "value":{"name":"Dungeon Keys", "description":"TAKE AWAY the Dungeon card.#MIX Secret Treasure card"}},
-    {"key":"secret-treasure", "value":{"name":"Secret Treasure", "description":"If one player has this card together with the Dungeon card, he will receive 6 coins"}},
-    {"key":"dungeon", "value":{"name":"Dungeon", "description":"Building.#COVER anyone's R-card"}},
-    {"key":"gate", "value":{"name":"Gate", "description":"Building"}},
-    {"key":"village", "value":{"name":"Village", "description":"Building"}},
-    {"key":"castle", "value":{"name":"Castle", "description":"Building.#TAKE AWAY the King card"}},
-    {"key":"swordsman", "value":{"name":"Swordsman", "description":"Knight"}},
-    {"key":"crusader", "value":{"name":"Crusader", "description":"Knight"}},
-    {"key":"equestrian", "value":{"name":"Equestrian", "description":"Knight"}},
-    {"key":"king", "value":{"name":"King", "description":"All new knights will be yours"}},
-    {"key":"fountain", "value":{"name":"Fountain", "description":"Building"}},
-    {"key":"tower", "value":{"name":"Tower", "description":"Building.#TAKE AWAY one Archer card"}},
-    {"key":"archer", "value":{"name":"Archer", "description":"Knight"}},
-    {"key":"bridge", "value":{"name":"Bridge", "description":"Building"}},
-    {"key":"prison", "value":{"name":"Prison", "description":"Building.#COVER anyone's R-card"}},
-    {"key":"dragon", "value":{"name":"Dragon", "description":"Go crazy for gold"}},
-    {"key":"hunter", "value":{"name":"Hunter", "description":"DROP your monster"}},
-    {"key":"step-ahead", "value":{"name":"Step Ahead", "description":"TAKE another card from the deck"}},
-    {"key":"look-back", "value":{"name":"Look Back", "description":"TAKE any dropped R-card"}},
-    {"key":"current", "value":{"name":"Current", "description":"DROP your R-card"}},
-    {"key":"green-pandora's-box", "value":{"name":"Pandora's Box", "description":"MIX one enemy R-card"}},
-    {"key":"robin-hood", "value":{"name":"Robin Hood", "description":"TAKE AWAY one enemy R-card"}},
-    {"key":"oversight", "value":{"name":"Oversight", "description":"MIX one your R-card"}},
-    {"key":"fairy-army", "value":{"name":"Fairy Army", "description":"TAKE AWAY King card"}},
-    {"key":"pharmacy", "value":{"name":"Pharmacy", "description":"Cures everything"}},
-    {"key":"treasure", "value":{"name":"Treasure", "description":"Silence is golden"}},
-    {"key":"ice-cream", "value":{"name":"Ice Cream", "description":"Deliciously"}},
-    {"key":"bag-of-gold", "value":{"name":"Bag of Gold", "description":"Money talks"}},
-    {"key":"genie", "value":{"name":"Genie", "description":"Someday your wish will come true"}},
-    {"key":"hero", "value":{"name":"Hero", "description":"DROP Dragon card"}},
-    {"key":"avoid-inevitable", "value":{"name":"Avoid Inevitable", "description":"CAN DROP this card to MIX Inevitable End card"}},
-    {"key":"magic-hat", "value":{"name":"Magic Hat", "description":"COVER anyone's card"}},
-    {"key":"invisible-cloak", "value":{"name":"Invisible Cloak", "description":"Your knights cannot be moved"}},
-    {"key":"totem", "value":{"name":"Totem", "description":"Your R-cards cannot be dropped"}},
-    {"key":"gold-mountain", "value":{"name":"Gold Mountain", "description":"DROP other Gold Mountain card.#TAKE AWAY Dragon card"}},
-    {"key":"grail", "value":{"name":"Grail", "description":"All players DROP one own card"}},
-    {"key":"illusion", "value":{"name":"Illusion", "description":"All enemies MIX one own card"}},
-    {"key":"inevitable-end", "value":{"name":"Inevitable End", "description":"Game over..."}},
-    {"key":"king-sword", "value":{"name":"King Sword", "description":"TAKE AWAY King card"}},
-    {"key":"boarding-party", "value":{"name":"Boarding Party", "description":"All players DROP two own cards"}},
-    {"key":"royal-rebellion", "value":{"name":"Royal Rebellion", "description":"TAKE AWAY one knight.#MIX the King card"}},
-    {"key":"reliable-plan", "value":{"name":"Reliable Plan", "description":"TAKE AWAY one enemy card.#MOVE one your card to him"}},
-    {"key":"magic-sphere", "value":{"name":"Magic Sphere", "description":"MOVE one your card to enemy"}},
-    {"key":"hocus-pocus", "value":{"name":"Hocus-Pocus", "description":"TAKE another card from anywhere in the deck"}},
-    {"key":"wand", "value":{"name":"Wand", "description":"DROP anyone's card"}},
-    {"key":"dracula", "value":{"name":"Dracula", "description":"Hunter doesn't DROP your monsters.#MOVE all your Bat and Crow cards to enemies"}},
-    {"key":"snake", "value":{"name":"Snake", "description":"Monster.#TAKE AWAY all Snake cards"}},
-    {"key":"crow", "value":{"name":"Crow", "description":"Monster"}},
-    {"key":"cerberus", "value":{"name":"Cerberus", "description":"Monster.#Player with three Cerberus cards lose two coins"}},
-    {"key":"locusts", "value":{"name":"Locusts", "description":"Monster.#MIX one card for each player"}},
-    {"key":"siren", "value":{"name":"Siren", "description":"Monster.#Boarding Party card doesn't work for you"}},
-    {"key":"curses", "value":{"name":"Curses", "description":"COVER your card"}},
-    {"key":"dark-wizard", "value":{"name":"Dark Wizard", "description":"MIX the Light Wizard card"}},
-    {"key":"bear", "value":{"name":"Bear", "description":"Monster.#MIX your monster"}},
-    {"key":"hydra", "value":{"name":"Hydra", "description":"Monster.#MOVE all new monsters to enemies"}},
-    {"key":"zombie", "value":{"name":"Zombie", "description":"Monster"}},
-    {"key":"slime", "value":{"name":"Slime", "description":"Monster.#COVER anyone's card"}},
-    {"key":"black-sun-castle", "value":{"name":"Black Sun Castle", "description":"Building.#Artillery card doesn't DROP your buildings"}},
-    {"key":"hut", "value":{"name":"Hut", "description":"Building.#COVER your monster"}},
-    {"key":"bat", "value":{"name":"Bat", "description":"Monster"}},
-    {"key":"black-cat", "value":{"name":"Black Cat", "description":"Monster.#COVER enemy R-card"}},
-    {"key":"flame-wall", "value":{"name":"Flame Wall", "description":"Building"}},
-    {"key":"water-wall", "value":{"name":"Water Wall", "description":"Building"}},
-    {"key":"air-wall", "value":{"name":"Air Wall", "description":"Building"}},
-    {"key":"earthen-wall", "value":{"name":"Earthen Wall", "description":"Building"}},
-    {"key":"four-elements", "value":{"name":"Four Elements", "description":"TAKE AWAY all Wall cards"}},
-    {"key":"robber", "value":{"name":"Robber", "description":"Give me your money"}},
-    {"key":"royal-poison", "value":{"name":"Royal Poison", "description":"MIX King card and all knights"}},
-    {"key":"poison", "value":{"name":"Poison", "description":"DROP your R-card"}},
-    {"key":"poisonous-flower", "value":{"name":"Poisonous Flower", "description":"Feel the poison in every cell of your body..."}},
-    {"key":"explosion", "value":{"name":"Explosion", "description":"DROP anyone's card that COVER other one"}},
-    {"key":"dark-genie", "value":{"name":"Dark Genie", "description":"Your wish will never come true"}},
-    {"key":"killer", "value":{"name":"Killer", "description":"DROP own knight"}},
-    {"key":"victim", "value":{"name":"Victim", "description":"TAKE two more cards from the deck"}},
-    {"key":"dark-sign", "value":{"name":"Dark Sign", "description":"MIX two enemy cards.#DROP your card"}},
-    {"key":"hell", "value":{"name":"Hell", "description":"DROP two cards of each player"}},
-    {"key":"artillery", "value":{"name":"Artillery", "description":"DROP your building"}},
-    {"key":"death", "value":{"name":"Death", "description":"Dying is as natural as living"}},
-    {"key":"wolf-spirit", "value":{"name":"Wolf Spirit", "description":"MOVE your card to enemy"}},
-    {"key":"cemetery", "value":{"name":"Cemetery", "description":"MIX  anyone's card"}},
-    {"key":"red-pandora's-box", "value":{"name":"Pandora's Box", "description":"MIX your card"}}]
-    }
+    "items": [
+        {
+            "key": "encampment",
+            "value": {
+                "name": "Encampment",
+                "description": "TAKE AWAY the enemy knight"
+            }
+        },
+        {
+            "key": "temple",
+            "value": {
+                "name": "Temple",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "bunker",
+            "value": {
+                "name": "Bunker",
+                "description": "Building.#COVER your R-card"
+            }
+        },
+        {
+            "key": "light-wizard",
+            "value": {
+                "name": "Light Wizard",
+                "description": "MIX the Dark Wizard card"
+            }
+        },
+        {
+            "key": "dungeon-keys",
+            "value": {
+                "name": "Dungeon Keys",
+                "description": "TAKE AWAY the Dungeon card.#MIX Secret Treasure card"
+            }
+        },
+        {
+            "key": "secret-treasure",
+            "value": {
+                "name": "Secret Treasure",
+                "description": "If one player has this card together with the Dungeon card, he will receive 6 coins"
+            }
+        },
+        {
+            "key": "dungeon",
+            "value": {
+                "name": "Dungeon",
+                "description": "Building.#COVER anyone's R-card"
+            }
+        },
+        {
+            "key": "gate",
+            "value": {
+                "name": "Gate",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "village",
+            "value": {
+                "name": "Village",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "castle",
+            "value": {
+                "name": "Castle",
+                "description": "Building.#TAKE AWAY the King card"
+            }
+        },
+        {
+            "key": "swordsman",
+            "value": {
+                "name": "Swordsman",
+                "description": "Knight"
+            }
+        },
+        {
+            "key": "crusader",
+            "value": {
+                "name": "Crusader",
+                "description": "Knight"
+            }
+        },
+        {
+            "key": "equestrian",
+            "value": {
+                "name": "Equestrian",
+                "description": "Knight"
+            }
+        },
+        {
+            "key": "king",
+            "value": {
+                "name": "King",
+                "description": "All new knights will be yours"
+            }
+        },
+        {
+            "key": "fountain",
+            "value": {
+                "name": "Fountain",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "tower",
+            "value": {
+                "name": "Tower",
+                "description": "Building.#TAKE AWAY one Archer card"
+            }
+        },
+        {
+            "key": "archer",
+            "value": {
+                "name": "Archer",
+                "description": "Knight"
+            }
+        },
+        {
+            "key": "bridge",
+            "value": {
+                "name": "Bridge",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "prison",
+            "value": {
+                "name": "Prison",
+                "description": "Building.#COVER anyone's R-card"
+            }
+        },
+        {
+            "key": "dragon",
+            "value": {
+                "name": "Dragon",
+                "description": "Go crazy for gold"
+            }
+        },
+        {
+            "key": "hunter",
+            "value": {
+                "name": "Hunter",
+                "description": "DROP your monster"
+            }
+        },
+        {
+            "key": "step-ahead",
+            "value": {
+                "name": "Step Ahead",
+                "description": "TAKE another card from the deck"
+            }
+        },
+        {
+            "key": "look-back",
+            "value": {
+                "name": "Look Back",
+                "description": "TAKE any dropped R-card"
+            }
+        },
+        {
+            "key": "current",
+            "value": {
+                "name": "Current",
+                "description": "DROP your R-card"
+            }
+        },
+        {
+            "key": "green-pandora's-box",
+            "value": {
+                "name": "Pandora's Box",
+                "description": "MIX one enemy R-card"
+            }
+        },
+        {
+            "key": "robin-hood",
+            "value": {
+                "name": "Robin Hood",
+                "description": "TAKE AWAY one enemy R-card"
+            }
+        },
+        {
+            "key": "oversight",
+            "value": {
+                "name": "Oversight",
+                "description": "MIX one your R-card"
+            }
+        },
+        {
+            "key": "fairy-army",
+            "value": {
+                "name": "Fairy Army",
+                "description": "TAKE AWAY King card"
+            }
+        },
+        {
+            "key": "pharmacy",
+            "value": {
+                "name": "Pharmacy",
+                "description": "Cures everything"
+            }
+        },
+        {
+            "key": "treasure",
+            "value": {
+                "name": "Treasure",
+                "description": "Silence is golden"
+            }
+        },
+        {
+            "key": "ice-cream",
+            "value": {
+                "name": "Ice Cream",
+                "description": "Deliciously"
+            }
+        },
+        {
+            "key": "bag-of-gold",
+            "value": {
+                "name": "Bag of Gold",
+                "description": "Money talks"
+            }
+        },
+        {
+            "key": "genie",
+            "value": {
+                "name": "Genie",
+                "description": "Someday your wish will come true"
+            }
+        },
+        {
+            "key": "hero",
+            "value": {
+                "name": "Hero",
+                "description": "DROP Dragon card"
+            }
+        },
+        {
+            "key": "avoid-inevitable",
+            "value": {
+                "name": "Avoid Inevitable",
+                "description": "CAN DROP this card to MIX Inevitable End card"
+            }
+        },
+        {
+            "key": "magic-hat",
+            "value": {
+                "name": "Magic Hat",
+                "description": "COVER anyone's card"
+            }
+        },
+        {
+            "key": "totem",
+            "value": {
+                "name": "Totem",
+                "description": "Your R-cards cannot be dropped"
+            }
+        },
+        {
+            "key": "gold-mountain",
+            "value": {
+                "name": "Gold Mountain",
+                "description": "DROP other Gold Mountain card.#TAKE AWAY Dragon card"
+            }
+        },
+        {
+            "key": "grail",
+            "value": {
+                "name": "Grail",
+                "description": "All players DROP one own card"
+            }
+        },
+        {
+            "key": "illusion",
+            "value": {
+                "name": "Illusion",
+                "description": "All enemies MIX one own card"
+            }
+        },
+        {
+            "key": "inevitable-end",
+            "value": {
+                "name": "Inevitable End",
+                "description": "Game over..."
+            }
+        },
+        {
+            "key": "king-sword",
+            "value": {
+                "name": "King Sword",
+                "description": "TAKE AWAY King card"
+            }
+        },
+        {
+            "key": "boarding-party",
+            "value": {
+                "name": "Boarding Party",
+                "description": "All players DROP two own cards"
+            }
+        },
+        {
+            "key": "royal-rebellion",
+            "value": {
+                "name": "Royal Rebellion",
+                "description": "TAKE AWAY one knight.#MIX the King card"
+            }
+        },
+        {
+            "key": "reliable-plan",
+            "value": {
+                "name": "Reliable Plan",
+                "description": "TAKE AWAY one enemy card.#MOVE one your card to him"
+            }
+        },
+        {
+            "key": "magic-sphere",
+            "value": {
+                "name": "Magic Sphere",
+                "description": "MOVE one your card to enemy"
+            }
+        },
+        {
+            "key": "hocus-pocus",
+            "value": {
+                "name": "Hocus-Pocus",
+                "description": "TAKE another card from anywhere in the deck"
+            }
+        },
+        {
+            "key": "wand",
+            "value": {
+                "name": "Wand",
+                "description": "DROP anyone's card"
+            }
+        },
+        {
+            "key": "dracula",
+            "value": {
+                "name": "Dracula",
+                "description": "Hunter doesn't DROP your monsters.#MOVE all your Bat and Crow cards to enemies"
+            }
+        },
+        {
+            "key": "snake",
+            "value": {
+                "name": "Snake",
+                "description": "Monster.#TAKE AWAY all Snake cards"
+            }
+        },
+        {
+            "key": "crow",
+            "value": {
+                "name": "Crow",
+                "description": "Monster"
+            }
+        },
+        {
+            "key": "cerberus",
+            "value": {
+                "name": "Cerberus",
+                "description": "Monster.#Player with three Cerberus cards lose two coins"
+            }
+        },
+        {
+            "key": "locusts",
+            "value": {
+                "name": "Locusts",
+                "description": "Monster.#MIX one card for each player"
+            }
+        },
+        {
+            "key": "siren",
+            "value": {
+                "name": "Siren",
+                "description": "Monster.#Boarding Party card doesn't work for you"
+            }
+        },
+        {
+            "key": "curses",
+            "value": {
+                "name": "Curses",
+                "description": "COVER your card"
+            }
+        },
+        {
+            "key": "dark-wizard",
+            "value": {
+                "name": "Dark Wizard",
+                "description": "MIX the Light Wizard card"
+            }
+        },
+        {
+            "key": "bear",
+            "value": {
+                "name": "Bear",
+                "description": "Monster.#MIX your monster"
+            }
+        },
+        {
+            "key": "hydra",
+            "value": {
+                "name": "Hydra",
+                "description": "Monster.#MOVE all new monsters to enemies"
+            }
+        },
+        {
+            "key": "zombie",
+            "value": {
+                "name": "Zombie",
+                "description": "Monster"
+            }
+        },
+        {
+            "key": "slime",
+            "value": {
+                "name": "Slime",
+                "description": "Monster.#COVER anyone's card"
+            }
+        },
+        {
+            "key": "black-sun-castle",
+            "value": {
+                "name": "Black Sun Castle",
+                "description": "Building.#Artillery card doesn't DROP your buildings"
+            }
+        },
+        {
+            "key": "hut",
+            "value": {
+                "name": "Hut",
+                "description": "Building.#COVER your monster"
+            }
+        },
+        {
+            "key": "bat",
+            "value": {
+                "name": "Bat",
+                "description": "Monster"
+            }
+        },
+        {
+            "key": "black-cat",
+            "value": {
+                "name": "Black Cat",
+                "description": "Monster.#COVER enemy R-card"
+            }
+        },
+        {
+            "key": "flame-wall",
+            "value": {
+                "name": "Flame Wall",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "water-wall",
+            "value": {
+                "name": "Water Wall",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "air-wall",
+            "value": {
+                "name": "Air Wall",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "earthen-wall",
+            "value": {
+                "name": "Earthen Wall",
+                "description": "Building"
+            }
+        },
+        {
+            "key": "four-elements",
+            "value": {
+                "name": "Four Elements",
+                "description": "TAKE AWAY all Wall cards"
+            }
+        },
+        {
+            "key": "robber",
+            "value": {
+                "name": "Robber",
+                "description": "Give me your money"
+            }
+        },
+        {
+            "key": "royal-poison",
+            "value": {
+                "name": "Royal Poison",
+                "description": "MIX King card and all knights"
+            }
+        },
+        {
+            "key": "poison",
+            "value": {
+                "name": "Poison",
+                "description": "DROP your R-card"
+            }
+        },
+        {
+            "key": "poisonous-flower",
+            "value": {
+                "name": "Poisonous Flower",
+                "description": "Feel the poison in every cell of your body..."
+            }
+        },
+        {
+            "key": "explosion",
+            "value": {
+                "name": "Explosion",
+                "description": "DROP anyone's card that COVER other one"
+            }
+        },
+        {
+            "key": "dark-genie",
+            "value": {
+                "name": "Dark Genie",
+                "description": "Your wish will never come true"
+            }
+        },
+        {
+            "key": "killer",
+            "value": {
+                "name": "Killer",
+                "description": "DROP own knight"
+            }
+        },
+        {
+            "key": "victim",
+            "value": {
+                "name": "Victim",
+                "description": "TAKE two more cards from the deck"
+            }
+        },
+        {
+            "key": "dark-sign",
+            "value": {
+                "name": "Dark Sign",
+                "description": "MIX two enemy cards.#DROP your card"
+            }
+        },
+        {
+            "key": "hell",
+            "value": {
+                "name": "Hell",
+                "description": "DROP two cards of each player"
+            }
+        },
+        {
+            "key": "artillery",
+            "value": {
+                "name": "Artillery",
+                "description": "DROP your building"
+            }
+        },
+        {
+            "key": "death",
+            "value": {
+                "name": "Death",
+                "description": "Dying is as natural as living"
+            }
+        },
+        {
+            "key": "wolf-spirit",
+            "value": {
+                "name": "Wolf Spirit",
+                "description": "MOVE your card to enemy"
+            }
+        },
+        {
+            "key": "cemetery",
+            "value": {
+                "name": "Cemetery",
+                "description": "MIX  anyone's card"
+            }
+        },
+        {
+            "key": "red-pandora's-box",
+            "value": {
+                "name": "Pandora's Box",
+                "description": "MIX your card"
+            }
+        }
+    ]
+}

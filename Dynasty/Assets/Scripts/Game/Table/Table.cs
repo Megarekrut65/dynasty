@@ -21,8 +21,8 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return card.key == "dungeon";
-		}, 3);
+			return card.key == "robin-hood";
+		}, 6);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
@@ -52,8 +52,14 @@ public class Table {
 			coroutine(item);
 		}
 	}
+	public Card FindCardInPlayers(int id) {
+		return FindCardInPlayers(card => card.id == id);
+	}
 	public Card FindCardInPlayers(string key) {
-		var item = FindCard(key);
+		return FindCardInPlayers(card => card.key == key);
+	}
+	private Card FindCardInPlayers(Predicate<Card> predicate) {
+		var item = FindCard(predicate);
 		if (item != null) {
 			return item.Item1;
 		}
@@ -63,16 +69,22 @@ public class Table {
 		return playerDesk[player].Find(card => card.key == key);
 	}
 	public Card GetCardFromPlayer(string key) {
-		var item = FindCard(key);
+		return GetCardFromPlayer(card => card.key == key);
+	}
+	public Card GetCardFromPlayer(int id) {
+		return GetCardFromPlayer(card => card.id == id);
+	}
+	public Card GetCardFromPlayer(Predicate<Card> predicate) {
+		var item = FindCard(predicate);
 		if (item != null) {
 			item.Item2.Remove(item.Item1);
 			return item.Item1;
 		}
 		return null;
 	}
-	private Tuple<Card, List<Card>> FindCard(string key) {
+	private Tuple<Card, List<Card>> FindCard(Predicate<Card> predicate) {
 		foreach (var item in playerDesk) {
-			Card it = item.Value.Find(card => card.key == key);
+			Card it = item.Value.Find(predicate);
 			if (it != null) {
 				return new Tuple<Card, List<Card>>(it, item.Value);
 			}

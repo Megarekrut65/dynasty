@@ -20,25 +20,23 @@ public class SelectManager {
 	public SelectManager(Table table) {
 		this.table = table;
 	}
-	public void SelectAllMix(Player owner, List<Player> other, Action<int> select, bool canClick) {
-		lastType = "mix";
-		Select(lastType, owner, other, select, canClick, GetFilter(lastType));
+	public void SelectMix(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
+		lastType = CardFunctions.MIX;
+		Select(lastType, owner, other, select, canClick, filter);
 	}
-	public void SelectAllMove(Player owner, List<Player> other, Action<int> select, bool canClick) {
-		lastType = "move";
-		Select(lastType, owner, other, select, canClick, GetFilter(lastType));
+	public void SelectMove(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
+		lastType = CardFunctions.MOVE;
+		Select(lastType, owner, other, select, canClick, filter);
 	}
-	public void SelectAllDrop(Player owner, List<Player> other, Action<int> select, bool canClick) {
-		lastType = "drop";
-		Select(lastType, owner, other, select, canClick, GetFilter(lastType));
+	public void SelectDrop(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
+		lastType = CardFunctions.DROP;
+		Select(lastType, owner, other, select, canClick, filter);
 	}
-	public void SelectAllCover(Player owner, List<Player> other, Action<int> select, bool canClick) {
-		lastType = "cover";
-		Select(lastType, owner, other, select, canClick, GetFilter(lastType));
+	public void SelectCover(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
+		lastType = CardFunctions.COVER;
+		Select(lastType, owner, other, select, canClick, filter);
 	}
-	private Predicate<Card> GetFilter(string icon) {
-		return (card) => GetIconValue(icon, card) != "no";
-	}
+
 	private void Select(string icon, Player owner, List<Player> other,
 						Action<int> select, bool canClick, Predicate<Card> filter) {
 		lastSelecting.Clear();
@@ -86,18 +84,10 @@ public class SelectManager {
 		return true;
 	}
 	private void LeavePriority(string icon, List<Card> cards) {
-		var card = cards.Find((c) => GetIconValue(icon, c) == "yes");
+		var card = cards.Find((c) => CardFunctions.GetIconValue(icon, c) == "yes");
 		if (card != null) {
-			cards.RemoveAll((c) => GetIconValue(icon, c) != "yes");
+			cards.RemoveAll((c) => CardFunctions.GetIconValue(icon, c) != "yes");
 		}
 	}
-	private string GetIconValue(string icon, Card card) {
-		switch (icon) {
-			case "mix": return card.data.mix;
-			case "move": return card.data.move;
-			case "cover": return card.data.cover;
-			case "drop": return card.data.drop;
-			default: return "";
-		}
-	}
+
 }
