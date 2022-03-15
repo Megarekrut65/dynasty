@@ -27,7 +27,7 @@ IPointerDownHandler, IPointerUpHandler {
 		buttonEffect = new ButtonEffect(transform);
 	}
 	public void OnPointerDown(PointerEventData eventData) {
-		if (canClick || eventData == null) buttonEffect.Down();
+		//if (canClick || eventData == null) buttonEffect.Down();
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canClick || eventData == null) {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class Desk : MonoBehaviour {
 	[Header("Desk parts")]
 	[SerializeField]
+	private GameObject playerLabel;
+	[SerializeField]
 	private Text nameLabel;
 	[SerializeField]
 	private Text coins;
@@ -15,6 +17,11 @@ public class Desk : MonoBehaviour {
 	public Color PlayerColor {
 		get {
 			return color;
+		}
+	}
+	public GameObject PlayerLabel {
+		get {
+			return playerLabel;
 		}
 	}
 	void Start() {

@@ -668,6 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLabel: {fileID: 1691036040}
   nameLabel: {fileID: 1063561010}
   coins: {fileID: 364779063}
   container: {fileID: 274420556}
@@ -1527,6 +1528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLabel: {fileID: 907611791}
   nameLabel: {fileID: 2004691037}
   coins: {fileID: 267747706}
   container: {fileID: 820882502}
@@ -1644,6 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLabel: {fileID: 1303138826}
   nameLabel: {fileID: 1633665796}
   coins: {fileID: 947780287}
   container: {fileID: 854501735}
@@ -2664,7 +2667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4339623, g: 0.0020469967, b: 0.0020469967, a: 1}
+  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3107,6 +3110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLabel: {fileID: 1130836140}
   nameLabel: {fileID: 1645833370}
   coins: {fileID: 1385087877}
   container: {fileID: 1513227859}
@@ -3443,7 +3447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.5882353}
+  m_Color: {r: 0.87843144, g: 0.054901965, b: 0.054901965, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3480,10 +3484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLabel: {fileID: 674677895}
   nameLabel: {fileID: 949052174}
   coins: {fileID: 1974395645}
   container: {fileID: 1665946566}
-  color: {r: 0.24705884, g: 0.24705884, b: 0.24705884, a: 1}
+  color: {r: 0.87843144, g: 0.054901965, b: 0.054901965, a: 1}
 --- !u!1 &1691036040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,6 +3679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLabel: {fileID: 805362453}
   nameLabel: {fileID: 1070773431}
   coins: {fileID: 689956740}
   container: {fileID: 1717776597}

@@ -9,6 +9,7 @@ public class DeskGenerator {
 		var map = LocalizationManager.instance.map.CardMap;
 		List<Card> container = new List<Card>();//
 		foreach (var item in map) {
+			//UnityEngine.Debug.Log(item.Key);
 			var card = new Card(item.Value, item.Key);
 			if (check(card)) {
 				for (int i = 0; i < item.Value.count; i++) container.Add(new Card(item.Value, item.Key));

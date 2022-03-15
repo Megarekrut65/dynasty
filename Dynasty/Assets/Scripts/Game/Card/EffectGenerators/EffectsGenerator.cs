@@ -53,12 +53,32 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			case "tower":
 				return TowerEffect(player, card);
 			case "robin-hood":
+			case "reliable-plan":
 				return RobinHoodEffect(player, card);
+			case "wolf-spirit":
+			case "magic-sphere":
+				return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
+							player, gameManager.Players, card);
+			case "dracula":
+				return DraculaEffect(player, card);
 			// case "dungeon":
 			// 	return DungeonEffect(player, card);
 			default:
 				return OtherEffect(player, card);
 		}
+	}
+	private Func<bool> DraculaEffect(Player player, Card card) {
+		return () => {
+			card.needSelect = true;
+			selectManager.SelectMoveToOther((c) => "batcrow".Contains(c.key), player, gameManager.Players,
+				(id, pl) => {
+					var take = table.GetCardFromPlayer(id);
+					if (take != null)
+						anim.AddCardToPlayerAnimated(take, pl, CallNext(true));
+					else CallNext(true)();
+				}, gameManager.IsPlayer(player));
+			return OtherEffect(player, card, false)();
+		};
 	}
 	private Func<bool> RobinHoodEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),

@@ -48,6 +48,20 @@ public class SimpleEffectsGenerator {
 			return OtherEffect(player, card, false)();
 		};
 	}
+	protected Func<bool> MoveCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+									Card card, bool other = true) {
+		return () => {
+			card.needSelect = true;
+			selectManager.SelectMoveToOther(predicate, player, players,
+				(id, pl) => {
+					var take = table.GetCardFromPlayer(id);
+					if (take != null)
+						anim.AddCardToPlayerAnimated(take, pl, CallNext(other));
+					else CallNext(other)();
+				}, gameManager.IsPlayer(player));
+			return OtherEffect(player, card, false)();
+		};
+	}
 	protected Func<bool> TakeAwayCardEffect(string key, Player player, Card card, bool other = true) {
 		return () => {
 			var take = table.GetCardFromPlayer(key);

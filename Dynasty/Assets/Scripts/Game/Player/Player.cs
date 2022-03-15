@@ -37,4 +37,9 @@ public class Player {
 	public override int GetHashCode() {
 		return nickname.GetHashCode();
 	}
+	public GameObject Label {
+		get {
+			return desk.PlayerLabel;
+		}
+	}
 }

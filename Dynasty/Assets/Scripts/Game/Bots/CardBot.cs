@@ -33,7 +33,13 @@ public class CardBot {
 			} else {
 				yield return Click(card.obj.GetComponent<CardClick>());
 				if (card.needSelect) {
-					card.needSelect = false;
+					if (!SelectManager.SelectData.toOwner) {
+						yield return new WaitForSeconds(1f);
+						if (SelectManager.SelectData.selectingPlayers.Count > 0)
+							yield return Click(SelectManager.SelectData.
+								selectingPlayers[UnityEngine.Random.Range(0,
+									SelectManager.SelectData.selectingPlayers.Count)].selectClick);
+					}
 					var data = RandomSelect();
 					yield return new WaitForSeconds(1f);
 					if (data != null) {
@@ -44,8 +50,8 @@ public class CardBot {
 			}
 		}
 	}
-	private SelectData FindBestSelect() {
-		var type = SelectManager.LastType;
+	private SelectObjectData<Card> FindBestSelect() {
+		var type = SelectManager.SelectData.lastType;
 		switch (type) {
 			case "mix": return FindBestMix();
 			case "move": return FindBestMove();
@@ -54,20 +60,20 @@ public class CardBot {
 			default: return null;
 		}
 	}
-	private SelectData FindBestCover() {
+	private SelectObjectData<Card> FindBestCover() {
 		return null;
 	}
-	private SelectData FindBestMove() {
+	private SelectObjectData<Card> FindBestMove() {
 		return null;
 	}
-	private SelectData FindBestMix() {
+	private SelectObjectData<Card> FindBestMix() {
 		return null;
 	}
-	private SelectData FindBestDrop() {
+	private SelectObjectData<Card> FindBestDrop() {
 		return null;
 	}
-	private SelectData RandomSelect() {
-		var data = SelectManager.LastSelecting;
+	private SelectObjectData<Card> RandomSelect() {
+		var data = SelectManager.SelectData.selectingCards;
 		if (data.Count == 0) return null;
 		return data[UnityEngine.Random.Range(0, data.Count)];
 	}

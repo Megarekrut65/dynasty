@@ -312,7 +312,7 @@
             "key": "reliable-plan",
             "value": {
                 "name": "Reliable Plan",
-                "description": "TAKE AWAY one enemy card.#MOVE one your card to him"
+                "description": "TAKE AWAY one enemy card"
             }
         },
         {
@@ -340,7 +340,7 @@
             "key": "dracula",
             "value": {
                 "name": "Dracula",
-                "description": "Hunter doesn't DROP your monsters.#MOVE all your Bat and Crow cards to enemies"
+                "description": "Hunter doesn't DROP your monsters.#MOVE one of your Bat or Crow card to enemies"
             }
         },
         {

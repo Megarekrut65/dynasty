@@ -22,7 +22,7 @@ public class CardManager {
 	}
 	public void AddClickToCard(Card card, Func<bool> func, Color color, bool canClick) {
 		CardClick cardClick = card.obj.AddComponent<CardClick>() as CardClick;
-		var outline = CreateOutline(card, color);
+		var outline = CreateOutline(card.obj, color);
 		Func<bool> click = () => {
 			bool res = func();
 			if (res) {
@@ -34,8 +34,8 @@ public class CardManager {
 		cardClick.Click = click;
 		cardClick.CanClick = canClick;
 	}
-	public static Outline CreateOutline(Card card, Color color) {
-		Outline outline = card.obj.AddComponent<Outline>();
+	public static Outline CreateOutline(GameObject obj, Color color) {
+		Outline outline = obj.AddComponent<Outline>();
 		if (color.a > 0f) color.a = 0.5f;
 		outline.effectColor = color;
 		outline.effectDistance = new Vector2(7f, 7f);
