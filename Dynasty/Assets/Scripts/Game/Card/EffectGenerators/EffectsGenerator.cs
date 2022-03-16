@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
-public class EffectsGenerator : SimpleEffectsGenerator {
+public class EffectsGenerator : SelectEffectGenerator {
 	public EffectsGenerator(GameManager gameManager,
 	CardManager cardManager, Table table, AnimationEffectGenerator anim)
 		: base(gameManager, cardManager, table, anim) { }
@@ -54,33 +54,57 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 				return TowerEffect(player, card);
 			case "robin-hood":
 			case "reliable-plan":
-				return RobinHoodEffect(player, card);
+				return TakeFromEnemyEffect(player, card);
 			case "wolf-spirit":
 			case "magic-sphere":
-				return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-							player, gameManager.Players, card);
+				return MoveToOtherEffect(player, card);
 			case "dracula":
 				return DraculaEffect(player, card);
+			case "green-pandora's-box":
+			case "illusion":
+				return MixEnemyCardEffect(player, card);
+			case "oversight":
+			case "red-pandora's-box":
+				return MixOwnCardEffect(player, card);
+			case "bear":
+				return BearEffect(player, card);
+			case "cemetery":
+				return MixPlayersCardEffect(player, card);
+			case "hunter":
+				return HunterEffect(player, card);
 			// case "dungeon":
 			// 	return DungeonEffect(player, card);
 			default:
-				return OtherEffect(player, card);
+				return CardEffect(player, card);
 		}
 	}
-	private Func<bool> DraculaEffect(Player player, Card card) {
-		return () => {
-			card.needSelect = true;
-			selectManager.SelectMoveToOther((c) => "batcrow".Contains(c.key), player, gameManager.Players,
-				(id, pl) => {
-					var take = table.GetCardFromPlayer(id);
-					if (take != null)
-						anim.AddCardToPlayerAnimated(take, pl, CallNext(true));
-					else CallNext(true)();
-				}, gameManager.IsPlayer(player));
-			return OtherEffect(player, card, false)();
-		};
+	private Func<bool> HunterEffect(Player player, Card card) {
+
 	}
-	private Func<bool> RobinHoodEffect(Player player, Card card) {
+	private Func<bool> MixPlayersCardEffect(Player player, Card card) {
+		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
+			player, gameManager.Players, card);
+	}
+	private Func<bool> BearEffect(Player player, Card card) {
+		return MixCardSelectEffect((c) => c.type == CardType.MONSTER,
+			player, new List<Player>() { player }, card);
+	}
+	private Func<bool> MixOwnCardEffect(Player player, Card card) {
+		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
+			player, new List<Player>() { player }, card);
+	}
+	private Func<bool> MixEnemyCardEffect(Player player, Card card) {
+		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
+			player, gameManager.GetEnemies(player), card);
+	}
+	private Func<bool> DraculaEffect(Player player, Card card) {
+		return MoveCardSelectEffect((c) => "batcrow".Contains(c.key), player, gameManager.Players, card);
+	}
+	private Func<bool> MoveToOtherEffect(Player player, Card card) {
+		return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
+							player, gameManager.Players, card);
+	}
+	private Func<bool> TakeFromEnemyEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
 			player, gameManager.GetEnemies(player), card);
 	}
@@ -109,14 +133,14 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			var king = table.GetCardFromPlayer("king");
 			knights.Add(king);
 			anim.MixAllAnimated(knights, CallNext());
-			return OtherEffect(player, card, false)();
+			return CardEffect(player, card, false)();
 		};
 	}
 	private Func<bool> FourElementsEffect(Player player, Card card) {
 		return () => {
 			var elements = table.GetAllCardsFromPlayers(player, c => c.type == CardType.WALL);
 			anim.TakeAllAnimated(player, elements, CallNext());
-			return OtherEffect(player, card, false)();
+			return CardEffect(player, card, false)();
 		};
 	}
 	private Func<bool> CerberusEffect(Player player, Card card) {
@@ -124,7 +148,7 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			var cerberus = table.FindAllCardsInPlayer(player, c => c.key == "cerberus");
 			if (cerberus.Count >= 2)
 				player.AddCoins(-2);
-			return OtherEffect(player, card)();
+			return CardEffect(player, card)();
 		};
 	}
 	private Func<bool> SnakeEffect(Player player, Card card) {
@@ -133,9 +157,9 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			if (snake != null && snake.nickname != player.nickname) {
 				var snakes = table.GetAllCardsFromPlayer(snake, c => c.key == "snake");
 				anim.TakeAllAnimated(player, snakes, CallNext());
-				return OtherEffect(player, card, false)();
+				return CardEffect(player, card, false)();
 			}
-			return OtherEffect(player, card)();
+			return CardEffect(player, card)();
 		};
 	}
 	private Func<bool> KnightEffect(Player player, Card card) {
@@ -145,7 +169,7 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			if (king != null) {
 				owner = king;
 			}
-			return OtherEffect(owner, card)();
+			return CardEffect(owner, card)();
 		};
 	}
 	private Func<bool> SecretTreasureEffect(Player player, Card card) {
@@ -154,7 +178,7 @@ public class EffectsGenerator : SimpleEffectsGenerator {
 			if (dungeon != null && dungeon.nickname == player.nickname) {
 				player.AddCoins(6);
 			}
-			return OtherEffect(player, card)();
+			return CardEffect(player, card)();
 		};
 	}
 	private Func<bool> DungeonKeysEffect(Player player, Card card) {

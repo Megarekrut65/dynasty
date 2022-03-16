@@ -277,7 +277,7 @@
             "key": "illusion",
             "value": {
                 "name": "Illusion",
-                "description": "All enemies MIX one own card"
+                "description": "MIX one enemy R-card"
             }
         },
         {
@@ -368,7 +368,7 @@
             "key": "locusts",
             "value": {
                 "name": "Locusts",
-                "description": "Monster.#MIX one card for each player"
+                "description": "Monster.#MIX one enemy R-card"
             }
         },
         {
@@ -537,13 +537,6 @@
             "value": {
                 "name": "Victim",
                 "description": "TAKE two more cards from the deck"
-            }
-        },
-        {
-            "key": "dark-sign",
-            "value": {
-                "name": "Dark Sign",
-                "description": "MIX two enemy cards.#DROP your card"
             }
         },
         {

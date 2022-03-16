@@ -925,18 +925,6 @@
             }
         },
         {
-            "key": "dark-sign",
-            "value": {
-                "type": "A",
-                "count": "4",
-                "move": "none",
-                "mix": "none",
-                "amount": "-1",
-                "cover": "none",
-                "drop": "none"
-            }
-        },
-        {
             "key": "hell",
             "value": {
                 "type": "A",

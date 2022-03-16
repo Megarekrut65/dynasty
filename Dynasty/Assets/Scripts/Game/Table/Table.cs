@@ -21,7 +21,7 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "batcrowdracula".Contains(card.key);
+			return card.type == CardType.MONSTER;
 		}, 6);
 	}
 	public void InsertToDesk(Card card) {

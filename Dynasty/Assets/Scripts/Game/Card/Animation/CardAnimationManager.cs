@@ -26,9 +26,9 @@ public class CardAnimationManager : MonoBehaviour {
 	}
 	public void PlayCardHideAnimation(GameObject obj, Action afterHide) {
 		if (obj == null) return;
-		AddAnimation(obj, "CardHideAnimation");
+		AddAnimation(obj, "CardDisappearanceAnimation");
 		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
-		cardAnimation.Play("CardHideAnimation", DestroyContainer(afterHide, cardAnimation));
+		cardAnimation.Play("CardDisappearanceAnimation", DestroyContainer(afterHide, cardAnimation));
 	}
 	public void PlayCardFromDesk(GameObject obj, Action after) {
 		if (obj == null) return;

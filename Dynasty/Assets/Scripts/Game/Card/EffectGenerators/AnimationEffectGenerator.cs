@@ -75,4 +75,6 @@ public class AnimationEffectGenerator {
 		}
 		end();
 	}
+	public void PulsationCardAnimated(Card card) {
+	}
 }
