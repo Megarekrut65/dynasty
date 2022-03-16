@@ -59,6 +59,17 @@ public class SimpleEffectsGenerator {
 			return true;
 		};
 	}
+	// protected Func<bool> CardEffect(Player player, Card card, bool callNext = true) {
+	// 	if (card.type == CardType.MONSTER) {
+	// 		return () => {
+	// 			selectManager.SelectEnemy(player, gameManager.GetEnemies(player), (pl) => {
+	// 				ClickEffect(pl, card, callNext)();
+	// 			}, gameManager.IsPlayer(player));
+	// 			return true;
+	// 		};
+	// 	}
+	// 	return ClickEffect(player, card, callNext);
+	// }
 	protected Func<bool> CardEffect(Player player, Card card, bool callNext = true) {
 		return () => {
 			//Use effect

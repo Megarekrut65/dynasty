@@ -43,12 +43,22 @@ public class SelectManager {
 		selectData.toOwner = toOwner;
 		if (toOwner) SelectCard(type, owner, other, select, canClick, filter);
 	}
+	public void SelectEnemy(Player owner, List<Player> other, Action<Player> select, bool canClick) {
+		Action<int> selectPlayer = (i) => {
+			ClearSelectingPlayers();
+			select(other[i]);
+		};
+		AddPlayerClick(owner, other, selectPlayer, canClick);
+	}
 	private void SelectPlayer(string icon, Player owner, List<Player> other,
 						Action<int, Player> select, bool canClick, Predicate<Card> filter) {
 		Action<int> selectPlayer = (i) => {
 			ClearSelectingPlayers();
 			SelectCard(icon, other[i], new List<Player>() { owner }, (id) => select(id, other[i]), canClick, filter);
 		};
+		AddPlayerClick(owner, other, selectPlayer, canClick);
+	}
+	private void AddPlayerClick(Player owner, List<Player> other, Action<int> selectPlayer, bool canClick) {
 		for (int i = 0; i < other.Count; i++) {
 			var pl = other[i];
 			if (!pl.Equals(owner)) {

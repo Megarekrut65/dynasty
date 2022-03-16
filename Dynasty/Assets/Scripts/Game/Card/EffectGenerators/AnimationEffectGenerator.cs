@@ -76,5 +76,6 @@ public class AnimationEffectGenerator {
 		end();
 	}
 	public void PulsationCardAnimated(Card card) {
+		animationManager.PlayAnimation(card.obj, "CardPulsationAnimation", GameAction.EMPTY);
 	}
 }

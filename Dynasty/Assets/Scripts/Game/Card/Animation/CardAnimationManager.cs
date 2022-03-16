@@ -14,6 +14,12 @@ public class CardAnimationManager : MonoBehaviour {
 			if (anim[name] == null) anim.AddClip(clip, name);
 		}
 	}
+	public void PlayAnimation(GameObject obj, string name, Action afterAnimation) {
+		if (obj == null) return;
+		AddAnimation(obj, name);
+		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
+		cardAnimation.Play(name, DestroyContainer(afterAnimation, cardAnimation));
+	}
 	public void PlayCardHideShowAnimation(GameObject obj, Action afterHide, Action afterShow) {
 		if (obj == null) return;
 		AddAnimation(obj, "CardHideAnimation");

@@ -72,14 +72,30 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return MixPlayersCardEffect(player, card);
 			case "hunter":
 				return HunterEffect(player, card);
+			case "artillery":
+				return ArtilleryEffect(player, card);
 			// case "dungeon":
 			// 	return DungeonEffect(player, card);
 			default:
 				return CardEffect(player, card);
 		}
 	}
+	private Func<bool> ArtilleryEffect(Player player, Card card) {
+		var castle = table.FindCardInPlayer(player, "black-sun-castle");
+		if (castle == null) {
+			return DropCardSelectEffect((c) => c.type == CardType.BUILDING || c.type == CardType.WALL,
+					player, new List<Player>() { player }, card);
+		}
+		anim.PulsationCardAnimated(castle);
+		return CardEffect(player, card);
+	}
 	private Func<bool> HunterEffect(Player player, Card card) {
-
+		var dracula = table.FindCardInPlayer(player, "dracula");
+		if (dracula == null) {
+			return DropCardSelectEffect((c) => c.type == CardType.MONSTER, player, new List<Player>() { player }, card);
+		}
+		anim.PulsationCardAnimated(dracula);
+		return CardEffect(player, card);
 	}
 	private Func<bool> MixPlayersCardEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
@@ -146,8 +162,12 @@ public class EffectsGenerator : SelectEffectGenerator {
 	private Func<bool> CerberusEffect(Player player, Card card) {
 		return () => {
 			var cerberus = table.FindAllCardsInPlayer(player, c => c.key == "cerberus");
-			if (cerberus.Count >= 2)
+			if (cerberus.Count >= 2) {
+				foreach (var cer in cerberus) {
+					anim.PulsationCardAnimated(cer);
+				}
 				player.AddCoins(-2);
+			}
 			return CardEffect(player, card)();
 		};
 	}
@@ -168,6 +188,8 @@ public class EffectsGenerator : SelectEffectGenerator {
 			Player king = table.GetPlayerWithCard("king");
 			if (king != null) {
 				owner = king;
+				var k = table.FindCardInPlayer(king, "king");
+				anim.PulsationCardAnimated(k);
 			}
 			return CardEffect(owner, card)();
 		};
@@ -176,6 +198,8 @@ public class EffectsGenerator : SelectEffectGenerator {
 		return () => {
 			Player dungeon = table.GetPlayerWithCard("dungeon");
 			if (dungeon != null && dungeon.nickname == player.nickname) {
+				var d = table.FindCardInPlayer(dungeon, "dungeon");
+				anim.PulsationCardAnimated(d);
 				player.AddCoins(6);
 			}
 			return CardEffect(player, card)();

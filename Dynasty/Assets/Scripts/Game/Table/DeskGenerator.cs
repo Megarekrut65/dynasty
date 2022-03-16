@@ -26,7 +26,7 @@ public class DeskGenerator {
 			desk.Add(item);
 			data.Remove(item);
 		}
-		for (int i = container.Count - 1; i >= 0; i--) {
+		for (int i = 0; i < container.Count; i++) {
 			//UnityEngine.Debug.Log(item.key);
 			desk.Insert(desk.Count - pos, container[i]);
 		}//
