@@ -25,7 +25,7 @@ public class SimpleEffectsGenerator {
 	}
 	protected Func<bool> DropEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
-			Card take = table.GetCardFromPlayer(key);
+			Card take = table.RemoveCardFromPlayer(key);
 			if (take != null)
 				anim.DropCardAnimated(take, CardEffectAction(call, player, card));
 			else CardEffectAction(call, player, card)();
@@ -34,7 +34,7 @@ public class SimpleEffectsGenerator {
 	}
 	protected Func<bool> TakeAwayCardEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
-			var take = table.GetCardFromPlayer(key);
+			var take = table.RemoveCardFromPlayer(key);
 			if (take != null)
 				anim.AddCardToPlayerAnimated(take, player, CardEffectAction(call, player, card));
 			else CardEffectAction(call, player, card)();
@@ -44,7 +44,7 @@ public class SimpleEffectsGenerator {
 	protected Func<bool> MoveToCardEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
 			Player owner = player;
-			Player with = table.GetPlayerWithCard(key);
+			Player with = table.FindPlayerWithCard(key);
 			if (with != null) owner = with;
 			if (call) return CardEffect(owner, card)();
 			return true;
@@ -52,7 +52,7 @@ public class SimpleEffectsGenerator {
 	}
 	protected Func<bool> MixEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
-			Card mix = table.GetCardFromPlayer(key);
+			Card mix = table.RemoveCardFromPlayer(key);
 			if (mix != null)
 				anim.InsertPlayerCardToDeskAnimated(mix, CardEffectAction(call, player, card));
 			else CardEffectAction(call, player, card)();

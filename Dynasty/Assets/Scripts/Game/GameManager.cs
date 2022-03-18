@@ -1,8 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class GameManager : MonoBehaviour {
+	[Header("Camera controller")]
+	[SerializeField]
+	private CameraMove cameraMove;
+	[Header("Scroll View")]
+	[SerializeField]
+	private GameObject contentObject;
+	[SerializeField]
+	private GameObject scrollRect;
+	[SerializeField]
+	private GameObject view;
 	public delegate void NextRound();
 	public event NextRound Next;
 	private bool gameOver;
@@ -44,13 +55,7 @@ public class GameManager : MonoBehaviour {
 			pause = value;
 		}
 	}
-	[SerializeField]
-	private GameObject cardPlace;
-	public GameObject CardPlace {
-		get {
-			return cardPlace;
-		}
-	}
+	[Header("Big card")]
 	[SerializeField]
 	private bool makeBig;
 	public bool MakeBig {
@@ -64,6 +69,21 @@ public class GameManager : MonoBehaviour {
 			return waitTime;
 		}
 	}
+	private ScrollManager scrollManager;
+	public ScrollManager Scroll {
+		get {
+			return scrollManager;
+		}
+	}
+	public GameObject CardPlace {
+		get {
+			return scrollRect;
+		}
+	}
+	public void CameraMoveActive(bool active) {
+		cameraMove.Stop = !active;
+		view.SetActive(!active);
+	}
 	public void ChangeBigCard(bool change) {
 		makeBig = change;
 		if (makeBig) waitTime = 1.6f;
@@ -72,6 +92,8 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		makeBig = false;
 		waitTime = 0.8f;
+		scrollManager = new ScrollManager(scrollRect.GetComponent<ScrollRect>(), contentObject);
+		view.SetActive(false);
 	}
 	public void CreatePlayers() {
 		players = new List<Player>();

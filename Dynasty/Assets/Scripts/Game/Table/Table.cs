@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 public class Table {
 	private List<Card> desk;
 	private List<Card> drop = new List<Card>();
@@ -21,8 +22,8 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "black-sun-castleartillery".Contains(card.key);
-		}, 6);
+			return "look-back".Contains(card.key);
+		}, 36);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
@@ -68,13 +69,13 @@ public class Table {
 	public Card FindCardInPlayer(Player player, string key) {
 		return playerDesk[player].Find(card => card.key == key);
 	}
-	public Card GetCardFromPlayer(string key) {
-		return GetCardFromPlayer(card => card.key == key);
+	public Card RemoveCardFromPlayer(string key) {
+		return RemoveCardFromPlayer(card => card.key == key);
 	}
-	public Card GetCardFromPlayer(int id) {
-		return GetCardFromPlayer(card => card.id == id);
+	public Card RemoveCardFromPlayer(int id) {
+		return RemoveCardFromPlayer(card => card.id == id);
 	}
-	public Card GetCardFromPlayer(Predicate<Card> predicate) {
+	public Card RemoveCardFromPlayer(Predicate<Card> predicate) {
 		var item = FindCard(predicate);
 		if (item != null) {
 			item.Item2.Remove(item.Item1);
@@ -91,7 +92,7 @@ public class Table {
 		}
 		return null;
 	}
-	public Player GetPlayerWithCard(string key) {
+	public Player FindPlayerWithCard(string key) {
 		foreach (var item in playerDesk) {
 			Card it = item.Value.Find(card => card.key == key);
 			if (it != null) {
@@ -100,7 +101,7 @@ public class Table {
 		}
 		return null;
 	}
-	public List<Card> GetAllCardsFromPlayer(Player player, Predicate<Card> comparator) {
+	public List<Card> RemoveAllCardsFromPlayer(Player player, Predicate<Card> comparator) {
 		List<Card> cards = playerDesk[player].FindAll(comparator);
 		playerDesk[player].RemoveAll(comparator);
 		return cards;
@@ -108,7 +109,7 @@ public class Table {
 	public List<Card> FindAllCardsInPlayer(Player player, Predicate<Card> comparator) {
 		return playerDesk[player].FindAll(comparator);
 	}
-	public List<Card> GetAllCardsFromPlayers(Player owner, Predicate<Card> comparator) {
+	public List<Card> RemoveAllCardsFromPlayers(Player owner, Predicate<Card> comparator) {
 		List<Card> res = new List<Card>();
 		foreach (var item in playerDesk) {
 			if (item.Key.Equals(owner)) continue;
@@ -126,5 +127,14 @@ public class Table {
 		}
 
 		return res;
+	}
+	public List<Card> GetRCardsInDrop() {
+		return drop.Where(card => card.data.type == "R").ToList();
+	}
+	public Card RemoveCardFromDrop(int id) {
+		var card = drop.Find(card => card.id == id);
+		if (card == null) return null;
+		drop.Remove(card);
+		return card;
 	}
 }

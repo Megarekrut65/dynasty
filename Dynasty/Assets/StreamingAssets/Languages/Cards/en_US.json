@@ -270,7 +270,7 @@
             "key": "grail",
             "value": {
                 "name": "Grail",
-                "description": "All players DROP one own card"
+                "description": "DROP one enemy R-card"
             }
         },
         {
@@ -298,7 +298,7 @@
             "key": "boarding-party",
             "value": {
                 "name": "Boarding Party",
-                "description": "All players DROP two own cards"
+                "description": "DROP own R-cards"
             }
         },
         {
@@ -543,7 +543,7 @@
             "key": "hell",
             "value": {
                 "name": "Hell",
-                "description": "DROP two cards of each player"
+                "description": "DROP one enemy R-card"
             }
         },
         {

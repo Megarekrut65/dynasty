@@ -15,8 +15,8 @@ public class CardManager {
 	public void DeleteCardFromTable(Card card) {
 		CardClick cardClick = card.obj.GetComponent<CardClick>();
 		if (cardClick != null) MonoBehaviour.Destroy(cardClick);
-		//card.obj.SetActive(false);
-		//cardPool.Push(card.obj);
+		// card.obj.SetActive(false);
+		// cardPool.Push(card.obj);
 		MonoBehaviour.Destroy(card.obj);
 		card.obj = null;
 	}
@@ -43,18 +43,17 @@ public class CardManager {
 	}
 	public void CreateCard(Card card) {
 		GameObject obj;
-		// if (cardPool.Count == 0)
-		obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
-		// else
-		// {
-		//     obj = cardPool.Pop();
-		//     obj.SetActive(true);
-		// }
+		if (cardPool.Count == 0)
+			obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
+		else {
+			obj = cardPool.Pop();
+			obj.SetActive(true);
+		}
 		obj.GetComponent<LocalizationCard>().Key = card.key;
-		obj.GetComponent<RectTransform>().sizeDelta = new Vector2(305f / 4, 495f / 4);
-		// obj.transform.localScale = new Vector3(1f, 1f, 1f);
-		// obj.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
-		// obj.transform.position = new Vector3(0f, 0f, 0f);
+		var rect = obj.GetComponent<RectTransform>();
+		// rect.offsetMin = new Vector2(rect.offsetMin.x, 0f);
+		// rect.offsetMax = new Vector2(rect.offsetMax.x, 0f);
+		rect.sizeDelta = new Vector2(305f / 4, 495f / 4);
 		obj.transform.SetParent(container.transform, false);
 		obj.GetComponent<LocalizationCard>().UpdateText();
 		obj.GetComponent<ResizingTextCard>().Resize(data);

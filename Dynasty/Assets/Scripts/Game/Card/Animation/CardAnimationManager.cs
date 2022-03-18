@@ -11,6 +11,7 @@ public class CardAnimationManager : MonoBehaviour {
 		var clip = Array.Find(clips, (cl) => cl.name == name);
 		if (clip != null) {
 			var anim = obj.GetComponent<Animation>();
+			if (anim == null) anim = obj.AddComponent<Animation>();
 			if (anim[name] == null) anim.AddClip(clip, name);
 		}
 	}

@@ -14,6 +14,18 @@ public class SelectManager {
 	public SelectManager(Table table) {
 		this.table = table;
 	}
+	public void SelectCard(Player owner, List<Card> cards, Action<int> select, bool canClick) {
+		Select(CardFunctions.MOVE, owner, null, null, canClick, null, false);
+		selectData.toOwner = true;
+		if (cards.Count == 0) {
+			select(-1);
+			return;
+		}
+		foreach (var card in cards) {
+			AddClick(card, card.obj, owner.GetColor(),
+				selectData.selectingCards, select, canClick, card.id);
+		}
+	}
 	public void SelectMix(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
 		Select(CardFunctions.MIX, owner, other, select, canClick, filter);
 	}

@@ -10,13 +10,48 @@ public class SelectEffectGenerator : SimpleEffectsGenerator {
 		: base(gameManager, cardManager, table, anim) {
 		this.selectManager = new SelectManager(table);
 	}
+	protected Func<bool> TakeCardFromDropSelectEffect(Player player, Card card, bool call = true) {
+		return () => {
+			card.needSelect = true;
+			gameManager.CameraMoveActive(false);
+			gameManager.StartCoroutine(TakeFromDrop(player, card, call));
+			return CardEffect(player, card, false)();
+		};
+	}
+	private IEnumerator TakeFromDrop(Player player, Card card, bool call) {
+		var cards = table.GetRCardsInDrop();
+		foreach (var c in cards) {
+			cardManager.CreateCard(c);
+			gameManager.Scroll.AddToScroll(c.obj);
+		}
+		selectManager.SelectCard(player, cards, (id) => {
+			gameManager.StartCoroutine(TakeAction(id, player, call));
+		}, gameManager.IsPlayer(player));
+		yield return null;
+	}
+	private IEnumerator TakeAction(int id, Player player, bool call) {
+		var take = table.RemoveCardFromDrop(id);
+		var cards = table.GetRCardsInDrop();
+		foreach (var c in cards) {
+			cardManager.DeleteCardFromTable(c);
+		}
+		Action after = () => {
+			CallNext(call)();
+			gameManager.CameraMoveActive(true);
+		};
+		if (take != null) {
+			//gameManager.Scroll.ScrollTo(take.obj.GetComponent<RectTransform>());
+			anim.AddCardToPlayerAnimated(take, player, after);
+		} else after();
+		yield return null;
+	}
 	protected Func<bool> DropCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 								Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectDrop(predicate, player, players,
 				(id) => {
-					var drop = table.GetCardFromPlayer(id);
+					var drop = table.RemoveCardFromPlayer(id);
 					if (drop != null)
 						anim.DropCardAnimated(drop, CallNext(call));
 					else CallNext(call)();
@@ -30,7 +65,7 @@ public class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectMix(predicate, player, players,
 				(id) => {
-					var mix = table.GetCardFromPlayer(id);
+					var mix = table.RemoveCardFromPlayer(id);
 					if (mix != null)
 						anim.InsertPlayerCardToDeskAnimated(mix, CallNext(call));
 					else CallNext(call)();
@@ -44,7 +79,7 @@ public class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectMove(predicate, player, players,
 				(id) => {
-					var take = table.GetCardFromPlayer(id);
+					var take = table.RemoveCardFromPlayer(id);
 					if (take != null)
 						anim.AddCardToPlayerAnimated(take, player, CallNext(call));
 					else CallNext(call)();
@@ -58,7 +93,7 @@ public class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectMoveToOther(predicate, player, players,
 				(id, pl) => {
-					var take = table.GetCardFromPlayer(id);
+					var take = table.RemoveCardFromPlayer(id);
 					if (take != null)
 						anim.AddCardToPlayerAnimated(take, pl, CallNext(call));
 					else CallNext(call)();
