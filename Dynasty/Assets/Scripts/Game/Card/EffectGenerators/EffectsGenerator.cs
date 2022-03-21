@@ -89,11 +89,18 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return KillerEffect(player, card);
 			case "look-back":
 				return TakeCardFromDropSelectEffect(player, card);
-			// case "dungeon":
-			// 	return DungeonEffect(player, card);
+			case "dungeon":
+				return DungeonEffect(player, card);
 			default:
 				return CardEffect(player, card);
 		}
+	}
+	private Func<bool> DungeonEffect(Player player, Card card) {
+		return () => {
+			BonusCoinsEffect("secret-treasure", 6, player.nickname);
+			return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+				player, gameManager.Players, card)();
+		};
 	}
 	private Func<bool> KillerEffect(Player player, Card card) {
 		return DropCardSelectEffect((c) => c.type == CardType.KNIGHT,
@@ -132,21 +139,27 @@ public class EffectsGenerator : SelectEffectGenerator {
 		return res;
 	}
 	private Func<bool> ArtilleryEffect(Player player, Card card) {
-		var castle = table.FindCardInPlayer(player, "black-sun-castle");
-		if (castle == null) {
-			return DropCardSelectEffect((c) => c.type == CardType.BUILDING || c.type == CardType.WALL,
-					player, new List<Player>() { player }, card);
-		}
-		anim.PulsationCardAnimated(castle);
-		return CardEffect(player, card);
+		return () => {
+			var castle = table.FindCardInPlayer(player, "black-sun-castle");
+			if (castle == null) {
+				return DropCardSelectEffect((c) => c.type == CardType.BUILDING || c.type == CardType.WALL,
+						player, new List<Player>() { player }, card)();
+			}
+			anim.PulsationCardAnimated(castle);
+			return CardEffect(player, card)();
+		};
 	}
 	private Func<bool> HunterEffect(Player player, Card card) {
-		var dracula = table.FindCardInPlayer(player, "dracula");
-		if (dracula == null) {
-			return DropCardSelectEffect((c) => c.type == CardType.MONSTER, player, new List<Player>() { player }, card);
-		}
-		anim.PulsationCardAnimated(dracula);
-		return CardEffect(player, card);
+		return () => {
+			var dracula = table.FindCardInPlayer(player, "dracula");
+			if (dracula == null) {
+				return DropCardSelectEffect((c) =>
+					c.type == CardType.MONSTER, player,
+					new List<Player>() { player }, card)();
+			}
+			anim.PulsationCardAnimated(dracula);
+			return CardEffect(player, card)();
+		};
 	}
 	private Func<bool> MixPlayersCardEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
@@ -183,17 +196,6 @@ public class EffectsGenerator : SelectEffectGenerator {
 		return TakeAwayCardSelectEffect((c) => c.type == CardType.KNIGHT,
 			player, gameManager.GetEnemies(player), card);
 	}
-	// private Func<bool> DungeonEffect(Player player, Card card) {
-	// 	return () => {
-	// 		card.needSelect = true;
-	// 		selectManager.SelectAllCover(player, gameManager.Players,
-	// 			(id) => {
-	// 				UnityEngine.Debug.Log("id: " + id);
-	// 				CallNext(true)();
-	// 			}, gameManager.IsPlayer(player));
-	// 		return OtherEffect(player, card, false)();
-	// 	};
-	// }
 	private Func<bool> RoyalPoisonEffect(Player player, Card card) {
 		return () => {
 			var knights = table.RemoveAllCardsFromPlayers(null, c => c.type == CardType.KNIGHT);
@@ -247,14 +249,17 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private Func<bool> SecretTreasureEffect(Player player, Card card) {
 		return () => {
-			Player dungeon = table.FindPlayerWithCard("dungeon");
-			if (dungeon != null && dungeon.nickname == player.nickname) {
-				var d = table.FindCardInPlayer(dungeon, "dungeon");
-				anim.PulsationCardAnimated(d);
-				player.AddCoins(6);
-			}
+			BonusCoinsEffect("dungeon", 6, player.nickname);
 			return CardEffect(player, card)();
 		};
+	}
+	private void BonusCoinsEffect(string mastBe, int coins, string owner) {
+		Player player = table.FindPlayerWithCard(mastBe);
+		if (player != null && player.nickname == owner) {
+			var card = table.FindCardInPlayer(player, mastBe);
+			anim.PulsationCardAnimated(card);
+			player.AddCoins(coins);
+		}
 	}
 	private Func<bool> DungeonKeysEffect(Player player, Card card) {
 		return () => {

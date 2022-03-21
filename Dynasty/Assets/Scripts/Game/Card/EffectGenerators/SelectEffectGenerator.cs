@@ -59,6 +59,20 @@ public class SelectEffectGenerator : SimpleEffectsGenerator {
 			return CardEffect(player, card, false)();
 		};
 	}
+	protected Func<bool> CoverCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+							Card card, bool call = true) {
+		return () => {
+			card.needSelect = true;
+			selectManager.SelectCover(predicate, player, players,
+				(id) => {
+					var cover = table.FindCardInPlayers(id);
+					if (cover != null)
+						anim.CoverCardAnimated(cover, card, CallNext(call));
+					else CardEffect(player, card)();
+				}, gameManager.IsPlayer(player));
+			return true;
+		};
+	}
 	protected Func<bool> MixCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 								Card card, bool call = true) {
 		return () => {

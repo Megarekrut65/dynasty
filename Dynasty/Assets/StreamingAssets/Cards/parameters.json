@@ -185,10 +185,10 @@
             "value": {
                 "type": "R",
                 "count": "4",
-                "move": "none",
+                "move": "no",
                 "mix": "none",
                 "amount": "4",
-                "cover": "none",
+                "cover": "no",
                 "drop": "none"
             }
         },

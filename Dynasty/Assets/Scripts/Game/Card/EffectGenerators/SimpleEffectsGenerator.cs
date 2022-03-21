@@ -26,9 +26,10 @@ public class SimpleEffectsGenerator {
 	protected Func<bool> DropEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
 			Card take = table.RemoveCardFromPlayer(key);
-			if (take != null)
-				anim.DropCardAnimated(take, CardEffectAction(call, player, card));
-			else CardEffectAction(call, player, card)();
+			if (take != null) {
+				if (take.underCard == null)
+					anim.DropCardAnimated(take, CardEffectAction(call, player, card));
+			} else CardEffectAction(call, player, card)();
 			return true;
 		};
 	}

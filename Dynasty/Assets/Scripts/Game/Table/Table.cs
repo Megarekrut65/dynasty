@@ -22,14 +22,20 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "look-back".Contains(card.key);
-		}, 36);
+			return "dungeon".Contains(card.key);
+		}, 6);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
 	}
+	private void UnderCard(Card card, List<Card> list) {
+		if (card.underCard != null) {
+			list.Add(card.underCard);
+		}
+	}
 	public void InsertToDeskFromPlayer(Player player, Card card) {
 		playerDesk[player].Remove(card);
+		UnderCard(card, playerDesk[player]);
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
 	}
 	public Card TakeCardFromDesk() {
@@ -41,11 +47,18 @@ public class Table {
 	public void AddCardToPlayer(Player player, Card card) {
 		playerDesk[player].Add(card);
 	}
+	public void CoverCard(Card under, Card top) {
+		var underPlayer = FindPlayerWithCard(under.id);
+		playerDesk[underPlayer].Remove(under);
+		top.underCard = under;
+		playerDesk[underPlayer].Add(top);
+	}
 	public void DropCard(Card card) {
 		drop.Add(card);
 	}
 	public void DropCardFromPlayer(Player player, Card card) {
 		playerDesk[player].Remove(card);
+		UnderCard(card, playerDesk[player]);
 		drop.Add(card);
 	}
 	public void CountRCardCoins(Func<KeyValuePair<Player, List<Card>>, bool> coroutine) {
@@ -79,6 +92,7 @@ public class Table {
 		var item = FindCard(predicate);
 		if (item != null) {
 			item.Item2.Remove(item.Item1);
+			UnderCard(item.Item1, item.Item2);
 			return item.Item1;
 		}
 		return null;
@@ -93,8 +107,14 @@ public class Table {
 		return null;
 	}
 	public Player FindPlayerWithCard(string key) {
+		return FindPlayerWithCard(card => card.key == key);
+	}
+	public Player FindPlayerWithCard(int id) {
+		return FindPlayerWithCard(card => card.id == id);
+	}
+	private Player FindPlayerWithCard(Predicate<Card> predicate) {
 		foreach (var item in playerDesk) {
-			Card it = item.Value.Find(card => card.key == key);
+			Card it = item.Value.Find(predicate);
 			if (it != null) {
 				return item.Key;
 			}
@@ -103,6 +123,9 @@ public class Table {
 	}
 	public List<Card> RemoveAllCardsFromPlayer(Player player, Predicate<Card> comparator) {
 		List<Card> cards = playerDesk[player].FindAll(comparator);
+		foreach (var card in cards) {
+			UnderCard(card, playerDesk[player]);
+		}
 		playerDesk[player].RemoveAll(comparator);
 		return cards;
 	}
@@ -114,6 +137,9 @@ public class Table {
 		foreach (var item in playerDesk) {
 			if (item.Key.Equals(owner)) continue;
 			List<Card> cards = item.Value.FindAll(comparator);
+			foreach (var card in cards) {
+				UnderCard(card, item.Value);
+			}
 			item.Value.RemoveAll(comparator);
 			res.AddRange(cards);
 		}

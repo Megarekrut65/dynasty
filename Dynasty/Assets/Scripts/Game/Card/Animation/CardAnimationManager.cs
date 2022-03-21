@@ -61,4 +61,16 @@ public class CardAnimationManager : MonoBehaviour {
 			Destroy(cardAnimation);
 		};
 	}
+	public void PlayCoverCard(GameObject obj, Action cover, Action after) {
+		if (obj == null) return;
+		AddAnimation(obj, "CardRotationHideAnimation");
+		AddAnimation(obj, "CardRotationShowAnimation");
+		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
+		cardAnimation.Play("CardRotationHideAnimation",
+		() => {
+			cover();
+			cardAnimation.Play("CardRotationShowAnimation",
+				DestroyContainer(after, cardAnimation));
+		});
+	}
 }

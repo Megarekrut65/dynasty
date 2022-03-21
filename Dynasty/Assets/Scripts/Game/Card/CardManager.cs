@@ -13,6 +13,14 @@ public class CardManager {
 		this.cardObject = cardObject;
 	}
 	public void DeleteCardFromTable(Card card) {
+		if (card.underCard != null) {
+			card.underCard.obj = card.obj;
+			UpdateCardObject(card.underCard);
+			if (card.underCard.underCard == null)
+				card.underCard.obj.GetComponent<CoverCard>().Uncover();
+			card.obj = null;
+			return;
+		}
 		CardClick cardClick = card.obj.GetComponent<CardClick>();
 		if (cardClick != null) MonoBehaviour.Destroy(cardClick);
 		// card.obj.SetActive(false);
@@ -49,14 +57,24 @@ public class CardManager {
 			obj = cardPool.Pop();
 			obj.SetActive(true);
 		}
-		obj.GetComponent<LocalizationCard>().Key = card.key;
 		var rect = obj.GetComponent<RectTransform>();
 		// rect.offsetMin = new Vector2(rect.offsetMin.x, 0f);
 		// rect.offsetMax = new Vector2(rect.offsetMax.x, 0f);
 		rect.sizeDelta = new Vector2(305f / 4, 495f / 4);
 		obj.transform.SetParent(container.transform, false);
+		card.obj = obj;
+		UpdateCardObject(card);
+	}
+	public void UpdateCardObject(Card card) {
+		var obj = card.obj;
+		obj.GetComponent<LocalizationCard>().Key = card.key;
 		obj.GetComponent<LocalizationCard>().UpdateText();
 		obj.GetComponent<ResizingTextCard>().Resize(data);
-		card.obj = obj;
+	}
+	public void CoverCard(Card under, Card top) {
+		top.obj = under.obj;
+		under.obj = null;
+		top.obj.GetComponent<CoverCard>().Cover();
+		UpdateCardObject(top);
 	}
 }

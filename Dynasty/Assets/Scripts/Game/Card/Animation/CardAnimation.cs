@@ -11,6 +11,7 @@ public class CardAnimation : MonoBehaviour {
 
 		animation.Play(name);
 		yield return new WaitForSeconds(animation[name].length);
+		yield return new WaitForSeconds(0.05f);
 		animation.Stop(name);
 		end();
 	}
