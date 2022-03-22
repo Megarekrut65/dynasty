@@ -16,8 +16,14 @@ public class ResizingTextCard : MonoBehaviour {
 		data.MinFontSize = size;
 		ChangeText();
 	}
+	public void Resize() {
+		text.resizeTextMaxSize = title.cachedTextGenerator.fontSizeUsedForBestFit - 1;
+	}
+	public void BestFit(bool active) {
+		text.resizeTextForBestFit = active;
+	}
 	void ChangeText() {
 		text.resizeTextMaxSize = Math.Min(data.MinFontSize,
 		   title.cachedTextGenerator.fontSizeUsedForBestFit);
 	}
-} 
+}

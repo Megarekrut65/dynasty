@@ -13,14 +13,6 @@ public class CardManager {
 		this.cardObject = cardObject;
 	}
 	public void DeleteCardFromTable(Card card) {
-		if (card.underCard != null) {
-			card.underCard.obj = card.obj;
-			UpdateCardObject(card.underCard);
-			if (card.underCard.underCard == null)
-				card.underCard.obj.GetComponent<CoverCard>().Uncover();
-			card.obj = null;
-			return;
-		}
 		CardClick cardClick = card.obj.GetComponent<CardClick>();
 		if (cardClick != null) MonoBehaviour.Destroy(cardClick);
 		// card.obj.SetActive(false);
@@ -72,9 +64,7 @@ public class CardManager {
 		obj.GetComponent<ResizingTextCard>().Resize(data);
 	}
 	public void CoverCard(Card under, Card top) {
-		top.obj = under.obj;
-		under.obj = null;
 		top.obj.GetComponent<CoverCard>().Cover();
-		UpdateCardObject(top);
+		under.obj.GetComponent<CoverCard>().AddToContainer(top.obj);
 	}
 }

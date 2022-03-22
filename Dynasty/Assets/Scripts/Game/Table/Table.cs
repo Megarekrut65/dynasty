@@ -22,8 +22,8 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "dungeon".Contains(card.key);
-		}, 6);
+			return "slimehutbunkerexplosion".Contains(card.key);
+		}, 0);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);

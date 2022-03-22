@@ -268,9 +268,9 @@
             "key": "look-back",
             "value": {
                 "type": "A",
-                "count": "6",
+                "count": "8",
                 "move": "none",
-                "mix": "none",
+                "mix": "yes",
                 "amount": "1",
                 "cover": "none",
                 "drop": "none"

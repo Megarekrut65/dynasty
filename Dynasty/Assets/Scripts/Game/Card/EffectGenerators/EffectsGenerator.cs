@@ -91,15 +91,48 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return TakeCardFromDropSelectEffect(player, card);
 			case "dungeon":
 				return DungeonEffect(player, card);
+			case "bunker":
+			case "curses":
+				return CoverOwnCardEffect(player, card);
+			case "prison":
+			case "magic-hat":
+				return CoverPlayersCardEffect(player, card);
+			case "slime":
+			case "black-cat":
+				return CoverEnemyCardEffect(player, card);
+			case "hut":
+				return HutEffect(player, card);
+			case "explosion":
+				return ExplosionEffect(player, card);
 			default:
 				return CardEffect(player, card);
 		}
 	}
+	private Func<bool> ExplosionEffect(Player player, Card card) {
+		return DropCardSelectEffect(GameAction.GetFilter(
+					CardFunctions.DROP, (c) => c.underCard != null),
+				player, TotemFilter(gameManager.Players), card);
+	}
+	private Func<bool> HutEffect(Player player, Card card) {
+		return CoverCardSelectEffect((c) => c.type == CardType.MONSTER,
+							player, new List<Player>() { player }, card);
+	}
+	private Func<bool> CoverEnemyCardEffect(Player player, Card card) {
+		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+							player, gameManager.GetEnemies(player), card);
+	}
+	private Func<bool> CoverOwnCardEffect(Player player, Card card) {
+		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+							player, new List<Player>() { player }, card);
+	}
+	private Func<bool> CoverPlayersCardEffect(Player player, Card card) {
+		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+				player, gameManager.Players, card);
+	}
 	private Func<bool> DungeonEffect(Player player, Card card) {
 		return () => {
 			BonusCoinsEffect("secret-treasure", 6, player.nickname);
-			return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
-				player, gameManager.Players, card)();
+			return CoverPlayersCardEffect(player, card)();
 		};
 	}
 	private Func<bool> KillerEffect(Player player, Card card) {
@@ -273,7 +306,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 				TakeAwayCardEffect("dragon", player, card)();
 		};
 	}
-	IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
+	private IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
 		var player = item.Key;
 		var cards = item.Value;
 		foreach (var card in cards) {

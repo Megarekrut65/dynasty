@@ -38,8 +38,7 @@ public class AnimationEffectGenerator {
 		});
 	}
 	public void CoverCardAnimated(Card under, Card top, Action end) {
-		animationManager.PlayCoverCard(under?.obj, () => {
-			cardManager.DeleteCardFromTable(top);
+		animationManager.PlayCoverCard(top?.obj, () => {
 			table.CoverCard(under, top);
 			cardManager.CoverCard(under, top);
 		}, end);

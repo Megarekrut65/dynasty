@@ -35,7 +35,6 @@ public class LocalizationCard : MonoBehaviour {
 	[SerializeField]
 	private Text amountText;
 
-
 	private void SetColor(Image icon, string value) {
 		if (icon == null) return;
 		switch (value) {
