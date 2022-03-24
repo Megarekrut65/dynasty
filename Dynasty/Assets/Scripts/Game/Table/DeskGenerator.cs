@@ -12,10 +12,10 @@ public class DeskGenerator {
 			//UnityEngine.Debug.Log(item.Key);
 			var card = new Card(item.Value, item.Key);
 			if (check(card)) {
-				for (int i = 0; i < item.Value.count; i++) container.Add(new Card(item.Value, item.Key));
+				//for (int i = 0; i < item.Value.count; i++) container.Add(new Card(item.Value, item.Key));
 				continue;
 			}//
-			for (int i = 0; i < item.Value.count; i++) {
+			for (int i = 0; i < 1/*item.Value.count*/; i++) {
 				data.Add(new Card(item.Value, item.Key));
 			}
 		}

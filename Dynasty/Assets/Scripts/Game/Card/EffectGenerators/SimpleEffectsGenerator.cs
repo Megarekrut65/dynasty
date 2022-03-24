@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+using CardEffect = System.Func<bool>;
+
 public abstract class SimpleEffectsGenerator {
 	protected AnimationEffectGenerator anim;
 	protected GameManager gameManager;
@@ -16,6 +18,31 @@ public abstract class SimpleEffectsGenerator {
 		this.table = table;
 		this.anim = anim;
 	}
+	public virtual CardEffect GetEffect(Player player, Card card) {
+		switch (card.key) {
+			case "light-wizard":
+				return MixEffect("dark-wizard", player, card);
+			case "dark-wizard":
+				return MixEffect("light-wizard", player, card);
+			case "dragon":
+				return MoveToCardEffect("gold-mountain", player, card);
+			case "hero":
+				return DropEffect("dragon", player, card);
+			case "castle":
+			case "fairy-army":
+			case "king-sword":
+				return TakeAwayCardEffect("king", player, card);
+			case "step-ahead":
+				return CardMoreEffect(1, player, card);
+			case "victim":
+				return CardMoreEffect(2, player, card);
+			default: {
+					UnityEngine.Debug.Log(card.key);
+					return CardEffect(player, card);
+				}
+		}
+	}
+
 	protected IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
 		var player = item.Key;
 		var cards = item.Value;
@@ -46,14 +73,14 @@ public abstract class SimpleEffectsGenerator {
 			player.AddCoins(coins);
 		}
 	}
-	protected Func<bool> CardMoreEffect(int more, Player player, Card card, bool call = true) {
+	protected CardEffect CardMoreEffect(int more, Player player, Card card, bool call = true) {
 		return () => {
 			gameManager.AddCount(more);
 			if (call) return CardEffect(player, card)();
 			return true;
 		};
 	}
-	protected Func<bool> DropEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect DropEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
 			Card take = table.RemoveCardFromPlayer(key);
 			if (take != null) {
@@ -63,7 +90,7 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected Func<bool> TakeAwayCardEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect TakeAwayCardEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
 			var take = table.RemoveCardFromPlayer(key);
 			if (take != null)
@@ -72,7 +99,7 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected Func<bool> MoveToCardEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect MoveToCardEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
 			Player owner = player;
 			Player with = table.FindPlayerWithCard(key);
@@ -81,7 +108,7 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected Func<bool> MixEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect MixEffect(string key, Player player, Card card, bool call = true) {
 		return () => {
 			Card mix = table.RemoveCardFromPlayer(key);
 			if (mix != null)
@@ -90,21 +117,8 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	// protected Func<bool> CardEffect(Player player, Card card, bool callNext = true) {
-	// 	if (card.type == CardType.MONSTER) {
-	// 		return () => {
-	// 			selectManager.SelectEnemy(player, gameManager.GetEnemies(player), (pl) => {
-	// 				ClickEffect(pl, card, callNext)();
-	// 			}, gameManager.IsPlayer(player));
-	// 			return true;
-	// 		};
-	// 	}
-	// 	return ClickEffect(player, card, callNext);
-	// }
-	protected Func<bool> CardEffect(Player player, Card card, bool callNext = true) {
+	protected CardEffect CardEffect(Player player, Card card, bool callNext = true) {
 		return () => {
-			//Use effect
-			//after effect
 			if (card.data.type == "A") {
 				player.AddCard(card);
 				if (card.data.mix == "yes") anim.InsertCardToDeskAnimated(card, CallNext(callNext));

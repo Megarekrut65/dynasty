@@ -13,6 +13,8 @@ public class TableManager : MonoBehaviour {
 	private GameObject container;
 	[SerializeField]
 	private Desk[] playerDesks = new Desk[6];
+	[Header("")]
+	[SerializeField]
 	private Table table;
 	private CardManager cardManager;
 	private EffectsGenerator effectsGenerator;
@@ -29,7 +31,7 @@ public class TableManager : MonoBehaviour {
 		table = new Table(players);
 		animationEffectGenerator = new AnimationEffectGenerator(gameManager, cardManager, table, animationManager);
 		effectsGenerator = new EffectsGenerator(gameManager, cardManager, table, animationEffectGenerator);
-		//AddStartCards(players);
+		AddStartCards(players);
 		int playerCount = players.Count - gameManager.BotCount;
 		for (int i = playerCount; i < players.Count; i++) {
 			bots.Add(new CardBot(players[i], gameManager, table, TakeCardFromDesk));
@@ -69,10 +71,9 @@ public class TableManager : MonoBehaviour {
 				card.obj.transform.SetParent(gameManager.CardPlace.transform, false);
 		});
 		Player next = gameManager.GetNextPlayer();
-		cardManager.AddClickToCard(card, () => {
-			bool res = effectsGenerator.GetEffect(gameManager.NextPlayer(), card)();
-			return res;
-		}, next.GetColor(),
+		cardManager.AddClickToCard(card,
+			effectsGenerator.GetEffect(gameManager.NextPlayer(), card),
+			next.GetColor(),
 			gameManager.IsPlayer(next));
 
 		return card;

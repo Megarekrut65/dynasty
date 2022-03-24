@@ -3,14 +3,57 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+using CardEffect = System.Func<bool>;
+
 public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	protected SelectManager selectManager;
+
 	public SelectEffectGenerator(GameManager gameManager,
 	CardManager cardManager, Table table, AnimationEffectGenerator anim)
 		: base(gameManager, cardManager, table, anim) {
 		this.selectManager = new SelectManager(table);
 	}
-	protected Func<bool> TakeCardFromDropSelectEffect(Player player, Card card, bool call = true) {
+	public override CardEffect GetEffect(Player player, Card card) {
+		switch (card.key) {
+			case "robin-hood":
+			case "reliable-plan":
+				return TakeFromEnemySelectEffect(player, card);
+			case "wolf-spirit":
+			case "magic-sphere":
+				return MoveToOtherSelectEffect(player, card);
+			case "green-pandora's-box":
+			case "illusion":
+			case "locusts":
+				return MixEnemyCardSelectEffect(player, card);
+			case "oversight":
+			case "red-pandora's-box":
+				return MixOwnCardSelectEffect(player, card);
+			case "cemetery":
+				return MixPlayersCardSelectEffect(player, card);
+			case "current":
+			case "poison":
+				return DropOwnCardSelectEffect(player, card);
+			case "grail":
+			case "hell":
+				return DropEnemyCardSelectEffect(player, card);
+			case "wand":
+				return DropPlayersCardSelectEffect(player, card);
+			case "look-back":
+				return TakeCardFromDropSelectEffect(player, card);
+			case "bunker":
+			case "curses":
+				return CoverOwnCardSelectEffect(player, card);
+			case "prison":
+			case "magic-hat":
+				return CoverPlayersCardSelectEffect(player, card);
+			case "slime":
+			case "black-cat":
+				return CoverEnemyCardSelectEffect(player, card);
+			default:
+				return base.GetEffect(player, card);
+		}
+	}
+	protected CardEffect TakeCardFromDropSelectEffect(Player player, Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
 			gameManager.CameraMoveActive(false);
@@ -45,7 +88,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		} else after();
 		yield return null;
 	}
-	protected Func<bool> DropCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+	protected CardEffect DropCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 								Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
@@ -59,7 +102,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			return CardEffect(player, card, false)();
 		};
 	}
-	protected Func<bool> CoverCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+	protected CardEffect CoverCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 							Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
@@ -73,7 +116,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected Func<bool> MixCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+	protected CardEffect MixCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 								Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
@@ -87,7 +130,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			return CardEffect(player, card, false)();
 		};
 	}
-	protected Func<bool> TakeAwayCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+	protected CardEffect TakeAwayCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 									Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
@@ -101,7 +144,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			return CardEffect(player, card, false)();
 		};
 	}
-	protected Func<bool> MoveCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
+	protected CardEffect MoveCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 									Card card, bool call = true) {
 		return () => {
 			card.needSelect = true;
@@ -115,50 +158,50 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			return CardEffect(player, card, false)();
 		};
 	}
-	protected Func<bool> CoverEnemyCardSelectEffect(Player player, Card card) {
+	protected CardEffect CoverEnemyCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
 							player, gameManager.GetEnemies(player), card);
 	}
-	protected Func<bool> CoverOwnCardSelectEffect(Player player, Card card) {
+	protected CardEffect CoverOwnCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
 							player, new List<Player>() { player }, card);
 	}
-	protected Func<bool> CoverPlayersCardSelectEffect(Player player, Card card) {
+	protected CardEffect CoverPlayersCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
 				player, gameManager.Players, card);
 	}
 	protected List<Player> TotemFilter(List<Player> players) {
 		return PlayersWithoutCardFilter(players, "totem");
 	}
-	protected Func<bool> DropPlayersCardSelectEffect(Player player, Card card) {
+	protected CardEffect DropPlayersCardSelectEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
 					player, TotemFilter(gameManager.Players), card);
 	}
-	protected Func<bool> DropEnemyCardSelectEffect(Player player, Card card) {
+	protected CardEffect DropEnemyCardSelectEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
 					player, TotemFilter(gameManager.GetEnemies(player)), card);
 	}
-	protected Func<bool> DropOwnCardSelectEffect(Player player, Card card) {
+	protected CardEffect DropOwnCardSelectEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
 					player, TotemFilter(new List<Player>() { player }), card);
 	}
-	protected Func<bool> MixPlayersCardSelectEffect(Player player, Card card) {
+	protected CardEffect MixPlayersCardSelectEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
 			player, gameManager.Players, card);
 	}
-	protected Func<bool> MixOwnCardSelectEffect(Player player, Card card) {
+	protected CardEffect MixOwnCardSelectEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
 			player, new List<Player>() { player }, card);
 	}
-	protected Func<bool> MixEnemyCardSelectEffect(Player player, Card card) {
+	protected CardEffect MixEnemyCardSelectEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
 			player, gameManager.GetEnemies(player), card);
 	}
-	protected Func<bool> MoveToOtherSelectEffect(Player player, Card card) {
+	protected CardEffect MoveToOtherSelectEffect(Player player, Card card) {
 		return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
 							player, gameManager.Players, card);
 	}
-	protected Func<bool> TakeFromEnemySelectEffect(Player player, Card card) {
+	protected CardEffect TakeFromEnemySelectEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
 			player, gameManager.GetEnemies(player), card);
 	}

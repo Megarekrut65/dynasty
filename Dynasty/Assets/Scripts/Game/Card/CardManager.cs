@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using CardEffect = System.Func<bool>;
+
 public class CardManager {
 	private GameObject container;
 	private GameObject cardObject;
@@ -20,11 +23,11 @@ public class CardManager {
 		MonoBehaviour.Destroy(card.obj);
 		card.obj = null;
 	}
-	public void AddClickToCard(Card card, Func<bool> func, Color color, bool canClick) {
+	public void AddClickToCard(Card card, CardEffect effect, Color color, bool canClick) {
 		CardClick cardClick = card.obj.AddComponent<CardClick>() as CardClick;
 		var outline = CreateOutline(card.obj, color);
 		Func<bool> click = () => {
-			bool res = func();
+			bool res = effect();
 			if (res) {
 				MonoBehaviour.Destroy(cardClick);
 				MonoBehaviour.Destroy(outline);

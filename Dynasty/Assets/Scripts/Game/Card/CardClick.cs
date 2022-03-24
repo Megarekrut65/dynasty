@@ -2,10 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using CardEffect = System.Func<bool>;
+
 public class CardClick : MonoBehaviour,
 	IPointerDownHandler, IPointerUpHandler {
-	private Func<bool> click;
-	public Func<bool> Click {
+	private CardEffect click;
+	public CardEffect Click {
 		set {
 			click = value;
 		}

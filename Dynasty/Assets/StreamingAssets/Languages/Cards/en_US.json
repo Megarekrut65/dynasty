@@ -326,7 +326,7 @@
             "key": "hocus-pocus",
             "value": {
                 "name": "Hocus-Pocus",
-                "description": "TAKE another card from anywhere in the deck"
+                "description": "TAKE another card from a random place on the deck"
             }
         },
         {

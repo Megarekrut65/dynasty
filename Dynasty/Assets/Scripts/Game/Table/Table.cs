@@ -4,10 +4,16 @@ using UnityEngine;
 using System.Collections;
 using System;
 using System.Linq;
+
+[System.Serializable]
 public class Table {
+	[SerializeField]
 	private List<Card> desk;
+	[SerializeField]
 	private List<Card> drop = new List<Card>();
+	[SerializeField]
 	private Dictionary<Player, List<Card>> playerDesk = new Dictionary<Player, List<Card>>();
+	[SerializeField]
 	private Card current;
 	public Card Current {
 		get {
@@ -17,12 +23,19 @@ public class Table {
 			current = value;
 		}
 	}
+	[SerializeField]
+	private bool nextRandom = false;
+	public bool NextRandom {
+		set {
+			nextRandom = value;
+		}
+	}
 	public Table(List<Player> players) {
 		foreach (var player in players) {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "slimeinevitable-end".Contains(card.key);
+			return "inevitable-end".Contains(card.key);
 		}, 6);
 	}
 	public void InsertToDesk(Card card) {
@@ -39,7 +52,11 @@ public class Table {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
 	}
 	public Card TakeCardFromDesk() {
-		current = desk[desk.Count - 1];
+		int index = nextRandom ?
+			UnityEngine.Random.Range(0, desk.Count - 1) :
+			desk.Count - 1;
+		nextRandom = false;
+		current = desk[index];
 		desk.Remove(current);
 
 		return current;
