@@ -37,7 +37,6 @@ public abstract class SimpleEffectsGenerator {
 			case "victim":
 				return CardMoreEffect(2, player, card);
 			default: {
-					UnityEngine.Debug.Log(card.key);
 					return CardEffect(player, card);
 				}
 		}

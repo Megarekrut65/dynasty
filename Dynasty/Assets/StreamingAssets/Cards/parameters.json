@@ -688,12 +688,12 @@
             "key": "hydra",
             "value": {
                 "type": "R",
-                "count": "1",
-                "move": "none",
+                "count": "4",
+                "move": "no",
                 "mix": "none",
-                "amount": "-9",
+                "amount": "-3",
                 "cover": "no",
-                "drop": "no"
+                "drop": "none"
             }
         },
         {

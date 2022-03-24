@@ -12,10 +12,10 @@ public class DeskGenerator {
 			//UnityEngine.Debug.Log(item.Key);
 			var card = new Card(item.Value, item.Key);
 			if (check(card)) {
-				//for (int i = 0; i < item.Value.count; i++) container.Add(new Card(item.Value, item.Key));
+				for (int i = 0; i < item.Value.count; i++) container.Add(new Card(item.Value, item.Key));
 				continue;
 			}//
-			for (int i = 0; i < 1/*item.Value.count*/; i++) {
+			for (int i = 0; i < item.Value.count; i++) {
 				data.Add(new Card(item.Value, item.Key));
 			}
 		}
@@ -28,7 +28,7 @@ public class DeskGenerator {
 		}
 		for (int i = 0; i < container.Count; i++) {
 			//UnityEngine.Debug.Log(item.key);
-			desk.Insert(desk.Count - pos, container[/*container.Count - 1-*/ i]);
+			desk.Insert(desk.Count - pos, container[container.Count - 1 - i]);
 		}//
 		return desk;
 	}

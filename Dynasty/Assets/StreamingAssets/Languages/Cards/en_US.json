@@ -403,7 +403,7 @@
             "key": "hydra",
             "value": {
                 "name": "Hydra",
-                "description": "Monster.#MOVE all new monsters to enemies"
+                "description": "Monster.#MOVE one of your monsters to enemies"
             }
         },
         {

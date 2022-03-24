@@ -61,9 +61,15 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return RoyalRebellionEffect(player, card);
 			case "hocus-pocus":
 				return HocusPocusEffect(player, card);
+			case "hydra":
+				return HydraEffect(player, card);
 			default:
 				return base.GetEffect(player, card);
 		}
+	}
+	private CardEffect HydraEffect(Player player, Card card) {
+		return MoveCardSelectEffect((c) => c.type == CardType.MONSTER && c.id != card.id,
+					player, gameManager.Players, card);
 	}
 	private CardEffect HocusPocusEffect(Player player, Card card) {
 		return () => {
