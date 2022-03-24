@@ -29,7 +29,7 @@ public class TableManager : MonoBehaviour {
 		table = new Table(players);
 		animationEffectGenerator = new AnimationEffectGenerator(gameManager, cardManager, table, animationManager);
 		effectsGenerator = new EffectsGenerator(gameManager, cardManager, table, animationEffectGenerator);
-		AddStartCards(players);
+		//AddStartCards(players);
 		int playerCount = players.Count - gameManager.BotCount;
 		for (int i = playerCount; i < players.Count; i++) {
 			bots.Add(new CardBot(players[i], gameManager, table, TakeCardFromDesk));
@@ -60,9 +60,12 @@ public class TableManager : MonoBehaviour {
 		if (gameManager.GameOver || gameManager.Pause) return null;
 		gameManager.Pause = true;
 		var card = table.TakeCardFromDesk();
+		if (card.key == "inevitable-end") {
+			gameManager.GameOver = true;
+		}
 		cardManager.CreateCard(card);
-		animationManager.PlayCardFromDesk(card.obj, () => {
-			if (gameManager.MakeBig)
+		animationManager.PlayCardFromDeskAnimation(card.obj, () => {
+			if (gameManager.MakeBig && !gameManager.GameOver)
 				card.obj.transform.SetParent(gameManager.CardPlace.transform, false);
 		});
 		Player next = gameManager.GetNextPlayer();
@@ -71,9 +74,7 @@ public class TableManager : MonoBehaviour {
 			return res;
 		}, next.GetColor(),
 			gameManager.IsPlayer(next));
-		if (card.key == "inevitable-end") {
-			gameManager.GameOver = true;
-		}
+
 		return card;
 	}
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class SimpleEffectsGenerator {
+public abstract class SimpleEffectsGenerator {
 	protected AnimationEffectGenerator anim;
 	protected GameManager gameManager;
 	protected CardManager cardManager;
@@ -15,6 +15,36 @@ public class SimpleEffectsGenerator {
 		this.cardManager = cardManager;
 		this.table = table;
 		this.anim = anim;
+	}
+	protected IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
+		var player = item.Key;
+		var cards = item.Value;
+		foreach (var card in cards) {
+			anim.CountAmountAnimated(player, card);
+			yield return new WaitForSeconds(0.5f);
+		}
+		cards.Clear();
+	}
+	protected List<Player> PlayersWithoutCardFilter(
+			List<Player> players, string cardName) {
+		List<Player> res = new List<Player>();
+		foreach (var player in players) {
+			var card = table.FindCardInPlayer(player, cardName);
+			if (card == null) {
+				res.Add(player);
+			} else {
+				anim.PulsationCardAnimated(card);
+			}
+		}
+		return res;
+	}
+	protected void BonusCoins(string mastBe, int coins, string owner) {
+		Player player = table.FindPlayerWithCard(mastBe);
+		if (player != null && player.nickname == owner) {
+			var card = table.FindCardInPlayer(player, mastBe);
+			anim.PulsationCardAnimated(card);
+			player.AddCoins(coins);
+		}
 	}
 	protected Func<bool> CardMoreEffect(int more, Player player, Card card, bool call = true) {
 		return () => {

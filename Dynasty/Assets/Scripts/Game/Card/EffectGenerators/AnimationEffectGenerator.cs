@@ -24,7 +24,7 @@ public class AnimationEffectGenerator {
 		}, end);
 	}
 	public void InsertCardToDeskAnimated(Card card, Action end) {
-		animationManager.PlayCardToDesk(card?.obj, () => {
+		animationManager.PlayCardToDeskAnimation(card?.obj, () => {
 			cardManager.DeleteCardFromTable(card);
 			table.InsertToDesk(card);
 			end();
@@ -38,7 +38,7 @@ public class AnimationEffectGenerator {
 		});
 	}
 	public void CoverCardAnimated(Card under, Card top, Action end) {
-		animationManager.PlayCoverCard(top?.obj, () => {
+		animationManager.PlayCoverCardAnimation(top?.obj, () => {
 			table.CoverCard(under, top);
 			cardManager.CoverCard(under, top);
 		}, end);
@@ -56,7 +56,7 @@ public class AnimationEffectGenerator {
 		});
 	}
 	private void DropAnimated(Card card, Action action) {
-		animationManager.PlayDropCard(card?.obj, () => {
+		animationManager.PlayDropCardAnimation(card?.obj, () => {
 			cardManager.DeleteCardFromTable(card);
 			action();
 		});
@@ -82,6 +82,16 @@ public class AnimationEffectGenerator {
 		end();
 	}
 	public void PulsationCardAnimated(Card card) {
-		animationManager.PlayAnimation(card.obj, "CardPulsationAnimation", GameAction.EMPTY);
+		animationManager.PlayPulsationCardAnimation(card?.obj, GameAction.EMPTY);
+	}
+	public void CountAmountAnimated(Player player, Card card) {
+		animationManager.PlayCountAmountAnimation(card?.obj, () => {
+			player.AddCoins(card.data.amount);
+			DropCardAnimated(card, () => {
+				for (var i = card; i != null; i = i?.underCard) {
+					MonoBehaviour.Destroy(i.obj);
+				}
+			});
+		});
 	}
 }

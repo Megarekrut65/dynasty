@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class LocalizationCard : MonoBehaviour {
+	[Header("Card Data")]
 	[SerializeField]
 	private string key;
 	public string Key {
@@ -14,6 +15,7 @@ public class LocalizationCard : MonoBehaviour {
 			card = LocalizationManager.instance.GetCard(key);
 		}
 	}
+	[SerializeField]
 	private CardData card;
 	public CardData Card {
 		get {

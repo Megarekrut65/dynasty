@@ -54,37 +54,37 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return TowerEffect(player, card);
 			case "robin-hood":
 			case "reliable-plan":
-				return TakeFromEnemyEffect(player, card);
+				return TakeFromEnemySelectEffect(player, card);
 			case "wolf-spirit":
 			case "magic-sphere":
-				return MoveToOtherEffect(player, card);
+				return MoveToOtherSelectEffect(player, card);
 			case "dracula":
 				return DraculaEffect(player, card);
 			case "green-pandora's-box":
 			case "illusion":
 			case "locusts":
-				return MixEnemyCardEffect(player, card);
+				return MixEnemyCardSelectEffect(player, card);
 			case "oversight":
 			case "red-pandora's-box":
-				return MixOwnCardEffect(player, card);
+				return MixOwnCardSelectEffect(player, card);
 			case "bear":
 				return BearEffect(player, card);
 			case "cemetery":
-				return MixPlayersCardEffect(player, card);
+				return MixPlayersCardSelectEffect(player, card);
 			case "hunter":
 				return HunterEffect(player, card);
 			case "artillery":
 				return ArtilleryEffect(player, card);
 			case "current":
 			case "poison":
-				return DropOwnCardEffect(player, card);
+				return DropOwnCardSelectEffect(player, card);
 			case "grail":
 			case "hell":
-				return DropEnemyCardEffect(player, card);
+				return DropEnemyCardSelectEffect(player, card);
 			case "boarding-party":
 				return BoardingPartyEffect(player, card);
 			case "wand":
-				return DropPlayersCardEffect(player, card);
+				return DropPlayersCardSelectEffect(player, card);
 			case "killer":
 				return KillerEffect(player, card);
 			case "look-back":
@@ -93,13 +93,13 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return DungeonEffect(player, card);
 			case "bunker":
 			case "curses":
-				return CoverOwnCardEffect(player, card);
+				return CoverOwnCardSelectEffect(player, card);
 			case "prison":
 			case "magic-hat":
-				return CoverPlayersCardEffect(player, card);
+				return CoverPlayersCardSelectEffect(player, card);
 			case "slime":
 			case "black-cat":
-				return CoverEnemyCardEffect(player, card);
+				return CoverEnemyCardSelectEffect(player, card);
 			case "hut":
 				return HutEffect(player, card);
 			case "explosion":
@@ -117,22 +117,10 @@ public class EffectsGenerator : SelectEffectGenerator {
 		return CoverCardSelectEffect((c) => c.type == CardType.MONSTER,
 							player, new List<Player>() { player }, card);
 	}
-	private Func<bool> CoverEnemyCardEffect(Player player, Card card) {
-		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
-							player, gameManager.GetEnemies(player), card);
-	}
-	private Func<bool> CoverOwnCardEffect(Player player, Card card) {
-		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
-							player, new List<Player>() { player }, card);
-	}
-	private Func<bool> CoverPlayersCardEffect(Player player, Card card) {
-		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
-				player, gameManager.Players, card);
-	}
 	private Func<bool> DungeonEffect(Player player, Card card) {
 		return () => {
-			BonusCoinsEffect("secret-treasure", 6, player.nickname);
-			return CoverPlayersCardEffect(player, card)();
+			BonusCoins("secret-treasure", 6, player.nickname);
+			return CoverPlayersCardSelectEffect(player, card)();
 		};
 	}
 	private Func<bool> KillerEffect(Player player, Card card) {
@@ -142,34 +130,10 @@ public class EffectsGenerator : SelectEffectGenerator {
 	private Func<bool> BoardingPartyEffect(Player player, Card card) {
 		var siren = table.FindCardInPlayer(player, "siren");
 		if (siren == null) {
-			return DropOwnCardEffect(player, card);
+			return DropOwnCardSelectEffect(player, card);
 		}
 		anim.PulsationCardAnimated(siren);
 		return CardEffect(player, card);
-	}
-	private Func<bool> DropPlayersCardEffect(Player player, Card card) {
-		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
-					player, TotemFilter(gameManager.Players), card);
-	}
-	private Func<bool> DropEnemyCardEffect(Player player, Card card) {
-		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
-					player, TotemFilter(gameManager.GetEnemies(player)), card);
-	}
-	private Func<bool> DropOwnCardEffect(Player player, Card card) {
-		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
-					player, TotemFilter(new List<Player>() { player }), card);
-	}
-	private List<Player> TotemFilter(List<Player> players) {
-		List<Player> res = new List<Player>();
-		foreach (var player in players) {
-			var totem = table.FindCardInPlayer(player, "totem");
-			if (totem == null) {
-				res.Add(player);
-			} else {
-				anim.PulsationCardAnimated(totem);
-			}
-		}
-		return res;
 	}
 	private Func<bool> ArtilleryEffect(Player player, Card card) {
 		return () => {
@@ -194,32 +158,12 @@ public class EffectsGenerator : SelectEffectGenerator {
 			return CardEffect(player, card)();
 		};
 	}
-	private Func<bool> MixPlayersCardEffect(Player player, Card card) {
-		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
-			player, gameManager.Players, card);
-	}
 	private Func<bool> BearEffect(Player player, Card card) {
 		return MixCardSelectEffect((c) => c.type == CardType.MONSTER,
 			player, new List<Player>() { player }, card);
 	}
-	private Func<bool> MixOwnCardEffect(Player player, Card card) {
-		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
-			player, new List<Player>() { player }, card);
-	}
-	private Func<bool> MixEnemyCardEffect(Player player, Card card) {
-		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
-			player, gameManager.GetEnemies(player), card);
-	}
 	private Func<bool> DraculaEffect(Player player, Card card) {
 		return MoveCardSelectEffect((c) => "batcrow".Contains(c.key), player, gameManager.Players, card);
-	}
-	private Func<bool> MoveToOtherEffect(Player player, Card card) {
-		return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-							player, gameManager.Players, card);
-	}
-	private Func<bool> TakeFromEnemyEffect(Player player, Card card) {
-		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-			player, gameManager.GetEnemies(player), card);
 	}
 	private Func<bool> TowerEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect((c) => c.key == "archer",
@@ -282,17 +226,9 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private Func<bool> SecretTreasureEffect(Player player, Card card) {
 		return () => {
-			BonusCoinsEffect("dungeon", 6, player.nickname);
+			BonusCoins("dungeon", 6, player.nickname);
 			return CardEffect(player, card)();
 		};
-	}
-	private void BonusCoinsEffect(string mastBe, int coins, string owner) {
-		Player player = table.FindPlayerWithCard(mastBe);
-		if (player != null && player.nickname == owner) {
-			var card = table.FindCardInPlayer(player, mastBe);
-			anim.PulsationCardAnimated(card);
-			player.AddCoins(coins);
-		}
 	}
 	private Func<bool> DungeonKeysEffect(Player player, Card card) {
 		return () => {
@@ -306,20 +242,9 @@ public class EffectsGenerator : SelectEffectGenerator {
 				TakeAwayCardEffect("dragon", player, card)();
 		};
 	}
-	private IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
-		var player = item.Key;
-		var cards = item.Value;
-		foreach (var card in cards) {
-			int amount = card.data.amount;
-			player.AddCoins(amount);
-			anim.DropCardAnimated(card, () => { MonoBehaviour.Destroy(card.obj); });
-			yield return new WaitForSeconds(0.5f);
-		}
-		cards.Clear();
-	}
 	private Func<bool> InevitableEndEffect(Card card) {
 		return () => {
-			table.CountRCardCoins(item => { gameManager.StartCoroutine(CountCoins(item)); return true; });
+			table.CountRCardCoins(item => { gameManager.StartCoroutine(CountCoins(item)); });
 			return false;
 		};
 	}

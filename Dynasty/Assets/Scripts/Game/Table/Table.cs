@@ -22,8 +22,8 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "slimehutbunkerexplosion".Contains(card.key);
-		}, 0);
+			return "slimeinevitable-end".Contains(card.key);
+		}, 6);
 	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
@@ -61,7 +61,7 @@ public class Table {
 		UnderCard(card, playerDesk[player]);
 		drop.Add(card);
 	}
-	public void CountRCardCoins(Func<KeyValuePair<Player, List<Card>>, bool> coroutine) {
+	public void CountRCardCoins(Action<KeyValuePair<Player, List<Card>>> coroutine) {
 		foreach (var item in playerDesk) {
 			coroutine(item);
 		}

@@ -31,29 +31,23 @@ public class CardAnimationManager : MonoBehaviour {
 			cardAnimation.Play("CardShowAnimation", DestroyContainer(afterShow, cardAnimation));
 		});
 	}
-	public void PlayCardHideAnimation(GameObject obj, Action afterHide) {
-		if (obj == null) return;
-		AddAnimation(obj, "CardDisappearanceAnimation");
-		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
-		cardAnimation.Play("CardDisappearanceAnimation", DestroyContainer(afterHide, cardAnimation));
+	public void PlayPulsationCardAnimation(GameObject obj, Action after) {
+		PlayAnimation(obj, "CardPulsationAnimation", after);
 	}
-	public void PlayCardFromDesk(GameObject obj, Action after) {
-		if (obj == null) return;
-		AddAnimation(obj, "CardFromDeskAnimation");
-		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
-		cardAnimation.Play("CardFromDeskAnimation", DestroyContainer(after, cardAnimation));
+	public void PlayCountAmountAnimation(GameObject obj, Action after) {
+		PlayAnimation(obj, "CardAmountAnimation", after);
 	}
-	public void PlayCardToDesk(GameObject obj, Action after) {
-		if (obj == null) return;
-		AddAnimation(obj, "CardToDeskAnimation");
-		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
-		cardAnimation.Play("CardToDeskAnimation", DestroyContainer(after, cardAnimation));
+	public void PlayCardHideAnimation(GameObject obj, Action after) {
+		PlayAnimation(obj, "CardDisappearanceAnimation", after);
 	}
-	public void PlayDropCard(GameObject obj, Action after) {
-		if (obj == null) return;
-		AddAnimation(obj, "CardToDropAnimation");
-		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();
-		cardAnimation.Play("CardToDropAnimation", DestroyContainer(after, cardAnimation));
+	public void PlayCardFromDeskAnimation(GameObject obj, Action after) {
+		PlayAnimation(obj, "CardFromDeskAnimation", after);
+	}
+	public void PlayCardToDeskAnimation(GameObject obj, Action after) {
+		PlayAnimation(obj, "CardToDeskAnimation", after);
+	}
+	public void PlayDropCardAnimation(GameObject obj, Action after) {
+		PlayAnimation(obj, "CardToDropAnimation", after);
 	}
 	private Action DestroyContainer(Action func, CardAnimation cardAnimation) {
 		return () => {
@@ -61,7 +55,7 @@ public class CardAnimationManager : MonoBehaviour {
 			Destroy(cardAnimation);
 		};
 	}
-	public void PlayCoverCard(GameObject obj, Action cover, Action after) {
+	public void PlayCoverCardAnimation(GameObject obj, Action cover, Action after) {
 		if (obj == null) return;
 		AddAnimation(obj, "CardRotationHideAnimation");
 		AddAnimation(obj, "CardRotationShowAnimation");

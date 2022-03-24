@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class SelectEffectGenerator : SimpleEffectsGenerator {
+public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	protected SelectManager selectManager;
 	public SelectEffectGenerator(GameManager gameManager,
 	CardManager cardManager, Table table, AnimationEffectGenerator anim)
@@ -114,5 +114,52 @@ public class SelectEffectGenerator : SimpleEffectsGenerator {
 				}, gameManager.IsPlayer(player));
 			return CardEffect(player, card, false)();
 		};
+	}
+	protected Func<bool> CoverEnemyCardSelectEffect(Player player, Card card) {
+		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+							player, gameManager.GetEnemies(player), card);
+	}
+	protected Func<bool> CoverOwnCardSelectEffect(Player player, Card card) {
+		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+							player, new List<Player>() { player }, card);
+	}
+	protected Func<bool> CoverPlayersCardSelectEffect(Player player, Card card) {
+		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
+				player, gameManager.Players, card);
+	}
+	protected List<Player> TotemFilter(List<Player> players) {
+		return PlayersWithoutCardFilter(players, "totem");
+	}
+	protected Func<bool> DropPlayersCardSelectEffect(Player player, Card card) {
+		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
+					player, TotemFilter(gameManager.Players), card);
+	}
+	protected Func<bool> DropEnemyCardSelectEffect(Player player, Card card) {
+		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
+					player, TotemFilter(gameManager.GetEnemies(player)), card);
+	}
+	protected Func<bool> DropOwnCardSelectEffect(Player player, Card card) {
+		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
+					player, TotemFilter(new List<Player>() { player }), card);
+	}
+	protected Func<bool> MixPlayersCardSelectEffect(Player player, Card card) {
+		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
+			player, gameManager.Players, card);
+	}
+	protected Func<bool> MixOwnCardSelectEffect(Player player, Card card) {
+		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
+			player, new List<Player>() { player }, card);
+	}
+	protected Func<bool> MixEnemyCardSelectEffect(Player player, Card card) {
+		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
+			player, gameManager.GetEnemies(player), card);
+	}
+	protected Func<bool> MoveToOtherSelectEffect(Player player, Card card) {
+		return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
+							player, gameManager.Players, card);
+	}
+	protected Func<bool> TakeFromEnemySelectEffect(Player player, Card card) {
+		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
+			player, gameManager.GetEnemies(player), card);
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+[System.Serializable]
 public class CardData {
 	public string key;
 	public string name;

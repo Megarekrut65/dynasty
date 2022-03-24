@@ -417,7 +417,7 @@
             "key": "slime",
             "value": {
                 "name": "Slime",
-                "description": "Monster.#COVER anyone's card"
+                "description": "Monster.#COVER enemy card"
             }
         },
         {
