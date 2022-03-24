@@ -20,6 +20,7 @@ public class LocalizationManager : MonoBehaviour {
 	public LocalizationMap map;
 	public delegate void ChangeLanguageText();
 	public event ChangeLanguageText OnLanguageChanged;
+
 	public void ChangeLanguage(string language) {
 		if (!isReady) return;
 		isReady = false;
@@ -59,5 +60,19 @@ public class LocalizationManager : MonoBehaviour {
 	}
 	public CardData GetCard(string key) {
 		return map.GetCard(key);
+	}
+	public string Translate(string text) {
+		string[] keys = text.Split(' ');
+		string res = "";
+		for (int i = 0; i < keys.Length; i++) {
+			res += TranslateWord(keys[i]);
+			if (i != keys.Length - 1) res += " ";
+		}
+		return res;
+	}
+	private string TranslateWord(string key) {
+		string word = GetWord(key);
+		if (word == null || word.Length == 0) word = key;
+		return word;
 	}
 }

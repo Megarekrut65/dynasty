@@ -6,6 +6,12 @@ public class Player {
 	public string nickname;
 	private Desk desk;
 	private int coins = 0;
+	public int Coins {
+		get {
+			return coins;
+		}
+	}
+
 	public Player(string nickname) {
 		this.nickname = nickname;
 	}

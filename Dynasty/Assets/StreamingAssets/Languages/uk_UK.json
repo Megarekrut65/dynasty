@@ -43,6 +43,90 @@
         {
             "key": "knight",
             "value": "Лицар"
+        },
+        {
+            "key": "moved",
+            "value": "ПЕРЕМІСТИВ"
+        },
+        {
+            "key": "mixed",
+            "value": "ЗАМІШАВ"
+        },
+        {
+            "key": "covered",
+            "value": "НАКРИВ"
+        },
+        {
+            "key": "dropped",
+            "value": "СКИНУВ"
+        },
+        {
+            "key": "taken-away",
+            "value": "ЗАБРАВ"
+        },
+        {
+            "key": "taken",
+            "value": "ВЗЯВ"
+        },
+        {
+            "key": "desk",
+            "value": "колоди"
+        },
+        {
+            "key": "to",
+            "value": "до гравця"
+        },
+        {
+            "key": "from",
+            "value": "із"
+        },
+        {
+            "key": "of",
+            "value": "гравця"
+        },
+        {
+            "key": "card",
+            "value": "картку"
+        },
+        {
+            "key": "got",
+            "value": "ОТРИМАВ"
+        },
+        {
+            "key": "coins",
+            "value": "монет(у)"
+        },
+        {
+            "key": "total",
+            "value": "загалом"
+        },
+        {
+            "key": "has",
+            "value": "МАЄ"
+        },
+        {
+            "key": "cards",
+            "value": "карток"
+        },
+        {
+            "key": "some",
+            "value": "декілька"
+        },
+        {
+            "key": "lost",
+            "value": "ВТРАТИВ"
+        },
+        {
+            "key": "game-over",
+            "value": "Гра закінчилася"
+        },
+        {
+            "key": "game-begun",
+            "value": "Гра почалася"
+        },
+        {
+            "key": "turn",
+            "value": "Зараз черга"
         }
     ]
 }

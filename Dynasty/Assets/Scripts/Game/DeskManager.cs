@@ -20,6 +20,9 @@ IPointerDownHandler, IPointerUpHandler {
 		}
 	}
 	protected void Next() {
-		if (manager.PlayerRound()) anim.Play("DeskActive");
+		if (manager.PlayerRound()) {
+			anim.Play("DeskActive");
+			gameManager.TranslatedLog($"turn of {gameManager.GetNextPlayer().nickname}");
+		}
 	}
 }

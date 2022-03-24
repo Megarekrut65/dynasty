@@ -35,7 +35,7 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		desk = DeskGenerator.Generate((card) => {
-			return "crowhydra".Contains(card.key);
+			return false;
 		}, 0);
 	}
 	public void InsertToDesk(Card card) {
@@ -98,6 +98,9 @@ public class Table {
 	}
 	public Card FindCardInPlayer(Player player, string key) {
 		return playerDesk[player].Find(card => card.key == key);
+	}
+	public Card FindCardInPlayer(Player player, int id) {
+		return playerDesk[player].Find(card => card.id == id);
 	}
 	public Card RemoveCardFromPlayer(string key) {
 		return RemoveCardFromPlayer(card => card.key == key);

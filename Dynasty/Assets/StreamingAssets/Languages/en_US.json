@@ -43,6 +43,90 @@
         {
             "key": "knight",
             "value": "Knight"
+        },
+        {
+            "key": "moved",
+            "value": "MOVED"
+        },
+        {
+            "key": "mixed",
+            "value": "MIXED"
+        },
+        {
+            "key": "covered",
+            "value": "COVERED"
+        },
+        {
+            "key": "dropped",
+            "value": "DROPPED"
+        },
+        {
+            "key": "taken-away",
+            "value": "TOOK AWAY"
+        },
+        {
+            "key": "taken",
+            "value": "TOOK"
+        },
+        {
+            "key": "desk",
+            "value": "desk"
+        },
+        {
+            "key": "to",
+            "value": "to"
+        },
+        {
+            "key": "from",
+            "value": "from"
+        },
+        {
+            "key": "of",
+            "value": "of"
+        },
+        {
+            "key": "card",
+            "value": "card"
+        },
+        {
+            "key": "got",
+            "value": "GOT"
+        },
+        {
+            "key": "coins",
+            "value": "coin(s)"
+        },
+        {
+            "key": "total",
+            "value": "total of"
+        },
+        {
+            "key": "has",
+            "value": "HAS"
+        },
+        {
+            "key": "cards",
+            "value": "cards"
+        },
+        {
+            "key": "some",
+            "value": "some"
+        },
+        {
+            "key": "lost",
+            "value": "LOST"
+        },
+        {
+            "key": "game-over",
+            "value": "Game over"
+        },
+        {
+            "key": "game-begun",
+            "value": "Game began"
+        },
+        {
+            "key": "turn",
+            "value": "Now is the turn"
         }
     ]
 }

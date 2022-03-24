@@ -160,6 +160,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	private CardEffect FourElementsEffect(Player player, Card card) {
 		return () => {
 			var elements = table.RemoveAllCardsFromPlayers(player, c => c.type == CardType.WALL);
+			logger.LogSomeCards(player);
 			anim.TakeAllAnimated(player, elements, CallNext());
 			return CardEffect(player, card, false)();
 		};
@@ -172,6 +173,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 					anim.PulsationCardAnimated(cer);
 				}
 				player.AddCoins(-2);
+				logger.LogCoins(player, -2);
 			}
 			return CardEffect(player, card)();
 		};
@@ -181,6 +183,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 			Player snake = table.FindPlayerWithCard("snake");
 			if (snake != null && snake.nickname != player.nickname) {
 				var snakes = table.RemoveAllCardsFromPlayer(snake, c => c.key == "snake");
+				logger.LogSomeCards(player);
 				anim.TakeAllAnimated(player, snakes, CallNext());
 				return CardEffect(player, card, false)();
 			}
@@ -219,6 +222,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private CardEffect InevitableEndEffect(Card card) {
 		return () => {
+			logger.GameOver();
 			table.CountRCardCoins(item => { gameManager.StartCoroutine(CountCoins(item)); });
 			return false;
 		};
@@ -228,7 +232,9 @@ public class EffectsGenerator : SelectEffectGenerator {
 			Card currentCard = table.Current;
 			if (currentCard != null && currentCard.key == "inevitable-end") {
 				table.Current = null;
+				logger.LogAction(player, card.key, "dropped");
 				anim.DropCardFromPlayerAnimated(card, player, () => {
+					logger.LogInsert(player, currentCard.data.name);
 					anim.InsertCardToDeskAnimated(currentCard, () => {
 						gameManager.GameOver = false;
 						CallNext(true)();

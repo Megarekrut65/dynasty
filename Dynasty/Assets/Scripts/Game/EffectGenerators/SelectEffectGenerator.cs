@@ -94,6 +94,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectDrop(predicate, player, players,
 				(id) => {
+					logger.LogAction(player, id, "dropped");
 					var drop = table.RemoveCardFromPlayer(id);
 					if (drop != null)
 						anim.DropCardAnimated(drop, CallNext(call));
@@ -108,6 +109,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectCover(predicate, player, players,
 				(id) => {
+					logger.LogAction(player, id, "covered");
 					var cover = table.FindCardInPlayers(id);
 					if (cover != null)
 						anim.CoverCardAnimated(cover, card, CallNext(call));
@@ -122,6 +124,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectMix(predicate, player, players,
 				(id) => {
+					logger.LogAction(player, id, "mixed");
 					var mix = table.RemoveCardFromPlayer(id);
 					if (mix != null)
 						anim.InsertPlayerCardToDeskAnimated(mix, CallNext(call));
@@ -136,6 +139,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			card.needSelect = true;
 			selectManager.SelectMove(predicate, player, players,
 				(id) => {
+					logger.LogAction(player, id, "took-away");
 					var take = table.RemoveCardFromPlayer(id);
 					if (take != null)
 						anim.AddCardToPlayerAnimated(take, player, CallNext(call));
@@ -152,7 +156,10 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 				(id, pl) => {
 					var take = table.RemoveCardFromPlayer(id);
 					if (take != null)
-						anim.AddCardToPlayerAnimated(take, pl, CallNext(call));
+						anim.AddCardToPlayerAnimated(take, pl, () => {
+							logger.LogAction(player, id, "moved");
+							CallNext(call)();
+						});
 					else CallNext(call)();
 				}, gameManager.IsPlayer(player));
 			return CardEffect(player, card, false)();

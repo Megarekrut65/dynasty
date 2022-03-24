@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class ButtonScript : MonoBehaviour,
 IPointerDownHandler, IPointerUpHandler {
 	private ButtonEffect buttonEffect;

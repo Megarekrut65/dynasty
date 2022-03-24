@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour {
 	[Header("Camera controller")]
 	[SerializeField]
 	private CameraMove cameraMove;
+	[Header("Logging")]
+	[SerializeField]
+	private GameLogger logger;
 	[Header("Scroll View")]
 	[SerializeField]
 	private GameObject contentObject;
@@ -79,6 +82,12 @@ public class GameManager : MonoBehaviour {
 		get {
 			return scrollRect;
 		}
+	}
+	public void Log(string text) {
+		logger.Log(text);
+	}
+	public void TranslatedLog(string keys) {
+		logger.Log(LocalizationManager.instance.Translate(keys));
 	}
 	public void CameraMoveActive(bool active) {
 		cameraMove.Stop = !active;
