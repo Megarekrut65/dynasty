@@ -6,33 +6,44 @@ using System.IO;
 using UnityEngine;
 
 public class LocalizationManager : MonoBehaviour {
-	private static string languageKey = "Language";
+	private const string languageKey = "Language";
+	private const string parametersPath = "Cards/parameters";
+	private const string languageFolder = "Languages/";
+	private const string cardFolder = "Languages/Cards/";
+
+	private static LocalizationManager instance;
+	public static LocalizationManager Instance {
+		get {
+			return instance;
+		}
+	}
 	private bool isReady = true;
 	public bool Ready {
 		get {
 			return isReady;
 		}
 	}
-	public static LocalizationManager instance;
-	private LocalizationChanger<string> wordChanger = new LocalizationChanger<string>("Languages");
-	private LocalizationChanger<CardInfo> cardChanger = new LocalizationChanger<CardInfo>("Languages/Cards");
-	private string parametersPath = "parameters";
 	public LocalizationMap map;
+	private string currentLanguage = "";
+
 	public delegate void ChangeLanguageText();
 	public event ChangeLanguageText OnLanguageChanged;
 
 	public void ChangeLanguage(string language) {
-		if (!isReady) return;
+		if (language == currentLanguage || !isReady) return;
+		currentLanguage = language;
+		PlayerPrefs.SetString(languageKey, language);
 		isReady = false;
 		StartCoroutine(ChangeCoroutine(language));
 	}
 	IEnumerator ChangeCoroutine(string language) {
-		map.Change(wordChanger.GetLanguage(language), cardChanger.GetLanguage(language));
+		map.Change(JsonParser<string>.Parse(languageFolder + language),
+					JsonParser<CardInfo>.Parse(cardFolder + language));
 		yield return null;
 		isReady = true;
 		OnLanguageChanged?.Invoke();
 	}
-	void Awake() {
+	private void SetLanguagePrefab() {
 		if (!PlayerPrefs.HasKey(languageKey)) {
 			if (Application.systemLanguage == SystemLanguage.Ukrainian) {
 				PlayerPrefs.SetString(languageKey, "uk_UK");
@@ -43,10 +54,12 @@ public class LocalizationManager : MonoBehaviour {
 				PlayerPrefs.SetString(languageKey, "en_US");
 			}
 		}
+	}
+	void Awake() {
+		SetLanguagePrefab();
 		if (instance == null) {
 			instance = this;
-			var cardParametersChanger = new LocalizationChanger<CardParameters>("Cards");
-			var parameters = cardParametersChanger.GetValue(parametersPath);
+			var parameters = JsonParser<CardParameters>.Parse(parametersPath);
 			map = new LocalizationMap(parameters);
 			ChangeLanguage(PlayerPrefs.GetString(languageKey));
 		} else if (instance != this) {
@@ -60,19 +73,5 @@ public class LocalizationManager : MonoBehaviour {
 	}
 	public CardData GetCard(string key) {
 		return map.GetCard(key);
-	}
-	public string Translate(string text) {
-		string[] keys = text.Split(' ');
-		string res = "";
-		for (int i = 0; i < keys.Length; i++) {
-			res += TranslateWord(keys[i]);
-			if (i != keys.Length - 1) res += " ";
-		}
-		return res;
-	}
-	private string TranslateWord(string key) {
-		string word = GetWord(key);
-		if (word == null || word.Length == 0) word = key;
-		return word;
 	}
 }

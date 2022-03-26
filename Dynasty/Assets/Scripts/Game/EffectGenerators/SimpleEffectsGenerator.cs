@@ -7,18 +7,20 @@ using CardEffect = System.Func<bool>;
 
 public abstract class SimpleEffectsGenerator {
 	protected AnimationEffectGenerator anim;
-	protected GameManager gameManager;
+	protected GameDependencies dependencies;
 	protected CardManager cardManager;
 	protected Table table;
 	protected EffectLogger logger;
+	protected MonoBehaviour behaviour;
 
-	public SimpleEffectsGenerator(GameManager gameManager,
-		CardManager cardManager, Table table, AnimationEffectGenerator anim) {
-		this.gameManager = gameManager;
+	public SimpleEffectsGenerator(GameDependencies dependencies,
+			CardManager cardManager, Table table, AnimationEffectGenerator anim) {
+		this.dependencies = dependencies;
 		this.cardManager = cardManager;
 		this.table = table;
 		this.anim = anim;
-		this.logger = new EffectLogger(gameManager, table);
+		this.logger = new EffectLogger(dependencies.logger, table);
+		this.behaviour = dependencies.cameraMove;
 	}
 	public virtual CardEffect GetEffect(Player player, Card card) {
 		switch (card.key) {
@@ -79,34 +81,34 @@ public abstract class SimpleEffectsGenerator {
 			logger.LogCoins(player, coins);
 		}
 	}
-	protected CardEffect CardMoreEffect(int more, Player player, Card card, bool call = true) {
+	protected CardEffect CardMoreEffect(int more, Player player, Card card, bool callNext = true) {
 		return () => {
-			gameManager.AddCount(more);
-			if (call) return CardEffect(player, card)();
+			dependencies.roundManager.AddMoreRounds(more);
+			if (callNext) return CardEffect(player, card)();
 			return true;
 		};
 	}
-	protected CardEffect DropEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect DropEffect(string key, Player player, Card card, bool callNext = true) {
 		return () => {
 			logger.LogAction(player, key, "dropped");
 			Card take = table.RemoveCardFromPlayer(key);
 			if (take != null) {
-				anim.DropCardAnimated(take, CardEffectAction(call, player, card));
-			} else CardEffectAction(call, player, card)();
+				anim.DropCardAnimated(take, CardEffectAction(callNext, player, card));
+			} else CardEffectAction(callNext, player, card)();
 			return true;
 		};
 	}
-	protected CardEffect TakeAwayCardEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect TakeAwayCardEffect(string key, Player player, Card card, bool callNext = true) {
 		return () => {
 			logger.LogAction(player, key, "took-away");
 			var take = table.RemoveCardFromPlayer(key);
 			if (take != null) {
-				anim.AddCardToPlayerAnimated(take, player, CardEffectAction(call, player, card));
-			} else CardEffectAction(call, player, card)();
+				anim.AddCardToPlayerAnimated(take, player, CardEffectAction(callNext, player, card));
+			} else CardEffectAction(callNext, player, card)();
 			return true;
 		};
 	}
-	protected CardEffect MoveToCardEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect MoveToCardEffect(string key, Player player, Card card, bool callNext = true) {
 		return () => {
 			Player owner = player;
 			Player with = table.FindPlayerWithCard(key);
@@ -115,17 +117,17 @@ public abstract class SimpleEffectsGenerator {
 				Card c = table.FindCardInPlayer(with, key);
 				anim.PulsationCardAnimated(c);
 			}
-			if (call) return CardEffect(owner, card)();
+			if (callNext) return CardEffect(owner, card)();
 			return true;
 		};
 	}
-	protected CardEffect MixEffect(string key, Player player, Card card, bool call = true) {
+	protected CardEffect MixEffect(string key, Player player, Card card, bool callNext = true) {
 		return () => {
 			logger.LogAction(player, key, "mixed");
 			Card mix = table.RemoveCardFromPlayer(key);
 			if (mix != null) {
-				anim.InsertPlayerCardToDeskAnimated(mix, CardEffectAction(call, player, card));
-			} else CardEffectAction(call, player, card)();
+				anim.InsertPlayerCardToDeskAnimated(mix, CardEffectAction(callNext, player, card));
+			} else CardEffectAction(callNext, player, card)();
 			return true;
 		};
 	}
@@ -140,19 +142,19 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected Action CardEffectAction(bool call, Player player, Card card) {
+	protected Action CardEffectAction(bool callNext, Player player, Card card) {
 		return () => {
-			if (call) CardEffect(player, card)();
+			if (callNext) CardEffect(player, card)();
 		};
 	}
 	protected Action CallNext(bool callNext = true) {
 		return () => {
-			if (callNext) gameManager.StartCoroutine(Next());
+			if (callNext) behaviour.StartCoroutine(Next());
 		};
 	}
 	IEnumerator Next() {
 		yield return new WaitForSeconds(1f);
-		gameManager.CallNext();
+		dependencies.roundManager.CallNextPlayer();
 	}
 
 }

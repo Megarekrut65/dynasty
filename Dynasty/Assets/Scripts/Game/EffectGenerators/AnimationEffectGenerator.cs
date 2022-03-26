@@ -4,19 +4,16 @@ using System;
 using UnityEngine;
 
 public class AnimationEffectGenerator {
-	protected GameManager gameManager;
 	protected CardManager cardManager;
 	protected Table table;
 	protected CardAnimationManager animationManager;
 
-	public AnimationEffectGenerator(GameManager gameManager,
-		CardManager cardManager, Table table, CardAnimationManager animationManager) {
-		this.gameManager = gameManager;
+	public AnimationEffectGenerator(CardManager cardManager,
+			Table table, CardAnimationManager animationManager) {
 		this.cardManager = cardManager;
 		this.table = table;
 		this.animationManager = animationManager;
 	}
-
 	public void AddCardToPlayerAnimated(Card card, Player player, Action end) {
 		animationManager.PlayCardHideShowAnimation(card?.obj, () => {
 			player.AddCard(card);
@@ -62,7 +59,7 @@ public class AnimationEffectGenerator {
 		});
 	}
 	public void TakeAllAnimated(Player player, List<Card> cards, Action end) {
-		gameManager.StartCoroutine(TakeAll(player, cards, end));
+		animationManager.StartCoroutine(TakeAll(player, cards, end));
 	}
 	IEnumerator TakeAll(Player player, List<Card> cards, Action end) {
 		foreach (var card in cards) {
@@ -72,7 +69,7 @@ public class AnimationEffectGenerator {
 		end();
 	}
 	public void MixAllAnimated(List<Card> cards, Action end) {
-		gameManager.StartCoroutine(MixAll(cards, end));
+		animationManager.StartCoroutine(MixAll(cards, end));
 	}
 	IEnumerator MixAll(List<Card> cards, Action end) {
 		foreach (var card in cards) {

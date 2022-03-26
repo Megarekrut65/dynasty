@@ -6,7 +6,7 @@ public class DeskGenerator {
 	public static List<Card> Generate(Func<Card, bool> check, int pos) {
 		List<Card> desk = new List<Card>();
 		List<Card> data = new List<Card>();
-		var map = LocalizationManager.instance.map.CardMap;
+		var map = LocalizationManager.Instance.map.CardMap;
 		List<Card> container = new List<Card>();//
 		foreach (var item in map) {
 			//UnityEngine.Debug.Log(item.Key);

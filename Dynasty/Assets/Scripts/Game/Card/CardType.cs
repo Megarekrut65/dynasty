@@ -24,22 +24,22 @@ class CardType {
 	}
 	private static string Monster {
 		get {
-			return LocalizationManager.instance.GetWord(CardType.MONSTER);
+			return LocalizationManager.Instance.GetWord(CardType.MONSTER);
 		}
 	}
 	private static string Knight {
 		get {
-			return LocalizationManager.instance.GetWord(CardType.KNIGHT);
+			return LocalizationManager.Instance.GetWord(CardType.KNIGHT);
 		}
 	}
 	private static string Wall {
 		get {
-			return LocalizationManager.instance.GetWord(CardType.WALL);
+			return LocalizationManager.Instance.GetWord(CardType.WALL);
 		}
 	}
 	private static string Building {
 		get {
-			return LocalizationManager.instance.GetWord(CardType.BUILDING);
+			return LocalizationManager.Instance.GetWord(CardType.BUILDING);
 		}
 	}
 }

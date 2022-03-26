@@ -6,25 +6,25 @@ using UnityEngine.EventSystems;
 
 public class CardBot {
 	private Player player;
-	private GameManager gameManager;
+	private GameDependencies dependencies;
 	private Table table;
 	private Func<Card> takeCard;
 
-	public CardBot(Player player, GameManager gameManager, Table table, Func<Card> takeCard) {
+	public CardBot(Player player, GameDependencies dependencies, Table table, Func<Card> takeCard) {
 		this.player = player;
-		this.gameManager = gameManager;
+		this.dependencies = dependencies;
 		this.table = table;
 		this.takeCard = takeCard;
-		gameManager.Next += Next;
+		dependencies.roundManager.Next += Next;
 	}
 	public void Next() {
-		Player next = gameManager.GetNextPlayer();
+		Player next = dependencies.roundManager.WhoIsNextPlayer();
 		if (next.nickname != this.player.nickname) return;
-		gameManager.StartCoroutine(ClickOnCard());
+		dependencies.cameraMove.StartCoroutine(ClickOnCard());
 	}
 	IEnumerator ClickOnCard() {
 		Card card = takeCard();
-		yield return new WaitForSeconds(gameManager.WaitTime);
+		yield return new WaitForSeconds(2f);
 		if (card != null) {
 			if (card.key == "inevitable-end") {
 				Card avoid = table.FindCardInPlayer(player, "avoid-inevitable");

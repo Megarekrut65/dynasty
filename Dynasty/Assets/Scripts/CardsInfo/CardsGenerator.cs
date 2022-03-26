@@ -14,7 +14,7 @@ public class CardsGenerator {
 	}
 	public List<GameObject> Generate() {
 		List<GameObject> list = new List<GameObject>();
-		foreach (var item in LocalizationManager.instance.map.CardMap) {
+		foreach (var item in LocalizationManager.Instance.map.CardMap) {
 			GameObject obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
 			obj.GetComponent<CardLoader>().Key = item.Key;
 			obj.GetComponent<RectTransform>().sizeDelta = new Vector2(305f / 2, 495f / 2);

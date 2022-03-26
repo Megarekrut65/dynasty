@@ -1,18 +1,19 @@
 using UnityEngine;
 
 public class EffectLogger {
-	private GameManager gameManager;
+	private GameLogger logger;
 	private Table table;
-	public EffectLogger(GameManager gameManager, Table table) {
-		this.gameManager = gameManager;
+
+	public EffectLogger(GameLogger logger, Table table) {
+		this.logger = logger;
 		this.table = table;
 	}
 	public void LogGot(Player player, Card card) {
-		gameManager.TranslatedLog(
+		logger.TranslatedLog(
 				$"{player.nickname} got card \'{card.data.name}\'");
 	}
 	public void LogSomeCards(Player player) {
-		gameManager.TranslatedLog(
+		logger.TranslatedLog(
 				$"{player.nickname} got some cards");
 	}
 	public void LogAction(Player player, string key, string action) {
@@ -32,23 +33,23 @@ public class EffectLogger {
 	}
 	private void LogEffect(Player owner, Card card, Player target, string action) {
 		string word = action == "moved" ? "to" : "of";
-		gameManager.TranslatedLog(
+		logger.TranslatedLog(
 			$"{owner.nickname} {action} card \'{card.data.name}\' {word} {target.nickname}");
 	}
 	public void LogCoins(Player player, int coins) {
 		string word = coins >= 0 ? "got" : "lost";
-		gameManager.TranslatedLog(
+		logger.TranslatedLog(
 			$"{player.nickname} {word} {coins} coins");
 	}
 	public void LogTotal(Player player) {
-		gameManager.TranslatedLog(
+		logger.TranslatedLog(
 			$"{player.nickname} has total {player.Coins} coins");
 	}
 	public void GameOver() {
-		gameManager.TranslatedLog("game-over");
+		logger.TranslatedLog("game-over");
 	}
 	public void LogInsert(Player player, string name) {
-		gameManager.TranslatedLog(
+		logger.TranslatedLog(
 			$"{player.nickname} mixed card \'{name}\'");
 	}
 }

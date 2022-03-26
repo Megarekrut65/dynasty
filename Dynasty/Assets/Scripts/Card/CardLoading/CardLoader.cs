@@ -12,7 +12,7 @@ public class CardLoader : MonoBehaviour {
 	}
 	public CardData Card {
 		get {
-			return LocalizationManager.instance.GetCard(key);
+			return LocalizationManager.Instance.GetCard(key);
 		}
 	}
 	[Header("Card parts")]

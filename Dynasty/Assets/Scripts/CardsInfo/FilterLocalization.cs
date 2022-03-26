@@ -11,7 +11,7 @@ public class FilterLocalization : MonoBehaviour {
 	void Start() {
 		var options = filter.options;
 		foreach (var data in options) {
-			data.text = LocalizationManager.instance.GetWord(data.text.ToLower());
+			data.text = LocalizationManager.Instance.GetWord(data.text.ToLower());
 		}
 		ChangeText(0);
 	}
@@ -31,6 +31,6 @@ public class FilterLocalization : MonoBehaviour {
 
 				break;
 		}
-		label.text = LocalizationManager.instance.GetWord(key);
+		label.text = LocalizationManager.Instance.GetWord(key);
 	}
 }

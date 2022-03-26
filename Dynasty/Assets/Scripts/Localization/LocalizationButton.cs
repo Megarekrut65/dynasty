@@ -6,8 +6,9 @@ public class LocalizationButton : MonoBehaviour,
 IPointerDownHandler, IPointerUpHandler {
 	[SerializeField]
 	private string language = "";
+
 	public void OnPointerDown(PointerEventData eventData) {
-		LocalizationManager.instance.ChangeLanguage(language);
+		LocalizationManager.Instance.ChangeLanguage(language);
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 

@@ -9,15 +9,15 @@ public class GameLoad : MonoBehaviour {
 	private Slider loadSlider;
 	[SerializeField]
 	private string sceneName;
-	void Start() {
-		loadSlider.value = 0;
-		StartCoroutine("LoadData");
-	}
 
-	IEnumerator LoadData() {
+	private void Start() {
+		loadSlider.value = 0;
+		StartCoroutine(LoadData());
+	}
+	private IEnumerator LoadData() {
 		while (loadSlider.value != 100) {
 			yield return new WaitForSeconds(0.005f);
-			if (LocalizationManager.instance.Ready)
+			if (LocalizationManager.Instance.Ready)
 				loadSlider.value += 10;
 			else if (loadSlider.value < 90) loadSlider.value++;
 		}

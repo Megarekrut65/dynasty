@@ -61,11 +61,11 @@
             "value": "DROPPED"
         },
         {
-            "key": "taken-away",
+            "key": "took-away",
             "value": "TOOK AWAY"
         },
         {
-            "key": "taken",
+            "key": "took",
             "value": "TOOK"
         },
         {

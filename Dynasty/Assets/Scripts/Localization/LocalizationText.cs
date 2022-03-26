@@ -5,29 +5,26 @@ using UnityEngine.UI;
 public class LocalizationText : MonoBehaviour {
 	[SerializeField]
 	private string key;
-
 	private Text text;
 
-	void Awake() {
+	private void Awake() {
 		if (text == null) {
 			text = GetComponent<Text>();
 		}
-		LocalizationManager.instance.OnLanguageChanged += UpdateText;
+		LocalizationManager.Instance.OnLanguageChanged += UpdateText;
 	}
-
-	void Start() {
+	private void Start() {
 		UpdateText();
 	}
 
-	void OnDestroy() {
-		LocalizationManager.instance.OnLanguageChanged -= UpdateText;
+	private void OnDestroy() {
+		LocalizationManager.Instance.OnLanguageChanged -= UpdateText;
 	}
-
 	virtual protected void UpdateText() {
 		if (gameObject == null) return;
 		if (text == null) {
 			text = GetComponent<Text>();
 		}
-		text.text = LocalizationManager.instance.GetWord(key);
+		text.text = LocalizationManager.Instance.GetWord(key);
 	}
 }

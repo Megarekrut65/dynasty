@@ -17,6 +17,7 @@ public class ResizingData {
 	public readonly object _lock = new object();
 	public delegate void ChangeFontSize();
 	public event ChangeFontSize OnChanged;
+	
 	public ResizingData(int minFontSize) {
 		this.minFontSize = minFontSize;
 	}

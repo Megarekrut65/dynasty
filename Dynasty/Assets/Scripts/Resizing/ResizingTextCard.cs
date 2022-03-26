@@ -9,6 +9,7 @@ public class ResizingTextCard : MonoBehaviour {
 	[SerializeField]
 	private Text title;
 	private ResizingData data;
+
 	public void Resize(ResizingData data) {
 		this.data = data;
 		data.OnChanged += ChangeText;
@@ -16,14 +17,14 @@ public class ResizingTextCard : MonoBehaviour {
 		data.MinFontSize = size;
 		ChangeText();
 	}
-	public void Resize() {
-		text.resizeTextMaxSize = title.cachedTextGenerator.fontSizeUsedForBestFit - 1;
-	}
 	public void BestFit(bool active) {
 		text.resizeTextForBestFit = active;
 	}
 	void ChangeText() {
-		text.resizeTextMaxSize = Math.Min(data.MinFontSize,
-		   title.cachedTextGenerator.fontSizeUsedForBestFit);
+		int delta = data.MinFontSize - text.cachedTextGenerator.fontSizeUsedForBestFit;
+		if (Math.Abs(delta) > 5) {
+			text.resizeTextMaxSize = Math.Min(text.cachedTextGenerator.fontSizeUsedForBestFit,
+		   		title.cachedTextGenerator.fontSizeUsedForBestFit);
+		} else text.resizeTextMaxSize = data.MinFontSize;
 	}
 }

@@ -494,11 +494,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165728201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 233614370}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &182122463
 GameObject:
@@ -647,7 +647,6 @@ Transform:
   m_Children:
   - {fileID: 695430498}
   - {fileID: 1925420580}
-  - {fileID: 165728203}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1637,7 +1636,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 695430497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d46c9955c0f3d4880485982df5687a, type: 3}
+  m_Script: {fileID: 11500000, guid: f650d89d5c826344bb2e19cfd5984552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardObject: {fileID: 2617461779509550573, guid: a232f4edf9d7a5746be6c66aeb1c628a, type: 3}
@@ -2779,7 +2778,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1925420579}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ChangeBigCard
+        m_MethodName: ChangeMakeBig
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4421,15 +4420,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925420578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35735f060d3c84b4db0415477789bedd, type: 3}
+  m_Script: {fileID: 11500000, guid: 852101cb8b7521248a7a90def72ccc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMove: {fileID: 570252267}
-  logger: {fileID: 1609996976}
-  contentObject: {fileID: 428882054}
-  scrollRect: {fileID: 307750081}
-  view: {fileID: 987536406}
-  makeBig: 1
+  dependenciesManager:
+    cameraMove: {fileID: 570252267}
+    logger: {fileID: 1609996976}
+    contentObject: {fileID: 428882054}
+    scrollRect: {fileID: 307750081}
+    view: {fileID: 987536406}
 --- !u!4 &1925420580
 Transform:
   m_ObjectHideFlags: 0
@@ -5050,12 +5049,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5661800588421517820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7069efd22d8ad469462191b3a65675, type: 3}
+  m_Script: {fileID: 11500000, guid: e985862eea82a4a40878f25240d9fc6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 695430499}
   gameManager: {fileID: 1925420579}
-  anim: {fileID: 5661800588421517824}
+  deskAnimation: {fileID: 5661800588421517824}
 --- !u!111 &5661800588421517824
 Animation:
   m_ObjectHideFlags: 0

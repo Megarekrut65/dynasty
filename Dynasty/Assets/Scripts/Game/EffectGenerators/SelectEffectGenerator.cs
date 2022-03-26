@@ -8,9 +8,9 @@ using CardEffect = System.Func<bool>;
 public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	protected SelectManager selectManager;
 
-	public SelectEffectGenerator(GameManager gameManager,
+	public SelectEffectGenerator(GameDependencies dependencies,
 	CardManager cardManager, Table table, AnimationEffectGenerator anim)
-		: base(gameManager, cardManager, table, anim) {
+		: base(dependencies, cardManager, table, anim) {
 		this.selectManager = new SelectManager(table);
 	}
 	public override CardEffect GetEffect(Player player, Card card) {
@@ -53,43 +53,45 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 				return base.GetEffect(player, card);
 		}
 	}
-	protected CardEffect TakeCardFromDropSelectEffect(Player player, Card card, bool call = true) {
+	protected CardEffect TakeCardFromDropSelectEffect(Player player, Card card, bool callNext = true) {
 		return () => {
 			card.needSelect = true;
-			gameManager.CameraMoveActive(false);
-			gameManager.StartCoroutine(TakeFromDrop(player, card, call));
+			dependencies.cameraMove.Stop = true;
+			dependencies.scrollManager.ViewSetActive(true);
+			behaviour.StartCoroutine(TakeFromDrop(player, card, callNext));
 			return CardEffect(player, card, false)();
 		};
 	}
-	private IEnumerator TakeFromDrop(Player player, Card card, bool call) {
+	private IEnumerator TakeFromDrop(Player player, Card card, bool callNext) {
 		var cards = table.GetRCardsInDrop();
 		foreach (var c in cards) {
 			cardManager.CreateCard(c);
-			gameManager.Scroll.AddToScroll(c.obj);
+			dependencies.scrollManager.AddToScroll(c.obj);
 		}
 		selectManager.SelectCard(player, cards, (id) => {
-			gameManager.StartCoroutine(TakeAction(id, player, call));
-		}, gameManager.IsPlayer(player));
+			behaviour.StartCoroutine(TakeAction(id, player, callNext));
+		}, dependencies.playerManager.IsPlayer(player));
 		yield return null;
 	}
-	private IEnumerator TakeAction(int id, Player player, bool call) {
+	private IEnumerator TakeAction(int id, Player player, bool callNext) {
 		var take = table.RemoveCardFromDrop(id);
 		var cards = table.GetRCardsInDrop();
 		foreach (var c in cards) {
 			cardManager.DeleteCardFromTable(c);
 		}
+		yield return new WaitForSeconds(1f);
 		Action after = () => {
-			CallNext(call)();
-			gameManager.CameraMoveActive(true);
+			CallNext(callNext)();
+			dependencies.cameraMove.Stop = false;
+			dependencies.scrollManager.ViewSetActive(false);
 		};
 		if (take != null) {
-			//gameManager.Scroll.ScrollTo(take.obj.GetComponent<RectTransform>());
 			anim.AddCardToPlayerAnimated(take, player, after);
 		} else after();
 		yield return null;
 	}
 	protected CardEffect DropCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-								Card card, bool call = true) {
+								Card card, bool callNext = true) {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectDrop(predicate, player, players,
@@ -97,14 +99,14 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 					logger.LogAction(player, id, "dropped");
 					var drop = table.RemoveCardFromPlayer(id);
 					if (drop != null)
-						anim.DropCardAnimated(drop, CallNext(call));
-					else CallNext(call)();
-				}, gameManager.IsPlayer(player));
+						anim.DropCardAnimated(drop, CallNext(callNext));
+					else CallNext(callNext)();
+				}, dependencies.playerManager.IsPlayer(player));
 			return CardEffect(player, card, false)();
 		};
 	}
 	protected CardEffect CoverCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-							Card card, bool call = true) {
+							Card card, bool callNext = true) {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectCover(predicate, player, players,
@@ -112,14 +114,14 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 					logger.LogAction(player, id, "covered");
 					var cover = table.FindCardInPlayers(id);
 					if (cover != null)
-						anim.CoverCardAnimated(cover, card, CallNext(call));
+						anim.CoverCardAnimated(cover, card, CallNext(callNext));
 					else CardEffect(player, card)();
-				}, gameManager.IsPlayer(player));
+				}, dependencies.playerManager.IsPlayer(player));
 			return true;
 		};
 	}
 	protected CardEffect MixCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-								Card card, bool call = true) {
+								Card card, bool callNext = true) {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectMix(predicate, player, players,
@@ -127,14 +129,14 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 					logger.LogAction(player, id, "mixed");
 					var mix = table.RemoveCardFromPlayer(id);
 					if (mix != null)
-						anim.InsertPlayerCardToDeskAnimated(mix, CallNext(call));
-					else CallNext(call)();
-				}, gameManager.IsPlayer(player));
+						anim.InsertPlayerCardToDeskAnimated(mix, CallNext(callNext));
+					else CallNext(callNext)();
+				}, dependencies.playerManager.IsPlayer(player));
 			return CardEffect(player, card, false)();
 		};
 	}
 	protected CardEffect TakeAwayCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-									Card card, bool call = true) {
+									Card card, bool callNext = true) {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectMove(predicate, player, players,
@@ -142,14 +144,14 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 					logger.LogAction(player, id, "took-away");
 					var take = table.RemoveCardFromPlayer(id);
 					if (take != null)
-						anim.AddCardToPlayerAnimated(take, player, CallNext(call));
-					else CallNext(call)();
-				}, gameManager.IsPlayer(player));
+						anim.AddCardToPlayerAnimated(take, player, CallNext(callNext));
+					else CallNext(callNext)();
+				}, dependencies.playerManager.IsPlayer(player));
 			return CardEffect(player, card, false)();
 		};
 	}
 	protected CardEffect MoveCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-									Card card, bool call = true) {
+									Card card, bool callNext = true) {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectMoveToOther(predicate, player, players,
@@ -158,16 +160,16 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 					if (take != null)
 						anim.AddCardToPlayerAnimated(take, pl, () => {
 							logger.LogAction(player, id, "moved");
-							CallNext(call)();
+							CallNext(callNext)();
 						});
-					else CallNext(call)();
-				}, gameManager.IsPlayer(player));
+					else CallNext(callNext)();
+				}, dependencies.playerManager.IsPlayer(player));
 			return CardEffect(player, card, false)();
 		};
 	}
 	protected CardEffect CoverEnemyCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
-							player, gameManager.GetEnemies(player), card);
+							player, dependencies.playerManager.GetEnemies(player), card);
 	}
 	protected CardEffect CoverOwnCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
@@ -175,18 +177,18 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	}
 	protected CardEffect CoverPlayersCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
-				player, gameManager.Players, card);
+				player, dependencies.playerManager.Players, card);
 	}
 	protected List<Player> TotemFilter(List<Player> players) {
 		return PlayersWithoutCardFilter(players, "totem");
 	}
 	protected CardEffect DropPlayersCardSelectEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
-					player, TotemFilter(gameManager.Players), card);
+					player, TotemFilter(dependencies.playerManager.Players), card);
 	}
 	protected CardEffect DropEnemyCardSelectEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
-					player, TotemFilter(gameManager.GetEnemies(player)), card);
+					player, TotemFilter(dependencies.playerManager.GetEnemies(player)), card);
 	}
 	protected CardEffect DropOwnCardSelectEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetAllFilter(CardFunctions.DROP),
@@ -194,7 +196,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	}
 	protected CardEffect MixPlayersCardSelectEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
-			player, gameManager.Players, card);
+			player, dependencies.playerManager.Players, card);
 	}
 	protected CardEffect MixOwnCardSelectEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
@@ -202,14 +204,14 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	}
 	protected CardEffect MixEnemyCardSelectEffect(Player player, Card card) {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
-			player, gameManager.GetEnemies(player), card);
+			player, dependencies.playerManager.GetEnemies(player), card);
 	}
 	protected CardEffect MoveToOtherSelectEffect(Player player, Card card) {
 		return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-							player, gameManager.Players, card);
+							player, dependencies.playerManager.Players, card);
 	}
 	protected CardEffect TakeFromEnemySelectEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-			player, gameManager.GetEnemies(player), card);
+			player, dependencies.playerManager.GetEnemies(player), card);
 	}
 }

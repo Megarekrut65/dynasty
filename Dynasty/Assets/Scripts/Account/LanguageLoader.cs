@@ -15,7 +15,7 @@ public class LanguageLoader : MonoBehaviour {
 
 	IEnumerator LoadData() {
 		LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
-		while (!LocalizationManager.instance.Ready) {
+		while (!LocalizationManager.Instance.Ready) {
 			yield return new WaitForSeconds(0.005f);
 		}
 		loadBoard.Destroy();

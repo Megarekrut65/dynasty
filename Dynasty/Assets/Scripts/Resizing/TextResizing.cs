@@ -9,23 +9,23 @@ public class TextResizing : MonoBehaviour {
 	[SerializeField]
 	private Text text;
 
-	void Awake() {
+	private void Awake() {
 		data.OnChanged += ChangeText;
 	}
-	void OnDestroy() {
+	private void OnDestroy() {
 		data.OnChanged -= ChangeText;
 	}
-	void Start() {
+	private void Start() {
 		StartCoroutine(MakeTextSameSize());
 	}
-	IEnumerator MakeTextSameSize() {
+	private IEnumerator MakeTextSameSize() {
 		yield return null;
 
 		int size = text.cachedTextGenerator.fontSizeUsedForBestFit;
 		data.MinFontSize = size;
 		ChangeText();
 	}
-	void ChangeText() {
+	private void ChangeText() {
 		text.resizeTextMaxSize = data.MinFontSize;
 	}
 }

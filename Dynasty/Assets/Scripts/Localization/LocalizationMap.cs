@@ -4,8 +4,8 @@ using System.IO;
 using UnityEngine;
 
 public class LocalizationMap {
-	private SortedDictionary<string, string> wordMap { get; set; } = new SortedDictionary<string, string>();
-	private SortedDictionary<string, CardData> cardMap { get; set; } = new SortedDictionary<string, CardData>();
+	private SortedDictionary<string, string> wordMap = new SortedDictionary<string, string>();
+	private SortedDictionary<string, CardData> cardMap = new SortedDictionary<string, CardData>();
 	public SortedDictionary<string, string> WordMap {
 		get {
 			return wordMap;

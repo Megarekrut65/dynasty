@@ -8,6 +8,7 @@ IPointerDownHandler, IPointerUpHandler {
 	private ButtonEffect buttonEffect;
 	[SerializeField]
 	private GameObject soundClick;
+	
 	private void Start() {
 		buttonEffect = new ButtonEffect(transform, soundClick);
 	}

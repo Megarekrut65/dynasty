@@ -4,6 +4,7 @@ public class ButtonEffect {
 	private Transform transform;
 	private Vector3 scale;
 	private GameObject soundClick;
+	
 	public ButtonEffect(Transform transform, GameObject soundClick = null) {
 		this.transform = transform;
 		this.scale = transform.localScale;

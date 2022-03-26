@@ -7,9 +7,13 @@ using System.Linq;
 using CardEffect = System.Func<bool>;
 
 public class EffectsGenerator : SelectEffectGenerator {
-	public EffectsGenerator(GameManager gameManager,
-	CardManager cardManager, Table table, AnimationEffectGenerator anim)
-		: base(gameManager, cardManager, table, anim) { }
+	protected GameManager gameManager;
+
+	public EffectsGenerator(GameManager gameManager, GameDependencies dependencies,
+			CardManager cardManager, Table table, AnimationEffectGenerator anim)
+			: base(dependencies, cardManager, table, anim) {
+		this.gameManager = gameManager;
+	}
 	public override CardEffect GetEffect(Player player, Card card) {
 		switch (card.key) {
 			case "inevitable-end":
@@ -69,7 +73,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private CardEffect HydraEffect(Player player, Card card) {
 		return MoveCardSelectEffect((c) => c.type == CardType.MONSTER && c.id != card.id,
-					player, gameManager.Players, card);
+					player, dependencies.playerManager.Players, card);
 	}
 	private CardEffect HocusPocusEffect(Player player, Card card) {
 		return () => {
@@ -86,7 +90,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	private CardEffect ExplosionEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetFilter(
 					CardFunctions.DROP, (c) => c.underCard != null),
-				player, TotemFilter(gameManager.Players), card);
+				player, TotemFilter(dependencies.playerManager.Players), card);
 	}
 	private CardEffect HutEffect(Player player, Card card) {
 		return CoverCardSelectEffect((c) => c.type == CardType.MONSTER,
@@ -138,15 +142,16 @@ public class EffectsGenerator : SelectEffectGenerator {
 			player, new List<Player>() { player }, card);
 	}
 	private CardEffect DraculaEffect(Player player, Card card) {
-		return MoveCardSelectEffect((c) => "batcrow".Contains(c.key), player, gameManager.Players, card);
+		return MoveCardSelectEffect((c) => "batcrow".Contains(c.key),
+			player, dependencies.playerManager.Players, card);
 	}
 	private CardEffect TowerEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect((c) => c.key == "archer",
-			player, gameManager.GetEnemies(player), card);
+			player, dependencies.playerManager.GetEnemies(player), card);
 	}
 	private CardEffect EncampmentEffect(Player player, Card card) {
 		return TakeAwayCardSelectEffect((c) => c.type == CardType.KNIGHT,
-			player, gameManager.GetEnemies(player), card);
+			player, dependencies.playerManager.GetEnemies(player), card);
 	}
 	private CardEffect RoyalPoisonEffect(Player player, Card card) {
 		return () => {
@@ -223,7 +228,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	private CardEffect InevitableEndEffect(Card card) {
 		return () => {
 			logger.GameOver();
-			table.CountRCardCoins(item => { gameManager.StartCoroutine(CountCoins(item)); });
+			table.CountRCardCoins(item => { behaviour.StartCoroutine(CountCoins(item)); });
 			return false;
 		};
 	}
