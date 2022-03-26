@@ -62,8 +62,8 @@ public class CardManager {
 	}
 	public void UpdateCardObject(Card card) {
 		var obj = card.obj;
-		obj.GetComponent<LocalizationCard>().Key = card.key;
-		obj.GetComponent<LocalizationCard>().UpdateText();
+		obj.GetComponent<CardLoader>().Key = card.key;
+		obj.GetComponent<CardLoader>().LoadData();
 		obj.GetComponent<ResizingTextCard>().Resize(data);
 	}
 	public void CoverCard(Card under, Card top) {

@@ -10,13 +10,13 @@ public class MessageBox : GameLogger {
 	private Text content;
 	public void Change(bool isOpen) {
 		var rect = gameObject.GetComponent<RectTransform>();
-		rect.offsetMax = new Vector2(rect.offsetMax.x, isOpen ? Screen.height / 3 : 0f);
+		rect.offsetMax = new Vector2(rect.offsetMax.x, isOpen ? 150f : 0f);
 		verticalScroll.interactable = isOpen;
 		scrollRect.vertical = isOpen;
-		scrollRect.normalizedPosition = new Vector2(0, 0);
+		scrollRect.normalizedPosition = new Vector2(0f, 0f);
 	}
 	public override void Log(string text) {
 		content.text += text + "\r\n";
-		scrollRect.normalizedPosition = new Vector2(0, 0);
+		scrollRect.normalizedPosition = new Vector2(0f, 0f);
 	}
 }
