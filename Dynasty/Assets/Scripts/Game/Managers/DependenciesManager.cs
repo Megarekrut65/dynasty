@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class DependenciesManager {
+	[Header("Big Card")]
+	[SerializeField]
+	private Toggle bigCard;
 	[Header("Camera Controller")]
 	[SerializeField]
 	private CameraMove cameraMove;
@@ -22,7 +25,7 @@ public class DependenciesManager {
 		if (dependencies == null) {
 			var playerManager = new PlayerManager();
 			dependencies = new GameDependencies {
-				bigCardManager = new BigCardManager(scrollRect),
+				bigCardManager = new BigCardManager(scrollRect, bigCard),
 				scrollManager = new ScrollManager(scrollRect.GetComponent<ScrollRect>(), contentObject, view),
 				playerManager = playerManager,
 				roundManager = new RoundManager(playerManager.Players),

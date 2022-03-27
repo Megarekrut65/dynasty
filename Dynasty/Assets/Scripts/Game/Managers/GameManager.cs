@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 			return dependenciesManager.GetDependencies();
 		}
 	}
+
 	public void ChangeMakeBig(bool value) {
 		Dependencies.bigCardManager.NeedMakeBig = value;
 	}

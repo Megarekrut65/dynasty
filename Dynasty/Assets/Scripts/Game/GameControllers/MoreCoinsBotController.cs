@@ -8,44 +8,57 @@ public class MoreCoinsBotController : BotController {
 		Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) { }
 
 	protected override SelectObjectData<Card> SelectCard() {
+		if (SelectManager.SelectData.selectingCards.Count == 0) return null;
 		return FindBestSelect();
 	}
 
 	private SelectObjectData<Card> FindBestSelect() {
 		var type = SelectManager.SelectData.lastType;
 		switch (type) {
-			case "mix": return FindBestMix();
-			case "move": return FindBestMove();
-			case "cover": return FindBestCover();
-			case "drop": return FindBestDrop();
+			case "mix": return FindBest(CountMixAmount);
+			case "move": return FindBest(CountMoveAmount);
+			case "cover": return FindBest(CountCoverAmount);
+			case "drop": return FindBest(CountDropAmount);
 			default: return null;
 		}
 	}
-	private int CountAmount(SelectObjectData<Card> card) {
-		int amount = card.obj.data.amount;
-		if (card.owner.Equals(player)) amount = -2 * amount;
+	private float CountMixAmount(SelectObjectData<Card> card) {
+		return CountDropAmount(card);
+	}
+	private float CountMoveAmount(SelectObjectData<Card> card) {
+		float coefficient = -1f;
+		if (SelectManager.SelectData.toOwner) {
+			coefficient = 0f;
+		}
+		return CountAmount(card, coefficient);
+	}
+	private float CountCoverAmount(SelectObjectData<Card> card) {
+		float coefficient = -2f;
+		if (table.Current.data.amount < 0) {
+			coefficient = -0.5f;
+		}
+		return CountAmount(card, coefficient);
+	}
+	private float CountDropAmount(SelectObjectData<Card> card) {
+		float coefficient = -2.5f;
+		return CountAmount(card, coefficient);
+	}
+	private float CountAmount(SelectObjectData<Card> card, float coefficient = -1f) {
+		float amount = card.obj.data.amount;
+		if (card.owner.Equals(player)) amount = coefficient * amount;
 		return amount;
 	}
-	private SelectObjectData<Card> FindBestCover() {
+	private SelectObjectData<Card> FindBest(Func<SelectObjectData<Card>, float> countAmount) {
 		var data = SelectManager.SelectData.selectingCards;
 		SelectObjectData<Card> best = data[0];
-		int max = CountAmount(best);
+		var max = countAmount(best);
 		for (int i = 1; i < data.Count; i++) {
-			int amount = CountAmount(data[i]);
+			var amount = countAmount(data[i]);
 			if (amount > max) {
 				max = amount;
 				best = data[i];
 			}
 		}
 		return best;
-	}
-	private SelectObjectData<Card> FindBestMove() {
-		return null;
-	}
-	private SelectObjectData<Card> FindBestMix() {
-		return null;
-	}
-	private SelectObjectData<Card> FindBestDrop() {
-		return null;
 	}
 }

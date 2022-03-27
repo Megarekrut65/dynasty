@@ -47,7 +47,7 @@ public class PlayerManager {
 	}
 	public void CreateBots(GameDependencies dependencies, Table table, Func<Card> takeCardFromDesk) {
 		for (int i = playersCount; i < players.Count; i++) {
-			bots.Add(new RandomBotController(players[i], dependencies, table, takeCardFromDesk));
+			bots.Add(new MoreCoinsBotController(players[i], dependencies, table, takeCardFromDesk));
 		}
 	}
 }

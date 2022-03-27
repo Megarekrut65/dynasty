@@ -64,7 +64,7 @@ public class CardManager {
 		var obj = card.obj;
 		obj.GetComponent<CardLoader>().Key = card.key;
 		obj.GetComponent<CardLoader>().LoadData();
-		obj.GetComponent<ResizingTextCard>().Resize(data);
+		obj.GetComponent<ResizingTextCard>().BestFit(true);
 	}
 	public void CoverCard(Card under, Card top) {
 		top.obj.GetComponent<CoverCard>().Cover();
