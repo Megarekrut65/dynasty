@@ -22,14 +22,14 @@ public class PlayerManager {
 			return botsCount;
 		}
 	}
-	private List<CardBot> bots;
+	private List<Controller> bots;
 
 	public PlayerManager() {
 		this.playersCount = 1;
 		this.botsCount = 5;
 		string[] nicknames = new string[6];
 		this.players = new List<Player>();
-		this.bots = new List<CardBot>();
+		this.bots = new List<Controller>();
 		for (int i = 0; i < nicknames.Length; i++) {
 			nicknames[i] = "Player" + UnityEngine.Random.Range(0, 1000);
 		}
@@ -47,7 +47,7 @@ public class PlayerManager {
 	}
 	public void CreateBots(GameDependencies dependencies, Table table, Func<Card> takeCardFromDesk) {
 		for (int i = playersCount; i < players.Count; i++) {
-			bots.Add(new CardBot(players[i], dependencies, table, takeCardFromDesk));
+			bots.Add(new RandomBotController(players[i], dependencies, table, takeCardFromDesk));
 		}
 	}
 }

@@ -23,7 +23,7 @@ public class SelectManager {
 		}
 		foreach (var card in cards) {
 			AddClick(card, card.obj, owner.GetColor(),
-				selectData.selectingCards, select, canClick, card.id);
+				selectData.selectingCards, select, canClick, card.id, owner);
 		}
 	}
 	public void SelectMix(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
@@ -75,7 +75,7 @@ public class SelectManager {
 			var pl = other[i];
 			if (!pl.Equals(owner)) {
 				var label = pl.Label;
-				AddClick(label, label, owner.GetColor(), selectData.selectingPlayers, selectPlayer, canClick, i);
+				AddClick(label, label, owner.GetColor(), selectData.selectingPlayers, selectPlayer, canClick, i, pl);
 			}
 		}
 	}
@@ -89,15 +89,15 @@ public class SelectManager {
 		Color color = owner.GetColor();
 		foreach (var item in playersDesk) {
 			foreach (var card in item.Value) {
-				AddClick(card, card.obj, color, selectData.selectingCards, select, canClick, card.id);
+				AddClick(card, card.obj, color, selectData.selectingCards, select, canClick, card.id, item.Key);
 			}
 		}
 	}
 	private void AddClick<ObjectType>(ObjectType obj, GameObject gameObject, Color color,
-				List<SelectObjectData<ObjectType>> list, Action<int> select, bool canClick, int id) {
+				List<SelectObjectData<ObjectType>> list, Action<int> select, bool canClick, int id, Player owner) {
 		var outline = CardManager.CreateOutline(gameObject, color);
 		var selectClick = gameObject.AddComponent<SelectClick>();
-		list.Add(new SelectObjectData<ObjectType>(outline, selectClick, obj));
+		list.Add(new SelectObjectData<ObjectType>(outline, selectClick, obj, owner));
 		selectClick.Id = id;
 		selectClick.Select = (i) => {
 			ClearSelectingCards();

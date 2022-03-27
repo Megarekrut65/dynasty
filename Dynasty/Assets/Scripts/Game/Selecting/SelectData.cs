@@ -7,6 +7,7 @@ public class SelectData {
 	public string lastType = "";
 	public bool toOwner = true;
 	public List<SelectObjectData<GameObject>> selectingPlayers = new List<SelectObjectData<GameObject>>();
+	
 	public void Clear() {
 		selectingCards.Clear();
 		selectingPlayers.Clear();
