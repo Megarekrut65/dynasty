@@ -127,6 +127,34 @@
         {
             "key": "turn",
             "value": "Зараз черга"
+        },
+        {
+            "key": "account",
+            "value": "Акаунт"
+        },
+        {
+            "key": "play",
+            "value": "Грати"
+        },
+        {
+            "key": "collection",
+            "value": "Карткова колекція"
+        },
+        {
+            "key": "settings",
+            "value": "Налаштування"
+        },
+        {
+            "key": "music",
+            "value": "Музика"
+        },
+        {
+            "key": "sounds",
+            "value": "Звуки"
+        },
+        {
+            "key": "language",
+            "value": "Мова"
         }
     ]
 }

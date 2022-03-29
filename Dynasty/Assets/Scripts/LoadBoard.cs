@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class LoadBoard {
 	private GameObject board = null;
-	
+
 	public LoadBoard(GameObject blackBoard, GameObject _canvas) {
 		if (blackBoard != null && _canvas != null) {
 			board = MonoBehaviour.Instantiate(blackBoard, new Vector3(0, 0, 0), Quaternion.identity);
@@ -17,5 +17,8 @@ public class LoadBoard {
 		if (board != null) {
 			MonoBehaviour.Destroy(board);
 		}
+	}
+	public void SetActive(bool value) {
+		board.SetActive(value);
 	}
 }

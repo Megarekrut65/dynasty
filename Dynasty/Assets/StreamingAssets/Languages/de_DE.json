@@ -1,0 +1,160 @@
+{
+    "items": [
+        {
+            "key": "game-name",
+            "value": "Dynastie"
+        },
+        {
+            "key": "text",
+            "value": "Hallo Welt!"
+        },
+        {
+            "key": "card-name",
+            "value": "Kartenname..."
+        },
+        {
+            "key": "all",
+            "value": "Alle"
+        },
+        {
+            "key": "green",
+            "value": "Grün"
+        },
+        {
+            "key": "yellow",
+            "value": "Gelb"
+        },
+        {
+            "key": "red",
+            "value": "Rot"
+        },
+        {
+            "key": "wall",
+            "value": "Wand"
+        },
+        {
+            "key": "building",
+            "value": "Gebäude"
+        },
+        {
+            "key": "monster",
+            "value": "Monster"
+        },
+        {
+            "key": "knight",
+            "value": "Ritter"
+        },
+        {
+            "key": "moved",
+            "value": "GERÜHRT"
+        },
+        {
+            "key": "mixed",
+            "value": "GEMISCHT"
+        },
+        {
+            "key": "covered",
+            "value": "BEDECKT"
+        },
+        {
+            "key": "dropped",
+            "value": "FALLEN GELASSEN"
+        },
+        {
+            "key": "took-away",
+            "value": "ABGENOMMEN"
+        },
+        {
+            "key": "took",
+            "value": "NAHM"
+        },
+        {
+            "key": "desk",
+            "value": "Schreibtisch"
+        },
+        {
+            "key": "to",
+            "value": "zu"
+        },
+        {
+            "key": "from",
+            "value": "von"
+        },
+        {
+            "key": "of",
+            "value": "von"
+        },
+        {
+            "key": "card",
+            "value": "Karte"
+        },
+        {
+            "key": "got",
+            "value": "HABE"
+        },
+        {
+            "key": "coins",
+            "value": "Münze(n)"
+        },
+        {
+            "key": "total",
+            "value": "insgesamt"
+        },
+        {
+            "key": "has",
+            "value": "HAT"
+        },
+        {
+            "key": "cards",
+            "value": "Karten"
+        },
+        {
+            "key": "some",
+            "value": "etwas"
+        },
+        {
+            "key": "lost",
+            "value": "HAT VERLOREN"
+        },
+        {
+            "key": "game-over",
+            "value": "Spiel ist aus"
+        },
+        {
+            "key": "game-begun",
+            "value": "Spiel begann"
+        },
+        {
+            "key": "turn",
+            "value": "Jetzt ist die Reihe"
+        },
+        {
+            "key": "account",
+            "value": "Konto"
+        },
+        {
+            "key": "play",
+            "value": "Spiel"
+        },
+        {
+            "key": "collection",
+            "value": "Kartensammlung"
+        },
+        {
+            "key": "settings",
+            "value": "Einstellungen"
+        },
+        {
+            "key": "music",
+            "value": "Musik"
+        },
+        {
+            "key": "sounds",
+            "value": "Geräusche"
+        },
+        {
+            "key": "language",
+            "value": "Sprache"
+        }
+    ]
+}

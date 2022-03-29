@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LocalizationManager : MonoBehaviour {
 	private const string languageKey = "Language";
@@ -47,9 +48,8 @@ public class LocalizationManager : MonoBehaviour {
 		if (!PlayerPrefs.HasKey(languageKey)) {
 			if (Application.systemLanguage == SystemLanguage.Ukrainian) {
 				PlayerPrefs.SetString(languageKey, "uk_UK");
-			} else if (Application.systemLanguage == SystemLanguage.Russian ||
-			  Application.systemLanguage == SystemLanguage.Belarusian) {
-				PlayerPrefs.SetString(languageKey, "ru_RU");
+			} else if (Application.systemLanguage == SystemLanguage.German) {
+				PlayerPrefs.SetString(languageKey, "de_DE");
 			} else {
 				PlayerPrefs.SetString(languageKey, "en_US");
 			}

@@ -1,0 +1,585 @@
+{
+    "items": [
+        {
+            "key": "encampment",
+            "value": {
+                "name": "Lager",
+                "description": "NEHME den feindlichen Ritter weg"
+            }
+        },
+        {
+            "key": "temple",
+            "value": {
+                "name": "Tempel",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "bunker",
+            "value": {
+                "name": "Bunker",
+                "description": "Building.#DECKEN Sie Ihre Karte"
+            }
+        },
+        {
+            "key": "light-wizard",
+            "value": {
+                "name": "Lichtzauberer",
+                "description": "MIX die Dark Wizard-Karte"
+            }
+        },
+        {
+            "key": "dungeon-keys",
+            "value": {
+                "name": "Dungeon-Schlüssel",
+                "description": "NEHMEN Sie die Dungeon-Karte WEG. #MIX Secret Treasure-Karte"
+            }
+        },
+        {
+            "key": "secret-treasure",
+            "value": {
+                "name": "Geheimer Schatz",
+                "description": "Besitzt ein Spieler diese Karte zusammen mit der Dungeon-Karte, erhält er 6 Münzen"
+            }
+        },
+        {
+            "key": "dungeon",
+            "value": {
+                "name": "Verlies",
+                "description": "ABDECKEN Sie die Karte von irgendjemandem"
+            }
+        },
+        {
+            "key": "gate",
+            "value": {
+                "name": "Tor",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "village",
+            "value": {
+                "name": "Dorf",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "castle",
+            "value": {
+                "name": "Schloss",
+                "description": "Building.#TAKE AWAY die Königskarte"
+            }
+        },
+        {
+            "key": "swordsman",
+            "value": {
+                "name": "Schwertkämpfer",
+                "description": "Ritter"
+            }
+        },
+        {
+            "key": "crusader",
+            "value": {
+                "name": "Kreuzritter",
+                "description": "Ritter"
+            }
+        },
+        {
+            "key": "equestrian",
+            "value": {
+                "name": "Pferdesport",
+                "description": "Ritter"
+            }
+        },
+        {
+            "key": "king",
+            "value": {
+                "name": "König",
+                "description": "Alle neuen Ritter gehören dir"
+            }
+        },
+        {
+            "key": "fountain",
+            "value": {
+                "name": "Brunnen",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "tower",
+            "value": {
+                "name": "Turm",
+                "description": "Building.#TAKE AWAY eine Archer-Karte"
+            }
+        },
+        {
+            "key": "archer",
+            "value": {
+                "name": "Bogenschütze",
+                "description": "Ritter"
+            }
+        },
+        {
+            "key": "bridge",
+            "value": {
+                "name": "Brücke",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "prison",
+            "value": {
+                "name": "Gefängnis",
+                "description": "Gebäude.#DECKEN Sie die Karte von irgendjemandem"
+            }
+        },
+        {
+            "key": "dragon",
+            "value": {
+                "name": "Drachen",
+                "description": "Verrückt nach Gold"
+            }
+        },
+        {
+            "key": "hunter",
+            "value": {
+                "name": "Jäger",
+                "description": "Lass dein Monster fallen"
+            }
+        },
+        {
+            "key": "step-ahead",
+            "value": {
+                "name": "Schritt vorwärts",
+                "description": "NEHMEN Sie eine weitere Karte vom Stapel"
+            }
+        },
+        {
+            "key": "look-back",
+            "value": {
+                "name": "Zurückschauen",
+                "description": "NEHMEN Sie jede fallen gelassene Karte"
+            }
+        },
+        {
+            "key": "current",
+            "value": {
+                "name": "Aktuell",
+                "description": "Lassen Sie Ihre Karte fallen"
+            }
+        },
+        {
+            "key": "green-pandora's-box",
+            "value": {
+                "name": "Büchse der Pandora",
+                "description": "MISCHE eine feindliche Karte"
+            }
+        },
+        {
+            "key": "robin-hood",
+            "value": {
+                "name": "Robin Hood",
+                "description": "NEHMEN Sie eine feindliche Karte WEG"
+            }
+        },
+        {
+            "key": "oversight",
+            "value": {
+                "name": "Aufsicht",
+                "description": "Mischen Sie eine Ihrer Karte"
+            }
+        },
+        {
+            "key": "fairy-army",
+            "value": {
+                "name": "Feenarmee",
+                "description": "TAKE AWAY Königskarte"
+            }
+        },
+        {
+            "key": "pharmacy",
+            "value": {
+                "name": "Apotheke",
+                "description": "Heilt alles"
+            }
+        },
+        {
+            "key": "treasure",
+            "value": {
+                "name": "Schatz",
+                "description": "Schweigen ist Gold"
+            }
+        },
+        {
+            "key": "ice-cream",
+            "value": {
+                "name": "Eiscreme",
+                "description": "Köstlich"
+            }
+        },
+        {
+            "key": "bag-of-gold",
+            "value": {
+                "name": "Beutel voll Gold",
+                "description": "Geld spricht"
+            }
+        },
+        {
+            "key": "genie",
+            "value": {
+                "name": "Genie",
+                "description": "Irgendwann wird dein Wunsch in Erfüllung gehen"
+            }
+        },
+        {
+            "key": "hero",
+            "value": {
+                "name": "Held",
+                "description": "DROP Dragon-Karte"
+            }
+        },
+        {
+            "key": "avoid-inevitable",
+            "value": {
+                "name": "Vermeiden Sie unvermeidlich",
+                "description": "KANN diese Karte auf MIX Unvermeidliches Ende fallen lassen"
+            }
+        },
+        {
+            "key": "magic-hat",
+            "value": {
+                "name": "Tarnkappe",
+                "description": "COVER jedermanns Karte"
+            }
+        },
+        {
+            "key": "totem",
+            "value": {
+                "name": "Totem",
+                "description": "Deine Karten können nicht abgelegt werden"
+            }
+        },
+        {
+            "key": "gold-mountain",
+            "value": {
+                "name": "Goldberg",
+                "description": "LASSEN Sie eine andere Gold Mountain-Karte fallen. #TAKE AWAY Dragon-Karte"
+            }
+        },
+        {
+            "key": "grail",
+            "value": {
+                "name": "Gral",
+                "description": "Lass eine feindliche Karte fallen"
+            }
+        },
+        {
+            "key": "illusion",
+            "value": {
+                "name": "Illusion",
+                "description": "MISCHE eine feindliche Karte"
+            }
+        },
+        {
+            "key": "inevitable-end",
+            "value": {
+                "name": "Unausweichliches Ende",
+                "description": "Spiel ist aus..."
+            }
+        },
+        {
+            "key": "king-sword",
+            "value": {
+                "name": "Königsschwert",
+                "description": "TAKE AWAY Königskarte"
+            }
+        },
+        {
+            "key": "boarding-party",
+            "value": {
+                "name": "Boarding-Party",
+                "description": "Drop eigene Karten"
+            }
+        },
+        {
+            "key": "royal-rebellion",
+            "value": {
+                "name": "Königlicher Aufstand",
+                "description": "NEHME einen Ritter WEG.#MIX die Königskarte"
+            }
+        },
+        {
+            "key": "reliable-plan",
+            "value": {
+                "name": "Zuverlässiger Plan",
+                "description": "NEHMEN Sie eine feindliche Karte WEG"
+            }
+        },
+        {
+            "key": "magic-sphere",
+            "value": {
+                "name": "Magische Sphäre",
+                "description": "BEWEGE deine Karte zum Feind"
+            }
+        },
+        {
+            "key": "hocus-pocus",
+            "value": {
+                "name": "Hokuspokus",
+                "description": "NIMM eine weitere Karte von einer zufälligen Stelle des Decks"
+            }
+        },
+        {
+            "key": "wand",
+            "value": {
+                "name": "Zauberstab",
+                "description": "Lassen Sie die Karte von irgendjemandem fallen"
+            }
+        },
+        {
+            "key": "dracula",
+            "value": {
+                "name": "Dracula",
+                "description": "Der Jäger lässt deine Monster nicht fallen. #Bewege eine deiner Fledermaus- oder Krähenkarten zu Feinden"
+            }
+        },
+        {
+            "key": "snake",
+            "value": {
+                "name": "Schlange",
+                "description": "Monster.#Nehmt alle Schlangenkarten WEG"
+            }
+        },
+        {
+            "key": "crow",
+            "value": {
+                "name": "Krähe",
+                "description": "Monster"
+            }
+        },
+        {
+            "key": "cerberus",
+            "value": {
+                "name": "Zerberus",
+                "description": "Monster.#Spieler mit drei Cerberus-Karten verlieren zwei Münzen"
+            }
+        },
+        {
+            "key": "locusts",
+            "value": {
+                "name": "Heuschrecken",
+                "description": "Monster.#MIX eine gegnerische Karte"
+            }
+        },
+        {
+            "key": "siren",
+            "value": {
+                "name": "Sirene",
+                "description": "Monster.#Boarding Party-Karte funktioniert bei dir nicht"
+            }
+        },
+        {
+            "key": "curses",
+            "value": {
+                "name": "Flüche",
+                "description": "ABDECKEN Sie Ihre Karte"
+            }
+        },
+        {
+            "key": "dark-wizard",
+            "value": {
+                "name": "Dunkler Zauberer",
+                "description": "MISCHE die Light Wizard-Karte"
+            }
+        },
+        {
+            "key": "bear",
+            "value": {
+                "name": "Tragen",
+                "description": "Monster.#MIX dein Monster"
+            }
+        },
+        {
+            "key": "hydra",
+            "value": {
+                "name": "Hydra",
+                "description": "Monster.#BEWEGE eines deiner Monster zu Feinden"
+            }
+        },
+        {
+            "key": "zombie",
+            "value": {
+                "name": "Zombie",
+                "description": "Monster"
+            }
+        },
+        {
+            "key": "slime",
+            "value": {
+                "name": "Schleim",
+                "description": "Monster.#COVER Feindkarte"
+            }
+        },
+        {
+            "key": "black-sun-castle",
+            "value": {
+                "name": "Schwarzes Sonnenschloss",
+                "description": "Building.#Artillery-Karte lässt Ihre Gebäude nicht fallen"
+            }
+        },
+        {
+            "key": "hut",
+            "value": {
+                "name": "Hütte",
+                "description": "Gebäude.#COVER dein Monster"
+            }
+        },
+        {
+            "key": "bat",
+            "value": {
+                "name": "Schläger",
+                "description": "Monster"
+            }
+        },
+        {
+            "key": "black-cat",
+            "value": {
+                "name": "Schwarze Katze",
+                "description": "Monster.#COVER feindliche Karte"
+            }
+        },
+        {
+            "key": "flame-wall",
+            "value": {
+                "name": "Flammenwand",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "water-wall",
+            "value": {
+                "name": "Wasserwand",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "air-wall",
+            "value": {
+                "name": "Luftwand",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "earthen-wall",
+            "value": {
+                "name": "Erdwand",
+                "description": "Gebäude"
+            }
+        },
+        {
+            "key": "four-elements",
+            "value": {
+                "name": "Vier Elemente",
+                "description": "NEHMEN Sie alle Wandkarten WEG"
+            }
+        },
+        {
+            "key": "robber",
+            "value": {
+                "name": "Räuber",
+                "description": "Gib mir dein Geld"
+            }
+        },
+        {
+            "key": "royal-poison",
+            "value": {
+                "name": "Königliches Gift",
+                "description": "MIX Königskarte und alle Ritter"
+            }
+        },
+        {
+            "key": "poison",
+            "value": {
+                "name": "Gift",
+                "description": "Lassen Sie Ihre R-Karte fallen"
+            }
+        },
+        {
+            "key": "poisonous-flower",
+            "value": {
+                "name": "Giftige Blume",
+                "description": "Spüren Sie das Gift in jeder Zelle Ihres Körpers..."
+            }
+        },
+        {
+            "key": "explosion",
+            "value": {
+                "name": "Explosion",
+                "description": "Lassen Sie die Karte von irgendjemandem fallen, die eine andere überdeckt"
+            }
+        },
+        {
+            "key": "dark-genie",
+            "value": {
+                "name": "Dunkler Genie",
+                "description": "Dein Wunsch wird nie in Erfüllung gehen"
+            }
+        },
+        {
+            "key": "killer",
+            "value": {
+                "name": "Mörder",
+                "description": "Drop eigenen Ritter"
+            }
+        },
+        {
+            "key": "victim",
+            "value": {
+                "name": "Opfer",
+                "description": "NEHMEN Sie zwei weitere Karten vom Stapel"
+            }
+        },
+        {
+            "key": "hell",
+            "value": {
+                "name": "Hölle",
+                "description": "Lass eine feindliche R-Karte fallen"
+            }
+        },
+        {
+            "key": "artillery",
+            "value": {
+                "name": "Artillerie",
+                "description": "VERLASSEN Sie Ihr Gebäude"
+            }
+        },
+        {
+            "key": "death",
+            "value": {
+                "name": "Tod",
+                "description": "Sterben ist so natürlich wie Leben"
+            }
+        },
+        {
+            "key": "wolf-spirit",
+            "value": {
+                "name": "Wolfsgeist",
+                "description": "BEWEGEN Sie Ihre Karte zum Feind"
+            }
+        },
+        {
+            "key": "cemetery",
+            "value": {
+                "name": "Friedhof",
+                "description": "MIX jedermanns Karte"
+            }
+        },
+        {
+            "key": "red-pandora's-box",
+            "value": {
+                "name": "Büchse der Pandora",
+                "description": "Mischen Sie Ihre Karte"
+            }
+        }
+    ]
+}

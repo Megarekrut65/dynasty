@@ -127,6 +127,34 @@
         {
             "key": "turn",
             "value": "Now is the turn"
+        },
+        {
+            "key": "account",
+            "value": "Account"
+        },
+        {
+            "key": "play",
+            "value": "Play"
+        },
+        {
+            "key": "collection",
+            "value": "Card collection"
+        },
+        {
+            "key": "settings",
+            "value": "Settings"
+        },
+        {
+            "key": "music",
+            "value": "Music"
+        },
+        {
+            "key": "sounds",
+            "value": "Sounds"
+        },
+        {
+            "key": "language",
+            "value": "Language"
         }
     ]
 }
