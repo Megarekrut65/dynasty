@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Desk : MonoBehaviour {
+	[SerializeField]
+	private int order = 0;
 	[Header("Desk parts")]
 	[SerializeField]
 	private GameObject playerLabel;
@@ -24,7 +26,13 @@ public class Desk : MonoBehaviour {
 			return playerLabel;
 		}
 	}
-	void Start() {
+	public int Order {
+		get {
+			return order;
+		}
+	}
+
+	private void Start() {
 		coins.text = "0";
 		nameLabel.color = color;
 	}
@@ -36,5 +44,9 @@ public class Desk : MonoBehaviour {
 	}
 	public void SetCoins(int coins) {
 		this.coins.text = coins.ToString();
+	}
+	public void SetActive(bool value) {
+		gameObject.SetActive(value);
+		playerLabel.SetActive(value);
 	}
 }

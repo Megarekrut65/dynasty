@@ -12,7 +12,7 @@ public class Translator {
 	}
 	private static string TranslateWord(string key) {
 		string word = LocalizationManager.Instance.GetWord(key);
-		if (word == null || word.Length == 0) word = key;
+		if (word == LocalizationMap.NOT_FOUND) word = key;
 		return word;
 	}
 }

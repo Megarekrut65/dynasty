@@ -494,11 +494,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165728201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 233614370}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &182122463
 GameObject:
@@ -587,10 +587,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 182122463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891d5d2db15a8cd42910b21ad347871d, type: 3}
+  m_Script: {fileID: 11500000, guid: c702e5e609d03d644b7588f6d6c01275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClick: {fileID: 0}
+  sceneName: Menu
 --- !u!114 &182122468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,10 +600,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 182122463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf773a6f9e0b181428521b8bc1ec03cd, type: 3}
+  m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Menu
+  soundClick: {fileID: 0}
 --- !u!114 &182122469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +647,7 @@ Transform:
   m_Children:
   - {fileID: 695430498}
   - {fileID: 1925420580}
+  - {fileID: 165728203}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -858,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: 4
   playerLabel: {fileID: 1691036040}
   nameLabel: {fileID: 1063561010}
   coins: {fileID: 364779063}
@@ -1643,13 +1645,6 @@ MonoBehaviour:
   gameManager: {fileID: 1925420579}
   animationManager: {fileID: 165728202}
   container: {fileID: 50463340}
-  playerDesks:
-  - {fileID: 1665946571}
-  - {fileID: 820882507}
-  - {fileID: 1513227864}
-  - {fileID: 854501740}
-  - {fileID: 274420561}
-  - {fileID: 1717776602}
   table:
     desk: []
     drop: []
@@ -2026,6 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: 1
   playerLabel: {fileID: 907611791}
   nameLabel: {fileID: 2004691037}
   coins: {fileID: 267747706}
@@ -2144,6 +2140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: 3
   playerLabel: {fileID: 1303138826}
   nameLabel: {fileID: 1633665796}
   coins: {fileID: 947780287}
@@ -3392,6 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: 2
   playerLabel: {fileID: 1130836140}
   nameLabel: {fileID: 1645833370}
   coins: {fileID: 1385087877}
@@ -3859,6 +3857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: 0
   playerLabel: {fileID: 674677895}
   nameLabel: {fileID: 949052174}
   coins: {fileID: 1974395645}
@@ -4054,6 +4053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337f05908eae414f9196eb45e735b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: 5
   playerLabel: {fileID: 805362453}
   nameLabel: {fileID: 1070773431}
   coins: {fileID: 689956740}
@@ -4148,6 +4148,7 @@ GameObject:
   - component: {fileID: 1865894740}
   - component: {fileID: 1865894739}
   - component: {fileID: 1865894743}
+  - component: {fileID: 1865894744}
   m_Layer: 5
   m_Name: NormalizeCamera
   m_TagString: Untagged
@@ -4183,7 +4184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865894737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891d5d2db15a8cd42910b21ad347871d, type: 3}
+  m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soundClick: {fileID: 0}
@@ -4254,6 +4255,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!114 &1865894744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865894737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1899782925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4412,6 +4428,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependenciesManager:
+    playerDesks:
+    - {fileID: 1665946571}
+    - {fileID: 854501740}
+    - {fileID: 820882507}
+    - {fileID: 1717776602}
+    - {fileID: 1513227864}
+    - {fileID: 274420561}
     bigCard: {fileID: 1085426145}
     cameraMove: {fileID: 570252267}
     logger: {fileID: 1609996976}
@@ -5025,7 +5048,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5661800588421517820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891d5d2db15a8cd42910b21ad347871d, type: 3}
+  m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soundClick: {fileID: 0}

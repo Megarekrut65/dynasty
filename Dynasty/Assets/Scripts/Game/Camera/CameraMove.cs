@@ -1,6 +1,6 @@
-
 using UnityEngine;
 using System;
+
 public class CameraMove : MonoBehaviour {
 	[Header("Camera")]
 	[SerializeField]
@@ -22,10 +22,11 @@ public class CameraMove : MonoBehaviour {
 			stop = value;
 		}
 	}
-	void Start() {
+
+	private void Start() {
 		targetPosition = cameraTransform.position;
 	}
-	void Update() {
+	private void Update() {
 		if (Input.GetMouseButtonDown(0)) start = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 		else if (Input.GetMouseButton(0)) {
 			Vector2 position = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) - start;

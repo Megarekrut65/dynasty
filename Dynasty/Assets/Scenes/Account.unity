@@ -209,7 +209,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 101283718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf773a6f9e0b181428521b8bc1ec03cd, type: 3}
+  m_Script: {fileID: 11500000, guid: c702e5e609d03d644b7588f6d6c01275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 101283718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891d5d2db15a8cd42910b21ad347871d, type: 3}
+  m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soundClick: {fileID: 0}

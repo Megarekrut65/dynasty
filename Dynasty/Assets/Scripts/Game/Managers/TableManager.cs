@@ -9,11 +9,9 @@ public class TableManager : MonoBehaviour {
 	private GameManager gameManager;
 	[SerializeField]
 	private CardAnimationManager animationManager;
-	[Header("Card places")]
+	[Header("Card place")]
 	[SerializeField]
 	private GameObject container;
-	[SerializeField]
-	private Desk[] playerDesks = new Desk[6];
 	[Header("")]
 	[SerializeField]
 	private Table table;
@@ -26,9 +24,6 @@ public class TableManager : MonoBehaviour {
 		cardManager = new CardManager(container, cardObject);
 		dependencies = gameManager.Dependencies;
 		var players = dependencies.playerManager.Players;
-		for (int i = 0; i < players.Count; i++) {
-			players[i].SetDesk(playerDesks[i]);
-		}
 		table = new Table(players);
 		animationEffectGenerator = new AnimationEffectGenerator(cardManager, table, animationManager);
 		effectsGenerator = new EffectsGenerator(gameManager, dependencies, cardManager, table, animationEffectGenerator);

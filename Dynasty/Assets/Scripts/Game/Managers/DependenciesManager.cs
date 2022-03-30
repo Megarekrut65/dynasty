@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class DependenciesManager {
+	[SerializeField]
+	private Desk[] playerDesks = new Desk[6];
 	[Header("Big Card")]
 	[SerializeField]
 	private Toggle bigCard;
@@ -23,7 +25,7 @@ public class DependenciesManager {
 
 	public GameDependencies GetDependencies() {
 		if (dependencies == null) {
-			var playerManager = new PlayerManager();
+			var playerManager = new PlayerManager(playerDesks);
 			dependencies = new GameDependencies {
 				bigCardManager = new BigCardManager(scrollRect, bigCard),
 				scrollManager = new ScrollManager(scrollRect.GetComponent<ScrollRect>(), contentObject, view),

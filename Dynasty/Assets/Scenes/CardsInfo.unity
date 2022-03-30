@@ -553,13 +553,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: All
+    - m_Text: all
       m_Image: {fileID: 0}
-    - m_Text: Red
+    - m_Text: red
       m_Image: {fileID: 0}
-    - m_Text: Yellow
+    - m_Text: yellow
       m_Image: {fileID: 0}
-    - m_Text: Green
+    - m_Text: green
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -567,18 +567,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1291424788}
         m_TargetAssemblyTypeName: GeneratorManager, Assembly-CSharp
         m_MethodName: SelectColor
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 375637686}
-        m_TargetAssemblyTypeName: FilterLocalization, Assembly-CSharp
-        m_MethodName: ChangeText
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -636,11 +624,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 375637681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f260ee3f5a9f8d41a7c52b0beea6015, type: 3}
+  m_Script: {fileID: 11500000, guid: 66b271f777af26243ba9d1632820ff78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 1748603977}
-  filter: {fileID: 375637683}
+  dropdown: {fileID: 375637683}
 --- !u!1 &522572845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,7 +1863,6 @@ MonoBehaviour:
   content: {fileID: 1331799292}
   scrollRect: {fileID: 1149238979}
   blackBoard: {fileID: 3437451923446761814, guid: 2ebe4a4c0bdf5364dacca9f9f0f314bb, type: 3}
-  logText: {fileID: 1048974245}
 --- !u!4 &1291424789
 Transform:
   m_ObjectHideFlags: 0
@@ -2475,7 +2462,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: All
+  m_Text: all
 --- !u!222 &1748603978
 CanvasRenderer:
   m_ObjectHideFlags: 0

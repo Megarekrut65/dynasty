@@ -16,7 +16,7 @@ public class LocalizationMap {
 			return cardMap;
 		}
 	}
-
+	public const string NOT_FOUND = "Error:Text not found";
 	public LocalizationMap(SortedDictionary<string, CardParameters> parameters) {
 		foreach (var item in parameters) {
 			cardMap.Add(item.Key, new CardData(item.Key, item.Value));
@@ -32,7 +32,7 @@ public class LocalizationMap {
 		if (wordMap.ContainsKey(key)) {
 			return wordMap[key];
 		}
-		return default(string);
+		return NOT_FOUND;
 	}
 	public CardData GetCard(string key) {
 		if (cardMap.ContainsKey(key)) {

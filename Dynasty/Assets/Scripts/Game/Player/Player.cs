@@ -11,11 +11,14 @@ public class Player {
 			return coins;
 		}
 	}
-
-	public Player(string nickname) {
-		this.nickname = nickname;
+	public int Order {
+		get {
+			return desk.Order;
+		}
 	}
-	public void SetDesk(Desk desk) {
+
+	public Player(string nickname, Desk desk) {
+		this.nickname = nickname;
 		this.desk = desk;
 		desk.SetName(nickname);
 	}

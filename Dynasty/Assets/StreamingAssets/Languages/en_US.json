@@ -155,6 +155,42 @@
         {
             "key": "language",
             "value": "Language"
+        },
+        {
+            "key": "online",
+            "value": "Multiplayer"
+        },
+        {
+            "key": "offline",
+            "value": "Play offline"
+        },
+        {
+            "key": "player-count",
+            "value": "Number of players"
+        },
+        {
+            "key": "bot-count",
+            "value": "Number of bots"
+        },
+        {
+            "key": "easy",
+            "value": "Easy"
+        },
+        {
+            "key": "medium",
+            "value": "Medium"
+        },
+        {
+            "key": "difficulty",
+            "value": "Difficulty"
+        },
+        {
+            "key": "enable-bots",
+            "value": "Enable bots"
+        },
+        {
+            "key": "go",
+            "value": "Go"
         }
     ]
 }

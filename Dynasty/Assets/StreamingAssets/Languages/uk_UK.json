@@ -155,6 +155,42 @@
         {
             "key": "language",
             "value": "Мова"
+        },
+        {
+            "key": "online",
+            "value": "Мультиплеєр"
+        },
+        {
+            "key": "offline",
+            "value": "Грати офлайн"
+        },
+        {
+            "key": "player-count",
+            "value": "Кількість гравців"
+        },
+        {
+            "key": "bot-count",
+            "value": "Кількість ботів"
+        },
+        {
+            "key": "easy",
+            "value": "Легко"
+        },
+        {
+            "key": "medium",
+            "value": "Нормально"
+        },
+        {
+            "key": "difficulty",
+            "value": "Складність"
+        },
+        {
+            "key": "enable-bots",
+            "value": "Додати ботів"
+        },
+        {
+            "key": "go",
+            "value": "Вперед"
         }
     ]
 }
