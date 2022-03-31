@@ -6,21 +6,15 @@ public class SelectClick : MonoBehaviour,
 IPointerDownHandler, IPointerUpHandler {
 	private int id;
 	public int Id {
-		set {
-			id = value;
-		}
+		set => id = value;
 	}
 	private Action<int> select;
 	public Action<int> Select {
-		set {
-			select = value;
-		}
+		set => select = value;
 	}
 	private bool canClick;
 	public bool CanClick {
-		set {
-			canClick = value;
-		}
+		set => canClick = value;
 	}
 	private ButtonEffect buttonEffect;
 	private void Start() {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class DeskManager : MonoBehaviour,
 IPointerDownHandler, IPointerUpHandler {
 	[SerializeField]
@@ -9,7 +10,7 @@ IPointerDownHandler, IPointerUpHandler {
 	[SerializeField]
 	private Animation deskAnimation;
 
-	void Awake() {
+	private void Awake() {
 		gameManager.Dependencies.roundManager.Next += Next;
 	}
 	public void OnPointerDown(PointerEventData eventData) {
@@ -20,7 +21,8 @@ IPointerDownHandler, IPointerUpHandler {
 			manager.TakeCardFromDesk();
 		}
 	}
-	protected void Next() {
+
+	private void Next() {
 		if (manager.PlayerRound()) {
 			deskAnimation.Play("DeskActive");
 			gameManager.Dependencies.logger.TranslatedLog(

@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class DeskGenerator {
+public static class DeskGenerator {
 	public static List<Card> Generate(int seed, Func<Card, bool> check, int pos) {
 		List<Card> desk = new List<Card>();
 		List<Card> data = new List<Card>();

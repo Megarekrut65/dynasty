@@ -1,13 +1,9 @@
-using System;
-using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
 
 using CardEffect = System.Func<bool>;
 
 public class EffectsGenerator : SelectEffectGenerator {
-	protected GameManager gameManager;
+	private GameManager gameManager;
 
 	public EffectsGenerator(GameManager gameManager, GameDependencies dependencies,
 			CardManager cardManager, Table table, AnimationEffectGenerator anim)
@@ -72,7 +68,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 		}
 	}
 	private CardEffect HydraEffect(Player player, Card card) {
-		return MoveCardSelectEffect((c) => c.type == CardType.MONSTER && c.id != card.id,
+		return MoveCardSelectEffect(c => c.type == CardType.MONSTER && c.id != card.id,
 					player, dependencies.playerManager.Players, card);
 	}
 	private CardEffect HocusPocusEffect(Player player, Card card) {
@@ -82,18 +78,16 @@ public class EffectsGenerator : SelectEffectGenerator {
 		};
 	}
 	private CardEffect RoyalRebellionEffect(Player player, Card card) {
-		return () => {
-			return MixEffect("king", player, card, false)() &&
-				EncampmentEffect(player, card)();
-		};
+		return () => MixEffect("king", player, card, false)() &&
+		             EncampmentEffect(player, card)();
 	}
 	private CardEffect ExplosionEffect(Player player, Card card) {
 		return DropCardSelectEffect(GameAction.GetFilter(
-					CardFunctions.DROP, (c) => c.underCard != null),
+					CardFunctions.DROP, c => c.underCard != null),
 				player, TotemFilter(dependencies.playerManager.Players), card);
 	}
 	private CardEffect HutEffect(Player player, Card card) {
-		return CoverCardSelectEffect((c) => c.type == CardType.MONSTER,
+		return CoverCardSelectEffect(c => c.type == CardType.MONSTER,
 							player, new List<Player>() { player }, card);
 	}
 	private CardEffect DungeonEffect(Player player, Card card) {
@@ -103,7 +97,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 		};
 	}
 	private CardEffect KillerEffect(Player player, Card card) {
-		return DropCardSelectEffect((c) => c.type == CardType.KNIGHT,
+		return DropCardSelectEffect(c => c.type == CardType.KNIGHT,
 					player, new List<Player>() { player }, card);
 	}
 	private CardEffect BoardingPartyEffect(Player player, Card card) {
@@ -118,7 +112,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 		return () => {
 			var castle = table.FindCardInPlayer(player, "black-sun-castle");
 			if (castle == null) {
-				return DropCardSelectEffect((c) => c.type == CardType.BUILDING || c.type == CardType.WALL,
+				return DropCardSelectEffect(c => c.type == CardType.BUILDING || c.type == CardType.WALL,
 						player, new List<Player>() { player }, card)();
 			}
 			anim.PulsationCardAnimated(castle);
@@ -129,7 +123,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 		return () => {
 			var dracula = table.FindCardInPlayer(player, "dracula");
 			if (dracula == null) {
-				return DropCardSelectEffect((c) =>
+				return DropCardSelectEffect(c =>
 					c.type == CardType.MONSTER, player,
 					new List<Player>() { player }, card)();
 			}
@@ -138,19 +132,19 @@ public class EffectsGenerator : SelectEffectGenerator {
 		};
 	}
 	private CardEffect BearEffect(Player player, Card card) {
-		return MixCardSelectEffect((c) => c.type == CardType.MONSTER,
+		return MixCardSelectEffect(c => c.type == CardType.MONSTER,
 			player, new List<Player>() { player }, card);
 	}
 	private CardEffect DraculaEffect(Player player, Card card) {
-		return MoveCardSelectEffect((c) => "batcrow".Contains(c.key),
+		return MoveCardSelectEffect(c => "batcrow".Contains(c.key),
 			player, dependencies.playerManager.Players, card);
 	}
 	private CardEffect TowerEffect(Player player, Card card) {
-		return TakeAwayCardSelectEffect((c) => c.key == "archer",
+		return TakeAwayCardSelectEffect(c => c.key == "archer",
 			player, dependencies.playerManager.GetEnemies(player), card);
 	}
 	private CardEffect EncampmentEffect(Player player, Card card) {
-		return TakeAwayCardSelectEffect((c) => c.type == CardType.KNIGHT,
+		return TakeAwayCardSelectEffect(c => c.type == CardType.KNIGHT,
 			player, dependencies.playerManager.GetEnemies(player), card);
 	}
 	private CardEffect RoyalPoisonEffect(Player player, Card card) {
@@ -214,16 +208,12 @@ public class EffectsGenerator : SelectEffectGenerator {
 		};
 	}
 	private CardEffect DungeonKeysEffect(Player player, Card card) {
-		return () => {
-			return MixEffect("secret-treasure", player, card, false)() &&
-				TakeAwayCardEffect("dungeon", player, card)();
-		};
+		return () => MixEffect("secret-treasure", player, card, false)() &&
+		             TakeAwayCardEffect("dungeon", player, card)();
 	}
 	private CardEffect GoldMountainEffect(Player player, Card card) {
-		return () => {
-			return DropEffect("gold-mountain", player, card, false)() &&
-				TakeAwayCardEffect("dragon", player, card)();
-		};
+		return () => DropEffect("gold-mountain", player, card, false)() &&
+		             TakeAwayCardEffect("dragon", player, card)();
 	}
 	private CardEffect InevitableEndEffect(Card card) {
 		return () => {

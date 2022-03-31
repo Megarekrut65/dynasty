@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SelectData {
 	public List<SelectObjectData<Card>> selectingCards = new List<SelectObjectData<Card>>();
 	public string lastType = "";

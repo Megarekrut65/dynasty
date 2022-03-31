@@ -6,8 +6,8 @@ using System.Collections;
 using CardEffect = System.Func<bool>;
 
 public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
-	protected SelectManager selectManager;
-
+	private SelectManager selectManager;
+	
 	public SelectEffectGenerator(GameDependencies dependencies,
 	CardManager cardManager, Table table, AnimationEffectGenerator anim)
 		: base(dependencies, cardManager, table, anim) {
@@ -68,7 +68,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			cardManager.CreateCard(c);
 			dependencies.scrollManager.AddToScroll(c.obj);
 		}
-		selectManager.SelectCard(player, cards, (id) => {
+		selectManager.SelectCard(player, cards, id => {
 			behaviour.StartCoroutine(TakeAction(id, player, callNext));
 		}, dependencies.playerManager.IsPlayer(player));
 		yield return null;
@@ -95,7 +95,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectDrop(predicate, player, players,
-				(id) => {
+				id => {
 					logger.LogAction(player, id, "dropped");
 					var drop = table.RemoveCardFromPlayer(id);
 					if (drop != null)
@@ -110,7 +110,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectCover(predicate, player, players,
-				(id) => {
+				id => {
 					logger.LogAction(player, id, "covered");
 					var cover = table.FindCardInPlayers(id);
 					if (cover != null)
@@ -125,7 +125,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectMix(predicate, player, players,
-				(id) => {
+				id => {
 					logger.LogAction(player, id, "mixed");
 					var mix = table.RemoveCardFromPlayer(id);
 					if (mix != null)
@@ -140,7 +140,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		return () => {
 			card.needSelect = true;
 			selectManager.SelectMove(predicate, player, players,
-				(id) => {
+				id => {
 					logger.LogAction(player, id, "took-away");
 					var take = table.RemoveCardFromPlayer(id);
 					if (take != null)

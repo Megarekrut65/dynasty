@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -15,7 +15,7 @@ public class GameLoad : MonoBehaviour {
 		StartCoroutine(LoadData());
 	}
 	private IEnumerator LoadData() {
-		while (loadSlider.value != 100) {
+		while (Math.Abs(loadSlider.value - 100) > 0.000f) {
 			yield return new WaitForSeconds(0.005f);
 			if (LocalizationManager.Instance.Ready)
 				loadSlider.value += 10;

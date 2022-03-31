@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 
@@ -6,16 +5,16 @@ public class CardAnimationManager : MonoBehaviour {
 	[SerializeField]
 	private AnimationClip[] clips;
 
-	public void AddAnimation(GameObject obj, string name) {
+	private void AddAnimation(GameObject obj, string name) {
 		if (obj == null) return;
-		var clip = Array.Find(clips, (cl) => cl.name == name);
+		var clip = Array.Find(clips, cl => cl.name == name);
 		if (clip != null) {
 			var anim = obj.GetComponent<Animation>();
 			if (anim == null) anim = obj.AddComponent<Animation>();
 			if (anim[name] == null) anim.AddClip(clip, name);
 		}
 	}
-	public void PlayAnimation(GameObject obj, string name, Action afterAnimation) {
+	private void PlayAnimation(GameObject obj, string name, Action afterAnimation) {
 		if (obj == null) return;
 		AddAnimation(obj, name);
 		CardAnimation cardAnimation = obj.AddComponent<CardAnimation>();

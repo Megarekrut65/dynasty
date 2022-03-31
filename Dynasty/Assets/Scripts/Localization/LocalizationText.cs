@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class LocalizationText : MonoBehaviour {
 	[SerializeField]
 	private string key;
@@ -20,7 +19,8 @@ public class LocalizationText : MonoBehaviour {
 	private void OnDestroy() {
 		LocalizationManager.Instance.OnLanguageChanged -= UpdateText;
 	}
-	virtual protected void UpdateText() {
+
+	private void UpdateText() {
 		if (gameObject == null) return;
 		if (text == null) {
 			text = GetComponent<Text>();

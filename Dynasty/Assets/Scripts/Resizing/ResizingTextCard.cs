@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class ResizingTextCard : MonoBehaviour {
 	[SerializeField]
@@ -27,7 +24,8 @@ public class ResizingTextCard : MonoBehaviour {
 	public void BestFit(bool active) {
 		text.resizeTextForBestFit = active;
 	}
-	void ChangeText() {
+
+	private void ChangeText() {
 		text.resizeTextMaxSize = data.MinFontSize;
 	}
 }

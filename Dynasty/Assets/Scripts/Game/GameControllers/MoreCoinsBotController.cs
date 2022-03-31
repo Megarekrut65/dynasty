@@ -1,26 +1,22 @@
-using System.Collections;
 using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class MoreCoinsBotController : BotController {
 	public MoreCoinsBotController(Player player, GameDependencies dependencies,
 		Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) { }
 
 	protected override SelectObjectData<Card> SelectCard() {
-		if (SelectManager.SelectData.selectingCards.Count == 0) return null;
-		return FindBestSelect();
+		return SelectManager.SelectData.selectingCards.Count == 0 ? null : FindBestSelect();
 	}
 
 	private SelectObjectData<Card> FindBestSelect() {
 		var type = SelectManager.SelectData.lastType;
-		switch (type) {
-			case "mix": return FindBest(CountMixAmount);
-			case "move": return FindBest(CountMoveAmount);
-			case "cover": return FindBest(CountCoverAmount);
-			case "drop": return FindBest(CountDropAmount);
-			default: return null;
-		}
+		return type switch {
+			"mix" => FindBest(CountMixAmount),
+			"move" => FindBest(CountMoveAmount),
+			"cover" => FindBest(CountCoverAmount),
+			"drop" => FindBest(CountDropAmount),
+			_ => null
+		};
 	}
 	private float CountMixAmount(SelectObjectData<Card> card) {
 		return CountDropAmount(card);
@@ -40,8 +36,7 @@ public class MoreCoinsBotController : BotController {
 		return CountAmount(card, coefficient);
 	}
 	private float CountDropAmount(SelectObjectData<Card> card) {
-		float coefficient = -2.5f;
-		return CountAmount(card, coefficient);
+		return CountAmount(card, -2.5f);
 	}
 	private float CountAmount(SelectObjectData<Card> card, float coefficient = -1f) {
 		float amount = card.obj.data.amount;

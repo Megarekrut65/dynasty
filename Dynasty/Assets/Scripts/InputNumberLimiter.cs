@@ -11,7 +11,7 @@ public class InputNumberLimiter : MonoBehaviour {
 	[SerializeField]
 	private int max;
 
-	public void Change(String value) {
+	public void Change(string value) {
 		field.text = Mathf.Clamp(Convert.ToInt32(value), min, max).ToString();
 	}
 }

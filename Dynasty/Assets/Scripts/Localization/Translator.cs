@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class Translator {
+public static class Translator {
 	public static string Translate(string text) {
 		string[] keys = text.Split(' ');
 		string res = "";

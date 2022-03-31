@@ -2,11 +2,9 @@
 public class ResizingData {
 	private int minFontSize;
 	public int MinFontSize {
-		get {
-			return minFontSize;
-		}
+		get => minFontSize;
 		set {
-			lock (_lock) {
+			lock (@lock) {
 				if (value < minFontSize) {
 					minFontSize = value;
 					OnChanged?.Invoke();
@@ -14,7 +12,8 @@ public class ResizingData {
 			}
 		}
 	}
-	public readonly object _lock = new object();
+
+	private readonly object @lock = new object();
 	public delegate void ChangeFontSize();
 	public event ChangeFontSize OnChanged;
 	

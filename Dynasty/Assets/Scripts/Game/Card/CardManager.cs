@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using CardEffect = System.Func<bool>;
+using Object = UnityEngine.Object;
 
 public class CardManager {
 	private GameObject container;
@@ -17,10 +18,10 @@ public class CardManager {
 	}
 	public void DeleteCardFromTable(Card card) {
 		CardClick cardClick = card.obj.GetComponent<CardClick>();
-		if (cardClick != null) MonoBehaviour.Destroy(cardClick);
+		if (cardClick != null) Object.Destroy(cardClick);
 		// card.obj.SetActive(false);
 		// cardPool.Push(card.obj);
-		MonoBehaviour.Destroy(card.obj);
+		Object.Destroy(card.obj);
 		card.obj = null;
 	}
 	public void AddClickToCard(Card card, CardEffect effect, Color color, bool canClick) {
@@ -29,8 +30,8 @@ public class CardManager {
 		Func<bool> click = () => {
 			bool res = effect();
 			if (res) {
-				MonoBehaviour.Destroy(cardClick);
-				MonoBehaviour.Destroy(outline);
+				Object.Destroy(cardClick);
+				Object.Destroy(outline);
 			}
 			return res;
 		};
@@ -47,7 +48,7 @@ public class CardManager {
 	public void CreateCard(Card card) {
 		GameObject obj;
 		if (cardPool.Count == 0)
-			obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
+			obj = Object.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
 		else {
 			obj = cardPool.Pop();
 			obj.SetActive(true);
@@ -60,7 +61,7 @@ public class CardManager {
 		card.obj = obj;
 		UpdateCardObject(card);
 	}
-	public void UpdateCardObject(Card card) {
+	private void UpdateCardObject(Card card) {
 		var obj = card.obj;
 		obj.GetComponent<CardLoader>().Key = card.key;
 		obj.GetComponent<CardLoader>().LoadData();

@@ -84,8 +84,7 @@ public abstract class SimpleEffectsGenerator {
 	protected CardEffect CardMoreEffect(int more, Player player, Card card, bool callNext = true) {
 		return () => {
 			dependencies.roundManager.AddMoreRounds(more);
-			if (callNext) return CardEffect(player, card)();
-			return true;
+			return !callNext || CardEffect(player, card)();
 		};
 	}
 	protected CardEffect DropEffect(string key, Player player, Card card, bool callNext = true) {
@@ -117,8 +116,7 @@ public abstract class SimpleEffectsGenerator {
 				Card c = table.FindCardInPlayer(with, key);
 				anim.PulsationCardAnimated(c);
 			}
-			if (callNext) return CardEffect(owner, card)();
-			return true;
+			return !callNext || CardEffect(owner, card)();
 		};
 	}
 	protected CardEffect MixEffect(string key, Player player, Card card, bool callNext = true) {
@@ -152,7 +150,8 @@ public abstract class SimpleEffectsGenerator {
 			if (callNext) behaviour.StartCoroutine(Next());
 		};
 	}
-	IEnumerator Next() {
+
+	private IEnumerator Next() {
 		yield return new WaitForSeconds(1f);
 		dependencies.roundManager.CallNextPlayer();
 	}

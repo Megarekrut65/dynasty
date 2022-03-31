@@ -1,7 +1,7 @@
 using UnityEngine.Networking;
 using UnityEngine;
 using System.IO;
-public class AllFileReader {
+public static class AllFileReader {
 	public static string Read(string path) {
 		string res;
 		if (Application.platform == RuntimePlatform.Android) {

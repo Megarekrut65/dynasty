@@ -1,21 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Player {
-	public string nickname;
+	public readonly string nickname;
 	private Desk desk;
-	private int coins = 0;
-	public int Coins {
-		get {
-			return coins;
-		}
-	}
-	public int Order {
-		get {
-			return desk.Order;
-		}
-	}
+	public int Coins { get; private set; } = 0;
+
+	public int Order => desk.Order;
 
 	public Player(string nickname, Desk desk) {
 		this.nickname = nickname;
@@ -25,19 +15,19 @@ public class Player {
 	public void AddCard(Card card) {
 		if (card == null) return;
 		if (card.data.type == "A") {
-			coins += card.data.amount;
-			desk.SetCoins(coins);
+			Coins += card.data.amount;
+			desk.SetCoins(Coins);
 		} else desk.AddCard(card);
 	}
 	public void AddCoins(int coins) {
-		this.coins += coins;
-		desk.SetCoins(this.coins);
+		this.Coins += coins;
+		desk.SetCoins(this.Coins);
 	}
 	public Color GetColor() {
 		return desk.PlayerColor;
 	}
-	public override bool Equals(System.Object obj) {
-		if ((obj == null) || !this.GetType().Equals(obj.GetType())) {
+	public override bool Equals(object obj) {
+		if ((obj == null) || this.GetType() != obj.GetType()) {
 			return false;
 		}
 		Player p = (Player)obj;
@@ -46,9 +36,5 @@ public class Player {
 	public override int GetHashCode() {
 		return nickname.GetHashCode();
 	}
-	public GameObject Label {
-		get {
-			return desk.PlayerLabel;
-		}
-	}
+	public GameObject Label => desk.PlayerLabel;
 }

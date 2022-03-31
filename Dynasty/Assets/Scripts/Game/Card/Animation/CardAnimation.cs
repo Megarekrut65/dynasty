@@ -3,16 +3,16 @@ using System;
 using UnityEngine;
 
 public class CardAnimation : MonoBehaviour {
-	public void Play(string name, Action end) {
-		var animation = gameObject.GetComponent<Animation>();
-		StartCoroutine(CallEnd(end, name, animation));
+	public void Play(string animationName, Action end) {
+		var anim = gameObject.GetComponent<Animation>();
+		StartCoroutine(CallEnd(end, animationName, anim));
 	}
-	IEnumerator CallEnd(Action end, string name, Animation animation) {
+	private IEnumerator CallEnd(Action end, string animationName, Animation anim) {
 
-		animation.Play(name);
-		yield return new WaitForSeconds(animation[name].length);
+		anim.Play(animationName);
+		yield return new WaitForSeconds(anim[animationName].length);
 		yield return new WaitForSeconds(0.05f);
-		animation.Stop(name);
+		anim.Stop(animationName);
 		end();
 	}
 }

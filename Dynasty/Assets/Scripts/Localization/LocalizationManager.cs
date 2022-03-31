@@ -1,29 +1,15 @@
-using System;
-using System.Diagnostics;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class LocalizationManager : MonoBehaviour {
-	private const string languageKey = "Language";
-	private const string parametersPath = "Cards/parameters";
-	private const string languageFolder = "Languages/";
-	private const string cardFolder = "Languages/Cards/";
+	private const string LANGUAGE_KEY = "Language";
+	private const string PARAMETERS_PATH = "Cards/parameters";
+	private const string LANGUAGE_FOLDER = "Languages/";
+	private const string CARD_FOLDER = "Languages/Cards/";
 
-	private static LocalizationManager instance;
-	public static LocalizationManager Instance {
-		get {
-			return instance;
-		}
-	}
-	private bool isReady = true;
-	public bool Ready {
-		get {
-			return isReady;
-		}
-	}
+	public static LocalizationManager Instance { get; private set; }
+	public bool Ready { get; private set; } = true;
+
 	public LocalizationMap map;
 	private string currentLanguage = "";
 
@@ -31,38 +17,44 @@ public class LocalizationManager : MonoBehaviour {
 	public event ChangeLanguageText OnLanguageChanged;
 
 	public void ChangeLanguage(string language) {
-		if (language == currentLanguage || !isReady) return;
+		if (language == currentLanguage || !Ready) return;
 		currentLanguage = language;
-		PlayerPrefs.SetString(languageKey, language);
-		isReady = false;
+		PlayerPrefs.SetString(LANGUAGE_KEY, language);
+		Ready = false;
 		StartCoroutine(ChangeCoroutine(language));
 	}
-	IEnumerator ChangeCoroutine(string language) {
-		map.Change(JsonParser<string>.Parse(languageFolder + language),
-					JsonParser<CardInfo>.Parse(cardFolder + language));
+
+	private IEnumerator ChangeCoroutine(string language) {
+		map.Change(JsonParser<string>.Parse(LANGUAGE_FOLDER + language),
+					JsonParser<CardInfo>.Parse(CARD_FOLDER + language));
 		yield return null;
-		isReady = true;
+		Ready = true;
 		OnLanguageChanged?.Invoke();
 	}
 	private void SetLanguagePrefab() {
-		if (!PlayerPrefs.HasKey(languageKey)) {
-			if (Application.systemLanguage == SystemLanguage.Ukrainian) {
-				PlayerPrefs.SetString(languageKey, "uk_UK");
-			} else if (Application.systemLanguage == SystemLanguage.German) {
-				PlayerPrefs.SetString(languageKey, "de_DE");
-			} else {
-				PlayerPrefs.SetString(languageKey, "en_US");
+		if (!PlayerPrefs.HasKey(LANGUAGE_KEY)) {
+			switch (Application.systemLanguage) {
+				case SystemLanguage.Ukrainian:
+					PlayerPrefs.SetString(LANGUAGE_KEY, "uk_UK");
+					break;
+				case SystemLanguage.German:
+					PlayerPrefs.SetString(LANGUAGE_KEY, "de_DE");
+					break;
+				default:
+					PlayerPrefs.SetString(LANGUAGE_KEY, "en_US");
+					break;
 			}
 		}
 	}
-	void Awake() {
+
+	private void Awake() {
 		SetLanguagePrefab();
-		if (instance == null) {
-			instance = this;
-			var parameters = JsonParser<CardParameters>.Parse(parametersPath);
+		if (Instance == null) {
+			Instance = this;
+			var parameters = JsonParser<CardParameters>.Parse(PARAMETERS_PATH);
 			map = new LocalizationMap(parameters);
-			ChangeLanguage(PlayerPrefs.GetString(languageKey));
-		} else if (instance != this) {
+			ChangeLanguage(PlayerPrefs.GetString(LANGUAGE_KEY));
+		} else if (Instance != this) {
 			Destroy(gameObject);
 		}
 

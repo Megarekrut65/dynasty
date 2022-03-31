@@ -28,9 +28,6 @@ public class CardAmount : MonoBehaviour {
 					ColorEditor.SetColor(amountImage, "-");
 				}
 				break;
-			default:
-
-				break;
 		}
 		amountText.text = text + amount.ToString();
 		LoadType(card);

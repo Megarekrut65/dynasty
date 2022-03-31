@@ -1,5 +1,6 @@
 using System;
-[System.Serializable]
+
+[Serializable]
 public class CardParameters {
 	public string type;
 	public int count;

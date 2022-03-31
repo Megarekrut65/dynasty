@@ -1,4 +1,3 @@
-using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,21 +15,11 @@ public class Desk : MonoBehaviour {
 	private GameObject container;
 	[SerializeField]
 	private Color color;
-	public Color PlayerColor {
-		get {
-			return color;
-		}
-	}
-	public GameObject PlayerLabel {
-		get {
-			return playerLabel;
-		}
-	}
-	public int Order {
-		get {
-			return order;
-		}
-	}
+	public Color PlayerColor => color;
+
+	public GameObject PlayerLabel => playerLabel;
+
+	public int Order => order;
 
 	private void Start() {
 		coins.text = "0";

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EffectLogger {
 	private GameLogger logger;
 	private Table table;

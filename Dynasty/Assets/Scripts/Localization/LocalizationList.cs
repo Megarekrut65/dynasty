@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO; 
 [System.Serializable]
-public class LocalizationList<ValueType> {
-	public ItemData<ValueType>[] items;
+public class LocalizationList<TValueType> {
+	public ItemData<TValueType>[] items;
 }
 [System.Serializable]
-public class ItemData<ValueType> {
+public class ItemData<TValueType> {
 	public string key;
-	public ValueType value;
+	public TValueType value;
 
 }

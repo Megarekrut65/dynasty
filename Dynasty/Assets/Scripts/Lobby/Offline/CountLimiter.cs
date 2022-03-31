@@ -17,26 +17,23 @@ public class CountLimiter : MonoBehaviour {
 	private int max;
 
 	private void Start() {
-		playerField.text = GetText("player-count");
-		botField.text = GetText("bot-count");
+		playerField.text = GetText(PrefabsKeys.PLAYER_COUNT_KEY);
+		botField.text = GetText(PrefabsKeys.BOT_COUNT_KEY);
 	}
 	private string GetText(string key) {
-		if (PlayerPrefs.HasKey(key)) {
-			return PlayerPrefs.GetInt(key).ToString();
-		}
-		return "1";
+		return PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key).ToString() : "10";
 	}
-	public void ChangePlayer(String value) {
-		Change(value, playerField, botField, "player-count");
+	public void ChangePlayer(string value) {
+		Change(value, playerField, botField, PrefabsKeys.PLAYER_COUNT_KEY);
 	}
-	public void ChangeBot(String value) {
-		Change(value, botField, playerField, "bot-count");
+	public void ChangeBot(string value) {
+		Change(value, botField, playerField, PrefabsKeys.BOT_COUNT_KEY);
 	}
-	private void Change(String value, InputField own, InputField other, string prefsKey) {
+	private void Change(string value, InputField own, InputField other, string prefsKey) {
 		int ownCount = Convert.ToInt32(value);
 		if (addBot.isOn) {
 			int otherCount = Convert.ToInt32(other.text);
-			if (otherCount + ownCount > 6) {
+			if (otherCount + ownCount > max) {
 				ownCount = max - otherCount;
 			}
 		} else {
@@ -49,6 +46,6 @@ public class CountLimiter : MonoBehaviour {
 		PlayerPrefs.SetInt(prefsKey, res);
 	}
 	public void ChangeToggle(bool value) {
-		ChangePlayer(playerField.text);
+		ChangePlayer(GetText(PrefabsKeys.PLAYER_COUNT_KEY));
 	}
 }

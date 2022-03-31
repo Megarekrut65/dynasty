@@ -8,6 +8,7 @@ public class MessageBox : GameLogger {
 	private ScrollRect scrollRect;
 	[SerializeField]
 	private Text content;
+	
 	public void Change(bool isOpen) {
 		var rect = gameObject.GetComponent<RectTransform>();
 		rect.offsetMax = new Vector2(rect.offsetMax.x, isOpen ? 150f : 0f);

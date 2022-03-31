@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -27,7 +26,8 @@ IPointerDownHandler, IPointerUpHandler {
 	private void Start() {
 		ChangeLanguage();
 	}
-	protected void ChangeLanguage() {
+
+	private void ChangeLanguage() {
 		var color = new Color(0f, 0f, 0f, 0f);
 		if (PlayerPrefs.HasKey("Language") &&
 			PlayerPrefs.GetString("Language").Equals(language)) {

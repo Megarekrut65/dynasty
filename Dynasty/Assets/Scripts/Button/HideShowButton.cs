@@ -13,7 +13,7 @@ IPointerDownHandler, IPointerUpHandler {
 
 	}
 	public void OnPointerUp(PointerEventData eventData) {
-		toHide.ForEach((obj) => obj.SetActive(false));
-		toShow.ForEach((obj) => obj.SetActive(true));
+		toHide.ForEach(obj => obj.SetActive(false));
+		toShow.ForEach(obj => obj.SetActive(true));
 	}
 }

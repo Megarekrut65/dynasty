@@ -1,32 +1,26 @@
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
-	private static MusicManager instance;
+	private static MusicManager _instance;
 	private bool playNext = false;
 	public bool PlayNext {
-		set {
-			playNext = value;
-		}
+		set => playNext = value;
 	}
-	public MusicManager Instance {
-		get {
-			return instance;
-		}
-	}
+	public MusicManager Instance => _instance;
 
 	private void Awake() {
-		if (instance == null) {
-			instance = this;
-		} else if (instance != this) {
+		if (_instance == null) {
+			_instance = this;
+		} else if (_instance != this) {
 			Destroy(gameObject);
 		}
 		LoadManager();
 	}
 	private void LoadManager() {
 		if (playNext) {
-			instance.GetComponent<AudioSource>().Stop();
-		} else if (!instance.GetComponent<AudioSource>().isPlaying) {
-			instance.GetComponent<AudioSource>().Play();
+			_instance.GetComponent<AudioSource>().Stop();
+		} else if (!_instance.GetComponent<AudioSource>().isPlaying) {
+			_instance.GetComponent<AudioSource>().Play();
 		}
 	}
 	private void Start() {

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class CameraMove : MonoBehaviour {
 	[Header("Camera")]
@@ -18,9 +17,7 @@ public class CameraMove : MonoBehaviour {
 	private Vector3 targetPosition;
 	private bool stop = false;
 	public bool Stop {
-		set {
-			stop = value;
-		}
+		set => stop = value;
 	}
 
 	private void Start() {

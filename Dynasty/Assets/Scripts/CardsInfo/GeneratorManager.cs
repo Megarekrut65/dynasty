@@ -1,5 +1,3 @@
-using System.Threading;
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -15,18 +13,18 @@ public class GeneratorManager : MonoBehaviour {
 	private ScrollRect scrollRect;
 	[SerializeField]
 	private GameObject blackBoard;
-	private GameObject _canvas;
+	private GameObject canvas;
 	private List<GameObject> cards;
 	private ResizingData data = new ResizingData(1000);
 	private int currentColor = -2;
 	private string currentName = "";
 
-	void Start() {
-		_canvas = GameObject.Find("Canvas");
+	private void Start() {
+		canvas = GameObject.Find("Canvas");
 		StartCoroutine(Generate());
 	}
-	IEnumerator Generate() {
-		LoadBoard loadBoard = new LoadBoard(blackBoard, _canvas);
+	private IEnumerator Generate() {
+		LoadBoard loadBoard = new LoadBoard(blackBoard, canvas);
 		yield return new WaitForSeconds(0.001f);
 		CardsGenerator generator = new CardsGenerator(cardObject, content);
 		cards = generator.Generate();
@@ -40,7 +38,8 @@ public class GeneratorManager : MonoBehaviour {
 		yield return new WaitForSeconds(0.1f);
 		loadBoard.Destroy();
 	}
-	public void MakeInvisible() {
+
+	private void MakeInvisible() {
 		foreach (var card in cards) {
 			card.SetActive(false);
 		}
@@ -50,16 +49,16 @@ public class GeneratorManager : MonoBehaviour {
 		currentColor = value - 2;
 		Filter();
 	}
-	public void SelectName(String name) {
-		currentName = name;
+	public void SelectName(string cardName) {
+		currentName = cardName;
 		Filter();
 	}
 	private void Filter() {
 		MakeInvisible();
 		foreach (var card in cards) {
-			CardData data = card.GetComponent<CardLoader>().Card;
-			if ((Math.Sign(data.amount) == currentColor || currentColor == -2)
-			&& data.name.ToLower().Contains(currentName.ToLower())) {
+			CardData cardData = card.GetComponent<CardLoader>().Card;
+			if ((Math.Sign(cardData.amount) == currentColor || currentColor == -2)
+			&& cardData.name.ToLower().Contains(currentName.ToLower())) {
 				card.SetActive(true);
 			}
 		}

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,18 +7,15 @@ public class CardClick : MonoBehaviour,
 	IPointerDownHandler, IPointerUpHandler {
 	private CardEffect click;
 	public CardEffect Click {
-		set {
-			click = value;
-		}
+		set => click = value;
 	}
 	private bool canClick;
 	public bool CanClick {
-		set {
-			canClick = value;
-		}
+		set => canClick = value;
 	}
 	private ButtonEffect buttonEffect;
-	void Start() {
+	
+	private void Start() {
 		buttonEffect = new ButtonEffect(transform);
 	}
 	public void OnPointerDown(PointerEventData eventData) {

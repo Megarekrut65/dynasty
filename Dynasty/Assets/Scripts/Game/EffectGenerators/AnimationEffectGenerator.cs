@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class AnimationEffectGenerator {
-	protected CardManager cardManager;
-	protected Table table;
-	protected CardAnimationManager animationManager;
+	private CardManager cardManager;
+	private Table table;
+	private CardAnimationManager animationManager;
 
 	public AnimationEffectGenerator(CardManager cardManager,
 			Table table, CardAnimationManager animationManager) {
@@ -61,32 +62,34 @@ public class AnimationEffectGenerator {
 	public void TakeAllAnimated(Player player, List<Card> cards, Action end) {
 		animationManager.StartCoroutine(TakeAll(player, cards, end));
 	}
-	IEnumerator TakeAll(Player player, List<Card> cards, Action end) {
+
+	private IEnumerator TakeAll(Player player, List<Card> cards, Action end) {
 		foreach (var card in cards) {
 			yield return new WaitForSeconds(0.4f);
-			AddCardToPlayerAnimated(card, player, GameAction.EMPTY);
+			AddCardToPlayerAnimated(card, player, GameAction.Empty);
 		}
 		end();
 	}
 	public void MixAllAnimated(List<Card> cards, Action end) {
 		animationManager.StartCoroutine(MixAll(cards, end));
 	}
-	IEnumerator MixAll(List<Card> cards, Action end) {
+
+	private IEnumerator MixAll(List<Card> cards, Action end) {
 		foreach (var card in cards) {
 			yield return new WaitForSeconds(0.4f);
-			InsertPlayerCardToDeskAnimated(card, GameAction.EMPTY);
+			InsertPlayerCardToDeskAnimated(card, GameAction.Empty);
 		}
 		end();
 	}
 	public void PulsationCardAnimated(Card card) {
-		animationManager.PlayPulsationCardAnimation(card?.obj, GameAction.EMPTY);
+		animationManager.PlayPulsationCardAnimation(card?.obj, GameAction.Empty);
 	}
 	public void CountAmountAnimated(Player player, Card card) {
 		animationManager.PlayCountAmountAnimation(card?.obj, () => {
 			player.AddCoins(card.data.amount);
 			DropCardAnimated(card, () => {
 				for (var i = card; i != null; i = i?.underCard) {
-					MonoBehaviour.Destroy(i.obj);
+					Object.Destroy(i.obj);
 				}
 			});
 		});

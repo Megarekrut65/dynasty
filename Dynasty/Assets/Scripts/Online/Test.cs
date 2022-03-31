@@ -1,5 +1,4 @@
 using UnityEngine;
-using Firebase;
 using Firebase.Database;
 
 public class Test : MonoBehaviour {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorEditor {
+public static class ColorEditor {
 	public static void SetColor(Image icon, string value) {
 		if (icon == null) return;
 		switch (value) {
@@ -22,8 +22,6 @@ public class ColorEditor {
 			case "0": {
 					icon.color = new Color(244, 205, 0);
 				}
-				break;
-			default:
 				break;
 		}
 	}

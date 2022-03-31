@@ -1,9 +1,5 @@
-using System.Diagnostics;
-using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CardsGenerator {
 	private GameObject cardObject;
@@ -15,7 +11,7 @@ public class CardsGenerator {
 	public List<GameObject> Generate() {
 		List<GameObject> list = new List<GameObject>();
 		foreach (var item in LocalizationManager.Instance.map.CardMap) {
-			GameObject obj = MonoBehaviour.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
+			GameObject obj = Object.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
 			obj.GetComponent<CardLoader>().Key = item.Key;
 			obj.GetComponent<RectTransform>().sizeDelta = new Vector2(305f / 2, 495f / 2);
 			obj.transform.SetParent(content.transform, false);

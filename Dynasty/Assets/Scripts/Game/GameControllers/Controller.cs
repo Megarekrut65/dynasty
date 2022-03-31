@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public abstract class Controller {
 	protected Player player;
+	public Player Player => player;
 	protected GameDependencies dependencies;
 	protected Table table;
 	private Func<Card> takeCard;
@@ -16,7 +17,8 @@ public abstract class Controller {
 		this.takeCard = takeCard;
 		dependencies.roundManager.Next += Next;
 	}
-	public void Next() {
+
+	private void Next() {
 		Player next = dependencies.roundManager.WhoIsNextPlayer();
 		if (next.nickname != this.player.nickname) return;
 		dependencies.cameraMove.StartCoroutine(ClickOnCard());
@@ -51,8 +53,8 @@ public abstract class Controller {
 	}
 	protected IEnumerator Click(object cardClick) {
 		yield return WaitForClick();
-		(cardClick as IPointerDownHandler).OnPointerDown(null);
+		(cardClick as IPointerDownHandler)?.OnPointerDown(null);
 		yield return new WaitForSeconds(0.1f);
-		(cardClick as IPointerUpHandler).OnPointerUp(null);
+		(cardClick as IPointerUpHandler)?.OnPointerUp(null);
 	}
 }

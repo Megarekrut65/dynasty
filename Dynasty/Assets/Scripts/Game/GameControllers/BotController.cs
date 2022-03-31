@@ -1,7 +1,6 @@
 using System.Collections;
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public abstract class BotController : Controller {
 	public BotController(Player player, GameDependencies dependencies,

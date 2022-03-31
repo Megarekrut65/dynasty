@@ -7,15 +7,14 @@ public class EnableBots : MonoBehaviour {
 	private GameObject hide;
 	[SerializeField]
 	private Toggle toggle;
-	private string key = "enable-bots";
 
 	private void Start() {
-		if (PlayerPrefs.HasKey(key)) {
-			toggle.isOn = Convert.ToBoolean(PlayerPrefs.GetString(key));
+		if (PlayerPrefs.HasKey(PrefabsKeys.ENABLE_BOTS)) {
+			toggle.isOn = Convert.ToBoolean(PlayerPrefs.GetString(PrefabsKeys.ENABLE_BOTS));
 		}
 	}
 	public void Change(bool value) {
 		hide.SetActive(!value);
-		PlayerPrefs.SetString(key, value.ToString());
+		PlayerPrefs.SetString(PrefabsKeys.ENABLE_BOTS, value.ToString());
 	}
 }

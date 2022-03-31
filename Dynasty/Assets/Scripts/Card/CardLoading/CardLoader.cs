@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CardLoader : MonoBehaviour {
@@ -6,15 +5,9 @@ public class CardLoader : MonoBehaviour {
 	[SerializeField]
 	private string key;
 	public string Key {
-		set {
-			key = value;
-		}
+		set => key = value;
 	}
-	public CardData Card {
-		get {
-			return LocalizationManager.Instance.GetCard(key);
-		}
-	}
+	public CardData Card => LocalizationManager.Instance.GetCard(key);
 	[Header("Card parts")]
 	[SerializeField]
 	private CardImage cardImage;

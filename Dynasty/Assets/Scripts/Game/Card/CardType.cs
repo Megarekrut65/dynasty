@@ -1,5 +1,5 @@
 
-class CardType {
+static class CardType {
 	public const string NONE = "none";
 	public const string MONSTER = "monster";
 	public const string KNIGHT = "knight";

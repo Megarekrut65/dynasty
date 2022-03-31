@@ -1,8 +1,5 @@
-using System;
-using System.Diagnostics;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.EventSystems;
+
 public class CameraZoom : MonoBehaviour {
 
 	[SerializeField]
@@ -18,13 +15,13 @@ public class CameraZoom : MonoBehaviour {
 	[SerializeField]
 	private float zoomModifierSpeed = 0.1f;
 
-	void Start() {
+	private void Start() {
 		targetSize = mainCamera.orthographicSize;
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
 			zoomModifierSpeed /= 40f;
 		}
 	} 
-	void Update() {
+	private void Update() {
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
 			if (Input.touchCount == 2) {
 				float zoomModifier = CountZoom();

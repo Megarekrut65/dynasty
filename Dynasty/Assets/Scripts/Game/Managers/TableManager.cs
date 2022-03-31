@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -20,7 +19,7 @@ public class TableManager : MonoBehaviour {
 	private AnimationEffectGenerator animationEffectGenerator;
 	private GameDependencies dependencies;
 
-	void Start() {
+	private void Start() {
 		cardManager = new CardManager(container, cardObject);
 		dependencies = gameManager.Dependencies;
 		var players = dependencies.playerManager.Players;

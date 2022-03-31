@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections.Generic;
 
 public class RoundManager {
@@ -7,15 +6,8 @@ public class RoundManager {
 
 	private int index = 0;
 	private int rounds = 0;
-	private bool pause = false;
-	public bool Pause {
-		get {
-			return pause;
-		}
-		set {
-			pause = value;
-		}
-	}
+	public bool Pause { get; set; } = false;
+
 	private List<Player> players;
 
 	public RoundManager(List<Player> players) {
@@ -49,7 +41,7 @@ public class RoundManager {
 		return players[i];
 	}
 	public void CallNextPlayer() {
-		pause = false;
+		Pause = false;
 		Next?.Invoke();
 	}
 }

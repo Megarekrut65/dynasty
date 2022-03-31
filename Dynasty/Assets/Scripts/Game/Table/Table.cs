@@ -1,40 +1,32 @@
-using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 using System;
 using System.Linq;
 
-[System.Serializable]
+[Serializable]
 public class Table {
 	[SerializeField]
 	private List<Card> desk;
 	[SerializeField]
 	private List<Card> drop = new List<Card>();
-	[SerializeField]
 	private Dictionary<Player, List<Card>> playerDesk = new Dictionary<Player, List<Card>>();
 	[SerializeField]
 	private Card current;
 	public Card Current {
-		get {
-			return current;
-		}
-		set {
-			current = value;
-		}
+		get => current;
+		set => current = value;
 	}
 	[SerializeField]
 	private bool nextRandom = false;
 	public bool NextRandom {
-		set {
-			nextRandom = value;
-		}
+		set => nextRandom = value;
 	}
+	
 	public Table(List<Player> players) {
 		foreach (var player in players) {
 			playerDesk.Add(player, new List<Card>());
 		}
-		desk = DeskGenerator.Generate(0, (card) => {
+		desk = DeskGenerator.Generate(0, card => {
 			return false;
 		}, 0);
 	}
@@ -91,10 +83,7 @@ public class Table {
 	}
 	private Card FindCardInPlayers(Predicate<Card> predicate) {
 		var item = FindCard(predicate);
-		if (item != null) {
-			return item.Item1;
-		}
-		return null;
+		return item?.Item1;
 	}
 	public Card FindCardInPlayer(Player player, string key) {
 		return playerDesk[player].Find(card => card.key == key);
