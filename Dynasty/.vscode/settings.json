@@ -57,7 +57,15 @@
     "Packages": true,
     "UserSettings": true,
     "Logs": true,
-    "Assembly-CSharp.csproj": true
+    "Assembly-CSharp.csproj": true,
+    "Assets\\Plugins": true,
+    "Assets\\Parse\\Plugins\\dotNet45": true,
+    "Assets\\Parse\\Plugins": true,
+    "Assets\\Parse": true,
+    "Assets\\ExternalDependencyManager": true,
+    "Assets\\Editor Default Resources": true,
+    "user.keystore": true,
+    "user.keystore.old": true
   },
   "cSpell.words": [
     "Behaviour",

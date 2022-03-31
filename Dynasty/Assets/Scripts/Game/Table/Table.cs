@@ -34,7 +34,7 @@ public class Table {
 		foreach (var player in players) {
 			playerDesk.Add(player, new List<Card>());
 		}
-		desk = DeskGenerator.Generate((card) => {
+		desk = DeskGenerator.Generate(0, (card) => {
 			return false;
 		}, 0);
 	}
