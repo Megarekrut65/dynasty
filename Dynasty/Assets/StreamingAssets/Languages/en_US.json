@@ -191,6 +191,30 @@
         {
             "key": "go",
             "value": "Go"
+        },
+        {
+            "key": "keep-private",
+            "value": "Keep private"
+        },
+        {
+            "key": "room-name",
+            "value": "Room name"
+        },
+        {
+            "key": "create-room",
+            "value": "Create new room"
+        },
+        {
+            "key": "connect-room",
+            "value": "Rooms list"
+        },
+        {
+            "key": "customize",
+            "value": "Customize your room"
+        },
+        {
+            "key": "create",
+            "value": "Create"
         }
     ]
 }

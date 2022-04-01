@@ -191,6 +191,30 @@
         {
             "key": "go",
             "value": "Вперед"
+        },
+        {
+            "key": "keep-private",
+            "value": "Приватна кімната"
+        },
+        {
+            "key": "room-name",
+            "value": "Ім'я кімнати"
+        },
+        {
+            "key": "create-room",
+            "value": "Створити нову кімнату"
+        },
+        {
+            "key": "connect-room",
+            "value": "Список кімнат"
+        },
+        {
+            "key": "customize",
+            "value": "Налаштуй свою кімнату"
+        },
+        {
+            "key": "create",
+            "value": "Створити"
         }
     ]
 }

@@ -6,7 +6,7 @@ public class MusicManager : MonoBehaviour {
 	public bool PlayNext {
 		set => playNext = value;
 	}
-	public MusicManager Instance => _instance;
+	public static MusicManager Instance => _instance;
 
 	private void Awake() {
 		if (_instance == null) {

@@ -25,6 +25,7 @@ public class GeneratorManager : MonoBehaviour {
 	}
 	private IEnumerator Generate() {
 		LoadBoard loadBoard = new LoadBoard(blackBoard, canvas);
+		loadBoard.SetActive(true);
 		yield return new WaitForSeconds(0.001f);
 		CardsGenerator generator = new CardsGenerator(cardObject, content);
 		cards = generator.Generate();
@@ -36,7 +37,7 @@ public class GeneratorManager : MonoBehaviour {
 		}
 		currentColor = -2;
 		yield return new WaitForSeconds(0.1f);
-		loadBoard.Destroy();
+		loadBoard.SetActive(false);
 	}
 
 	private void MakeInvisible() {

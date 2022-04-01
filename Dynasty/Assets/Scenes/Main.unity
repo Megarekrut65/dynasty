@@ -437,6 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadSlider: {fileID: 1681328208}
   sceneName: Menu
+  firebaseLoad: {fileID: 519420033}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -501,9 +502,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cefbbd416e55ede40b19fa6e939a921f, type: 3}
+  m_Script: {fileID: 11500000, guid: 55920c36a63745ebaad5aa3382b1358a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &773935452

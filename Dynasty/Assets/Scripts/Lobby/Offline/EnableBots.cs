@@ -9,11 +9,11 @@ public class EnableBots : MonoBehaviour {
 	private Toggle toggle;
 
 	private void Start() {
-		if (PlayerPrefs.HasKey(PrefabsKeys.ENABLE_BOTS)) {
-			toggle.isOn = Convert.ToBoolean(PlayerPrefs.GetString(PrefabsKeys.ENABLE_BOTS));
-		}
+		toggle.onValueChanged.AddListener(Change);
+		toggle.isOn = PlayerPrefs.HasKey(PrefabsKeys.ENABLE_BOTS) &&
+		              Convert.ToBoolean(PlayerPrefs.GetString(PrefabsKeys.ENABLE_BOTS));
 	}
-	public void Change(bool value) {
+	private void Change(bool value) {
 		hide.SetActive(!value);
 		PlayerPrefs.SetString(PrefabsKeys.ENABLE_BOTS, value.ToString());
 	}

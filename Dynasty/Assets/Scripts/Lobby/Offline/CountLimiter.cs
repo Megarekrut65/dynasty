@@ -17,17 +17,17 @@ public class CountLimiter : MonoBehaviour {
 	private int max;
 
 	private void Start() {
-		playerField.text = GetText(PrefabsKeys.PLAYER_COUNT_KEY);
-		botField.text = GetText(PrefabsKeys.BOT_COUNT_KEY);
+		playerField.text = GetText(PrefabsKeys.PLAYER_COUNT);
+		botField.text = GetText(PrefabsKeys.BOT_COUNT);
 	}
 	private string GetText(string key) {
 		return PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key).ToString() : "10";
 	}
 	public void ChangePlayer(string value) {
-		Change(value, playerField, botField, PrefabsKeys.PLAYER_COUNT_KEY);
+		Change(value, playerField, botField, PrefabsKeys.PLAYER_COUNT);
 	}
 	public void ChangeBot(string value) {
-		Change(value, botField, playerField, PrefabsKeys.BOT_COUNT_KEY);
+		Change(value, botField, playerField, PrefabsKeys.BOT_COUNT);
 	}
 	private void Change(string value, InputField own, InputField other, string prefsKey) {
 		int ownCount = Convert.ToInt32(value);
@@ -46,6 +46,6 @@ public class CountLimiter : MonoBehaviour {
 		PlayerPrefs.SetInt(prefsKey, res);
 	}
 	public void ChangeToggle(bool value) {
-		ChangePlayer(GetText(PrefabsKeys.PLAYER_COUNT_KEY));
+		ChangePlayer(GetText(PrefabsKeys.PLAYER_COUNT));
 	}
 }

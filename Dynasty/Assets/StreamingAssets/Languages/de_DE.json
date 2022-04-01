@@ -191,6 +191,30 @@
         {
             "key": "go",
             "value": "Anfang"
+        },
+        {
+            "key": "keep-private",
+            "value": "Bleiben Sie privat"
+        },
+        {
+            "key": "room-name",
+            "value": "Raumname"
+        },
+        {
+            "key": "create-room",
+            "value": "Neuen Raum erstellen"
+        },
+        {
+            "key": "connect-room",
+            "value": "Zimmerliste"
+        },
+        {
+            "key": "customize",
+            "value": "Passen Sie Ihr Zimmer an"
+        },
+        {
+            "key": "create",
+            "value": "Schaffen"
         }
     ]
 }
