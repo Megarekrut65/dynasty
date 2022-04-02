@@ -11,7 +11,7 @@ public class FirebaseLoad:MonoBehaviour {
                 Debug.LogError(task.Exception);
                 return;
             }
-
+    
             Ready = true;
         });
     }

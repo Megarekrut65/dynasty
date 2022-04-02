@@ -8,9 +8,7 @@ public class PlayerCount : MonoBehaviour {
 
     private void Start() {
         inputField.onValueChanged.AddListener(Change);
-        inputField.text = PlayerPrefs.HasKey(PrefabsKeys.PLAYER_COUNT)
-            ? PlayerPrefs.GetInt(PrefabsKeys.PLAYER_COUNT).ToString()
-            : "2";
+        inputField.text = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2).ToString();
     }
     private void Change(string value) {
         PlayerPrefs.SetInt(PrefabsKeys.PLAYER_COUNT, Convert.ToInt32(value));

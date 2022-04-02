@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "76871562231-isthctccjo8itdv12rflnm41qrjgcql4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.BOA.Dynasty",
+            "certificate_hash": "649f70fd895c2d32ab6dca4a4aefde27c6f72c73"
+          }
+        },
+        {
           "client_id": "76871562231-3ulgu8rinpn9hjifdni305ktaqlgar0k.apps.googleusercontent.com",
           "client_type": 3
         }

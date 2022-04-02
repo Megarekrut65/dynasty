@@ -1,4 +1,6 @@
-﻿public static class PrefabsKeys {
+﻿using UnityEngine;
+
+public static class PrefabsKeys {
     public const string PLAYER_COUNT = "player-count";
     public const string BOT_COUNT = "bot-count";
     public const string ENABLE_BOTS = "enable-bots";
@@ -9,4 +11,17 @@
     public const string ROOM_NAME = "room-name";
     public const string ROOM_INFO = "room-info";
     public const string ROOMS = "rooms";
+
+    public static string GetValue(string key, string def = "") {
+        if (!PlayerPrefs.HasKey(key)) {
+            PlayerPrefs.SetString(key, def);
+        }
+        return PlayerPrefs.GetString(key);
+    }
+    public static int GetValue(string key, int def) {
+        if (!PlayerPrefs.HasKey(key)) {
+            PlayerPrefs.SetInt(key, def);
+        }
+        return PlayerPrefs.GetInt(key);
+    }
 }

@@ -8,8 +8,7 @@ public class KeepPrivate : MonoBehaviour {
 
     private void Start() {
         toggle.onValueChanged.AddListener(Change);
-        toggle.isOn = PlayerPrefs.HasKey(PrefabsKeys.KEEP_PRIVATE) && 
-                      Convert.ToBoolean(PlayerPrefs.GetString(PrefabsKeys.KEEP_PRIVATE));
+        toggle.isOn = Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.KEEP_PRIVATE, false.ToString()));
     }
     private void Change(bool value) {
         PlayerPrefs.SetString(PrefabsKeys.KEEP_PRIVATE, value.ToString());

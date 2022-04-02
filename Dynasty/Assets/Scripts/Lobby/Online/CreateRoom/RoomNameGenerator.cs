@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoomNameGenerator{
+public static class RoomNameGenerator{
     public static string Generate() {
         string roomName = "";
         if (PlayerPrefs.HasKey(PrefabsKeys.PLAYER_NAME)) {

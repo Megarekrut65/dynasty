@@ -21,7 +21,7 @@ public class CountLimiter : MonoBehaviour {
 		botField.text = GetText(PrefabsKeys.BOT_COUNT);
 	}
 	private string GetText(string key) {
-		return PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key).ToString() : "10";
+		return PrefabsKeys.GetValue(key, 2).ToString();
 	}
 	public void ChangePlayer(string value) {
 		Change(value, playerField, botField, PrefabsKeys.PLAYER_COUNT);
