@@ -7,4 +7,6 @@
     public const string PLAYER_NAME = "player-name";
     public const string GAME_MODE = "game-mode";
     public const string ROOM_NAME = "room-name";
+    public const string ROOM_INFO = "room-info";
+    public const string ROOMS = "rooms";
 }
