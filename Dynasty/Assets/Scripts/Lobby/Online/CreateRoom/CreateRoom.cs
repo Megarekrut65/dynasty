@@ -25,7 +25,7 @@ public class CreateRoom : MonoBehaviour {
         RoomInfo roomInfo = new RoomInfo(PlayerPrefs.HasKey(PrefabsKeys.PLAYER_COUNT)
                 ? PlayerPrefs.GetInt(PrefabsKeys.PLAYER_COUNT)
                 : 2, 1,
-            DateTime.UtcNow.ToString("hh:mm:ss MM-dd-yyyy"),
+            DateTime.UtcNow.ToString(),
             PlayerPrefs.HasKey(PrefabsKeys.KEEP_PRIVATE) &&
             Convert.ToBoolean(
                 PlayerPrefs.GetString(PrefabsKeys

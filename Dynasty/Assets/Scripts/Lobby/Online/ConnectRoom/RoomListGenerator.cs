@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -24,29 +25,34 @@ public class RoomListGenerator : MonoBehaviour {
         //     AddRoomsToList(task.Result.Children);
         // });
     }
-    private void OnEnable() {
-        
-        
-    }
-    private void OnDisable() {
-        //FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS).ValueChanged -= ChangeRooms;
-    }
+    // private void OnEnable() {
+    //     
+    //     
+    // }
+    // private void OnDisable() {
+    //     //FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS).ValueChanged -= ChangeRooms;
+    // }
     private void ChangeRooms(object sender, ValueChangedEventArgs args ) {
-       AddRoomsToList(args.Snapshot.Children);
-    }
-    private void AddRoomsToList(IEnumerable<DataSnapshot> data) {
-        foreach (var child in data) {
+        foreach (var child in args.Snapshot.Children) {
             string roomName = child.Key;
             var roomInfoJson = child.Child(PrefabsKeys.ROOM_INFO).GetRawJsonValue();
             var roomInfo = JsonUtility.FromJson<RoomInfo>(roomInfoJson);
             if(roomInfo == null) continue;
+            TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
+            Debug.Log(Convert.ToDateTime(roomInfo.date).Day);
             var obj = rooms.Find(room => room.name == roomName);
-            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount)
+            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount || delta.Days > 0)
                 RemoveRoom(obj);
             else if (obj == null)rooms.Add(CreateRoom(roomName, roomInfo));
+            if (delta.Days > 0) {
+                roomReference.Child(roomName).RemoveValueAsync();
+            }
         }
         UpdateList();
     }
+    // private void AddRoomsToList(IEnumerable<DataSnapshot> data) {
+    //     
+    // }
     private GameObject CreateRoom(string roomName, RoomInfo roomInfo) {
         GameObject obj = null;
         if (roomsPool.Count != 0) {
@@ -60,6 +66,7 @@ public class RoomListGenerator : MonoBehaviour {
         return obj;
     }
     private void RemoveRoom(GameObject obj) {
+        if(obj == null) return;
         rooms.Remove(obj);
         roomsPool.Push(obj);
         obj.SetActive(false);
