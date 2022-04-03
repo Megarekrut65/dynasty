@@ -215,6 +215,18 @@
         {
             "key": "create",
             "value": "Create"
+        },
+        {
+            "key": "big-card",
+            "value": "Big card"
+        },
+        {
+            "key": "hide-room-info",
+            "value": "Hide room info"
+        },
+        {
+            "key": "hide-chat",
+            "value": "Hide chat"
         }
     ]
 }

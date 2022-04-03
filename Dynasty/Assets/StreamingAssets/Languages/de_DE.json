@@ -215,6 +215,18 @@
         {
             "key": "create",
             "value": "Schaffen"
+        },
+        {
+            "key": "big-card",
+            "value": "Große Karte"
+        },
+        {
+            "key": "hide-room-info",
+            "value": "Rauminformationen ausblenden"
+        },
+        {
+            "key": "hide-chat",
+            "value": "Chat verstecken"
         }
     ]
 }

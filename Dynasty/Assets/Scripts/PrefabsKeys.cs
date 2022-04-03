@@ -11,6 +11,10 @@ public static class PrefabsKeys {
     public const string ROOM_NAME = "room-name";
     public const string ROOM_INFO = "room-info";
     public const string ROOMS = "rooms";
+    public const string IS_HOST = "is-host";
+    public const string BIG_CARD = "big-card";
+    public const string HIDE_CHAT = "hide-chat";
+    public const string HIDE_ROOM_INFO = "hide-room-info";
 
     public static string GetValue(string key, string def = "") {
         if (!PlayerPrefs.HasKey(key)) {

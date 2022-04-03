@@ -2369,8 +2369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a891797fc1336064aae7ad15c1cb96dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hide: {fileID: 640886547}
   toggle: {fileID: 797955085}
+  obj: {fileID: 640886547}
 --- !u!1 &808329301
 GameObject:
   m_ObjectHideFlags: 0

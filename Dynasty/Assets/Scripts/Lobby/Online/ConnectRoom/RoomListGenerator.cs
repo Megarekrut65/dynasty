@@ -41,10 +41,10 @@ public class RoomListGenerator : MonoBehaviour {
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
             Debug.Log(Convert.ToDateTime(roomInfo.date).Day);
             var obj = rooms.Find(room => room.name == roomName);
-            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount || delta.Days > 0)
+            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount || delta.Hours > 6)
                 RemoveRoom(obj);
             else if (obj == null)rooms.Add(CreateRoom(roomName, roomInfo));
-            if (delta.Days > 0) {
+            if (delta.Hours > 6) {
                 roomReference.Child(roomName).RemoveValueAsync();
             }
         }

@@ -215,6 +215,18 @@
         {
             "key": "create",
             "value": "Створити"
+        },
+        {
+            "key": "big-card",
+            "value": "Велика картка"
+        },
+        {
+            "key": "hide-room-info",
+            "value": "Сховати інформацію про кімнату"
+        },
+        {
+            "key": "hide-chat",
+            "value": "Сховати чат"
         }
     ]
 }

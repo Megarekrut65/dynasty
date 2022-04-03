@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameLoad : MonoBehaviour {
 	[SerializeField]
@@ -13,6 +14,7 @@ public class GameLoad : MonoBehaviour {
 	private FirebaseLoad firebaseLoad;
 	
 	private void Start() {
+		PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME, "Player" + Random.Range(0, 100));
 		loadSlider.value = 0;
 		StartCoroutine(LoadData());
 	}

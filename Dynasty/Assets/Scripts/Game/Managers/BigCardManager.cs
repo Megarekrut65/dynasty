@@ -3,30 +3,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BigCardManager {
-	private const string BIG_CARD_KEY = "BigCard";
-	private bool needMakeBig;
-	public bool NeedMakeBig {
-		get => needMakeBig;
-		set {
-			needMakeBig = value;
-			PlayerPrefs.SetString(BIG_CARD_KEY, value.ToString());
-		}
-	}
+	public bool NeedMakeBig { get; set; }
 	private GameObject cardPlace;
 
 	public BigCardManager(GameObject cardPlace, Toggle toggle) {
 		this.cardPlace = cardPlace;
-		if (!PlayerPrefs.HasKey(BIG_CARD_KEY)) {
-			PlayerPrefs.SetString(BIG_CARD_KEY, "false");
-		}
-		needMakeBig = Convert.ToBoolean(PlayerPrefs.GetString(BIG_CARD_KEY));
-		toggle.isOn = needMakeBig;
+		NeedMakeBig = toggle.isOn;
 		toggle.onValueChanged.AddListener(Change);
 	}
 	public void MakeBig(GameObject obj) {
-		if (needMakeBig) obj.transform.SetParent(cardPlace.transform, false);
+		if (NeedMakeBig) obj.transform.SetParent(cardPlace.transform, false);
 	}
-	public void Change(bool value) {
+	private void Change(bool value) {
 		NeedMakeBig = value;
 	}
 }

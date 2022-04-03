@@ -10,9 +10,9 @@ public class PlayerManager {
 	private List<Controller> bots;
 
 	public PlayerManager(Desk[] desks) {
-		this.playersCount = PlayerPrefs.GetInt(PrefabsKeys.PLAYER_COUNT);
+		this.playersCount = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2);
 		this.botsCount = 0;
-		if (Convert.ToBoolean(PlayerPrefs.GetString(PrefabsKeys.ENABLE_BOTS)))
+		if (Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.ENABLE_BOTS, false.ToString())))
 			this.botsCount = PlayerPrefs.GetInt(PrefabsKeys.BOT_COUNT);
 		this.Players = new List<Player>();
 		this.bots = new List<Controller>();
