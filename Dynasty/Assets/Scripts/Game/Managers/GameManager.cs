@@ -27,13 +27,10 @@ public class GameManager : MonoBehaviour {
 			roomName = PrefabsKeys.GetValue(PrefabsKeys.ROOM_NAME, "Room");
 			RoomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS)
 				.Child(roomName);
-			RoomReference.GetValueAsync().ContinueWithOnMainThread(task => {
-				if (task.Exception != null) {
-					Debug.LogError(task.Exception);
-				}
-				RoomInfo = JsonUtility.FromJson<RoomInfo>(task.Result.Child(PrefabsKeys.ROOM_INFO).GetRawJsonValue());
+			RoomReference.Child(PrefabsKeys.ROOM_INFO).ValueChanged += (sender, args) => {
+				RoomInfo = JsonUtility.FromJson<RoomInfo>(args.Snapshot.GetRawJsonValue());
 				roomObject.LoadData(roomName, RoomInfo);
-			});
+			};
 		}
 	}
 	public void Leave() {
@@ -46,14 +43,11 @@ public class GameManager : MonoBehaviour {
 		if (RoomInfo.currentCount == 0) {
 			RoomReference.RemoveValueAsync().ContinueWithOnMainThread(OpenScene);
 		} else {
-			RoomReference.Child(PrefabsKeys.ROOM_INFO).Child("current-count").SetValueAsync(RoomInfo.currentCount)
+			RoomReference.Child(PrefabsKeys.ROOM_INFO).Child("currentCount").SetValueAsync(RoomInfo.currentCount)
 				.ContinueWithOnMainThread(OpenScene);
 		}
 	}
 	private void OpenScene(Task task) {
 		SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-	}
-	private void OnApplicationQuit() {
-		Leave();
 	}
 }

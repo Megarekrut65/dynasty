@@ -5,6 +5,13 @@ using Firebase.Extensions;
 using UnityEngine;
 
 public class RoomListGenerator : MonoBehaviour {
+    [Header("Load board")]
+    [SerializeField]
+    private GameObject canvas;
+    [SerializeField]
+    private GameObject board;
+    private LoadBoard loadBoard;
+    [Header("Rooms")]
     [SerializeField]
     private GameObject roomObject;
     [SerializeField]
@@ -15,6 +22,7 @@ public class RoomListGenerator : MonoBehaviour {
     private DatabaseReference roomReference;
     private Stack<GameObject> roomsPool = new Stack<GameObject>();
     private void Start() {
+        loadBoard = new LoadBoard(board, canvas);
         roomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS);
         roomReference.ValueChanged += ChangeRooms;
         // roomReference.GetValueAsync().ContinueWithOnMainThread(task => {
@@ -39,11 +47,11 @@ public class RoomListGenerator : MonoBehaviour {
             var roomInfo = JsonUtility.FromJson<RoomInfo>(roomInfoJson);
             if(roomInfo == null) continue;
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
-            Debug.Log(Convert.ToDateTime(roomInfo.date).Day);
             var obj = rooms.Find(room => room.name == roomName);
             if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount || delta.Hours > 6)
                 RemoveRoom(obj);
-            else if (obj == null)rooms.Add(CreateRoom(roomName, roomInfo));
+            else if (obj == null) rooms.Add(CreateRoom(roomName, roomInfo));
+            else obj.GetComponent<RoomObject>().UpdateData(roomInfo);
             if (delta.Hours > 6) {
                 roomReference.Child(roomName).RemoveValueAsync();
             }
@@ -63,6 +71,8 @@ public class RoomListGenerator : MonoBehaviour {
         else obj = Instantiate(roomObject, content);
         obj.GetComponent<RectTransform>().sizeDelta = new Vector2(10f, 30f);
         obj.GetComponent<RoomObject>().LoadData(roomName, roomInfo);
+        ConnectToRoom connectToRoom = new ConnectToRoom(roomReference.Child(roomName), roomName, loadBoard);
+        obj.GetComponent<RoomClick>().Connect = connectToRoom;
         return obj;
     }
     private void RemoveRoom(GameObject obj) {

@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 
 public static class PrefabsKeys {
-    public const string PLAYER_COUNT = "player-count";
-    public const string BOT_COUNT = "bot-count";
-    public const string ENABLE_BOTS = "enable-bots";
-    public const string DIFFICULTY_BOTS = "difficulty-bots";
-    public const string KEEP_PRIVATE = "keep-private";
-    public const string PLAYER_NAME = "player-name";
-    public const string GAME_MODE = "game-mode";
-    public const string ROOM_NAME = "room-name";
-    public const string ROOM_INFO = "room-info";
+    public const string PLAYER_COUNT = "playerCount";
+    public const string BOT_COUNT = "botCount";
+    public const string ENABLE_BOTS = "enableBots";
+    public const string DIFFICULTY_BOTS = "difficultyBots";
+    public const string KEEP_PRIVATE = "keepPrivate";
+    public const string PLAYER_NAME = "playerName";
+    public const string GAME_MODE = "gameMode";
+    public const string ROOM_NAME = "roomName";
+    public const string ROOM_INFO = "roomInfo";
     public const string ROOMS = "rooms";
-    public const string IS_HOST = "is-host";
-    public const string BIG_CARD = "big-card";
-    public const string HIDE_CHAT = "hide-chat";
-    public const string HIDE_ROOM_INFO = "hide-room-info";
+    public const string IS_HOST = "isHost";
+    public const string BIG_CARD = "bigCard";
+    public const string HIDE_CHAT = "hideChat";
+    public const string HIDE_ROOM_INFO = "hideRoomInfo";
+    public const string PLAYER_KEY = "playerKey";
 
     public static string GetValue(string key, string def = "") {
         if (!PlayerPrefs.HasKey(key)) {

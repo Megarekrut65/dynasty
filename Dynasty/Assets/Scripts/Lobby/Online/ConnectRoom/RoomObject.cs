@@ -12,6 +12,9 @@ public class RoomObject : MonoBehaviour {
     public void LoadData(string roomName, RoomInfo roomInfo) {
         name = roomName;
         textName.text = roomName;
+        UpdateData(roomInfo);
+    }
+    public void UpdateData(RoomInfo roomInfo) {
         textCount.text = $"{roomInfo.currentCount}/{roomInfo.playerCount}";
     }
     public void UpdateColor(Color color) {

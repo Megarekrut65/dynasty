@@ -2579,6 +2579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261da735bba4e2c4c906d95758d0f906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 2018592444}
+  board: {fileID: 3437451923446761814, guid: 2ebe4a4c0bdf5364dacca9f9f0f314bb, type: 3}
   roomObject: {fileID: 3866596871392699512, guid: a5684997f697e8d4db51888118a27e98, type: 3}
   content: {fileID: 1558247469}
   colors:
