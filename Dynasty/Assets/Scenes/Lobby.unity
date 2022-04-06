@@ -3008,7 +3008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d41e70b47c994187cd6b499f12cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: online
+  gameMode: 0
 --- !u!1 &1000000494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,7 +4247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d41e70b47c994187cd6b499f12cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: offline
+  gameMode: 1
 --- !u!1 &1241079463
 GameObject:
   m_ObjectHideFlags: 0

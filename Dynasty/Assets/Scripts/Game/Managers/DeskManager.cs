@@ -26,7 +26,7 @@ IPointerDownHandler, IPointerUpHandler {
 		if (manager.PlayerRound()) {
 			deskAnimation.Play("DeskActive");
 			gameManager.Dependencies.logger.TranslatedLog(
-				$"turn of {gameManager.Dependencies.roundManager.WhoIsNextPlayer().nickname}");
+				$"turn of {gameManager.Dependencies.roundManager.WhoIsNextPlayer().Nickname}");
 		}
 	}
 }

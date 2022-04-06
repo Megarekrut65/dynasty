@@ -74,7 +74,7 @@ public abstract class SimpleEffectsGenerator {
 	}
 	protected void BonusCoins(string mastBe, int coins, string owner) {
 		Player player = table.FindPlayerWithCard(mastBe);
-		if (player != null && player.nickname == owner) {
+		if (player != null && player.Nickname == owner) {
 			var card = table.FindCardInPlayer(player, mastBe);
 			anim.PulsationCardAnimated(card);
 			player.AddCoins(coins);

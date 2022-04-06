@@ -19,19 +19,29 @@ public class GameManager : MonoBehaviour {
 	public string roomName;
 	
 	private void Start() {
-		Mode = PrefabsKeys.GetValue(PrefabsKeys.GAME_MODE, "offline") == "offline"
+		Mode = GameModeFunctions.IsMode(GameMode.OFFLINE)
 			? GameMode.OFFLINE
 			: GameMode.ONLINE;
 		if (Mode == GameMode.ONLINE) {
-			IsHost = Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.IS_HOST, false.ToString()));
-			roomName = PrefabsKeys.GetValue(PrefabsKeys.ROOM_NAME, "Room");
-			RoomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS)
-				.Child(roomName);
-			RoomReference.Child(PrefabsKeys.ROOM_INFO).ValueChanged += (sender, args) => {
-				RoomInfo = JsonUtility.FromJson<RoomInfo>(args.Snapshot.GetRawJsonValue());
-				roomObject.LoadData(roomName, RoomInfo);
-			};
+			Connect();
 		}
+	}
+	private void Connect() {
+		IsHost = Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.IS_HOST, false.ToString()));
+		roomName = PrefabsKeys.GetValue(PrefabsKeys.ROOM_NAME, "Room");
+		RoomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS)
+			.Child(roomName);
+		RoomReference.Child(PrefabsKeys.ROOM_INFO).ValueChanged += (sender, args) => {
+			RoomInfo = JsonUtility.FromJson<RoomInfo>(args.Snapshot.GetRawJsonValue());
+			roomObject.LoadData(roomName, RoomInfo);
+		};
+		RoomReference.Child("players").ValueChanged += (sender, args) => {
+			var desks = dependenciesManager.PlayerDesks;
+			for (int i = 0; i < desks.Length; i++) {
+				var snapshot = args.Snapshot.Child((i + 1).ToString());
+				desks[i].SetName(snapshot.Value==null?"":snapshot.Value as string);
+			}
+		};
 	}
 	public void Leave() {
 		if (Mode == GameMode.OFFLINE) {
@@ -44,7 +54,10 @@ public class GameManager : MonoBehaviour {
 			RoomReference.RemoveValueAsync().ContinueWithOnMainThread(OpenScene);
 		} else {
 			RoomReference.Child(PrefabsKeys.ROOM_INFO).Child("currentCount").SetValueAsync(RoomInfo.currentCount)
-				.ContinueWithOnMainThread(OpenScene);
+				.ContinueWithOnMainThread(task => {
+					RoomReference.Child("players").Child(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_KEY, "0"))
+						.RemoveValueAsync().ContinueWithOnMainThread(OpenScene);
+				});
 		}
 	}
 	private void OpenScene(Task task) {

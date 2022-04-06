@@ -20,7 +20,7 @@ public abstract class Controller {
 
 	private void Next() {
 		Player next = dependencies.roundManager.WhoIsNextPlayer();
-		if (next.nickname != this.player.nickname) return;
+		if (next.Nickname != this.player.Nickname) return;
 		dependencies.cameraMove.StartCoroutine(ClickOnCard());
 	}
 	protected abstract IEnumerator InevitableEnd(Card card);

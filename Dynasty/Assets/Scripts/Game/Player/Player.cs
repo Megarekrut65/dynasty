@@ -1,14 +1,14 @@
 using UnityEngine;
 
 public class Player {
-	public readonly string nickname;
+	public string Nickname { get; set; }
 	private Desk desk;
 	public int Coins { get; private set; } = 0;
 
 	public int Order => desk.Order;
 
 	public Player(string nickname, Desk desk) {
-		this.nickname = nickname;
+		this.Nickname = nickname;
 		this.desk = desk;
 		desk.SetName(nickname);
 	}
@@ -31,10 +31,10 @@ public class Player {
 			return false;
 		}
 		Player p = (Player)obj;
-		return (p.nickname == this.nickname);
+		return (p.Nickname == this.Nickname);
 	}
 	public override int GetHashCode() {
-		return nickname.GetHashCode();
+		return Nickname.GetHashCode();
 	}
 	public GameObject Label => desk.PlayerLabel;
 }

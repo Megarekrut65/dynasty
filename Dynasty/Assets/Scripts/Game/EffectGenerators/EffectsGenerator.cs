@@ -92,7 +92,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private CardEffect DungeonEffect(Player player, Card card) {
 		return () => {
-			BonusCoins("secret-treasure", 6, player.nickname);
+			BonusCoins("secret-treasure", 6, player.Nickname);
 			return CoverPlayersCardSelectEffect(player, card)();
 		};
 	}
@@ -180,7 +180,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	private CardEffect SnakeEffect(Player player, Card card) {
 		return () => {
 			Player snake = table.FindPlayerWithCard("snake");
-			if (snake != null && snake.nickname != player.nickname) {
+			if (snake != null && snake.Nickname != player.Nickname) {
 				var snakes = table.RemoveAllCardsFromPlayer(snake, c => c.key == "snake");
 				logger.LogSomeCards(player);
 				anim.TakeAllAnimated(player, snakes, CallNext());
@@ -203,7 +203,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private CardEffect SecretTreasureEffect(Player player, Card card) {
 		return () => {
-			BonusCoins("dungeon", 6, player.nickname);
+			BonusCoins("dungeon", 6, player.Nickname);
 			return CardEffect(player, card)();
 		};
 	}

@@ -21,7 +21,6 @@ public class CreateRoom : MonoBehaviour {
         var reference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS);
         var roomName = RoomNameGenerator.Generate();
         PlayerPrefs.SetString(PrefabsKeys.ROOM_NAME, roomName);
-        PlayerPrefs.SetInt(PrefabsKeys.BOT_COUNT, 0);
         RoomInfo roomInfo = new RoomInfo(PlayerPrefs.HasKey(PrefabsKeys.PLAYER_COUNT)
                 ? PlayerPrefs.GetInt(PrefabsKeys.PLAYER_COUNT)
                 : 2, 1,
@@ -30,8 +29,10 @@ public class CreateRoom : MonoBehaviour {
             Convert.ToBoolean(
                 PlayerPrefs.GetString(PrefabsKeys
                     .KEEP_PRIVATE)));
-        reference = reference.Child(roomName).Child(PrefabsKeys.ROOM_INFO);
-        reference.SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo)).ContinueWithOnMainThread(Created);
+        reference = reference.Child(roomName);
+        reference.Child(PrefabsKeys.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo)).ContinueWithOnMainThread(task => {
+            ConnectPlayerToGame.Connect(reference, PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME), Created);
+        });
     }
     private void Created(Task task) {
         if (task.Exception != null) {

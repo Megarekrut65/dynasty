@@ -30,6 +30,9 @@ public class Table {
 			return false;
 		}, 0);
 	}
+	public void AddPlayer(Player player) {
+		playerDesk.Add(player, new List<Card>());
+	}
 	public void InsertToDesk(Card card) {
 		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
 	}

@@ -27,7 +27,12 @@ public class TableManager : MonoBehaviour {
 		animationEffectGenerator = new AnimationEffectGenerator(cardManager, table, animationManager);
 		effectsGenerator = new EffectsGenerator(gameManager, dependencies, cardManager, table, animationEffectGenerator);
 		AddStartCards(players);
-		dependencies.playerManager.CreateBots(dependencies, table, TakeCardFromDesk);
+		if (GameModeFunctions.IsMode(GameMode.OFFLINE)) {
+			for (int i = dependencies.playerManager.GetPlayersCount(); i < dependencies.playerManager.GetEntityCount(); i++) {
+				var player = dependencies.playerManager.AddController("Bot" + i, dependencies, table, TakeCardFromDesk);
+				table.AddPlayer(player);
+			}
+		}
 		dependencies.logger.TranslatedLog("game-begun");
 		dependencies.roundManager.CallNextPlayer();
 	}
@@ -59,7 +64,7 @@ public class TableManager : MonoBehaviour {
 				dependencies.bigCardManager.MakeBig(card.obj);
 		});
 		Player next = dependencies.roundManager.WhoIsNextPlayer();
-		dependencies.logger.TranslatedLog($"{next.nickname} took card \'{card.data.name}\' from desk");
+		dependencies.logger.TranslatedLog($"{next.Nickname} took card \'{card.data.name}\' from desk");
 		cardManager.AddClickToCard(card,
 			effectsGenerator.GetEffect(dependencies.roundManager.GetTheNextPlayer(), card),
 			next.GetColor(),

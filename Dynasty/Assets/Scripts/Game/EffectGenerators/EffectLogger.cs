@@ -8,11 +8,11 @@ public class EffectLogger {
 	}
 	public void LogGot(Player player, Card card) {
 		logger.TranslatedLog(
-				$"{player.nickname} got card \'{card.data.name}\'");
+				$"{player.Nickname} got card \'{card.data.name}\'");
 	}
 	public void LogSomeCards(Player player) {
 		logger.TranslatedLog(
-				$"{player.nickname} got some cards");
+				$"{player.Nickname} got some cards");
 	}
 	public void LogAction(Player player, string key, string action) {
 		var owner = table.FindPlayerWithCard(key);
@@ -32,22 +32,22 @@ public class EffectLogger {
 	private void LogEffect(Player owner, Card card, Player target, string action) {
 		string word = action == "moved" ? "to" : "of";
 		logger.TranslatedLog(
-			$"{owner.nickname} {action} card \'{card.data.name}\' {word} {target.nickname}");
+			$"{owner.Nickname} {action} card \'{card.data.name}\' {word} {target.Nickname}");
 	}
 	public void LogCoins(Player player, int coins) {
 		string word = coins >= 0 ? "got" : "lost";
 		logger.TranslatedLog(
-			$"{player.nickname} {word} {coins} coins");
+			$"{player.Nickname} {word} {coins} coins");
 	}
 	public void LogTotal(Player player) {
 		logger.TranslatedLog(
-			$"{player.nickname} has total {player.Coins} coins");
+			$"{player.Nickname} has total {player.Coins} coins");
 	}
 	public void GameOver() {
 		logger.TranslatedLog("game-over");
 	}
 	public void LogInsert(Player player, string name) {
 		logger.TranslatedLog(
-			$"{player.nickname} mixed card \'{name}\'");
+			$"{player.Nickname} mixed card \'{name}\'");
 	}
 }
