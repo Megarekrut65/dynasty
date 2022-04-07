@@ -91,7 +91,7 @@ public class SelectManager {
 	}
 	private void AddClick<TObjectType>(TObjectType obj, GameObject gameObject, Color color,
 				List<SelectObjectData<TObjectType>> list, Action<int> select, bool canClick, int id, Player owner) {
-		var outline = CardManager.CreateOutline(gameObject, color);
+		var outline = CardController.CreateOutline(gameObject, color);
 		var selectClick = gameObject.AddComponent<SelectClick>();
 		list.Add(new SelectObjectData<TObjectType>(outline, selectClick, obj, owner));
 		selectClick.Id = id;

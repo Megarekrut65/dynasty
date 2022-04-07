@@ -12,7 +12,7 @@ IPointerDownHandler, IPointerUpHandler {
 	private bool canTake = false;
 	
 	private void Awake() {
-		gameManager.Dependencies.roundManager.Next += Next;
+		gameManager.GameDependencies.roundManager.Next += Next;
 	}
 	public void OnPointerDown(PointerEventData eventData) {
 	}
@@ -27,8 +27,8 @@ IPointerDownHandler, IPointerUpHandler {
 		if (manager.PlayerRound()) {
 			canTake = true;
 			deskAnimation.Play("DeskActive");
-			gameManager.Dependencies.logger.TranslatedLog(
-				$"turn of {gameManager.Dependencies.roundManager.WhoIsNextPlayer().Nickname}");
+			gameManager.GameDependencies.logger.TranslatedLog(
+				$"turn of {gameManager.GameDependencies.roundManager.WhoIsNextPlayer().Nickname}");
 		}
 	}
 }

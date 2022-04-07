@@ -227,6 +227,18 @@
         {
             "key": "hide-chat",
             "value": "Chat verstecken"
+        },
+        {
+            "key": "wait",
+            "value": "Warten"
+        },
+        {
+            "key": "for",
+            "value": "zum"
+        },
+        {
+            "key": "players",
+            "value": "alle Spieler"
         }
     ]
 }

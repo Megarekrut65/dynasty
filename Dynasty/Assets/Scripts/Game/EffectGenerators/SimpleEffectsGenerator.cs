@@ -8,15 +8,15 @@ using CardEffect = System.Func<bool>;
 public abstract class SimpleEffectsGenerator {
 	protected AnimationEffectGenerator anim;
 	protected GameDependencies dependencies;
-	protected CardManager cardManager;
+	protected CardController cardController;
 	protected Table table;
 	protected EffectLogger logger;
 	protected MonoBehaviour behaviour;
 
 	public SimpleEffectsGenerator(GameDependencies dependencies,
-			CardManager cardManager, Table table, AnimationEffectGenerator anim) {
+			CardController cardController, Table table, AnimationEffectGenerator anim) {
 		this.dependencies = dependencies;
-		this.cardManager = cardManager;
+		this.cardController = cardController;
 		this.table = table;
 		this.anim = anim;
 		this.logger = new EffectLogger(dependencies.logger, table);

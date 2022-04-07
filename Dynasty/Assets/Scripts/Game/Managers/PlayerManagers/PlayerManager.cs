@@ -9,10 +9,10 @@ public abstract class PlayerManager {
 	protected List<Controller> controllers;
 	private Desk[] desks;
 	private string controllerType;
-	
-	public PlayerManager(Desk[] desks, int playersCount, int deskBegin, string controllerType) {
+
+	protected PlayerManager(Desk[] desks, int playersCount, int deskBegin, string controllerType) {
 		this.desks = desks;
-		Array.Sort(desks, (d1, d2) => d1.Order - d2.Order);
+		Array.Sort(desks, 0, deskBegin, new DeskComparer());
 		this.playersCount = playersCount;
 		this.controllerType = controllerType;
 		this.Players = new List<Player>();

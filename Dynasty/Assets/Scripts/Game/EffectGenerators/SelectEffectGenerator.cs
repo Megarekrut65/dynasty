@@ -9,8 +9,8 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	private SelectManager selectManager;
 	
 	public SelectEffectGenerator(GameDependencies dependencies,
-	CardManager cardManager, Table table, AnimationEffectGenerator anim)
-		: base(dependencies, cardManager, table, anim) {
+	CardController cardController, Table table, AnimationEffectGenerator anim)
+		: base(dependencies, cardController, table, anim) {
 		this.selectManager = new SelectManager(table);
 	}
 	public override CardEffect GetEffect(Player player, Card card) {
@@ -65,7 +65,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	private IEnumerator TakeFromDrop(Player player, Card card, bool callNext) {
 		var cards = table.GetRCardsInDrop();
 		foreach (var c in cards) {
-			cardManager.CreateCard(c);
+			cardController.CreateCard(c);
 			dependencies.scrollManager.AddToScroll(c.obj);
 		}
 		selectManager.SelectCard(player, cards, id => {
@@ -77,7 +77,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		var take = table.RemoveCardFromDrop(id);
 		var cards = table.GetRCardsInDrop();
 		foreach (var c in cards) {
-			cardManager.DeleteCardFromTable(c);
+			cardController.DeleteCardFromTable(c);
 		}
 		yield return new WaitForSeconds(1f);
 		Action after = () => {

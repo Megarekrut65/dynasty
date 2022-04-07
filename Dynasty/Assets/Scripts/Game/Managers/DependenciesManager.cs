@@ -25,7 +25,7 @@ public class DependenciesManager {
 	private GameObject view;
 	private GameDependencies dependencies;
 
-	public GameDependencies GetDependencies() {
+	public GameDependencies GetGameDependencies() {
 		if (dependencies == null) {
 			PlayerManager playerManager = null;
 			int playerCount = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2);
@@ -40,16 +40,29 @@ public class DependenciesManager {
 				var player = new Player(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME), playerDesks[index - 1]);
 				playerManager = new OnlinePlayerManager(playerDesks, player, playerCount);
 			}
+			var roundManager = new RoundManager(playerManager.Players);
 			dependencies = new GameDependencies {
 				bigCardManager = new BigCardManager(scrollRect, bigCard),
 				scrollManager = new ScrollManager(scrollRect.GetComponent<ScrollRect>(), contentObject, view),
 				playerManager = playerManager,
-				roundManager = new RoundManager(playerManager.Players),
+				roundManager = roundManager,
 				cameraMove = cameraMove,
-				logger = logger
+				logger = logger,
+				gameController = new GameController(logger, roundManager)
 			};
 		}
 
 		return dependencies;
+	}
+	[Header("Card manager dependencies")]
+	[SerializeField]
+	private GameObject cardContainer;
+	[SerializeField]
+	private GameObject cardObject;
+	[SerializeField]
+	private CardAnimationManager cardAnimationManager;
+	private CardDependencies cardDependencies;
+	public CardDependencies GetCardDependencies() {
+		return cardDependencies ??= new CardDependencies(GetGameDependencies(), cardContainer, cardObject, cardAnimationManager);
 	}
 }

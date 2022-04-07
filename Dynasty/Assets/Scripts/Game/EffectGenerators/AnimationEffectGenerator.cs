@@ -5,13 +5,13 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class AnimationEffectGenerator {
-	private CardManager cardManager;
+	private CardController cardController;
 	private Table table;
 	private CardAnimationManager animationManager;
 
-	public AnimationEffectGenerator(CardManager cardManager,
+	public AnimationEffectGenerator(CardController cardController,
 			Table table, CardAnimationManager animationManager) {
-		this.cardManager = cardManager;
+		this.cardController = cardController;
 		this.table = table;
 		this.animationManager = animationManager;
 	}
@@ -23,14 +23,14 @@ public class AnimationEffectGenerator {
 	}
 	public void InsertCardToDeskAnimated(Card card, Action end) {
 		animationManager.PlayCardToDeskAnimation(card?.obj, () => {
-			cardManager.DeleteCardFromTable(card);
+			cardController.DeleteCardFromTable(card);
 			table.InsertToDesk(card);
 			end();
 		});
 	}
 	public void InsertPlayerCardToDeskAnimated(Card card, Action end) {
 		animationManager.PlayCardHideAnimation(card?.obj, () => {
-			cardManager.DeleteCardFromTable(card);
+			cardController.DeleteCardFromTable(card);
 			table.InsertToDesk(card);
 			end();
 		});
@@ -38,7 +38,7 @@ public class AnimationEffectGenerator {
 	public void CoverCardAnimated(Card under, Card top, Action end) {
 		animationManager.PlayCoverCardAnimation(top?.obj, () => {
 			table.CoverCard(under, top);
-			cardManager.CoverCard(under, top);
+			cardController.CoverCard(under, top);
 		}, end);
 	}
 	public void DropCardFromPlayerAnimated(Card card, Player player, Action end) {
@@ -55,7 +55,7 @@ public class AnimationEffectGenerator {
 	}
 	private void DropAnimated(Card card, Action action) {
 		animationManager.PlayDropCardAnimation(card?.obj, () => {
-			cardManager.DeleteCardFromTable(card);
+			cardController.DeleteCardFromTable(card);
 			action();
 		});
 	}

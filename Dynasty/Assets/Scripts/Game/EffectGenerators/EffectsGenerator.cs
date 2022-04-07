@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using CardEffect = System.Func<bool>;
 
 public class EffectsGenerator : SelectEffectGenerator {
-	private GameManager gameManager;
 
-	public EffectsGenerator(GameManager gameManager, GameDependencies dependencies,
-			CardManager cardManager, Table table, AnimationEffectGenerator anim)
-			: base(dependencies, cardManager, table, anim) {
-		this.gameManager = gameManager;
-	}
+	public EffectsGenerator(GameDependencies dependencies,
+			CardController cardController, Table table, AnimationEffectGenerator anim)
+			: base(dependencies, cardController, table, anim) { }
 	public override CardEffect GetEffect(Player player, Card card) {
 		switch (card.key) {
 			case "inevitable-end":
@@ -231,7 +228,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 				anim.DropCardFromPlayerAnimated(card, player, () => {
 					logger.LogInsert(player, currentCard.data.name);
 					anim.InsertCardToDeskAnimated(currentCard, () => {
-						gameManager.GameOver = false;
+						dependencies.gameController.GameOver = false;
 						CallNext(true)();
 					});
 				});

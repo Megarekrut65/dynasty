@@ -25,21 +25,10 @@ public class RoomListGenerator : MonoBehaviour {
         loadBoard = new LoadBoard(board, canvas);
         roomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS);
         roomReference.ValueChanged += ChangeRooms;
-        // roomReference.GetValueAsync().ContinueWithOnMainThread(task => {
-        //     if (task.Exception != null) {
-        //         Debug.LogError(task.Exception);
-        //         return;
-        //     }
-        //     AddRoomsToList(task.Result.Children);
-        // });
     }
-    // private void OnEnable() {
-    //     
-    //     
-    // }
-    // private void OnDisable() {
-    //     //FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS).ValueChanged -= ChangeRooms;
-    // }
+    private void OnDestroy() {
+        roomReference.ValueChanged -= ChangeRooms;
+    }
     private void ChangeRooms(object sender, ValueChangedEventArgs args ) {
         foreach (var child in args.Snapshot.Children) {
             string roomName = child.Key;

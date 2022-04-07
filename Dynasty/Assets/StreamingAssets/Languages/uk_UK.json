@@ -227,6 +227,18 @@
         {
             "key": "hide-chat",
             "value": "Сховати чат"
+        },
+        {
+            "key": "wait",
+            "value": "Очікуйте"
+        },
+        {
+            "key": "for",
+            "value": "на"
+        },
+        {
+            "key": "players",
+            "value": "всіх гравців"
         }
     ]
 }
