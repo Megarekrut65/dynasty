@@ -1,3 +1,5 @@
+using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +17,7 @@ public class RoomObject : MonoBehaviour {
         UpdateData(roomInfo);
     }
     public void UpdateData(RoomInfo roomInfo) {
-        textCount.text = $"{roomInfo.currentCount}/{roomInfo.playerCount}";
+        if(textCount != null) textCount.text = $"{roomInfo.currentCount}/{roomInfo.playerCount}";
     }
     public void UpdateColor(Color color) {
         image.color = color;

@@ -12,6 +12,7 @@ public abstract class PlayerManager {
 	
 	public PlayerManager(Desk[] desks, int playersCount, int deskBegin, string controllerType) {
 		this.desks = desks;
+		Array.Sort(desks, (d1, d2) => d1.Order - d2.Order);
 		this.playersCount = playersCount;
 		this.controllerType = controllerType;
 		this.Players = new List<Player>();
@@ -30,7 +31,6 @@ public abstract class PlayerManager {
 		controllers.Add(
 			ControllerFactory.CreateController(controllerType,
 				player, dependencies, table, takeCardFromDesk));
-		Players.Sort((pl1, pl2) => pl1.Order - pl2.Order);
 		return player;
 	}
 	public abstract int GetEntityCount();

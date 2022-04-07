@@ -26,27 +26,24 @@ public class TableManager : MonoBehaviour {
 		table = new Table(players);
 		animationEffectGenerator = new AnimationEffectGenerator(cardManager, table, animationManager);
 		effectsGenerator = new EffectsGenerator(gameManager, dependencies, cardManager, table, animationEffectGenerator);
-		AddStartCards(players);
 		if (GameModeFunctions.IsMode(GameMode.OFFLINE)) {
 			for (int i = dependencies.playerManager.GetPlayersCount(); i < dependencies.playerManager.GetEntityCount(); i++) {
 				var player = dependencies.playerManager.AddController("Bot" + i, dependencies, table, TakeCardFromDesk);
 				table.AddPlayer(player);
 			}
+			players.ForEach(AddStartCards);
+			gameManager.StartGame();
 		}
-		dependencies.logger.TranslatedLog("game-begun");
-		dependencies.roundManager.CallNextPlayer();
 	}
-	private void AddStartCards(List<Player> players) {
+	private void AddStartCards(Player player) {
 		string avoidKey = "avoid-inevitable";
 		CardData avoid = LocalizationManager.Instance.GetCard(avoidKey);
-		foreach (var player in players) {
-			Card card = new Card(avoid, avoidKey);
-			cardManager.CreateCard(card);
-			cardManager.AddClickToCard(card,
-				effectsGenerator.GetEffect(player, card), new Vector4(0f, 0f, 0f, 0f),
-				dependencies.playerManager.IsPlayer(player));
-			animationEffectGenerator.AddCardToPlayerAnimated(card, player, () => { });
-		}
+		Card card = new Card(avoid, avoidKey);
+		cardManager.CreateCard(card);
+		cardManager.AddClickToCard(card,
+			effectsGenerator.GetEffect(player, card), new Vector4(0f, 0f, 0f, 0f),
+			dependencies.playerManager.IsPlayer(player));
+		animationEffectGenerator.AddCardToPlayerAnimated(card, player, () => { });
 	}
 	public bool PlayerRound() {
 		return dependencies.playerManager.IsPlayer(dependencies.roundManager.WhoIsNextPlayer());

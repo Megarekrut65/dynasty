@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour {
 			Connect();
 		}
 	}
+	public void StartGame() {
+		Dependencies.logger.TranslatedLog("game-begun");
+		Dependencies.roundManager.CallNextPlayer();
+	}
 	private void Connect() {
 		IsHost = Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.IS_HOST, false.ToString()));
 		roomName = PrefabsKeys.GetValue(PrefabsKeys.ROOM_NAME, "Room");
@@ -33,7 +37,9 @@ public class GameManager : MonoBehaviour {
 			.Child(roomName);
 		RoomReference.Child(PrefabsKeys.ROOM_INFO).ValueChanged += (sender, args) => {
 			RoomInfo = JsonUtility.FromJson<RoomInfo>(args.Snapshot.GetRawJsonValue());
+			if(RoomInfo == null) return;
 			roomObject.LoadData(roomName, RoomInfo);
+			if(RoomInfo.currentCount == RoomInfo.playerCount) StartGame();
 		};
 		RoomReference.Child("players").ValueChanged += (sender, args) => {
 			var desks = dependenciesManager.PlayerDesks;
