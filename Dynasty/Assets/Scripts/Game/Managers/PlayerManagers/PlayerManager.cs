@@ -26,8 +26,8 @@ public abstract class PlayerManager {
 		return Players.Where(p => !p.Equals(player)).ToList();
 	}
 	public Player AddController(string name, GameDependencies dependencies, Table table, Func<Card> takeCardFromDesk) {
-		Players.Add(new Player(name, desks[Players.Count]));
-		var player = Players[Players.Count - 1];
+		var player = new Player(name, desks[Players.Count], (Players.Count + 1).ToString());
+		Players.Add(player);
 		controllers.Add(
 			ControllerFactory.CreateController(controllerType,
 				player, dependencies, table, takeCardFromDesk));

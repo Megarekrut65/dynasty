@@ -16,10 +16,9 @@ public class Desk : MonoBehaviour {
 	[SerializeField]
 	private Color color;
 	public Color PlayerColor => color;
-
 	public GameObject PlayerLabel => playerLabel;
-
 	public int Order => order;
+	public string Name => nameLabel.text;
 
 	private void Start() {
 		coins.text = "0";

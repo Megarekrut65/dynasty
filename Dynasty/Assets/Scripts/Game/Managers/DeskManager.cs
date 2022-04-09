@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 public class DeskManager : MonoBehaviour,
 IPointerDownHandler, IPointerUpHandler {
 	[SerializeField]
-	private TableManager manager;
-	[SerializeField]
 	private GameManager gameManager;
 	[SerializeField]
 	private Animation deskAnimation;
@@ -19,12 +17,12 @@ IPointerDownHandler, IPointerUpHandler {
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canTake) {
 			deskAnimation.Stop("DeskActive");
-			manager.TakeCardFromDesk();
+			gameManager.CardTaker.TakeCardFromDesk();
 		}
 	}
 
 	private void Next() {
-		if (manager.PlayerRound()) {
+		if (gameManager.CardTaker.PlayerRound()) {
 			canTake = true;
 			deskAnimation.Play("DeskActive");
 			gameManager.GameDependencies.logger.TranslatedLog(

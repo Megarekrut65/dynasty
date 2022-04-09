@@ -20,11 +20,11 @@ public abstract class Controller {
 
 	private void Next() {
 		Player next = dependencies.roundManager.WhoIsNextPlayer();
-		if (next.Nickname != this.player.Nickname) return;
+		if (!next.Equals(player)) return;
 		dependencies.cameraMove.StartCoroutine(ClickOnCard());
 	}
 	protected abstract IEnumerator InevitableEnd(Card card);
-	protected abstract SelectObjectData<GameObject> GetPlayer();
+	protected abstract SelectObjectData<GameObject> SelectPlayer();
 	protected abstract IEnumerator WaitForClick();
 	protected abstract SelectObjectData<Card> SelectCard();
 	private IEnumerator ClickOnCard() {
@@ -39,7 +39,7 @@ public abstract class Controller {
 					if (!SelectManager.SelectData.toOwner) {
 						yield return new WaitForSeconds(1f);
 						if (SelectManager.SelectData.selectingPlayers.Count > 0)
-							yield return Click(GetPlayer().selectClick);
+							yield return Click(SelectPlayer().selectClick);
 					}
 					var data = SelectCard();
 					yield return new WaitForSeconds(1f);

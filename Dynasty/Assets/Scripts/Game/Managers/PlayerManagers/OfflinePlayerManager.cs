@@ -12,7 +12,7 @@ public class OfflinePlayerManager:PlayerManager {
         this.botsCount = botCount;
         var nicknames = CreateNames();
         for (int i = 0; i < playersCount; i++) {
-            Players.Add(new Player(nicknames[i], desks[i]));
+            Players.Add(new Player(nicknames[i], desks[i], (i+1).ToString()));
         }
         Players.Sort((pl1, pl2) => pl1.Order - pl2.Order);
     }

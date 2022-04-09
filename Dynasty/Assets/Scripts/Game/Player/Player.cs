@@ -6,13 +6,15 @@ public class Player {
 	public string Nickname { get; set; }
 	private Desk desk;
 	public int Coins { get; private set; } = 0;
-
 	public int Order => desk.Order;
+	public GameObject Label => desk.PlayerLabel;
+	public string Key { get; private set; }
 
-	public Player(string nickname, Desk desk) {
+	public Player(string nickname, Desk desk, string key) {
 		id = _id++;
 		this.Nickname = nickname;
 		this.desk = desk;
+		Key = key;
 		desk.SetName(nickname);
 	}
 	public void AddCard(Card card) {
@@ -39,5 +41,4 @@ public class Player {
 	public override int GetHashCode() {
 		return id;
 	}
-	public GameObject Label => desk.PlayerLabel;
 }

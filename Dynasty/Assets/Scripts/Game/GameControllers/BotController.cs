@@ -11,7 +11,7 @@ public abstract class BotController : Controller {
 		if (avoid != null) yield return Click(avoid.obj.GetComponent<CardClick>());
 		else yield return Click(card.obj.GetComponent<CardClick>());
 	}
-	protected override SelectObjectData<GameObject> GetPlayer() {
+	protected override SelectObjectData<GameObject> SelectPlayer() {
 		return SelectManager.SelectData.
 								selectingPlayers[UnityEngine.Random.Range(0,
 									SelectManager.SelectData.selectingPlayers.Count)];

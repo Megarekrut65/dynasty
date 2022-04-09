@@ -36,9 +36,7 @@ public class DependenciesManager {
 						? PrefabsKeys.GetValue(PrefabsKeys.BOT_COUNT, 0)
 						: 0);
 			} else {
-				int index = Convert.ToInt32(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_KEY));
-				var player = new Player(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME), playerDesks[index - 1]);
-				playerManager = new OnlinePlayerManager(playerDesks, player, playerCount);
+				playerManager = new OnlinePlayerManager(playerDesks,playerCount);
 			}
 			var roundManager = new RoundManager(playerManager.Players);
 			dependencies = new GameDependencies {
@@ -64,5 +62,9 @@ public class DependenciesManager {
 	private CardDependencies cardDependencies;
 	public CardDependencies GetCardDependencies() {
 		return cardDependencies ??= new CardDependencies(GetGameDependencies(), cardContainer, cardObject, cardAnimationManager);
+	}
+	private CardTaker cardTaker;
+	public CardTaker GetCardTaker() {
+		return cardTaker ??= new CardTaker(GetGameDependencies(), GetCardDependencies());
 	}
 }

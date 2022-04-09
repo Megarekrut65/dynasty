@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	
 	public GameDependencies GameDependencies => dependenciesManager.GetGameDependencies();
 	public CardDependencies CardDependencies => dependenciesManager.GetCardDependencies();
+	public CardTaker CardTaker => dependenciesManager.GetCardTaker();
 	private GameMode mode;
 	public bool IsHost { get; private set; }
 	public DatabaseReference RoomReference { get; private set; }
@@ -29,6 +30,23 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 	public void StartGame() {
+		if (mode == GameMode.ONLINE && RoomInfo != null) {
+			var desks = dependenciesManager.PlayerDesks;
+			int currentPlayerKey = Convert.ToInt32(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_KEY, "1"));
+			for (int i = 0; i < RoomInfo.playerCount; i++) {
+				string playerName = desks[i].Name;
+				if ((i + 1) != currentPlayerKey) {
+					var player = GameDependencies.playerManager.AddController(playerName, GameDependencies, CardDependencies.Table,
+						CardTaker.TakeCardFromDesk);
+					CardDependencies.Table.AddPlayer(player);
+				}
+			}
+			Player current = new Player(desks[currentPlayerKey - 1].name, desks[currentPlayerKey - 1],
+				currentPlayerKey.ToString());
+			GameDependencies.playerManager.Players.Add(current);
+			((OnlinePlayerManager) GameDependencies.playerManager).Current = current;
+			CardDependencies.Table.AddPlayer(current);
+		}
 		CardDependencies.AddStartCards();
 		GameDependencies.gameController.StartGame();
 	}

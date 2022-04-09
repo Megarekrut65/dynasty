@@ -5,10 +5,13 @@ public class CardDependencies {
     public CardController Controller { get; }
     public EffectsGenerator EffectsGenerator{ get; }
     public AnimationEffectGenerator AnimationGenerator{ get; }
+    public CardAnimationManager CardAnimationManager { get; }
     
     private GameDependencies dependencies;
-    public CardDependencies(GameDependencies dependencies, GameObject container, GameObject cardObject, CardAnimationManager animationManager) {
+    public CardDependencies(GameDependencies dependencies, GameObject container, 
+            GameObject cardObject, CardAnimationManager animationManager) {
         this.dependencies = dependencies;
+        this.CardAnimationManager = animationManager;
         Controller = new CardController(container, cardObject);
         Table = new Table(dependencies.playerManager.Players);
         AnimationGenerator = new AnimationEffectGenerator(Controller, Table, animationManager);
