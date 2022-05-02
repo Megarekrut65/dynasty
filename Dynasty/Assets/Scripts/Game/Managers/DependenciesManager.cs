@@ -25,19 +25,20 @@ public class DependenciesManager {
 	private GameObject view;
 	private GameDependencies dependencies;
 
+	private PlayerManager GetPlayerManager() {
+		int playerCount = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2);
+		if (GameModeFunctions.IsMode(GameMode.OFFLINE)) {
+			return new OfflinePlayerManager(playerDesks,
+				playerCount,
+				Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.ENABLE_BOTS))
+					? PrefabsKeys.GetValue(PrefabsKeys.BOT_COUNT, 0)
+					: 0);
+		} 
+		return new OnlinePlayerManager(playerDesks,playerCount);
+	}
 	public GameDependencies GetGameDependencies() {
 		if (dependencies == null) {
-			PlayerManager playerManager = null;
-			int playerCount = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2);
-			if (GameModeFunctions.IsMode(GameMode.OFFLINE)) {
-				playerManager = new OfflinePlayerManager(playerDesks,
-					playerCount,
-					Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.ENABLE_BOTS))
-						? PrefabsKeys.GetValue(PrefabsKeys.BOT_COUNT, 0)
-						: 0);
-			} else {
-				playerManager = new OnlinePlayerManager(playerDesks,playerCount);
-			}
+			PlayerManager playerManager = GetPlayerManager();
 			var roundManager = new RoundManager(playerManager.Players);
 			dependencies = new GameDependencies {
 				bigCardManager = new BigCardManager(scrollRect, bigCard),

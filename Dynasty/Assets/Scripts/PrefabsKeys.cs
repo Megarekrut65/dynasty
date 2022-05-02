@@ -16,8 +16,9 @@ public static class PrefabsKeys {
     public const string HIDE_CHAT = "hideChat";
     public const string HIDE_ROOM_INFO = "hideRoomInfo";
     public const string PLAYER_KEY = "playerKey";
+    public const string DESK_SEED = "deskSeed";
 
-    public static string GetValue(string key, string def = "") {
+        public static string GetValue(string key, string def = "") {
         if (!PlayerPrefs.HasKey(key)) {
             PlayerPrefs.SetString(key, def);
         }

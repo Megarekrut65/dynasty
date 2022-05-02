@@ -26,7 +26,7 @@ public class Table {
 		foreach (var player in players) {
 			playerDesk.Add(player, new List<Card>());
 		}
-		desk = DeskGenerator.Generate(0, card => {
+		desk = DeskGenerator.Generate(PlayerPrefs.GetInt(PrefabsKeys.DESK_SEED), card => {
 			return false;
 		}, 0);
 	}

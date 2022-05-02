@@ -18,11 +18,7 @@ public class OnlineController:Controller {
         throw new NotImplementedException();
     }
     protected override IEnumerator WaitForClick() {
-        while (true) {
-            yield return null;
-            var value = playerReference.Child("game").GetValueAsync().Result.Value;
-            if(value != null) break;
-        }
+        yield return null;
     }
     protected override SelectObjectData<Card> SelectCard() {
         throw new NotImplementedException();

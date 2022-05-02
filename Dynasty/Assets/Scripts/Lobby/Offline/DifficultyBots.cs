@@ -10,7 +10,9 @@ public class DifficultyBots : MonoBehaviour {
 
 	private void Start() {
 		dropdown.options.ForEach(op=>keys.Add(op.text));
-		PrefabsKeys.GetValue(PrefabsKeys.DIFFICULTY_BOTS, keys[0]);
+		string val = PrefabsKeys.GetValue(PrefabsKeys.DIFFICULTY_BOTS, keys[0]);
+		int index = keys.IndexOf(val);
+		dropdown.value = index;
 	}
 	public void Change(int value) {
 		PlayerPrefs.SetString(PrefabsKeys.DIFFICULTY_BOTS, keys[value]);

@@ -1,8 +1,11 @@
 using System;
+using UnityEngine;
 
 public class MoreCoinsBotController : BotController {
 	public MoreCoinsBotController(Player player, GameDependencies dependencies,
-		Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) { }
+		Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {
+		Debug.Log("More coins");
+	}
 
 	protected override SelectObjectData<Card> SelectCard() {
 		return SelectManager.SelectData.selectingCards.Count == 0 ? null : FindBestSelect();

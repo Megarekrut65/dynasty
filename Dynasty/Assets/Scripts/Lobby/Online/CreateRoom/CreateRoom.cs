@@ -28,10 +28,10 @@ public class CreateRoom : MonoBehaviour {
             PlayerPrefs.HasKey(PrefabsKeys.KEEP_PRIVATE) &&
             Convert.ToBoolean(
                 PlayerPrefs.GetString(PrefabsKeys
-                    .KEEP_PRIVATE)));
+                    .KEEP_PRIVATE)), PlayerPrefs.GetInt(PrefabsKeys.DESK_SEED, 0));
         reference = reference.Child(roomName);
         reference.Child(PrefabsKeys.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo)).ContinueWithOnMainThread(task => {
-            ConnectPlayerToGame.Connect(reference, PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME), Created);
+            PrintAboutPlayerInDatabase.Print(reference, PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME), Created);
         });
     }
     private void Created(Task task) {
