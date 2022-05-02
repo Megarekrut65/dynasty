@@ -17,7 +17,10 @@ public class LocalizationManager : MonoBehaviour {
 	public event ChangeLanguageText OnLanguageChanged;
 
 	public void ChangeLanguage(string language) {
-		if (language == currentLanguage || !Ready) return;
+		if (language == currentLanguage || !Ready) {
+			OnLanguageChanged?.Invoke();
+			return;
+		}
 		currentLanguage = language;
 		PlayerPrefs.SetString(LANGUAGE_KEY, language);
 		Ready = false;

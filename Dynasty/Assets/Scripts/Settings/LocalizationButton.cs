@@ -9,7 +9,8 @@ IPointerDownHandler, IPointerUpHandler {
 	private string language = "";
 	[SerializeField]
 	private LanguageLoader languageLoader;
-
+	[SerializeField]
+	private Outline outline;
 	public void OnPointerDown(PointerEventData eventData) {
 		languageLoader.SetActive(true);
 		LocalizationManager.Instance.ChangeLanguage(language);
@@ -28,13 +29,14 @@ IPointerDownHandler, IPointerUpHandler {
 	}
 
 	private void ChangeLanguage() {
-		var color = new Color(0f, 0f, 0f, 0f);
+		var alpha = 0f;
 		if (PlayerPrefs.HasKey("Language") &&
 			PlayerPrefs.GetString("Language").Equals(language)) {
-			color = new Color(0f, 0f, 0f, 1f);
+			alpha = 0.5f;
 			StartCoroutine(Hide());
 		}
-		GetComponent<Outline>().effectColor = color;
+
+		outline.effectColor = new Color(outline.effectColor.r, outline.effectColor.g, outline.effectColor.b, alpha);
 	}
 	private IEnumerator Hide() {
 		yield return new WaitForSeconds(0.5f);
