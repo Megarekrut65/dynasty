@@ -8,7 +8,7 @@ public abstract class Controller {
 	public Player Player => player;
 	protected GameDependencies dependencies;
 	protected Table table;
-	private Func<Card> takeCard;
+	protected Func<Card> takeCard;
 
 	public Controller(Player player, GameDependencies dependencies, Table table, Func<Card> takeCard) {
 		this.player = player;
@@ -18,14 +18,13 @@ public abstract class Controller {
 		dependencies.roundManager.Next += Next;
 	}
 
-	private void Next() {
+	protected virtual void Next() {
 		Player next = dependencies.roundManager.WhoIsNextPlayer();
 		if (!next.Equals(player)) return;
 		dependencies.cameraMove.StartCoroutine(ClickOnCard());
 	}
 	protected abstract IEnumerator InevitableEnd(Card card);
 	protected abstract SelectObjectData<GameObject> SelectPlayer();
-	protected abstract IEnumerator WaitForClick();
 	protected abstract SelectObjectData<Card> SelectCard();
 	private IEnumerator ClickOnCard() {
 		Card card = takeCard();
@@ -52,7 +51,6 @@ public abstract class Controller {
 		}
 	}
 	protected IEnumerator Click(object cardClick) {
-		yield return WaitForClick();
 		(cardClick as IPointerDownHandler)?.OnPointerDown(null);
 		yield return new WaitForSeconds(0.1f);
 		(cardClick as IPointerUpHandler)?.OnPointerUp(null);

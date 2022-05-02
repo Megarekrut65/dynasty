@@ -1,5 +1,7 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 using CardEffect = System.Func<bool>;
 
 public class EffectsGenerator : SelectEffectGenerator {
@@ -60,9 +62,35 @@ public class EffectsGenerator : SelectEffectGenerator {
 				return HocusPocusEffect(player, card);
 			case "hydra":
 				return HydraEffect(player, card);
+			case "look-back":
+				return LookBackEffect(player, card);
 			default:
 				return base.GetEffect(player, card);
 		}
+	}
+	private CardEffect LookBackEffect(Player player, Card card) {
+		return () => {
+			dependencies.cameraMove.Stop = true;
+			dependencies.scrollManager.ViewSetActive(true);
+			behaviour.StartCoroutine(TakeFromDrop(player));
+			return CardEffect(player, card, false)();
+		};
+	}
+	private IEnumerator TakeFromDrop(Player player) {
+		var cards = table.GetRCardsInDrop();
+		Action after = () => {
+			CallNext()();
+			dependencies.cameraMove.Stop = false;
+			dependencies.scrollManager.ViewSetActive(false);
+		};
+		if (cards.Count != 0) {
+			var card = cards[cards.Count - 1];
+			cards.Remove(card);
+			cardController.CreateCard(card);
+			dependencies.scrollManager.AddToScroll(card.obj);
+			yield return new WaitForSeconds(3f);
+			anim.AddCardToPlayerAnimated(card, player, after);
+		} else after();
 	}
 	private CardEffect HydraEffect(Player player, Card card) {
 		return MoveCardSelectEffect(c => c.type == CardType.MONSTER && c.id != card.id,
@@ -70,7 +98,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 	}
 	private CardEffect HocusPocusEffect(Player player, Card card) {
 		return () => {
-			table.NextRandom = true;
+			table.NextFromDown = true;
 			return CardMoreEffect(1, player, card)();
 		};
 	}

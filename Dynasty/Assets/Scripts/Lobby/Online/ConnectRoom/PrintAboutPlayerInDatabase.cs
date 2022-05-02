@@ -23,7 +23,8 @@ public static class PrintAboutPlayerInDatabase {
                         }
                   }
                   PlayerPrefs.SetString(PrefabsKeys.PLAYER_KEY, playerKey);
-                  roomReference.Child("players").Child(playerKey).SetValueAsync(playerName).ContinueWithOnMainThread(end);
+                  roomReference.Child("players").Child(playerKey).Child(PrefabsKeys.PLAYER_NAME)
+                        .SetValueAsync(playerName).ContinueWithOnMainThread(end);
             });
       }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 public static class DeskGenerator {
-	public static List<Card> Generate(int seed, Func<Card, bool> check, int pos) {
+	public static List<Card> Generate(Random rnd, Func<Card, bool> check, int pos) {
 		List<Card> desk = new List<Card>();
 		List<Card> data = new List<Card>();
 		var map = LocalizationManager.Instance.map.CardMap;
@@ -18,7 +18,6 @@ public static class DeskGenerator {
 				data.Add(new Card(item.Value, item.Key));
 			}
 		}
-		System.Random rnd = new System.Random(seed);
 		while (data.Count != 0) {
 			int index = rnd.Next(data.Count);
 			var item = data[index];

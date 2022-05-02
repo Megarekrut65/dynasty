@@ -16,7 +16,4 @@ public abstract class BotController : Controller {
 								selectingPlayers[UnityEngine.Random.Range(0,
 									SelectManager.SelectData.selectingPlayers.Count)];
 	}
-	protected override IEnumerator WaitForClick() {
-		yield return null;
-	}
 }

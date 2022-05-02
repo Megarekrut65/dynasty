@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,11 +13,19 @@ IPointerDownHandler, IPointerUpHandler {
 	private void Awake() {
 		gameManager.GameDependencies.roundManager.Next += Next;
 	}
+	private void OnDestroy() {
+		gameManager.GameDependencies.roundManager.Next -= Next;
+	}
 	public void OnPointerDown(PointerEventData eventData) {
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canTake) {
 			deskAnimation.Stop("DeskActive");
+			gameManager.RoomReference.Child(GameKeys.PLAYERS)
+				.Child(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_KEY, "1"))
+				.Child(GameKeys.GAME_STATE)
+				.Child(GameKeys.IS_CLICK)
+				.SetValueAsync(true);
 			gameManager.CardTaker.TakeCardFromDesk();
 		}
 	}

@@ -38,8 +38,6 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 				return DropEnemyCardSelectEffect(player, card);
 			case "wand":
 				return DropPlayersCardSelectEffect(player, card);
-			case "look-back":
-				return TakeCardFromDropSelectEffect(player, card);
 			case "bunker":
 			case "curses":
 				return CoverOwnCardSelectEffect(player, card);
@@ -52,43 +50,6 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			default:
 				return base.GetEffect(player, card);
 		}
-	}
-	protected CardEffect TakeCardFromDropSelectEffect(Player player, Card card, bool callNext = true) {
-		return () => {
-			card.needSelect = true;
-			dependencies.cameraMove.Stop = true;
-			dependencies.scrollManager.ViewSetActive(true);
-			behaviour.StartCoroutine(TakeFromDrop(player, card, callNext));
-			return CardEffect(player, card, false)();
-		};
-	}
-	private IEnumerator TakeFromDrop(Player player, Card card, bool callNext) {
-		var cards = table.GetRCardsInDrop();
-		foreach (var c in cards) {
-			cardController.CreateCard(c);
-			dependencies.scrollManager.AddToScroll(c.obj);
-		}
-		selectManager.SelectCard(player, cards, id => {
-			behaviour.StartCoroutine(TakeAction(id, player, callNext));
-		}, dependencies.playerManager.IsPlayer(player));
-		yield return null;
-	}
-	private IEnumerator TakeAction(int id, Player player, bool callNext) {
-		var take = table.RemoveCardFromDrop(id);
-		var cards = table.GetRCardsInDrop();
-		foreach (var c in cards) {
-			cardController.DeleteCardFromTable(c);
-		}
-		yield return new WaitForSeconds(1f);
-		Action after = () => {
-			CallNext(callNext)();
-			dependencies.cameraMove.Stop = false;
-			dependencies.scrollManager.ViewSetActive(false);
-		};
-		if (take != null) {
-			anim.AddCardToPlayerAnimated(take, player, after);
-		} else after();
-		yield return null;
 	}
 	protected CardEffect DropCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
 								Card card, bool callNext = true) {

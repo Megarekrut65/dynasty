@@ -9,7 +9,7 @@ public static class ControllerFactory {
 			MEDIUM => new MoreCoinsBotController(player, dependencies, table, takeCard),
 			ONLINE => new OnlineController(player, dependencies, table, takeCard,
 				FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS)
-					.Child(PrefabsKeys.GetValue(PrefabsKeys.ROOM_NAME)).Child("players").Child(player.Key)),
+					.Child(PrefabsKeys.GetValue(PrefabsKeys.ROOM_NAME)).Child(GameKeys.PLAYERS).Child(player.Key)),
 			_ => new RandomBotController(player, dependencies, table, takeCard) //easy
 		};
 	}

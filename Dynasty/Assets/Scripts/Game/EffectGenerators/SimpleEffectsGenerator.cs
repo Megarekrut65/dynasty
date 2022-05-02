@@ -152,7 +152,7 @@ public abstract class SimpleEffectsGenerator {
 	}
 
 	private IEnumerator Next() {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(1.5f);
 		dependencies.roundManager.CallNextPlayer();
 	}
 

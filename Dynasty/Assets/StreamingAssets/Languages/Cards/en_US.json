@@ -158,7 +158,7 @@
             "key": "look-back",
             "value": {
                 "name": "Look Back",
-                "description": "TAKE any dropped R-card"
+                "description": "TAKE last dropped R-card"
             }
         },
         {
@@ -326,7 +326,7 @@
             "key": "hocus-pocus",
             "value": {
                 "name": "Hocus-Pocus",
-                "description": "TAKE another card from a random place on the deck"
+                "description": "TAKE another card from the bottom of the deck"
             }
         },
         {

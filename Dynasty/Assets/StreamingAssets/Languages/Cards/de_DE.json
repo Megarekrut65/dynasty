@@ -158,7 +158,7 @@
             "key": "look-back",
             "value": {
                 "name": "Zurückschauen",
-                "description": "NEHMEN Sie jede fallen gelassene Karte"
+                "description": "Nimm die zuletzt fallen gelassene R-Karte"
             }
         },
         {
@@ -326,7 +326,7 @@
             "key": "hocus-pocus",
             "value": {
                 "name": "Hokuspokus",
-                "description": "NIMM eine weitere Karte von einer zufälligen Stelle des Decks"
+                "description": "NEHMEN Sie eine weitere Karte von der Unterseite des Stapels"
             }
         },
         {

@@ -39,13 +39,14 @@ public class GameManager : MonoBehaviour {
 					var player = GameDependencies.playerManager.AddController(playerName, GameDependencies, CardDependencies.Table,
 						CardTaker.TakeCardFromDesk);
 					CardDependencies.Table.AddPlayer(player);
+					continue;
 				}
+				Player current = new Player(playerName, desks[currentPlayerKey - 1],
+					currentPlayerKey.ToString());
+				GameDependencies.playerManager.Players.Add(current);
+				((OnlinePlayerManager) GameDependencies.playerManager).Current = current;
+				CardDependencies.Table.AddPlayer(current);
 			}
-			Player current = new Player(desks[currentPlayerKey - 1].name, desks[currentPlayerKey - 1],
-				currentPlayerKey.ToString());
-			GameDependencies.playerManager.Players.Add(current);
-			((OnlinePlayerManager) GameDependencies.playerManager).Current = current;
-			CardDependencies.Table.AddPlayer(current);
 		}
 		CardDependencies.AddStartCards();
 		GameDependencies.gameController.StartGame();
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour {
 	private void PlayersChanged(object sender, ValueChangedEventArgs args) {
 		var desks = dependenciesManager.PlayerDesks;
 		for (int i = 0; i < desks.Length; i++) {
-			var snapshot = args.Snapshot.Child((i + 1).ToString());
+			var snapshot = args.Snapshot.Child((i + 1).ToString()).Child(PrefabsKeys.PLAYER_NAME);
 			desks[i].SetName(snapshot.Value==null?"":snapshot.Value as string);
 		}
 	}

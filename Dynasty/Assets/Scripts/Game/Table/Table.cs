@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Table {
@@ -17,16 +18,17 @@ public class Table {
 		set => current = value;
 	}
 	[SerializeField]
-	private bool nextRandom = false;
-	public bool NextRandom {
-		set => nextRandom = value;
+	private bool nextFromDown = false;
+	public bool NextFromDown {
+		set => nextFromDown = value;
 	}
-	
+	private System.Random rnd;
 	public Table(List<Player> players) {
 		foreach (var player in players) {
 			playerDesk.Add(player, new List<Card>());
 		}
-		desk = DeskGenerator.Generate(PlayerPrefs.GetInt(PrefabsKeys.DESK_SEED), card => {
+		rnd = new System.Random(PrefabsKeys.GetValue(PrefabsKeys.DESK_SEED, 0));
+		desk = DeskGenerator.Generate(rnd, card => {
 			return false;
 		}, 0);
 	}
@@ -34,7 +36,7 @@ public class Table {
 		playerDesk.Add(player, new List<Card>());
 	}
 	public void InsertToDesk(Card card) {
-		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
+		desk.Insert(rnd.Next(desk.Count - 1), card);
 	}
 	private void UnderCard(Card card, List<Card> list) {
 		if (card.underCard != null) {
@@ -44,13 +46,11 @@ public class Table {
 	public void InsertToDeskFromPlayer(Player player, Card card) {
 		playerDesk[player].Remove(card);
 		UnderCard(card, playerDesk[player]);
-		desk.Insert(UnityEngine.Random.Range(0, desk.Count - 1), card);
+		InsertToDesk(card);
 	}
 	public Card TakeCardFromDesk() {
-		int index = nextRandom ?
-			UnityEngine.Random.Range(0, desk.Count - 1) :
-			desk.Count - 1;
-		nextRandom = false;
+		int index = nextFromDown ? 0 : desk.Count - 1;
+		nextFromDown = false;
 		current = desk[index];
 		desk.Remove(current);
 
