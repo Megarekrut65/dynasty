@@ -18,20 +18,20 @@ public class CreateRoom : MonoBehaviour {
     }
     public void Create() {
         loadBoard.SetActive(true);
-        var reference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS);
+        var reference = FirebaseDatabase.DefaultInstance.RootReference.Child(LocalStorage.ROOMS);
         var roomName = RoomNameGenerator.Generate();
-        PlayerPrefs.SetString(PrefabsKeys.ROOM_NAME, roomName);
-        RoomInfo roomInfo = new RoomInfo(PlayerPrefs.HasKey(PrefabsKeys.PLAYER_COUNT)
-                ? PlayerPrefs.GetInt(PrefabsKeys.PLAYER_COUNT)
+        PlayerPrefs.SetString(LocalStorage.ROOM_NAME, roomName);
+        RoomInfo roomInfo = new RoomInfo(PlayerPrefs.HasKey(LocalStorage.PLAYER_COUNT)
+                ? PlayerPrefs.GetInt(LocalStorage.PLAYER_COUNT)
                 : 2, 1,
             DateTime.UtcNow.ToString(),
-            PlayerPrefs.HasKey(PrefabsKeys.KEEP_PRIVATE) &&
+            PlayerPrefs.HasKey(LocalStorage.KEEP_PRIVATE) &&
             Convert.ToBoolean(
-                PlayerPrefs.GetString(PrefabsKeys
-                    .KEEP_PRIVATE)), PlayerPrefs.GetInt(PrefabsKeys.DESK_SEED, 0));
+                PlayerPrefs.GetString(LocalStorage
+                    .KEEP_PRIVATE)), PlayerPrefs.GetInt(LocalStorage.DESK_SEED, 0));
         reference = reference.Child(roomName);
-        reference.Child(PrefabsKeys.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo)).ContinueWithOnMainThread(task => {
-            PrintAboutPlayerInDatabase.Print(reference, PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME), Created);
+        reference.Child(LocalStorage.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo)).ContinueWithOnMainThread(task => {
+            PrintAboutPlayerInDatabase.Print(reference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME), Created);
         });
     }
     private void Created(Task task) {

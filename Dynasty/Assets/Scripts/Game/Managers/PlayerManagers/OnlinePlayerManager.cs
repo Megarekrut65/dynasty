@@ -2,7 +2,7 @@
     public Player Current { private get; set; } = null;
 
     public OnlinePlayerManager(Desk[] desks, int playerCount)
-        :base(desks,playerCount, playerCount, ControllerFactory.ONLINE) {
+        :base(desks,playerCount, playerCount, EntityControllerFactory.ONLINE) {
     }
     public override bool IsPlayer(Player player) {
         return player.Equals(Current);

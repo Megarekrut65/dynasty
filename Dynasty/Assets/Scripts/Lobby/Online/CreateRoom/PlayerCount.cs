@@ -8,9 +8,9 @@ public class PlayerCount : MonoBehaviour {
 
     private void Start() {
         inputField.onValueChanged.AddListener(Change);
-        inputField.text = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2).ToString();
+        inputField.text = LocalStorage.GetValue(LocalStorage.PLAYER_COUNT, 2).ToString();
     }
     private void Change(string value) {
-        PlayerPrefs.SetInt(PrefabsKeys.PLAYER_COUNT, Convert.ToInt32(value));
+        PlayerPrefs.SetInt(LocalStorage.PLAYER_COUNT, Convert.ToInt32(value));
     }
 }

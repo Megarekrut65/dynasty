@@ -14,7 +14,7 @@ public class GameLoad : MonoBehaviour {
 	private FirebaseLoad firebaseLoad;
 	
 	private void Start() {
-		PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME, "Player" + Random.Range(0, 100));
+		LocalStorage.GetValue(LocalStorage.PLAYER_NAME, "Player" + Random.Range(0, 100));
 		loadSlider.value = 0;
 		StartCoroutine(LoadData());
 	}

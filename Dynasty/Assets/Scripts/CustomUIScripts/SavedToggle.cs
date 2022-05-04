@@ -10,7 +10,7 @@ public class SavedToggle:MonoBehaviour {
 
     protected virtual void Start() {
         toggle.onValueChanged.AddListener(Change);
-        toggle.isOn = Convert.ToBoolean(PrefabsKeys.GetValue(key, def.ToString()));
+        toggle.isOn = Convert.ToBoolean(LocalStorage.GetValue(key, def.ToString()));
     }
     private void Change(bool value) {
         PlayerPrefs.SetString(key, value.ToString());

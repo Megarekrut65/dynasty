@@ -18,7 +18,7 @@ public class ConnectToRoom {
         if(isClicked) return;
         isClicked = true;
         loadBoard.SetActive(true);
-        roomReference.Child(PrefabsKeys.ROOM_INFO).GetValueAsync().
+        roomReference.Child(LocalStorage.ROOM_INFO).GetValueAsync().
             ContinueWithOnMainThread(SetRoomInfoToPlayerPrefs).
             ContinueWithOnMainThread(task => { loadBoard.SetActive(false); });
     }
@@ -29,11 +29,11 @@ public class ConnectToRoom {
         }
         var roomInfo = JsonUtility.FromJson<RoomInfo>(task.Result.GetRawJsonValue());
         if(roomInfo == null || roomInfo.currentCount == roomInfo.playerCount) return;
-        PlayerPrefs.SetString(PrefabsKeys.ROOM_NAME, roomName);
-        PlayerPrefs.SetInt(PrefabsKeys.PLAYER_COUNT, roomInfo.playerCount);
-        PlayerPrefs.SetInt(PrefabsKeys.DESK_SEED, roomInfo.deskSeed);
-        PlayerPrefs.SetString(PrefabsKeys.IS_HOST, false.ToString());
-        PrintAboutPlayerInDatabase.Print(roomReference, PrefabsKeys.GetValue(PrefabsKeys.PLAYER_NAME, "player"),
+        PlayerPrefs.SetString(LocalStorage.ROOM_NAME, roomName);
+        PlayerPrefs.SetInt(LocalStorage.PLAYER_COUNT, roomInfo.playerCount);
+        PlayerPrefs.SetInt(LocalStorage.DESK_SEED, roomInfo.deskSeed);
+        PlayerPrefs.SetString(LocalStorage.IS_HOST, false.ToString());
+        PrintAboutPlayerInDatabase.Print(roomReference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME, "player"),
             task2 => IncreasePlayerCount(task2, roomInfo));
     }
     private void IncreasePlayerCount(Task task, RoomInfo roomInfo) {
@@ -41,7 +41,7 @@ public class ConnectToRoom {
             Debug.LogError(task.Exception);
             return;
         }
-        roomReference.Child(PrefabsKeys.ROOM_INFO).Child("currentCount")
+        roomReference.Child(LocalStorage.ROOM_INFO).Child(GameKeys.CURRENT_COUNT)
             .SetValueAsync(roomInfo.currentCount + 1).ContinueWithOnMainThread(LoadGameScene);
     }
     private void LoadGameScene(Task task) {

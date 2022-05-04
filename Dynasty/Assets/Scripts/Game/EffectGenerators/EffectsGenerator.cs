@@ -256,7 +256,7 @@ public class EffectsGenerator : SelectEffectGenerator {
 				anim.DropCardFromPlayerAnimated(card, player, () => {
 					logger.LogInsert(player, currentCard.data.name);
 					anim.InsertCardToDeskAnimated(currentCard, () => {
-						dependencies.gameController.GameOver = false;
+						dependencies.gameStarter.GameOver = false;
 						CallNext(true)();
 					});
 				});

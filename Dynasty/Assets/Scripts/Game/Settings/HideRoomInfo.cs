@@ -8,7 +8,7 @@ public class HideRoomInfo : SavedHideToggle {
                   gameObject.SetActive(false);
                   return;
             }
-            key = PrefabsKeys.HIDE_ROOM_INFO;
+            key = LocalStorage.HIDE_ROOM_INFO;
             base.Start();
       }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HideChat : SavedHideToggle {
     protected override void Start() {
-        key = PrefabsKeys.HIDE_CHAT;
+        key = LocalStorage.HIDE_CHAT;
         base.Start();
     }
 }

@@ -21,8 +21,7 @@ IPointerDownHandler, IPointerUpHandler {
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canTake) {
 			deskAnimation.Stop("DeskActive");
-			gameManager.RoomReference.Child(GameKeys.PLAYERS)
-				.Child(PrefabsKeys.GetValue(PrefabsKeys.PLAYER_KEY, "1"))
+			DatabaseReferences.GetPlayerReference()
 				.Child(GameKeys.GAME_STATE)
 				.Child(GameKeys.IS_CLICK)
 				.SetValueAsync(true);

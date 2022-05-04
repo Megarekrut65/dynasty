@@ -7,7 +7,7 @@ using UnityEngine;
 
 public static class PrintAboutPlayerInDatabase {
       public static void Print(DatabaseReference roomReference, string playerName, Action<Task> end) {
-            roomReference.Child("players").GetValueAsync().ContinueWithOnMainThread(task => {
+            roomReference.Child(GameKeys.PLAYERS).GetValueAsync().ContinueWithOnMainThread(task => {
                   if (task.Exception != null) {
                         Debug.LogError(task.Exception);
                         return;
@@ -22,8 +22,8 @@ public static class PrintAboutPlayerInDatabase {
                               if(dataSnapshot == null) break;
                         }
                   }
-                  PlayerPrefs.SetString(PrefabsKeys.PLAYER_KEY, playerKey);
-                  roomReference.Child("players").Child(playerKey).Child(PrefabsKeys.PLAYER_NAME)
+                  PlayerPrefs.SetString(LocalStorage.PLAYER_KEY, playerKey);
+                  roomReference.Child("players").Child(playerKey).Child(LocalStorage.PLAYER_NAME)
                         .SetValueAsync(playerName).ContinueWithOnMainThread(end);
             });
       }

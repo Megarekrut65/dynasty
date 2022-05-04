@@ -14,6 +14,5 @@ public class LocalizationDropdown : MonoBehaviour {
 		foreach (var data in options) {
 			data.text = LocalizationManager.Instance.GetWord(data.text);
 		}
-		dropdown.value = 0;
 	}
 }

@@ -5,5 +5,5 @@ public class GameDependencies {
 	public RoundManager roundManager;
 	public CameraMove cameraMove;
 	public GameLogger logger;
-	public GameController gameController;
+	public GameStarter gameStarter;
 }

@@ -27,7 +27,7 @@ public class Table {
 		foreach (var player in players) {
 			playerDesk.Add(player, new List<Card>());
 		}
-		rnd = new System.Random(PrefabsKeys.GetValue(PrefabsKeys.DESK_SEED, 0));
+		rnd = new System.Random(LocalStorage.GetValue(LocalStorage.DESK_SEED, 0));
 		desk = DeskGenerator.Generate(rnd, card => {
 			return false;
 		}, 0);

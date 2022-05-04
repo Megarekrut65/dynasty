@@ -26,12 +26,12 @@ public class DependenciesManager {
 	private GameDependencies dependencies;
 
 	private PlayerManager GetPlayerManager() {
-		int playerCount = PrefabsKeys.GetValue(PrefabsKeys.PLAYER_COUNT, 2);
+		int playerCount = LocalStorage.GetValue(LocalStorage.PLAYER_COUNT, 2);
 		if (GameModeFunctions.IsMode(GameMode.OFFLINE)) {
 			return new OfflinePlayerManager(playerDesks,
 				playerCount,
-				Convert.ToBoolean(PrefabsKeys.GetValue(PrefabsKeys.ENABLE_BOTS))
-					? PrefabsKeys.GetValue(PrefabsKeys.BOT_COUNT, 0)
+				Convert.ToBoolean(LocalStorage.GetValue(LocalStorage.ENABLE_BOTS))
+					? LocalStorage.GetValue(LocalStorage.BOT_COUNT, 0)
 					: 0);
 		} 
 		return new OnlinePlayerManager(playerDesks,playerCount);
@@ -47,7 +47,7 @@ public class DependenciesManager {
 				roundManager = roundManager,
 				cameraMove = cameraMove,
 				logger = logger,
-				gameController = new GameController(logger, roundManager)
+				gameStarter = new GameStarter(logger, roundManager)
 			};
 		}
 

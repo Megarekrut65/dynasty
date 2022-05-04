@@ -8,7 +8,7 @@ public class OfflinePlayerManager:PlayerManager {
 
     public OfflinePlayerManager(Desk[] desks, int playerCount, int botCount):
     base(desks, playerCount, playerCount + botCount, 
-        PlayerPrefs.GetString(PrefabsKeys.DIFFICULTY_BOTS)) {
+        PlayerPrefs.GetString(LocalStorage.DIFFICULTY_BOTS)) {
         this.botsCount = botCount;
         var nicknames = CreateNames();
         for (int i = 0; i < playersCount; i++) {

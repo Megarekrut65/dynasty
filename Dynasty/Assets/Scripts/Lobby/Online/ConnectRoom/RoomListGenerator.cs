@@ -21,9 +21,10 @@ public class RoomListGenerator : MonoBehaviour {
     private List<GameObject> rooms = new List<GameObject>();
     private DatabaseReference roomReference;
     private Stack<GameObject> roomsPool = new Stack<GameObject>();
+    
     private void Start() {
         loadBoard = new LoadBoard(board, canvas);
-        roomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(PrefabsKeys.ROOMS);
+        roomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(LocalStorage.ROOMS);
         roomReference.ValueChanged += ChangeRooms;
     }
     private void OnDestroy() {
@@ -32,7 +33,7 @@ public class RoomListGenerator : MonoBehaviour {
     private void ChangeRooms(object sender, ValueChangedEventArgs args ) {
         foreach (var child in args.Snapshot.Children) {
             string roomName = child.Key;
-            var roomInfoJson = child.Child(PrefabsKeys.ROOM_INFO).GetRawJsonValue();
+            var roomInfoJson = child.Child(LocalStorage.ROOM_INFO).GetRawJsonValue();
             var roomInfo = JsonUtility.FromJson<RoomInfo>(roomInfoJson);
             if(roomInfo == null) continue;
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
@@ -40,16 +41,14 @@ public class RoomListGenerator : MonoBehaviour {
             if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount || delta.Hours > 6)
                 RemoveRoom(obj);
             else if (obj == null) rooms.Add(CreateRoom(roomName, roomInfo));
-            else obj.GetComponent<RoomObject>().UpdateData(roomInfo);
+            else obj.GetComponent<RoomUI>().UpdateData(roomInfo);
             if (delta.Hours > 6) {
                 roomReference.Child(roomName).RemoveValueAsync();
             }
         }
         UpdateList();
     }
-    // private void AddRoomsToList(IEnumerable<DataSnapshot> data) {
-    //     
-    // }
+
     private GameObject CreateRoom(string roomName, RoomInfo roomInfo) {
         GameObject obj = null;
         if (roomsPool.Count != 0) {
@@ -59,7 +58,7 @@ public class RoomListGenerator : MonoBehaviour {
         }
         else obj = Instantiate(roomObject, content);
         obj.GetComponent<RectTransform>().sizeDelta = new Vector2(10f, 30f);
-        obj.GetComponent<RoomObject>().LoadData(roomName, roomInfo);
+        obj.GetComponent<RoomUI>().LoadData(roomName, roomInfo);
         ConnectToRoom connectToRoom = new ConnectToRoom(roomReference.Child(roomName), roomName, loadBoard);
         obj.GetComponent<RoomClick>().Connect = connectToRoom;
         return obj;
@@ -72,7 +71,7 @@ public class RoomListGenerator : MonoBehaviour {
     }
     private void UpdateList() {
         for (int i = 0; i < rooms.Count; i++) {
-            rooms[i].GetComponent<RoomObject>().UpdateColor(colors[i%2]);
+            rooms[i].GetComponent<RoomUI>().UpdateColor(colors[i%2]);
         }
     }
 }

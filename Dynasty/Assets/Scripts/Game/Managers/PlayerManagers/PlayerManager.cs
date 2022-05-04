@@ -6,7 +6,7 @@ using System.Linq;
 public abstract class PlayerManager {
 	public List<Player> Players { get; }
 	protected int playersCount;
-	protected List<Controller> controllers;
+	protected List<EntityController> controllers;
 	private Desk[] desks;
 	private string controllerType;
 
@@ -16,7 +16,7 @@ public abstract class PlayerManager {
 		this.playersCount = playersCount;
 		this.controllerType = controllerType;
 		this.Players = new List<Player>();
-		this.controllers = new List<Controller>();
+		this.controllers = new List<EntityController>();
 		for (int i = deskBegin; i < desks.Length; i++) {
 			desks[i].SetActive(false);
 		}
@@ -29,7 +29,7 @@ public abstract class PlayerManager {
 		var player = new Player(name, desks[Players.Count], (Players.Count + 1).ToString());
 		Players.Add(player);
 		controllers.Add(
-			ControllerFactory.CreateController(controllerType,
+			EntityControllerFactory.CreateController(controllerType,
 				player, dependencies, table, takeCardFromDesk));
 		return player;
 	}
