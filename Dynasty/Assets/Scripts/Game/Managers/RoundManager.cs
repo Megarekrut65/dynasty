@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class RoundManager {
 	public delegate void NextRound();
@@ -7,7 +9,7 @@ public class RoundManager {
 	private int index = 0;
 	private int rounds = 0;
 	public bool Pause { get; set; } = false;
-
+	private Player current = null;
 	private List<Player> players;
 
 	public RoundManager(List<Player> players) {
@@ -26,10 +28,10 @@ public class RoundManager {
 			i = index++;
 			rounds = 0;
 		}
-		Player player = players[i];
+		current = players[i];
 		if (index >= players.Count) index = 0;
 
-		return player;
+		return current;
 	}
 	public Player WhoIsNextPlayer() {
 		int i;
@@ -39,6 +41,9 @@ public class RoundManager {
 		} else i = index;
 
 		return players[i];
+	}
+	public Player WhoIsNow() {
+		return current;
 	}
 	public void CallNextPlayer() {
 		Pause = false;

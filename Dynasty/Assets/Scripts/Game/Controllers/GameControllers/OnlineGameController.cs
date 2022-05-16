@@ -50,7 +50,7 @@ public class OnlineGameController:GameController {
                 continue;
             }
 
-            Player current = new Player(playerName, desks[currentPlayerKey - 1],
+            Player current = new Player(playerName, desks[i],
                 currentPlayerKey.ToString());
             gameDependencies.playerManager.Players.Add(current);
             ((OnlinePlayerManager) gameDependencies.playerManager).Current = current;
@@ -67,6 +67,13 @@ public class OnlineGameController:GameController {
         for (int i = 0; i < desks.Length; i++) {
             var snapshot = args.Snapshot.Child((i + 1).ToString()).Child(LocalStorage.PLAYER_NAME);
             desks[i].SetName(snapshot.Value==null?"":snapshot.Value as string);
+        }
+        if (gameDependencies.gameStarter.GameStarted) {
+            var players = gameDependencies.playerManager.Players;
+            foreach (var player in players) {
+                int key = Convert.ToInt32(player.Key) - 1;
+                player.Nickname = desks[key].Name;
+            }
         }
     }
 }

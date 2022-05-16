@@ -46,16 +46,18 @@ public class OnlineEntityController:EntityController {
     private void PlayerCardClick(object sender, ValueChangedEventArgs e) {
         object obj = e.Snapshot.Value;
         if(obj == null || !(bool)obj) return;
+        gameReference.Child(GameKeys.CARD_CLICK).SetValueAsync(false);
         Play(() => {
             if(card == null) return;
-            Click(card.obj.GetComponent<CardClick>());
+            Debug.Log("Card click");
+            dependencies.cameraMove.StartCoroutine(Click(card.obj.GetComponent<CardClick>()));
         });
     }
     private void PlayerClick(object sender, ValueChangedEventArgs e) {
         object obj = e.Snapshot.Value;
         if(obj == null || !(bool)obj) return;
         gameReference.Child(GameKeys.IS_CLICK).SetValueAsync(false);
-        Play(() => card = takeCard());
+        Play(() => card = takeCard(), true);
     }
     protected override IEnumerator InevitableEnd(Card card) {
         throw new NotImplementedException();
@@ -72,11 +74,20 @@ public class OnlineEntityController:EntityController {
         }
     }
     private bool OwnRound() {
-        Player next = dependencies.roundManager.WhoIsNextPlayer();
-        return next.Equals(player);
+        Player now = dependencies.roundManager.WhoIsNow();
+        now ??= dependencies.roundManager.WhoIsNextPlayer();
+        Debug.Log("Now is: " + now?.Key);
+        return player.Equals(now);
     }
-    private void Play(Action action) {
-        if (OwnRound()) action();
+    private bool NextOwnRound() {
+        Player next = dependencies.roundManager.WhoIsNextPlayer();
+        return player.Equals(next);
+    }
+    private void Play(Action action, bool checkNext = false) {
+        if (checkNext && NextOwnRound() || !checkNext && OwnRound()) {
+            Debug.Log("Play action " + action);
+            action();
+        }
         else saved.Enqueue(action);
     }
 }

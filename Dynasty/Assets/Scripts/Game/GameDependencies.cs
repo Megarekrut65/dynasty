@@ -1,3 +1,4 @@
+
 public class GameDependencies {
 	public BigCardManager bigCardManager;
 	public ScrollManager scrollManager;

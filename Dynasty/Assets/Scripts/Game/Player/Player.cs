@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player {
@@ -9,7 +10,7 @@ public class Player {
 	public int Order => desk.Order;
 	public GameObject Label => desk.PlayerLabel;
 	public string Key { get; private set; }
-
+	public int Id => id;
 	public Player(string nickname, Desk desk, string key) {
 		id = _id++;
 		this.Nickname = nickname;

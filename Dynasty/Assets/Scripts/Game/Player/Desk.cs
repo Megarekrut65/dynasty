@@ -27,11 +27,11 @@ public class Desk : MonoBehaviour {
 	public void AddCard(Card card) {
 		card.obj.transform.SetParent(container.transform, false);
 	}
-	public void SetName(string name) {
-		nameLabel.text = name;
+	public void SetName(string playerName) {
+		nameLabel.text = playerName;
 	}
-	public void SetCoins(int coins) {
-		this.coins.text = coins.ToString();
+	public void SetCoins(int playerCoins) {
+		this.coins.text = playerCoins.ToString();
 	}
 	public void SetActive(bool value) {
 		gameObject.SetActive(value);

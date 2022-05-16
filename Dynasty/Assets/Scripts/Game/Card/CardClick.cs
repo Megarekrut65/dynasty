@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 using CardEffect = System.Func<bool>;
@@ -16,7 +17,18 @@ public class CardClick : MonoBehaviour,
 	private ButtonEffect buttonEffect;
 	
 	private void Start() {
-		buttonEffect = new ButtonEffect(transform);
+		UnityEvent up = null;
+		if (GameModeFunctions.IsMode(GameMode.ONLINE)) {
+			up = new UnityEvent();
+			bool clicked = false;
+			up.AddListener(() => {
+				if(clicked) return;
+				clicked = true;
+				DatabaseReferences.GetPlayerReference().Child(GameKeys.GAME_STATE).Child(GameKeys.CARD_CLICK)
+					.SetValueAsync(true);
+			});
+		}
+		buttonEffect = new ButtonEffect(transform, null,up);
 	}
 	public void OnPointerDown(PointerEventData eventData) {
 		if (canClick || eventData == null) buttonEffect.Down();
