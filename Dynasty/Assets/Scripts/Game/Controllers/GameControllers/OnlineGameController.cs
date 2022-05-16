@@ -26,6 +26,8 @@ public class OnlineGameController:GameController {
         StartGame();
     }
     public override void Leave() {
+        roomReference.Child(LocalStorage.ROOM_INFO).ValueChanged -= RoomChanged;
+        roomReference.Child(GameKeys.PLAYERS).ValueChanged -= PlayersChanged;
         roomInfo.currentCount--;
         roomUI.LoadData(roomName, roomInfo);
         if (roomInfo.currentCount == 0) {

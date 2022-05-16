@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class RoomUI : MonoBehaviour {
     [SerializeField]
+    private GameObject clickObject;
+    public GameObject ClickObject => clickObject;
+    [SerializeField]
     private Text textName;
     [SerializeField]
     private Text textCount;

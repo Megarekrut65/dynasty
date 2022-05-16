@@ -62,7 +62,7 @@ public class RoomListGenerator : MonoBehaviour {
         obj.GetComponent<RectTransform>().sizeDelta = new Vector2(10f, 30f);
         obj.GetComponent<RoomUI>().LoadData(roomName, roomInfo);
         ConnectToRoom connectToRoom = new ConnectToRoom(roomReference.Child(roomName), roomName, loadBoard);
-        obj.GetComponent<RoomClick>().Connect = connectToRoom;
+        obj.GetComponent<RoomUI>().ClickObject.GetComponent<RoomClick>().Connect = connectToRoom;
         return obj;
     }
     private void RemoveRoom(GameObject obj) {
