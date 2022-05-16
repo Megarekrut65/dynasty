@@ -38,7 +38,9 @@ public class RoomListGenerator : MonoBehaviour {
             if(roomInfo == null) continue;
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
             var obj = rooms.Find(room => room.name == roomName);
-            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount || delta.Hours > 6)
+            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount 
+                                                    || delta.Days > 0
+                                                    || delta.Hours > 6)
                 RemoveRoom(obj);
             else if (obj == null) rooms.Add(CreateRoom(roomName, roomInfo));
             else obj.GetComponent<RoomUI>().UpdateData(roomInfo);

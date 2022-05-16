@@ -35,7 +35,7 @@ public class CardClick : MonoBehaviour,
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canClick || eventData == null) {
-			buttonEffect.Up();
+			if(eventData != null) buttonEffect.Up();
 			click();
 		}
 	}

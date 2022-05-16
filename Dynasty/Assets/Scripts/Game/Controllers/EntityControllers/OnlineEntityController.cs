@@ -26,10 +26,11 @@ public class OnlineEntityController:EntityController {
         if(obj == null) return;
         Play(() => {
             if(!(card is {needSelect: true})) return;
-            int cardIndex = (int) obj;
+            int cardId = Convert.ToInt32(obj);
             var list = SelectManager.SelectData.selectingCards;
-            if(list.Count >= cardIndex) return;
-            Click(list[cardIndex].selectClick);
+            var cardObj = list.Find((c) => c.obj.id == cardId);
+            if(cardObj == null || cardObj.selectClick == null) return;
+            dependencies.cameraMove.StartCoroutine(Click(cardObj.selectClick));
         });
     }
     private void DoSelectPlayer(object sender, ValueChangedEventArgs e) {
@@ -37,10 +38,10 @@ public class OnlineEntityController:EntityController {
         if(obj == null) return;
         Play(() => {
             if(!(card is {needSelect: true}) || !SelectManager.SelectData.toOwner) return;
-            int playerIndex = (int) obj;
+            int playerIndex = Convert.ToInt32(obj);
             var list = SelectManager.SelectData.selectingPlayers;
             if(list.Count >= playerIndex) return;
-            Click(list[playerIndex].selectClick);
+            dependencies.cameraMove.StartCoroutine(Click(list[playerIndex].selectClick));
         });
     }
     private void PlayerCardClick(object sender, ValueChangedEventArgs e) {
@@ -48,8 +49,7 @@ public class OnlineEntityController:EntityController {
         if(obj == null || !(bool)obj) return;
         gameReference.Child(GameKeys.CARD_CLICK).SetValueAsync(false);
         Play(() => {
-            if(card == null) return;
-            Debug.Log("Card click");
+            if(card == null||card.obj == null) return;
             dependencies.cameraMove.StartCoroutine(Click(card.obj.GetComponent<CardClick>()));
         });
     }
@@ -76,7 +76,6 @@ public class OnlineEntityController:EntityController {
     private bool OwnRound() {
         Player now = dependencies.roundManager.WhoIsNow();
         now ??= dependencies.roundManager.WhoIsNextPlayer();
-        Debug.Log("Now is: " + now?.Key);
         return player.Equals(now);
     }
     private bool NextOwnRound() {
@@ -85,7 +84,6 @@ public class OnlineEntityController:EntityController {
     }
     private void Play(Action action, bool checkNext = false) {
         if (checkNext && NextOwnRound() || !checkNext && OwnRound()) {
-            Debug.Log("Play action " + action);
             action();
         }
         else saved.Enqueue(action);
