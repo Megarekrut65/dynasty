@@ -838,7 +838,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: ec51f4b345a044d4b2e3faf6136ca40b
+      Hash: 1d74e969213a8f4a7baf83b8e9fd75dd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomUI
