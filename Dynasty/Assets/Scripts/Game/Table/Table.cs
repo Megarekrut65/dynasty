@@ -29,8 +29,8 @@ public class Table {
 		}
 		rnd = new System.Random(LocalStorage.GetValue(LocalStorage.DESK_SEED, 0));
 		desk = DeskGenerator.Generate(rnd, card => {
-			return "hydralook-backreliable-planrobin-hood".Contains(card.key);
-		}, 20);
+			return "look-backreliable-planrobin-hood".Contains(card.key);
+		}, 10);
 	}
 	public void AddPlayer(Player player) {
 		playerDesk.Add(player, new List<Card>());

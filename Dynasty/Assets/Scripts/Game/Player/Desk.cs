@@ -6,6 +6,8 @@ public class Desk : MonoBehaviour {
 	private int order = 0;
 	[Header("Desk parts")]
 	[SerializeField]
+	private GameObject border;
+	[SerializeField]
 	private GameObject playerLabel;
 	[SerializeField]
 	private Text nameLabel;
@@ -36,5 +38,6 @@ public class Desk : MonoBehaviour {
 	public void SetActive(bool value) {
 		gameObject.SetActive(value);
 		playerLabel.SetActive(value);
+		border.SetActive(value);
 	}
 }

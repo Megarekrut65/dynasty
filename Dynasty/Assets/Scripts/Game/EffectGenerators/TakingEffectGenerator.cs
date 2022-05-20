@@ -51,14 +51,14 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
     }
     private IEnumerator TakeFromDrop(Player player) {
         var cards = table.GetRCardsInDrop();
-        Action<bool> after = (next) => {
+        Action<bool> after = next => {
             CallNext(next)();
             dependencies.cameraMove.Stop = false;
             dependencies.scrollManager.ViewSetActive(false);
         };
         if (cards.Count != 0) {
             var card = cards[cards.Count - 1];
-            cards.Remove(card);
+            table.RemoveCardFromDrop(card.id);
             cardController.CreateCard(card);
             dependencies.scrollManager.AddToScroll(card.obj);
             yield return new WaitForSeconds(2f);
@@ -73,9 +73,10 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
             end(false);
             return;
         }
-        CardEffect justTake = CardEffect(player, card, false);
-        justTake();
-        end(true);
+        logger.LogGot(player, card);
+        anim.AddCardToPlayerAnimated(card, player, ()=> {
+            end(true);
+        });
     }
     private CardEffect DungeonKeysEffect(Player player, Card card) {
         return () => MixEffect("secret-treasure", player, card, false)() &&
