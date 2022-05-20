@@ -3,7 +3,7 @@
 public class CardDependencies {
     public Table Table{ get; }
     public CardController Controller { get; }
-    public EffectsGenerator EffectsGenerator{ get; }
+    public IEffectsGenerator EffectsGenerator{ get; }
     public AnimationEffectGenerator AnimationGenerator{ get; }
     public CardAnimationManager CardAnimationManager { get; }
     
@@ -15,7 +15,7 @@ public class CardDependencies {
         Controller = new CardController(container, cardObject);
         Table = new Table(dependencies.playerManager.Players);
         AnimationGenerator = new AnimationEffectGenerator(Controller, Table, animationManager);
-        EffectsGenerator = new EffectsGenerator(dependencies, Controller, Table, AnimationGenerator);
+        EffectsGenerator = new TakingEffectGenerator(dependencies, Controller, Table, AnimationGenerator);
     }
     public void AddStartCards() {
         dependencies.playerManager.Players.ForEach(AddStartCards);

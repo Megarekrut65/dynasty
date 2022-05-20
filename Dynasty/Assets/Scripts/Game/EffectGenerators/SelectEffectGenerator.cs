@@ -6,7 +6,7 @@ using System.Collections;
 using CardEffect = System.Func<bool>;
 
 public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
-	private SelectManager selectManager;
+	protected SelectManager selectManager;
 	
 	public SelectEffectGenerator(GameDependencies dependencies,
 	CardController cardController, Table table, AnimationEffectGenerator anim)
@@ -15,12 +15,6 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 	}
 	public override CardEffect GetEffect(Player player, Card card) {
 		switch (card.key) {
-			case "robin-hood":
-			case "reliable-plan":
-				return TakeFromEnemySelectEffect(player, card);
-			case "wolf-spirit":
-			case "magic-sphere":
-				return MoveToOtherSelectEffect(player, card);
 			case "green-pandora's-box":
 			case "illusion":
 			case "locusts":
@@ -96,38 +90,7 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 			return CardEffect(player, card, false)();
 		};
 	}
-	protected CardEffect TakeAwayCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-									Card card, bool callNext = true) {
-		return () => {
-			card.needSelect = true;
-			selectManager.SelectMove(predicate, player, players,
-				id => {
-					logger.LogAction(player, id, "took-away");
-					var take = table.RemoveCardFromPlayer(id);
-					if (take != null)
-						anim.AddCardToPlayerAnimated(take, player, CallNext(callNext));
-					else CallNext(callNext)();
-				}, dependencies.playerManager.IsPlayer(player));
-			return CardEffect(player, card, false)();
-		};
-	}
-	protected CardEffect MoveCardSelectEffect(Predicate<Card> predicate, Player player, List<Player> players,
-									Card card, bool callNext = true) {
-		return () => {
-			card.needSelect = true;
-			selectManager.SelectMoveToOther(predicate, player, players,
-				(id, pl) => {
-					var take = table.RemoveCardFromPlayer(id);
-					if (take != null)
-						anim.AddCardToPlayerAnimated(take, pl, () => {
-							logger.LogAction(player, id, "moved");
-							CallNext(callNext)();
-						});
-					else CallNext(callNext)();
-				}, dependencies.playerManager.IsPlayer(player));
-			return CardEffect(player, card, false)();
-		};
-	}
+	
 	protected CardEffect CoverEnemyCardSelectEffect(Player player, Card card) {
 		return CoverCardSelectEffect(GameAction.GetAllFilter(CardFunctions.COVER),
 							player, dependencies.playerManager.GetEnemies(player), card);
@@ -167,12 +130,5 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
 		return MixCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MIX),
 			player, dependencies.playerManager.GetEnemies(player), card);
 	}
-	protected CardEffect MoveToOtherSelectEffect(Player player, Card card) {
-		return MoveCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-							player, dependencies.playerManager.Players, card);
-	}
-	protected CardEffect TakeFromEnemySelectEffect(Player player, Card card) {
-		return TakeAwayCardSelectEffect(GameAction.GetAllFilter(CardFunctions.MOVE),
-			player, dependencies.playerManager.GetEnemies(player), card);
-	}
+
 }

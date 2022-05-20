@@ -5,7 +5,7 @@ using System.Collections;
 
 using CardEffect = System.Func<bool>;
 
-public abstract class SimpleEffectsGenerator {
+public abstract class SimpleEffectsGenerator:IEffectsGenerator {
 	protected AnimationEffectGenerator anim;
 	protected GameDependencies dependencies;
 	protected CardController cardController;
@@ -28,14 +28,8 @@ public abstract class SimpleEffectsGenerator {
 				return MixEffect("dark-wizard", player, card);
 			case "dark-wizard":
 				return MixEffect("light-wizard", player, card);
-			case "dragon":
-				return MoveToCardEffect("gold-mountain", player, card);
 			case "hero":
 				return DropEffect("dragon", player, card);
-			case "castle":
-			case "fairy-army":
-			case "king-sword":
-				return TakeAwayCardEffect("king", player, card);
 			case "step-ahead":
 				return CardMoreEffect(1, player, card);
 			case "victim":
@@ -97,28 +91,7 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected CardEffect TakeAwayCardEffect(string key, Player player, Card card, bool callNext = true) {
-		return () => {
-			logger.LogAction(player, key, "took-away");
-			var take = table.RemoveCardFromPlayer(key);
-			if (take != null) {
-				anim.AddCardToPlayerAnimated(take, player, CardEffectAction(callNext, player, card));
-			} else CardEffectAction(callNext, player, card)();
-			return true;
-		};
-	}
-	protected CardEffect MoveToCardEffect(string key, Player player, Card card, bool callNext = true) {
-		return () => {
-			Player owner = player;
-			Player with = table.FindPlayerWithCard(key);
-			if (with != null) {
-				owner = with;
-				Card c = table.FindCardInPlayer(with, key);
-				anim.PulsationCardAnimated(c);
-			}
-			return !callNext || CardEffect(owner, card)();
-		};
-	}
+
 	protected CardEffect MixEffect(string key, Player player, Card card, bool callNext = true) {
 		return () => {
 			logger.LogAction(player, key, "mixed");
@@ -140,9 +113,9 @@ public abstract class SimpleEffectsGenerator {
 			return true;
 		};
 	}
-	protected Action CardEffectAction(bool callNext, Player player, Card card) {
+	protected Action CardEffectAction(bool callSimpleAction, Player player, Card card) {
 		return () => {
-			if (callNext) CardEffect(player, card)();
+			if (callSimpleAction) CardEffect(player, card)();
 		};
 	}
 	protected Action CallNext(bool callNext = true) {
