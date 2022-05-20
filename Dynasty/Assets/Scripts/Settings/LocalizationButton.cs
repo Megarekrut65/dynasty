@@ -13,6 +13,7 @@ IPointerDownHandler, IPointerUpHandler {
 	private Outline outline;
 	public void OnPointerDown(PointerEventData eventData) {
 		languageLoader.SetActive(true);
+		SoundManager.Instance.Play(1);
 		LocalizationManager.Instance.ChangeLanguage(language);
 	}
 	public void OnPointerUp(PointerEventData eventData) {

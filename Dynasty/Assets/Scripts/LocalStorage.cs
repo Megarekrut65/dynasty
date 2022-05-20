@@ -33,4 +33,11 @@ public static class LocalStorage {
 
         return PlayerPrefs.GetInt(key);
     }
+    public static float GetValue(string key, float def) {
+        if (!PlayerPrefs.HasKey(key)) {
+            PlayerPrefs.SetFloat(key, def);
+        }
+
+        return PlayerPrefs.GetFloat(key);
+    }
 }

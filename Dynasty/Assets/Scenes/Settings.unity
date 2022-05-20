@@ -690,6 +690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904918724}
+  - component: {fileID: 904918725}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -718,6 +719,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &904918725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904918723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4c9c741be56464d939539d872a867a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeType: music
+  slider: {fileID: 1314787497}
 --- !u!1 &940674503
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,15 +996,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1747806831}
   - {fileID: 1134251481}
+  - {fileID: 1747806831}
   - {fileID: 2070060505}
   m_Father: {fileID: 102364280}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.24939314, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.06400299, y: 0}
+  m_AnchoredPosition: {x: -0.06399536, y: 0}
   m_SizeDelta: {x: 0.12800026, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082367050
@@ -1050,7 +1065,7 @@ RectTransform:
   m_Children:
   - {fileID: 1164426231}
   m_Father: {fileID: 1082367049}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1444,7 +1459,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.504
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1994,7 +2009,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.465
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2141,7 +2156,7 @@ RectTransform:
   m_Children:
   - {fileID: 1351754048}
   m_Father: {fileID: 1082367049}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2488,6 +2503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128317636}
+  - component: {fileID: 2128317637}
   m_Layer: 5
   m_Name: Sounds
   m_TagString: Untagged
@@ -2516,3 +2532,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2128317637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128317635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4c9c741be56464d939539d872a867a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeType: sound
+  slider: {fileID: 1675402535}

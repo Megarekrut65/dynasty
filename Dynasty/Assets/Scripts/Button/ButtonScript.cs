@@ -9,11 +9,9 @@ IPointerDownHandler, IPointerUpHandler {
 	[SerializeField]
 	private UnityEvent upEvent;
 	private ButtonEffect buttonEffect;
-	[SerializeField]
-	private GameObject soundClick;
-	
+
 	private void Start() {
-		buttonEffect = new ButtonEffect(transform,downEvent, upEvent, soundClick);
+		buttonEffect = new ButtonEffect(transform,downEvent, upEvent, true);
 	}
 	public void OnPointerDown(PointerEventData eventData) {
 		buttonEffect.Down();

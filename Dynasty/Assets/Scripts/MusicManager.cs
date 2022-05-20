@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
+	[SerializeField]
+	private AudioSource audioSource;
 	private static MusicManager _instance;
 	private bool playNext = false;
 	public bool PlayNext {
@@ -15,15 +17,20 @@ public class MusicManager : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		LoadManager();
+		DontDestroyOnLoad(gameObject);
 	}
 	private void LoadManager() {
+		_instance.Volume(LocalStorage.GetValue("music", 0.5f));
 		if (playNext) {
-			_instance.GetComponent<AudioSource>().Stop();
-		} else if (!_instance.GetComponent<AudioSource>().isPlaying) {
-			_instance.GetComponent<AudioSource>().Play();
+			_instance.audioSource.Stop();
+		} else if (!_instance.audioSource.isPlaying) {
+			_instance.audioSource.Play();
 		}
 	}
 	private void Start() {
 		gameObject.GetComponent<AudioSource>().Play();
+	}
+	public void Volume(float value) {
+		_instance.audioSource.volume = value;
 	}
 }

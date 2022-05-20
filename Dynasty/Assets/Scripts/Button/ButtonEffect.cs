@@ -4,21 +4,24 @@ using UnityEngine.Events;
 public class ButtonEffect {
 	private Transform transform;
 	private Vector3 scale;
-	private GameObject soundClick;
 	private UnityEvent downEvent;
 	private UnityEvent upEvent;
+	private bool needSound;
+	private int soundIndex;
 	
-	public ButtonEffect(Transform transform, UnityEvent downEvent = null, UnityEvent upEvent = null, GameObject soundClick = null) {
+	public ButtonEffect(Transform transform, UnityEvent downEvent = null, UnityEvent upEvent = null, 
+							bool needSound = false, int soundIndex = 0) {
 		this.transform = transform;
 		this.downEvent = downEvent;
 		this.upEvent = upEvent;
 		this.scale = transform.localScale;
-		this.soundClick = soundClick;
+		this.needSound = needSound;
+		this.soundIndex = soundIndex;
 	}
 	public void Down() {
 		transform.localScale = 1.1f * scale;
 		downEvent?.Invoke();
-		if (soundClick != null) soundClick.GetComponent<AudioSource>().Play();
+		if (needSound) SoundManager.Instance.Play(soundIndex);
 	}
 	public void Up() {
 		transform.localScale = scale;
