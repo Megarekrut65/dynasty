@@ -33,7 +33,7 @@ public class GeneratorManager : MonoBehaviour {
 			card.GetComponent<CardLoader>().LoadData();
 			yield return new WaitForSeconds(0.01f);
 			card.GetComponent<ResizingTextCard>().Resize(data);
-			yield return new WaitForSeconds(0.001f);
+			yield return new WaitForSeconds(0.05f);
 		}
 		currentColor = -2;
 		yield return new WaitForSeconds(0.1f);

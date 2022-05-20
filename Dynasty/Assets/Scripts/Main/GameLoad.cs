@@ -20,7 +20,7 @@ public class GameLoad : MonoBehaviour {
 	}
 	private IEnumerator LoadData() {
 		while (Math.Abs(loadSlider.value - 100) > 0.000f) {
-			yield return new WaitForSeconds(0.005f);
+			yield return new WaitForSeconds(0.01f);
 			if (LocalizationManager.Instance.Ready && firebaseLoad.Ready)
 				loadSlider.value += 10;
 			else if (loadSlider.value < 90) loadSlider.value++;
