@@ -62,7 +62,10 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
             cardController.CreateCard(card);
             dependencies.scrollManager.AddToScroll(card.obj);
             yield return new WaitForSeconds(2f);
-            TakingCardEffect(player, card, after);
+            if (card.type == CardType.KNIGHT) {
+                anim.AddCardToPlayerAnimated(card, player, ()=>after(true));
+            }
+            else TakingCardEffect(player, card, after);
         } else after(true);
     }
     private void TakingCardEffect(Player player, Card card, Action<bool> end) {
