@@ -9,8 +9,6 @@ public class GameLoad : MonoBehaviour {
 	[SerializeField]
 	private Slider loadSlider;
 	[SerializeField]
-	private string sceneName;
-	[SerializeField]
 	private FirebaseLoad firebaseLoad;
 	
 	private void Start() {
@@ -25,7 +23,8 @@ public class GameLoad : MonoBehaviour {
 				loadSlider.value += 10;
 			else if (loadSlider.value < 90) loadSlider.value++;
 		}
-
-		SceneManager.LoadScene(this.sceneName, LoadSceneMode.Single);
+		if(SignInController.IsUserSignIn())
+			SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+		else SceneManager.LoadScene("SignIn", LoadSceneMode.Single);
 	}
 }
