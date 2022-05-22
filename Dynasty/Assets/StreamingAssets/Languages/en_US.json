@@ -239,6 +239,54 @@
         {
             "key": "players",
             "value": "all players"
+        },
+        {
+            "key": "sign-in",
+            "value": "Sign in"
+        },
+        {
+            "key": "sign-up",
+            "value": "Sign up"
+        },
+        {
+            "key": "nickname",
+            "value": "Nickname"
+        },
+        {
+            "key": "email",
+            "value": "Email"
+        },
+        {
+            "key": "password",
+            "value": "Password"
+        },
+        {
+            "key": "confirm-password",
+            "value": "Confirm password"
+        },
+        {
+            "key": "forgot-password",
+            "value": "Forgot password"
+        },
+        {
+            "key": "create-account",
+            "value": "Create new account"
+        },
+        {
+            "key": "is",
+            "value": "is"
+        },
+        {
+            "key": "too",
+            "value": "too"
+        },
+        {
+            "key": "short",
+            "value": "short"
+        },
+        {
+            "key": "passwords-don't-match",
+            "value": "Passwords don't match"
         }
     ]
 }

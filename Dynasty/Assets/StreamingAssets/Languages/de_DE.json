@@ -239,6 +239,54 @@
         {
             "key": "players",
             "value": "alle Spieler"
+        },
+        {
+            "key": "sign-in",
+            "value": "Anmelden"
+        },
+        {
+            "key": "sign-up",
+            "value": "Anmelden"
+        },
+        {
+            "key": "nickname",
+            "value": "Spitzname"
+        },
+        {
+            "key": "email",
+            "value": "Email"
+        },
+        {
+            "key": "password",
+            "value": "Passwort"
+        },
+        {
+            "key": "confirm-password",
+            "value": "Bestätige das Passwort"
+        },
+        {
+            "key": "forgot-password",
+            "value": "Passwort vergessen"
+        },
+        {
+            "key": "create-account",
+            "value": "Neuen Account erstellen"
+        },
+        {
+            "key": "is",
+            "value": "ist"
+        },
+        {
+            "key": "too",
+            "value": "zu"
+        },
+        {
+            "key": "short",
+            "value": "kurz"
+        },
+        {
+            "key": "passwords-don't-match",
+            "value": "Passwörter stimmen nicht überein"
         }
     ]
 }

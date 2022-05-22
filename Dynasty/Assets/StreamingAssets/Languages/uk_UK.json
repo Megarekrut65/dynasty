@@ -239,6 +239,54 @@
         {
             "key": "players",
             "value": "всіх гравців"
+        },
+        {
+            "key": "sign-in",
+            "value": "Вхід"
+        },
+        {
+            "key": "sign-up",
+            "value": "Реєстрація"
+        },
+        {
+            "key": "nickname",
+            "value": "Нік"
+        },
+        {
+            "key": "email",
+            "value": "Електронна адреса"
+        },
+        {
+            "key": "password",
+            "value": "Пароль"
+        },
+        {
+            "key": "confirm-password",
+            "value": "Підтвердіть пароль"
+        },
+        {
+            "key": "forgot-password",
+            "value": "Забув пароль"
+        },
+        {
+            "key": "create-account",
+            "value": "Створити новий акаунт"
+        },
+        {
+            "key": "is",
+            "value": "є"
+        },
+        {
+            "key": "too",
+            "value": "дуже"
+        },
+        {
+            "key": "short",
+            "value": "коротким"
+        },
+        {
+            "key": "passwords-don't-match",
+            "value": "Паролі не співпадають"
         }
     ]
 }
