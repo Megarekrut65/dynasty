@@ -287,6 +287,22 @@
         {
             "key": "passwords-don't-match",
             "value": "Passwords don't match"
+        },
+        {
+            "key": "doesn't-exist",
+            "value": "User with entered email and password doesn't exists"
+        },
+        {
+            "key": "invalid-email",
+            "value": "Entered email is invalid"
+        },
+        {
+            "key": "already-exists",
+            "value": "User with entered email is already exists"
+        },
+        {
+            "key": "send-to-email",
+            "value": "We sent resetting password to entered email"
         }
     ]
 }

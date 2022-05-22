@@ -1,21 +1,22 @@
 ﻿using Firebase.Auth;
+using Firebase.Extensions;
 using UnityEngine;
 
 public static class SignInController {
-    public delegate void ErrorHandling(string message);
-    public static event ErrorHandling Error;
-    public delegate void SuccessfulHandling();
-    public static event SuccessfulHandling Successful;
+    public delegate void ErrorSignInHandling(string message);
+    public static event ErrorSignInHandling Error;
+    public delegate void SuccessfulSignInHandling();
+    public static event SuccessfulSignInHandling Successful;
 
     public static void SignInUser(string email, string password) {
         var auth = FirebaseAuth.DefaultInstance;
-        auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+        auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
             if (task.IsCanceled) {
                 Error?.Invoke("Logging was canceled due to some errors");
                 return;
             }
             if (task.IsFaulted) {
-                Error?.Invoke("Logging was Faulted due to some errors: " + task.Exception);
+                Error?.Invoke(Translator.Translate("doesn't-exist"));
                 return;
             }
             Successful?.Invoke();
@@ -29,9 +30,9 @@ public static class SignInController {
     }
     public static void ResetPassword(string email) {
         var auth = FirebaseAuth.DefaultInstance;
-        auth.SendPasswordResetEmailAsync(email).ContinueWith(task => {
+        auth.SendPasswordResetEmailAsync(email).ContinueWithOnMainThread(task => {
             if (task.Exception != null) {
-                Error?.Invoke("Password resetting has some errors: " + task.Exception);
+                Error?.Invoke(Translator.Translate("invalid-email"));
                 return;
             }
             Successful?.Invoke();

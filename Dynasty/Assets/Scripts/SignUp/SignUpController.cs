@@ -11,13 +11,13 @@ public static class SignUpController {
 
     public static void RegisterUser(string nickname, string email, string password) {
         var auth = FirebaseAuth.DefaultInstance;
-        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
             if (task.IsCanceled) {
                 Error?.Invoke("Registration was canceled due to some errors");
                 return;
             }
             if (task.IsFaulted) {
-                Error?.Invoke("Registration was Faulted due to some errors: " + task.Exception);
+                Error?.Invoke(Translator.Translate("already-exists"));
                 return;
             }
             FirebaseUser newUser = task.Result;

@@ -287,6 +287,22 @@
         {
             "key": "passwords-don't-match",
             "value": "Passwörter stimmen nicht überein"
+        },
+        {
+            "key": "doesn't-exist",
+            "value": "Benutzer mit eingegebener E-Mail und Passwort existiert nicht"
+        },
+        {
+            "key": "invalid-email",
+            "value": "Die eingegebene E-Mail-Adresse ist ungültig"
+        },
+        {
+            "key": "already-exists",
+            "value": "Benutzer mit eingegebener E-Mail existiert bereits"
+        },
+        {
+            "key": "send-to-email",
+            "value": "Wir haben das Zurücksetzen des Passworts an die eingegebene E-Mail gesendet"
         }
     ]
 }

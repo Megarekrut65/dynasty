@@ -49,7 +49,7 @@ public class SignUpManager:MonoBehaviour {
     private void ErrorHandle(string error) {
         loadBoard.SetActive(false);
         errorBoard.SetActive(true);
-        errorBoard.SetMessage(Translator.Translate("there are some errors: "+error));
+        errorBoard.SetMessage(Translator.Translate(error));
     }
     private bool CheckForLength(string fieldName, InputField field) {
         if (field.text.Length < MIN_LENGTH) {

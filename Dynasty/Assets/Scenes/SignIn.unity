@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackBoard: {fileID: 3437451923446761814, guid: 2ebe4a4c0bdf5364dacca9f9f0f314bb, type: 3}
   redBoard: {fileID: 3006286219119660320, guid: d796de6a5be18ca4bb0462cabb6c2380, type: 3}
+  toast: {fileID: 2355713377418363053, guid: 0d0c8f8611bd325469dda0dcf457f640, type: 3}
   canvas: {fileID: 660021852}
   email: {fileID: 2020730828}
   password: {fileID: 1462465040}
@@ -1454,7 +1455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.76750004}
-  m_AnchoredPosition: {x: 0, y: 65.12}
+  m_AnchoredPosition: {x: 0, y: 65.12001}
   m_SizeDelta: {x: -427.29, y: -180.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1770329473
@@ -1611,7 +1612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.215, y: 0.3}
   m_AnchorMax: {x: 0.78249997, y: 0.35500002}
-  m_AnchoredPosition: {x: 0.00022888184, y: -0.28147888}
+  m_AnchoredPosition: {x: 0.00024414062, y: -0.28147888}
   m_SizeDelta: {x: -84.143, y: -4.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863473834

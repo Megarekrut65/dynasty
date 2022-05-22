@@ -23,8 +23,7 @@ public class GameLoad : MonoBehaviour {
 				loadSlider.value += 10;
 			else if (loadSlider.value < 90) loadSlider.value++;
 		}
-		if(SignInController.IsUserSignIn())
-			SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-		else SceneManager.LoadScene("SignIn", LoadSceneMode.Single);
+
+		SceneManager.LoadScene(SignInController.IsUserSignIn() ? "Menu" : "SignIn", LoadSceneMode.Single);
 	}
 }
