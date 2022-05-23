@@ -327,6 +327,86 @@
         {
             "key": "player",
             "value": "Player"
+        },
+        {
+            "key": "red-move",
+            "value": "Prohibits moving the card. Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "red-mix",
+            "value": "Prohibits mixing the card in the deck. Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "red-cover",
+            "value": "Prohibits covering the card. Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "red-drop",
+            "value": "Prohibits dropping the card. Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "green-move",
+            "value": "Makes the card a priority to move (Until such cards are removed, others can not be moved). Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "green-mix",
+            "value": "Makes the card a priority in mixing (Until such cards are removed, others cannot be mixed). Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "green-cover",
+            "value": "Makes the card a priority in covering (Until such cards are removed, others cannot be covered). Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "green-drop",
+            "value": "Makes the card a priority in dropping (Until such cards are removed, others cannot be dropped). Does not work if the action is directed to a type (monster, knight, building) instead of a name."
+        },
+        {
+            "key": "move-body",
+            "value": "Your card passes to another player."
+        },
+        {
+            "key": "take-away-body",
+            "value": "You take another player's card with you."
+        },
+        {
+            "key": "mix-body",
+            "value": "You mix the card in the deck."
+        },
+        {
+            "key": "cover-body",
+            "value": "You cover one card with another (The properties of the covered card disappear)."
+        },
+        {
+            "key": "drop-body",
+            "value": "You drop the card in the drop location."
+        },
+        {
+            "key": "active-body",
+            "value": "Active card or A-card. After the action, points from this card are immediately added to the player, and the card disappears."
+        },
+        {
+            "key": "remaining-body",
+            "value": "Remaining card or R-card. After the action, the card is added to the player, and points from this card are added at the end of the game."
+        },
+        {
+            "key": "move",
+            "value": "MOVE"
+        },
+        {
+            "key": "take-away",
+            "value": "TAKE AWAY"
+        },
+        {
+            "key": "mix",
+            "value": "MIX"
+        },
+        {
+            "key": "drop",
+            "value": "DROP"
+        },
+        {
+            "key": "cover",
+            "value": "COVER"
         }
     ]
 }

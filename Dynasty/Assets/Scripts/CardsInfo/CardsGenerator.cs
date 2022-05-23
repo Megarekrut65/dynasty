@@ -10,9 +10,12 @@ public class CardsGenerator {
 	}
 	public List<GameObject> Generate() {
 		List<GameObject> list = new List<GameObject>();
-		foreach (var item in LocalizationManager.Instance.map.CardMap) {
+		var map = LocalizationManager.Instance.map.CardMap;
+		List<string> keys = new List<string>(map.Keys);
+		keys.Sort((item1, item2)=>map[item2].amount.CompareTo(map[item1].amount));
+		foreach (var key in keys) {
 			GameObject obj = Object.Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
-			obj.GetComponent<CardLoader>().Key = item.Key;
+			obj.GetComponent<CardLoader>().Key = key;
 			obj.GetComponent<RectTransform>().sizeDelta = new Vector2(305f / 2, 495f / 2);
 			obj.transform.SetParent(content.transform, false);
 			list.Add(obj);

@@ -327,6 +327,86 @@
         {
             "key": "player",
             "value": "Spieler"
+        },
+        {
+            "key": "red-move",
+            "value": "Verbietet das Verschieben der Karte. Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "red-mix",
+            "value": "Verbietet das Mischen der Karte im Deck. Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "red-cover",
+            "value": "Verbietet das Abdecken der Karte. Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "red-drop",
+            "value": "Verbietet das Herunterfallen der Karte. Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "green-move",
+            "value": "Macht die Karte zu einer Priorität für das Verschieben (Bis solche Karten entfernt werden, können andere nicht verschoben werden). Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "green-mix",
+            "value": "Macht die Karte zu einer Priorität beim Mischen (Bis solche Karten entfernt werden, können andere nicht gemischt werden). Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "green-cover",
+            "value": "Macht die Karte zu einer Priorität beim Abdecken (Bis solche Karten entfernt werden, können andere nicht abgedeckt werden). Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "green-drop",
+            "value": "Macht die Karte zu einer Priorität beim Ablegen (Bis solche Karten entfernt werden, können andere nicht abgelegt werden). Funktioniert nicht, wenn die Aktion auf einen Typ (Monster, Ritter, Gebäude) statt auf einen Namen gerichtet ist."
+        },
+        {
+            "key": "move-body",
+            "value": "Ihre Karte wird an einen anderen Spieler weitergegeben."
+        },
+        {
+            "key": "take-away-body",
+            "value": "Du nimmst die Karte eines anderen Spielers mit."
+        },
+        {
+            "key": "mix-body",
+            "value": "Sie mischen die Karte im Deck."
+        },
+        {
+            "key": "cover-body",
+            "value": "Sie decken eine Karte mit einer anderen ab (Die Eigenschaften der verdeckten Karte verschwinden)."
+        },
+        {
+            "key": "drop-body",
+            "value": "Sie werfen die Karte in die Abgabestelle."
+        },
+        {
+            "key": "active-body",
+            "value": "Aktive Karte oder A-Karte. Nach der Aktion werden dem Spieler sofort Punkte von dieser Karte gutgeschrieben und die Karte verschwindet."
+        },
+        {
+            "key": "remaining-body",
+            "value": "Restkarte oder R-Karte. Nach der Aktion wird die Karte dem Spieler hinzugefügt und am Ende des Spiels werden Punkte von dieser Karte hinzugefügt."
+        },
+        {
+            "key": "move",
+            "value": "BEWEGUNG"
+        },
+        {
+            "key": "take-away",
+            "value": "WEGBRINGEN"
+        },
+        {
+            "key": "mix",
+            "value": "MISCHEN"
+        },
+        {
+            "key": "drop",
+            "value": "TROPFEN"
+        },
+        {
+            "key": "cover",
+            "value": "STARTSEITE"
         }
     ]
 }
