@@ -7,4 +7,5 @@
     public static string SELECT_CARD = "selectCard";
     public static string PLAYERS = "players";
     public static string CURRENT_COUNT = "currentCount";
+    public static string AVOID_END = "avoidEnd";
 }

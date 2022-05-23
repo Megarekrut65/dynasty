@@ -9,39 +9,63 @@ public class OnlineEntityController:EntityController {
     private DatabaseReference playerReference;
     private DatabaseReference gameReference;
     private Queue<Action> saved = new Queue<Action>();
+    private MonoBehaviour behaviour;
     [CanBeNull]
     private Card card = null;
     public OnlineEntityController(Player player, 
         GameDependencies dependencies, Table table, Func<Card> takeCard, DatabaseReference playerReference) 
         : base(player, dependencies, table, takeCard) {
+        behaviour = dependencies.cameraMove;
         this.playerReference = playerReference;
         gameReference = playerReference.Child(GameKeys.GAME_STATE);
         gameReference.Child(GameKeys.IS_CLICK).ValueChanged += PlayerClick;
         gameReference.Child(GameKeys.CARD_CLICK).ValueChanged += PlayerCardClick;
         gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).ValueChanged += DoSelectPlayer;
         gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).ValueChanged += DoSelectCard;
+        gameReference.Child(GameKeys.AVOID_END).ValueChanged += AvoidEnd;
+    }
+    private void AvoidEnd(object sender, ValueChangedEventArgs e) {
+        object obj = e.Snapshot.Value;
+        if(obj == null || !(bool)obj) return;
+        gameReference.Child(GameKeys.AVOID_END).SetValueAsync(false);
+        Play(() => {
+            var avoid = table.FindCardInPlayer(player, "avoid-inevitable");
+            if(avoid == null) return;
+            behaviour.StartCoroutine(Click(avoid.obj.GetComponent<CardClick>()));
+        });
     }
     private void DoSelectCard(object sender, ValueChangedEventArgs e) {
-        object obj =  e.Snapshot.Value;
+        object obj = e.Snapshot.Value;
         if(obj == null) return;
+        Debug.Log("Do select");
         Play(() => {
+            gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).SetValueAsync(null);
+            Debug.Log("Do select play");
             if(!(card is {needSelect: true})) return;
             int cardId = Convert.ToInt32(obj);
+            Debug.Log("Do select card id " + cardId);
             var list = SelectManager.SelectData.selectingCards;
             var cardObj = list.Find((c) => c.obj.id == cardId);
+            Debug.Log("Do select card id card" + cardObj);
             if(cardObj == null || cardObj.selectClick == null) return;
-            dependencies.cameraMove.StartCoroutine(Click(cardObj.selectClick));
+            Debug.Log("Do select coroutine");
+            behaviour.StartCoroutine(Click(cardObj.selectClick));
         });
     }
     private void DoSelectPlayer(object sender, ValueChangedEventArgs e) {
         object obj =  e.Snapshot.Value;
         if(obj == null) return;
+        Debug.Log("Do select player");
         Play(() => {
+            Debug.Log("Do select player play");
+            gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).SetValueAsync(null);
             if(!(card is {needSelect: true}) || !SelectManager.SelectData.toOwner) return;
             int playerIndex = Convert.ToInt32(obj);
+            Debug.Log("Do select player id " + playerIndex);
             var list = SelectManager.SelectData.selectingPlayers;
             if(list.Count >= playerIndex) return;
-            dependencies.cameraMove.StartCoroutine(Click(list[playerIndex].selectClick));
+            Debug.Log("Do select player name " + list[playerIndex].owner.Nickname);
+            behaviour.StartCoroutine(Click(list[playerIndex].selectClick));
         });
     }
     private void PlayerCardClick(object sender, ValueChangedEventArgs e) {
@@ -50,7 +74,7 @@ public class OnlineEntityController:EntityController {
         gameReference.Child(GameKeys.CARD_CLICK).SetValueAsync(false);
         Play(() => {
             if(card == null||card.obj == null) return;
-            dependencies.cameraMove.StartCoroutine(Click(card.obj.GetComponent<CardClick>()));
+            behaviour.StartCoroutine(Click(card.obj.GetComponent<CardClick>()));
         });
     }
     private void PlayerClick(object sender, ValueChangedEventArgs e) {

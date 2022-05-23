@@ -6,6 +6,7 @@ using CardEffect = System.Func<bool>;
 
 public class CardClick : MonoBehaviour,
 	IPointerDownHandler, IPointerUpHandler {
+	public string Key { get; set; }
 	private CardEffect click;
 	public CardEffect Click {
 		set => click = value;
@@ -24,7 +25,9 @@ public class CardClick : MonoBehaviour,
 			up.AddListener(() => {
 				if(clicked) return;
 				clicked = true;
-				DatabaseReferences.GetPlayerReference().Child(GameKeys.GAME_STATE).Child(GameKeys.CARD_CLICK)
+				DatabaseReferences.GetPlayerReference()
+					.Child(GameKeys.GAME_STATE)
+					.Child(Key == "avoid-inevitable"?GameKeys.AVOID_END:GameKeys.CARD_CLICK)
 					.SetValueAsync(true);
 			});
 		}

@@ -36,6 +36,7 @@ public class CardController {
 			return res;
 		};
 		cardClick.Click = click;
+		cardClick.Key = card.key;
 		cardClick.CanClick = canClick;
 	}
 	public static Outline CreateOutline(GameObject obj, Color color) {
