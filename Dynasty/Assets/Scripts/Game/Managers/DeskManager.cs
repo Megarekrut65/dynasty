@@ -20,6 +20,7 @@ IPointerDownHandler, IPointerUpHandler {
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canTake) {
+			canTake = false;
 			deskAnimation.Stop("DeskActive");
 			DatabaseReferences.GetPlayerReference()
 				.Child(GameKeys.GAME_STATE)

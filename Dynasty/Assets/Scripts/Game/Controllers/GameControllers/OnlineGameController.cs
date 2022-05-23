@@ -22,8 +22,13 @@ public class OnlineGameController:GameController {
         roomReference.Child(GameKeys.PLAYERS).ValueChanged += PlayersChanged;
         GameCloser.theGameOver += GameOver;
     }
-    private void GameOver() {
+    private void Unsubscribe() {
+        roomReference.Child(LocalStorage.ROOM_INFO).ValueChanged -= RoomChanged;
+        roomReference.Child(GameKeys.PLAYERS).ValueChanged -= PlayersChanged;
         GameCloser.theGameOver -= GameOver;
+    }
+    private void GameOver() {
+        Unsubscribe();
         if (gameDependencies.gameStarter.GameStarted) {
             resultCreator.MakeResult();
             OpenScene("GameOver");
@@ -36,8 +41,6 @@ public class OnlineGameController:GameController {
         StartGame();
     }
     public override void Leave() {
-        roomReference.Child(LocalStorage.ROOM_INFO).ValueChanged -= RoomChanged;
-        roomReference.Child(GameKeys.PLAYERS).ValueChanged -= PlayersChanged;
         roomInfo.currentCount--;
         roomUI.LoadData(roomName, roomInfo);
         if (roomInfo.currentCount == 0) {
@@ -73,6 +76,12 @@ public class OnlineGameController:GameController {
         roomInfo = JsonUtility.FromJson<RoomInfo>(args.Snapshot.GetRawJsonValue());
         if(roomInfo == null) return;
         roomUI.LoadData(roomName, roomInfo);
+        if (gameDependencies.gameStarter.GameStarted && roomInfo.currentCount == 1) {
+            Unsubscribe();
+            resultCreator.MakeWinResult();
+            roomReference.RemoveValueAsync().ContinueWithOnMainThread(task=>OpenScene("GameOver"));
+            return;
+        }
         if(roomInfo.currentCount == roomInfo.playerCount) Start();
     }
     private void PlayersChanged(object sender, ValueChangedEventArgs args) {

@@ -760,6 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needSound: 1
+  soundIndex: 0
   downEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -778,7 +780,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  soundClick: {fileID: 0}
 --- !u!114 &182122469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5356,13 +5357,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needSound: 1
+  soundIndex: 0
   downEvent:
     m_PersistentCalls:
       m_Calls: []
   upEvent:
     m_PersistentCalls:
       m_Calls: []
-  soundClick: {fileID: 0}
 --- !u!114 &1865894740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5844,6 +5846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needSound: 1
+  soundIndex: 0
   downEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5862,7 +5866,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  soundClick: {fileID: 0}
 --- !u!1 &1974395642
 GameObject:
   m_ObjectHideFlags: 0
@@ -6395,7 +6398,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -6510,13 +6513,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needSound: 1
+  soundIndex: 0
   downEvent:
     m_PersistentCalls:
       m_Calls: []
   upEvent:
     m_PersistentCalls:
       m_Calls: []
-  soundClick: {fileID: 0}
 --- !u!114 &5661800588421517823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6676,13 +6680,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58d344de93316842aea7a22dc8d95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needSound: 1
+  soundIndex: 0
   downEvent:
     m_PersistentCalls:
       m_Calls: []
   upEvent:
     m_PersistentCalls:
       m_Calls: []
-  soundClick: {fileID: 0}
 --- !u!224 &6628448169258367619
 RectTransform:
   m_ObjectHideFlags: 0

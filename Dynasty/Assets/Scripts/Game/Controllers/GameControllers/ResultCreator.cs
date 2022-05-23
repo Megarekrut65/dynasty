@@ -9,6 +9,9 @@ public class ResultCreator {
         this.playerManager = playerManager;
         this.gameCloser = gameCloser;
     }
+    public void MakeWinResult() {
+        PlayerPrefs.SetString(LocalStorage.GAME_RESULT, Translator.Translate("you win"));
+    }
     public void MakeResult() {
         PlayerPrefs.SetString(LocalStorage.GAME_RESULT, gameCloser.GameClosed?GameClosedResult():GameLeaveResult());
     }
