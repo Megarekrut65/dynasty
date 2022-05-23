@@ -1,7 +1,6 @@
 ﻿public class GameStarter {
     private GameLogger logger;
     private RoundManager roundManager;
-    public bool GameOver { get; set; } = false;
     public bool GameStarted { get; private set; }
 
     public GameStarter(GameLogger logger, RoundManager roundManager) {
@@ -11,6 +10,7 @@
     }
     
     public void StartGame() {
+        DatabaseReferences.GetRoomReference().Child(LocalStorage.GAME_STARTED).SetValueAsync(true);
         logger.TranslatedLog("game-begun");
         GameStarted = true;
         roundManager.CallNextPlayer();

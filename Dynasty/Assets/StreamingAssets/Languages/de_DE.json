@@ -303,6 +303,30 @@
         {
             "key": "send-to-email",
             "value": "Wir haben das Zurücksetzen des Passworts an die eingegebene E-Mail gesendet"
+        },
+        {
+            "key": "lose",
+            "value": "verlieren"
+        },
+        {
+            "key": "you",
+            "value": "Du"
+        },
+        {
+            "key": "win",
+            "value": "gewinnen"
+        },
+        {
+            "key": "with",
+            "value": "mit"
+        },
+        {
+            "key": "coins!",
+            "value": "Münz(en)!"
+        },
+        {
+            "key": "player",
+            "value": "Spieler"
         }
     ]
 }

@@ -33,18 +33,20 @@ public class RoomListGenerator : MonoBehaviour {
     private void ChangeRooms(object sender, ValueChangedEventArgs args ) {
         foreach (var child in args.Snapshot.Children) {
             string roomName = child.Key;
+            object started = child.Child(LocalStorage.GAME_STARTED).Value;
             var roomInfoJson = child.Child(LocalStorage.ROOM_INFO).GetRawJsonValue();
             var roomInfo = JsonUtility.FromJson<RoomInfo>(roomInfoJson);
             if(roomInfo == null) continue;
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
             var obj = rooms.Find(room => room.name == roomName);
             if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount 
+                                                    || started == null || (bool)started
                                                     || delta.Days > 0
                                                     || delta.Hours > 6)
                 RemoveRoom(obj);
             else if (obj == null) rooms.Add(CreateRoom(roomName, roomInfo));
             else obj.GetComponent<RoomUI>().UpdateData(roomInfo);
-            if (delta.Hours > 6) {
+            if (roomInfoJson == null || started == null || delta.Hours > 6 || delta.Days > 0) {
                 roomReference.Child(roomName).RemoveValueAsync();
             }
         }

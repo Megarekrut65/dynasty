@@ -46,7 +46,6 @@ public class SpecialEffectsGenerator : SelectEffectGenerator {
 				return HutEffect(player, card);
 			case "explosion":
 				return ExplosionEffect(player, card);
-
 			case "hocus-pocus":
 				return HocusPocusEffect(player, card);
 			default:
@@ -178,21 +177,24 @@ public class SpecialEffectsGenerator : SelectEffectGenerator {
 	private CardEffect InevitableEndEffect(Card card) {
 		return () => {
 			logger.GameOver();
-			table.CountRCardCoins(item => { behaviour.StartCoroutine(CountCoins(item)); });
+			CoinsCounter coinsCounter = new CoinsCounter(dependencies, anim, logger);
+			coinsCounter.StartCounting(table, () => {
+				dependencies.gameCloser.DoGameOver();
+			});
 			return false;
 		};
 	}
 	private CardEffect AvoidInevitableEffect(Player player, Card card) {
 		return () => {
 			Card currentCard = table.Current;
-			if (currentCard != null && currentCard.key == "inevitable-end") {
+			if (currentCard is {key: "inevitable-end"}) {
 				table.Current = null;
 				logger.LogAction(player, card.key, "dropped");
 				anim.DropCardFromPlayerAnimated(card, player, () => {
 					logger.LogInsert(player, currentCard.data.name);
 					anim.InsertCardToDeskAnimated(currentCard, () => {
-						dependencies.gameStarter.GameOver = false;
 						CallNext(true)();
+						dependencies.gameCloser.GameOver = false;
 					});
 				});
 				return true;

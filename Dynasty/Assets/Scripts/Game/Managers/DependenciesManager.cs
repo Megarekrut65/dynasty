@@ -47,7 +47,8 @@ public class DependenciesManager {
 				roundManager = roundManager,
 				cameraMove = cameraMove,
 				logger = logger,
-				gameStarter = new GameStarter(logger, roundManager)
+				gameStarter = new GameStarter(logger, roundManager),
+				gameCloser = new GameCloser()
 			};
 		}
 

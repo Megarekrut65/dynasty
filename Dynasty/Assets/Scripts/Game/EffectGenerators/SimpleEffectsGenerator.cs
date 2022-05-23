@@ -39,20 +39,6 @@ public abstract class SimpleEffectsGenerator:IEffectsGenerator {
 				}
 		}
 	}
-	protected IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
-		var player = item.Key;
-		var cards = item.Value;
-		int amount = 0;
-		foreach (var card in cards) {
-			amount += card.data.amount;
-			anim.CountAmountAnimated(player, card);
-			yield return new WaitForSeconds(0.5f);
-		}
-		logger.LogCoins(player, amount);
-		yield return new WaitForSeconds(0.5f);
-		logger.LogTotal(player);
-		cards.Clear();
-	}
 	protected List<Player> PlayersWithoutCardFilter(
 			List<Player> players, string cardName) {
 		List<Player> res = new List<Player>();

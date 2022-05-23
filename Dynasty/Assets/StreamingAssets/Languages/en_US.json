@@ -303,6 +303,30 @@
         {
             "key": "send-to-email",
             "value": "We sent resetting password to entered email"
+        },
+        {
+            "key": "lose",
+            "value": "lose"
+        },
+        {
+            "key": "you",
+            "value": "You"
+        },
+        {
+            "key": "win",
+            "value": "win"
+        },
+        {
+            "key": "with",
+            "value": "with"
+        },
+        {
+            "key": "coins!",
+            "value": "coin(s)!"
+        },
+        {
+            "key": "player",
+            "value": "Player"
         }
     ]
 }

@@ -18,6 +18,8 @@ public static class LocalStorage {
     public const string PLAYER_KEY = "playerKey";
     public const string DESK_SEED = "deskSeed";
     public const string IMAGE_FOLDER = "imageFolder";
+    public const string GAME_RESULT = "gameResult";
+    public const string GAME_STARTED = "gameStarted";
 
     public static string GetValue(string key, string def = "") {
         if (!PlayerPrefs.HasKey(key)) {

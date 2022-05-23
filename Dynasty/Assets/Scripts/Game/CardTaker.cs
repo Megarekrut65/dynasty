@@ -2,24 +2,24 @@
     private CardAnimationManager animationManager;
     private GameDependencies dependencies;
     private CardDependencies cardDependencies;
-    private GameStarter gameStarter;
+    private GameCloser gameCloser;
 
     public CardTaker(GameDependencies dependencies, CardDependencies cardDependencies) {
         this.animationManager = cardDependencies.CardAnimationManager;
         this.dependencies = dependencies;
         this.cardDependencies = cardDependencies;
-        this.gameStarter = dependencies.gameStarter;
+        this.gameCloser = dependencies.gameCloser;
     }
     public Card TakeCardFromDesk() {
-        if (gameStarter.GameOver|| dependencies.roundManager.Pause) return null;
+        if (gameCloser.GameOver|| dependencies.roundManager.Pause) return null;
         dependencies.roundManager.Pause = true;
         var card = cardDependencies.Table.TakeCardFromDesk();
         if (card.key == "inevitable-end") {
-            gameStarter.GameOver = true;
+            gameCloser.GameOver = true;
         }
         cardDependencies.Controller.CreateCard(card);
         animationManager.PlayCardFromDeskAnimation(card.obj, () => {
-            if (!gameStarter.GameOver)
+            if (!gameCloser.GameOver)
                 dependencies.bigCardManager.MakeBig(card.obj);
         });
         Player next = dependencies.roundManager.WhoIsNextPlayer();

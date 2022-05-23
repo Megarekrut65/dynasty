@@ -20,6 +20,16 @@ public class OnlineGameController:GameController {
         roomReference = DatabaseReferences.GetRoomReference();
         roomReference.Child(LocalStorage.ROOM_INFO).ValueChanged += RoomChanged;
         roomReference.Child(GameKeys.PLAYERS).ValueChanged += PlayersChanged;
+        GameCloser.theGameOver += GameOver;
+    }
+    private void GameOver() {
+        GameCloser.theGameOver -= GameOver;
+        if (gameDependencies.gameStarter.GameStarted) {
+            resultCreator.MakeResult();
+            OpenScene("GameOver");
+            return;
+        }
+        OpenScene("Lobby");
     }
     private void Start() {
         LoadPlayers();
@@ -31,13 +41,13 @@ public class OnlineGameController:GameController {
         roomInfo.currentCount--;
         roomUI.LoadData(roomName, roomInfo);
         if (roomInfo.currentCount == 0) {
-            roomReference.RemoveValueAsync().ContinueWithOnMainThread(OpenScene);
+            roomReference.RemoveValueAsync().ContinueWithOnMainThread(task=>GameOver());
             return;
         }
         roomReference.Child(LocalStorage.ROOM_INFO).Child(GameKeys.CURRENT_COUNT).SetValueAsync(roomInfo.currentCount)
             .ContinueWithOnMainThread(task => {
                 roomReference.Child(GameKeys.PLAYERS).Child(LocalStorage.GetValue(LocalStorage.PLAYER_KEY, "0"))
-                    .RemoveValueAsync().ContinueWithOnMainThread(OpenScene);
+                    .RemoveValueAsync().ContinueWithOnMainThread(t=>GameOver());
             });
     }
     private void LoadPlayers() {

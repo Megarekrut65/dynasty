@@ -18,7 +18,7 @@ public class OfflinePlayerManager:PlayerManager {
     }
     private string[] CreateNames() {
         string[] nicknames = new string[6];
-        nicknames[0] = "You";
+        nicknames[0] = LocalStorage.GetValue(LocalStorage.PLAYER_NAME, "You");
         for (int i = 1; i < playersCount; i++) {
             nicknames[i] = "Player" + i;
         }

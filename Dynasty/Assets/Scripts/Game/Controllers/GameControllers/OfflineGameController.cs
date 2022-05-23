@@ -4,9 +4,12 @@
         base(gameDependencies, cardDependencies, cardTaker) {
         LoadPlayers();
         StartGame();
+        GameCloser.theGameOver += Leave;
     }
     public override void Leave() {
-        OpenScene(null);
+        GameCloser.theGameOver -= Leave;
+        resultCreator.MakeResult();
+        OpenScene("GameOver");
     }
     private void LoadPlayers() {
         string botType = (LocalStorage.GetValue(LocalStorage.DIFFICULTY_BOTS) == EntityControllerFactory.MEDIUM
