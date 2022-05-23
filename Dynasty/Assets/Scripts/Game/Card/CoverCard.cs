@@ -13,7 +13,9 @@ public class CoverCard : MonoBehaviour {
 		coverImage.SetActive(false);
 	}
 	public void AddToContainer(GameObject obj) {
-		obj.transform.SetParent(coverContainer.transform, false);
+		obj.transform.SetParent(
+			coverContainer.transform.childCount == 0 ? coverContainer.transform : coverContainer.transform.GetChild(0),
+			false);
 		StartCoroutine(Alignment());
 	}
 	private IEnumerator Alignment() {

@@ -37,36 +37,25 @@ public class OnlineEntityController:EntityController {
     private void DoSelectCard(object sender, ValueChangedEventArgs e) {
         object obj = e.Snapshot.Value;
         if(obj == null) return;
-        Debug.Log("Do select");
         Play(() => {
             gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).SetValueAsync(null);
-            Debug.Log("Do select play");
             if(!(card is {needSelect: true})) return;
             int cardId = Convert.ToInt32(obj);
-            Debug.Log("Do select card id " + cardId);
             var list = SelectManager.SelectData.selectingCards;
             var cardObj = list.Find((c) => c.obj.id == cardId);
-            Debug.Log("Do select card" + cardObj);
             if(cardObj == null || cardObj.selectClick == null) return;
-            Debug.Log("Do select coroutine");
             behaviour.StartCoroutine(Click(cardObj.selectClick));
         });
     }
     private void DoSelectPlayer(object sender, ValueChangedEventArgs e) {
         object obj =  e.Snapshot.Value;
         if(obj == null) return;
-        Debug.Log("Do select player");
         Play(() => {
-            Debug.Log("Do select player play");
             gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).SetValueAsync(null);
-            Debug.Log("Select player card" + card + " need " + card?.needSelect);
-            Debug.Log("select player select manager to owner: " + SelectManager.SelectData.toOwner);
             if(!(card is {needSelect: true}) || SelectManager.SelectData.toOwner) return;
             int playerId = Convert.ToInt32(obj);
-            Debug.Log("Do select player id " + playerId);
             var list = SelectManager.SelectData.selectingPlayers;
             var pl = list.Find((p) => p.selectClick.Id == playerId);
-            Debug.Log("Do select player name " + pl?.owner.Nickname);
             if(pl == null) return;
             behaviour.StartCoroutine(Click(pl.selectClick));
         });

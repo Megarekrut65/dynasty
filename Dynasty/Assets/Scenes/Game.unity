@@ -6514,7 +6514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needSound: 1
-  soundIndex: 0
+  soundIndex: 2
   downEvent:
     m_PersistentCalls:
       m_Calls: []

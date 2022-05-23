@@ -31,7 +31,7 @@ public class CardClick : MonoBehaviour,
 					.SetValueAsync(true);
 			});
 		}
-		buttonEffect = new ButtonEffect(transform, null,up);
+		buttonEffect = new ButtonEffect(transform, null,up, true, 3);
 	}
 	public void OnPointerDown(PointerEventData eventData) {
 		if (canClick || eventData == null) buttonEffect.Down();
