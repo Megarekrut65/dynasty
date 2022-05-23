@@ -7,6 +7,7 @@ public class SelectClick : MonoBehaviour,
 IPointerDownHandler, IPointerUpHandler {
 	private int id;
 	public int Id {
+		get => id;
 		set => id = value;
 	}
 	private bool isPlayer;

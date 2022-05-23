@@ -46,7 +46,7 @@ public class OnlineEntityController:EntityController {
             Debug.Log("Do select card id " + cardId);
             var list = SelectManager.SelectData.selectingCards;
             var cardObj = list.Find((c) => c.obj.id == cardId);
-            Debug.Log("Do select card id card" + cardObj);
+            Debug.Log("Do select card" + cardObj);
             if(cardObj == null || cardObj.selectClick == null) return;
             Debug.Log("Do select coroutine");
             behaviour.StartCoroutine(Click(cardObj.selectClick));
@@ -59,13 +59,16 @@ public class OnlineEntityController:EntityController {
         Play(() => {
             Debug.Log("Do select player play");
             gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).SetValueAsync(null);
-            if(!(card is {needSelect: true}) || !SelectManager.SelectData.toOwner) return;
-            int playerIndex = Convert.ToInt32(obj);
-            Debug.Log("Do select player id " + playerIndex);
+            Debug.Log("Select player card" + card + " need " + card?.needSelect);
+            Debug.Log("select player select manager to owner: " + SelectManager.SelectData.toOwner);
+            if(!(card is {needSelect: true}) || SelectManager.SelectData.toOwner) return;
+            int playerId = Convert.ToInt32(obj);
+            Debug.Log("Do select player id " + playerId);
             var list = SelectManager.SelectData.selectingPlayers;
-            if(list.Count >= playerIndex) return;
-            Debug.Log("Do select player name " + list[playerIndex].owner.Nickname);
-            behaviour.StartCoroutine(Click(list[playerIndex].selectClick));
+            var pl = list.Find((p) => p.selectClick.Id == playerId);
+            Debug.Log("Do select player name " + pl?.owner.Nickname);
+            if(pl == null) return;
+            behaviour.StartCoroutine(Click(pl.selectClick));
         });
     }
     private void PlayerCardClick(object sender, ValueChangedEventArgs e) {
