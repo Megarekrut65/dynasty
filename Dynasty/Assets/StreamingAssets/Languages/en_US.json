@@ -407,6 +407,10 @@
         {
             "key": "cover",
             "value": "COVER"
+        },
+        {
+            "key": "rules",
+            "value": "Rules:\n\tYou need to take the cards from the deck and follow the actions described on the card. Most actions are performed automatically. In some actions, you need to select a card or player (the cards or players you can choose are highlighted by the color of the player to perform the action).\n\tThe game ends when the 'End of the Game' card is removed from the deck. The player who received it can finish the game (by clicking on the card) or knead it in the deck by clicking on the 'Avoid the Inevitable' card (if the card is available to the player).\n\tThe player with the most points wins."
         }
     ]
 }
