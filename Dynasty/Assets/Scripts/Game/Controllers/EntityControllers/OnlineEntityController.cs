@@ -28,6 +28,7 @@ public class OnlineEntityController:EntityController {
         object obj = e.Snapshot.Value;
         if(obj == null || !(bool)obj) return;
         gameReference.Child(GameKeys.AVOID_END).SetValueAsync(false);
+        if(!player.Equals(dependencies.roundManager.WhoIsNow())) return;
         Play(() => {
             var avoid = table.FindCardInPlayer(player, "avoid-inevitable");
             if(avoid == null) return;

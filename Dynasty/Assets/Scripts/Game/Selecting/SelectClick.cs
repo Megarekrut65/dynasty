@@ -40,7 +40,7 @@ IPointerDownHandler, IPointerUpHandler {
 		buttonEffect = new ButtonEffect(transform, null,up, true, isPlayer?1:4);
 	}
 	public void OnPointerDown(PointerEventData eventData) {
-		if (canClick || eventData == null) buttonEffect.Down();
+
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canClick || eventData == null) {

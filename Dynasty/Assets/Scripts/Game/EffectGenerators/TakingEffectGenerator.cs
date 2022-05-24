@@ -57,7 +57,9 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
             dependencies.scrollManager.ViewSetActive(false);
         };
         if (cards.Count != 0) {
-            var card = cards[cards.Count - 1];
+            int i = 1;
+            var card = cards[cards.Count - i++];
+            while (card.key == "avoid-inevitable") card = cards[cards.Count - i++];
             table.RemoveCardFromDrop(card.id);
             cardController.CreateCard(card);
             dependencies.scrollManager.AddToScroll(card.obj);

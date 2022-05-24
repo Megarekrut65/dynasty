@@ -16,12 +16,11 @@ public class CardClick : MonoBehaviour,
 		set => canClick = value;
 	}
 	private ButtonEffect buttonEffect;
-	
+	private bool clicked = false;
 	private void Start() {
 		UnityEvent up = null;
 		if (GameModeFunctions.IsMode(GameMode.ONLINE)) {
 			up = new UnityEvent();
-			bool clicked = false;
 			up.AddListener(() => {
 				if(clicked) return;
 				clicked = true;
@@ -34,12 +33,14 @@ public class CardClick : MonoBehaviour,
 		buttonEffect = new ButtonEffect(transform, null,up, true, 3);
 	}
 	public void OnPointerDown(PointerEventData eventData) {
-		if (canClick || eventData == null) buttonEffect.Down();
+		if ((canClick || eventData == null)
+		    && (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE))) buttonEffect.Down();
 	}
 	public void OnPointerUp(PointerEventData eventData) {
 		if (canClick || eventData == null) {
-			if(eventData != null) buttonEffect.Up();
-			click();
+			if(eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE)) buttonEffect.Up();
+			bool avoid = click();
+			if (Key == "avoid-inevitable") clicked = avoid;
 		}
 	}
 }

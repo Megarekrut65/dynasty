@@ -186,6 +186,8 @@ public class SpecialEffectsGenerator : SelectEffectGenerator {
 	}
 	private CardEffect AvoidInevitableEffect(Player player, Card card) {
 		return () => {
+			Player now = dependencies.roundManager.WhoIsNow() ?? dependencies.roundManager.WhoIsNextPlayer();
+			if (!player.Equals(now)) return false;
 			Card currentCard = table.Current;
 			if (currentCard is {key: "inevitable-end"}) {
 				table.Current = null;

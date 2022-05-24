@@ -28,7 +28,7 @@ public class Table {
 			playerDesk.Add(player, new List<Card>());
 		}
 		rnd = new System.Random(LocalStorage.GetValue(LocalStorage.DESK_SEED, 0));
-		desk = DeskGenerator.Generate(rnd, card => false, 10);
+		desk = DeskGenerator.Generate(rnd, card => false, 5);
 	}
 	public void AddPlayer(Player player) {
 		playerDesk.Add(player, new List<Card>());

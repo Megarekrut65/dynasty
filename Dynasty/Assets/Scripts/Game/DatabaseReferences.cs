@@ -6,7 +6,7 @@ public static class DatabaseReferences {
             .DefaultInstance
             .RootReference
             .Child(LocalStorage.ROOMS)
-            .Child(LocalStorage.GetValue(LocalStorage.ROOM_NAME, "Room"));
+            .Child(LocalStorage.GetValue(LocalStorage.ROOM_NAME));
     }
     public static DatabaseReference GetPlayerReference() {
         return GetRoomReference()
