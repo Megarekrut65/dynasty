@@ -18,7 +18,7 @@ public class RoomUI : MonoBehaviour {
         UpdateData(roomInfo);
     }
     public void UpdateData(RoomInfo roomInfo) {
-        if(textCount != null) textCount.text = $"{roomInfo.currentCount}/{roomInfo.playerCount}";
+        if (textCount != null) textCount.text = $"{roomInfo.currentCount}/{roomInfo.playerCount}";
     }
     public void UpdateColor(Color color) {
         image.color = color;

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +18,7 @@ public class VolumeChanger : MonoBehaviour {
             MusicManager.Instance.Volume(value);
             return;
         }
+
         SoundManager.Instance.Volume(value);
     }
 }

@@ -9,7 +9,7 @@ public class CoinsCounter {
     private EffectLogger logger;
     private int playerCount = 0;
     private Action end;
-    
+
     public CoinsCounter(GameDependencies gameDependencies, AnimationEffectGenerator anim, EffectLogger logger) {
         this.gameDependencies = gameDependencies;
         this.anim = anim;
@@ -17,8 +17,7 @@ public class CoinsCounter {
     }
     public void StartCounting(Table table, Action endCount) {
         this.end = endCount;
-        table.CountRCardCoins(item => 
-            { gameDependencies.cameraMove.StartCoroutine(CountCoins(item)); });
+        table.CountRCardCoins(item => { gameDependencies.cameraMove.StartCoroutine(CountCoins(item)); });
     }
     private IEnumerator CountCoins(KeyValuePair<Player, List<Card>> item) {
         var player = item.Key;
@@ -29,6 +28,7 @@ public class CoinsCounter {
             anim.CountAmountAnimated(player, card);
             yield return new WaitForSeconds(0.5f);
         }
+
         logger.LogCoins(player, amount);
         yield return new WaitForSeconds(0.5f);
         logger.LogTotal(player);

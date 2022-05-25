@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class OfflinePlayerManager:PlayerManager {
+public class OfflinePlayerManager : PlayerManager {
     private int botsCount;
 
-    public OfflinePlayerManager(Desk[] desks, int playerCount, int botCount):
-    base(desks, playerCount, playerCount + botCount, 
-        PlayerPrefs.GetString(LocalStorage.DIFFICULTY_BOTS)) {
+    public OfflinePlayerManager(Desk[] desks, int playerCount, int botCount) :
+        base(desks, playerCount, playerCount + botCount,
+            PlayerPrefs.GetString(LocalStorage.DIFFICULTY_BOTS)) {
         this.botsCount = botCount;
         var nicknames = CreateNames();
         for (int i = 0; i < playersCount; i++) {
-            Players.Add(new Player(nicknames[i], desks[i], (i+1).ToString()));
+            Players.Add(new Player(nicknames[i], desks[i], (i + 1).ToString()));
         }
+
         Players.Sort((pl1, pl2) => pl1.Order - pl2.Order);
     }
     private string[] CreateNames() {
@@ -22,6 +20,7 @@ public class OfflinePlayerManager:PlayerManager {
         for (int i = 1; i < playersCount; i++) {
             nicknames[i] = "Player" + i;
         }
+
         return nicknames;
     }
     public override bool IsPlayer(Player player) {

@@ -1,10 +1,9 @@
-﻿using System;
-using Firebase.Auth;
+﻿using Firebase.Auth;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AccountManager:MonoBehaviour {
+public class AccountManager : MonoBehaviour {
     [SerializeField]
     private Text nickname;
 

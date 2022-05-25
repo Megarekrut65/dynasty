@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -31,15 +30,17 @@ public class CreateRoom : MonoBehaviour {
                     .KEEP_PRIVATE)), PlayerPrefs.GetInt(LocalStorage.DESK_SEED, 0));
         reference = reference.Child(roomName);
         reference.Child(LocalStorage.GAME_STARTED).SetValueAsync(false);
-        reference.Child(LocalStorage.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo)).ContinueWithOnMainThread(task => {
-            PrintAboutPlayerInDatabase.Print(reference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME), Created);
-        });
+        reference.Child(LocalStorage.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo))
+            .ContinueWithOnMainThread(task => {
+                PrintAboutPlayerInDatabase.Print(reference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME), Created);
+            });
     }
     private void Created(Task task) {
         if (task.Exception != null) {
             Debug.LogError(task.Exception);
             return;
         }
+
         loadBoard.SetActive(false);
         SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }

@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using CardEffect = System.Func<bool>;
-public class TakingEffectGenerator:SpecialEffectsGenerator {
-    public TakingEffectGenerator(GameDependencies dependencies, CardController cardController, 
+
+public class TakingEffectGenerator : SpecialEffectsGenerator {
+    public TakingEffectGenerator(GameDependencies dependencies, CardController cardController,
         Table table, AnimationEffectGenerator anim) : base(dependencies, cardController, table, anim) {
     }
     public override CardEffect GetEffect(Player player, Card card) {
@@ -65,9 +66,8 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
             dependencies.scrollManager.AddToScroll(card.obj);
             yield return new WaitForSeconds(2f);
             if (card.type == CardType.KNIGHT) {
-                anim.AddCardToPlayerAnimated(card, player, ()=>after(true));
-            }
-            else TakingCardEffect(player, card, after);
+                anim.AddCardToPlayerAnimated(card, player, () => after(true));
+            } else TakingCardEffect(player, card, after);
         } else after(true);
     }
     private void TakingCardEffect(Player player, Card card, Action<bool> end) {
@@ -78,10 +78,9 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
             end(false);
             return;
         }
+
         logger.LogGot(player, card);
-        anim.AddCardToPlayerAnimated(card, player, ()=> {
-            end(true);
-        });
+        anim.AddCardToPlayerAnimated(card, player, () => { end(true); });
     }
     private CardEffect DungeonKeysEffect(Player player, Card card) {
         return () => MixEffect("secret-treasure", player, card, false)() &&
@@ -92,8 +91,9 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
             logger.LogAction(player, key, "took-away");
             var take = table.RemoveCardFromPlayer(key);
             if (take != null) {
-                TakingCardEffect(player, take, next=>CardEffect(player, card, next)());
+                TakingCardEffect(player, take, next => CardEffect(player, card, next)());
             } else CardEffectAction(callNext, player, card)();
+
             return true;
         };
     }
@@ -106,6 +106,7 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
                 Card c = table.FindCardInPlayer(with, key);
                 anim.PulsationCardAnimated(c);
             }
+
             return !callNext || CardEffect(owner, card)();
         };
     }
@@ -122,9 +123,8 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
                     logger.LogAction(player, id, "took-away");
                     var take = table.RemoveCardFromPlayer(id);
                     if (take != null) {
-                        TakingCardEffect(player, take, next=>CallNext(next)());
-                    }
-                    else CallNext(callNext)();
+                        TakingCardEffect(player, take, next => CallNext(next)());
+                    } else CallNext(callNext)();
                 }, dependencies.playerManager.IsPlayer(player));
             return CardEffect(player, card, false)();
         };
@@ -137,7 +137,7 @@ public class TakingEffectGenerator:SpecialEffectsGenerator {
                 (id, pl) => {
                     var take = table.RemoveCardFromPlayer(id);
                     if (take != null)
-                        TakingCardEffect(pl, take, next=> {
+                        TakingCardEffect(pl, take, next => {
                             logger.LogAction(player, id, "moved");
                             CallNext(next)();
                         });

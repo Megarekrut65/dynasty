@@ -1,17 +1,17 @@
-﻿using UnityEngine;
-using Firebase.Database;
+﻿using Firebase;
 using Firebase.Extensions;
+using UnityEngine;
 
-public class FirebaseLoad:MonoBehaviour {
+public class FirebaseLoad : MonoBehaviour {
     public bool Ready { get; private set; } = false;
-    
-    private void Start(){
-        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
+
+    private void Start() {
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
             if (task.Exception != null) {
                 Debug.LogError(task.Exception);
                 return;
             }
-    
+
             Ready = true;
         });
     }

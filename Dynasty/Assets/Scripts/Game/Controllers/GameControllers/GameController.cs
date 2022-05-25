@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
 public abstract class GameController {
     protected GameDependencies gameDependencies;
     protected CardDependencies cardDependencies;
     protected CardTaker cardTaker;
     protected ResultCreator resultCreator;
-    
-    protected GameController(GameDependencies gameDependencies, CardDependencies cardDependencies, CardTaker cardTaker) {
+
+    protected GameController(GameDependencies gameDependencies, CardDependencies cardDependencies,
+        CardTaker cardTaker) {
         this.gameDependencies = gameDependencies;
         this.cardDependencies = cardDependencies;
         this.cardTaker = cardTaker;

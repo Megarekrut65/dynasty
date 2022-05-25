@@ -1,6 +1,5 @@
 ﻿using Firebase.Auth;
 using Firebase.Extensions;
-using UnityEngine;
 
 public static class SignInController {
     public delegate void ErrorSignInHandling(string message);
@@ -15,10 +14,12 @@ public static class SignInController {
                 Error?.Invoke("Logging was canceled due to some errors");
                 return;
             }
+
             if (task.IsFaulted) {
                 Error?.Invoke(Translator.Translate("doesn't-exist"));
                 return;
             }
+
             Successful?.Invoke();
         });
     }
@@ -35,6 +36,7 @@ public static class SignInController {
                 Error?.Invoke(Translator.Translate("invalid-email"));
                 return;
             }
+
             Successful?.Invoke();
         });
     }

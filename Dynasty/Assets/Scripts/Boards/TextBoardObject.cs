@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TextBoardObject:MonoBehaviour {
+public class TextBoardObject : MonoBehaviour {
     [SerializeField]
     private Text text;
 

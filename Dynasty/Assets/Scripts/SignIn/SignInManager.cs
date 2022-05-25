@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SignInManager:MonoBehaviour {
+public class SignInManager : MonoBehaviour {
     [Header("Boards")]
     [SerializeField]
     private GameObject blackBoard;
@@ -20,7 +20,7 @@ public class SignInManager:MonoBehaviour {
     private InputField email;
     [SerializeField]
     private InputField password;
-    
+
     private void Start() {
         loadBoard = new LoadBoard(blackBoard, canvas);
         errorBoard = new ErrorBoard(redBoard, canvas);
@@ -43,12 +43,13 @@ public class SignInManager:MonoBehaviour {
             SignInController.ResetPassword(email.text);
             return;
         }
+
         errorBoard.SetActive(true);
         errorBoard.SetMessage(Translator.Translate("email is too short"));
     }
     private void Logged() {
         loadBoard.SetActive(false);
-        if(SignInController.IsUserSignIn()) SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        if (SignInController.IsUserSignIn()) SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
     private void ErrorHandle(string error) {
         loadBoard.SetActive(false);

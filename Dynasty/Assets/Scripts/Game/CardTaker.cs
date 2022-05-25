@@ -11,12 +11,13 @@
         this.gameCloser = dependencies.gameCloser;
     }
     public Card TakeCardFromDesk() {
-        if (gameCloser.GameOver|| dependencies.roundManager.Pause) return null;
+        if (gameCloser.GameOver || dependencies.roundManager.Pause) return null;
         dependencies.roundManager.Pause = true;
         var card = cardDependencies.Table.TakeCardFromDesk();
         if (card.key == "inevitable-end") {
             gameCloser.GameOver = true;
         }
+
         cardDependencies.Controller.CreateCard(card);
         animationManager.PlayCardFromDeskAnimation(card.obj, () => {
             if (!gameCloser.GameOver)

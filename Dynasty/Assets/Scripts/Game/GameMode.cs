@@ -1,4 +1,4 @@
 ﻿public enum GameMode {
-     ONLINE = 0,
-     OFFLINE=1
+    ONLINE = 0,
+    OFFLINE = 1
 }

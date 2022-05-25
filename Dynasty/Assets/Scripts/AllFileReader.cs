@@ -1,6 +1,6 @@
-using UnityEngine.Networking;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
+using UnityEngine.Networking;
 
 public static class AllFileReader {
     public static string Read(string path) {

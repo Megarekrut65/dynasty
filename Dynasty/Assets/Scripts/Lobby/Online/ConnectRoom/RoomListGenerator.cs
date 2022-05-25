@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Firebase.Database;
-using Firebase.Extensions;
 using UnityEngine;
 
 public class RoomListGenerator : MonoBehaviour {
@@ -21,7 +20,7 @@ public class RoomListGenerator : MonoBehaviour {
     private List<GameObject> rooms = new List<GameObject>();
     private DatabaseReference roomReference;
     private Stack<GameObject> roomsPool = new Stack<GameObject>();
-    
+
     private void Start() {
         loadBoard = new LoadBoard(board, canvas);
         roomReference = FirebaseDatabase.DefaultInstance.RootReference.Child(LocalStorage.ROOMS);
@@ -30,17 +29,17 @@ public class RoomListGenerator : MonoBehaviour {
     private void OnDestroy() {
         roomReference.ValueChanged -= ChangeRooms;
     }
-    private void ChangeRooms(object sender, ValueChangedEventArgs args ) {
+    private void ChangeRooms(object sender, ValueChangedEventArgs args) {
         foreach (var child in args.Snapshot.Children) {
             string roomName = child.Key;
             object started = child.Child(LocalStorage.GAME_STARTED).Value;
             var roomInfoJson = child.Child(LocalStorage.ROOM_INFO).GetRawJsonValue();
             var roomInfo = JsonUtility.FromJson<RoomInfo>(roomInfoJson);
-            if(roomInfo == null) continue;
+            if (roomInfo == null) continue;
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
             var obj = rooms.Find(room => room.name == roomName);
-            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount 
-                                                    || started == null || (bool)started
+            if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount
+                                                    || started == null || (bool) started
                                                     || delta.Days > 0
                                                     || delta.Hours > 6)
                 RemoveRoom(obj);
@@ -50,6 +49,7 @@ public class RoomListGenerator : MonoBehaviour {
                 roomReference.Child(roomName).RemoveValueAsync();
             }
         }
+
         UpdateList();
     }
 
@@ -59,8 +59,8 @@ public class RoomListGenerator : MonoBehaviour {
             obj = roomsPool.Pop();
             obj.SetActive(true);
             obj.transform.SetParent(content, false);
-        }
-        else obj = Instantiate(roomObject, content);
+        } else obj = Instantiate(roomObject, content);
+
         obj.GetComponent<RectTransform>().sizeDelta = new Vector2(10f, 30f);
         obj.GetComponent<RoomUI>().LoadData(roomName, roomInfo);
         ConnectToRoom connectToRoom = new ConnectToRoom(roomReference.Child(roomName), roomName, loadBoard);
@@ -68,14 +68,14 @@ public class RoomListGenerator : MonoBehaviour {
         return obj;
     }
     private void RemoveRoom(GameObject obj) {
-        if(obj == null) return;
+        if (obj == null) return;
         rooms.Remove(obj);
         roomsPool.Push(obj);
         obj.SetActive(false);
     }
     private void UpdateList() {
         for (int i = 0; i < rooms.Count; i++) {
-            rooms[i].GetComponent<RoomUI>().UpdateColor(colors[i%2]);
+            rooms[i].GetComponent<RoomUI>().UpdateColor(colors[i % 2]);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Firebase.Auth;
+﻿using Firebase.Auth;
 using UnityEngine;
 
 public class LoadUser : MonoBehaviour {

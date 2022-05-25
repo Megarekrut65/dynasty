@@ -3,15 +3,15 @@ using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
-public class OnlineGameController:GameController {
+public class OnlineGameController : GameController {
     private string roomName;
     private DatabaseReference roomReference;
     private RoomUI roomUI;
     private RoomInfo roomInfo;
     private Desk[] desks;
-    
-    public OnlineGameController(GameDependencies gameDependencies, 
-        CardDependencies cardDependencies, CardTaker cardTaker, Desk[] desks,RoomUI roomUI) :
+
+    public OnlineGameController(GameDependencies gameDependencies,
+        CardDependencies cardDependencies, CardTaker cardTaker, Desk[] desks, RoomUI roomUI) :
         base(gameDependencies, cardDependencies, cardTaker) {
         this.desks = desks;
         this.roomUI = roomUI;
@@ -34,6 +34,7 @@ public class OnlineGameController:GameController {
             OpenScene("GameOver");
             return;
         }
+
         OpenScene("Lobby");
     }
     private void Start() {
@@ -44,13 +45,14 @@ public class OnlineGameController:GameController {
         roomInfo.currentCount--;
         roomUI.LoadData(roomName, roomInfo);
         if (roomInfo.currentCount == 0) {
-            roomReference.RemoveValueAsync().ContinueWithOnMainThread(task=>GameOver());
+            roomReference.RemoveValueAsync().ContinueWithOnMainThread(task => GameOver());
             return;
         }
+
         roomReference.Child(LocalStorage.ROOM_INFO).Child(GameKeys.CURRENT_COUNT).SetValueAsync(roomInfo.currentCount)
             .ContinueWithOnMainThread(task => {
                 roomReference.Child(GameKeys.PLAYERS).Child(LocalStorage.GetValue(LocalStorage.PLAYER_KEY, "0"))
-                    .RemoveValueAsync().ContinueWithOnMainThread(t=>GameOver());
+                    .RemoveValueAsync().ContinueWithOnMainThread(t => GameOver());
             });
     }
     private void LoadPlayers() {
@@ -74,21 +76,23 @@ public class OnlineGameController:GameController {
     }
     private void RoomChanged(object sender, ValueChangedEventArgs args) {
         roomInfo = JsonUtility.FromJson<RoomInfo>(args.Snapshot.GetRawJsonValue());
-        if(roomInfo == null) return;
+        if (roomInfo == null) return;
         roomUI.LoadData(roomName, roomInfo);
         if (gameDependencies.gameStarter.GameStarted && roomInfo.currentCount == 1) {
             Unsubscribe();
             resultCreator.MakeWinResult();
-            roomReference.RemoveValueAsync().ContinueWithOnMainThread(task=>OpenScene("GameOver"));
+            roomReference.RemoveValueAsync().ContinueWithOnMainThread(task => OpenScene("GameOver"));
             return;
         }
-        if(roomInfo.currentCount == roomInfo.playerCount) Start();
+
+        if (roomInfo.currentCount == roomInfo.playerCount) Start();
     }
     private void PlayersChanged(object sender, ValueChangedEventArgs args) {
         for (int i = 0; i < desks.Length; i++) {
             var snapshot = args.Snapshot.Child((i + 1).ToString()).Child(LocalStorage.PLAYER_NAME);
-            desks[i].SetName(snapshot.Value==null?"":snapshot.Value as string);
+            desks[i].SetName(snapshot.Value == null ? "" : snapshot.Value as string);
         }
+
         if (gameDependencies.gameStarter.GameStarted) {
             var players = gameDependencies.playerManager.Players;
             foreach (var player in players) {

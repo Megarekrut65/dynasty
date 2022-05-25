@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SignUpManager:MonoBehaviour {
+public class SignUpManager : MonoBehaviour {
     [Header("Boards")]
     [SerializeField]
     private GameObject blackBoard;

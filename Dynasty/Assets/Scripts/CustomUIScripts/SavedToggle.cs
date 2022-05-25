@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SavedToggle:MonoBehaviour {
+public class SavedToggle : MonoBehaviour {
     [SerializeField]
     protected Toggle toggle;
     protected string key = "";

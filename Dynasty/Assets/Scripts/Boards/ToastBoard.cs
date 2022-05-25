@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ToastBoard {
     private GameObject board = null;
     private TextBoardObject text;
-    
+
     public ToastBoard(GameObject toast, GameObject canvas) {
         if (toast != null && canvas != null) {
             board = Object.Instantiate(toast, new Vector3(0, 0, 0), Quaternion.identity);
