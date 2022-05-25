@@ -411,6 +411,10 @@
         {
             "key": "rules",
             "value": "Regeln:\n\tSie müssen die Karten vom Stapel nehmen und die auf der Karte beschriebenen Aktionen ausführen. Die meisten Aktionen werden automatisch ausgeführt. Bei einigen Aktionen müssen Sie eine Karte oder einen Spieler auswählen (die Karten oder Spieler, die Sie auswählen können, werden durch die Farbe des Spielers hervorgehoben, der die Aktion ausführt).\n\tDas Spiel endet, wenn die „Spielende“-Karte aus dem Stapel entfernt wird. Der Spieler, der sie erhalten hat, kann das Spiel beenden (indem er auf die Karte klickt) oder sie in den Stapel kneten, indem er auf die Karte „Vermeide das Unvermeidliche“ klickt (sofern die Karte für den Spieler verfügbar ist).\n\tDer Spieler mit den meisten Punkten gewinnt."
+        },
+        {
+            "key": "back-question",
+            "value": "Sind Sie sicher, dass Sie aufhören wollen?\nEs wird unmöglich sein, zurückzukehren!"
         }
     ]
 }

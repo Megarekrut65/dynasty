@@ -31,6 +31,7 @@ ScriptsOnlyBuild:
     - InputNumberLimiter
     - KeepPrivate
     - LanguageLoader
+    - LeaveButton
     - LoadUser
     - LocalizationButton
     - LocalizationDropdown
@@ -42,6 +43,7 @@ ScriptsOnlyBuild:
     - OpenScene
     - OpeningButton
     - PlayerCount
+    - QuestionBoard
     - ResizingTextCard
     - RoomClick
     - RoomListGenerator
@@ -57,6 +59,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -359,6 +362,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5728}
     - Class: 114
       Script: {instanceID: 6196}
+    - Class: 114
+      Script: {instanceID: 29304}
+    - Class: 114
+      Script: {instanceID: 29320}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1814,6 +1821,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LocalizationDropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 62e040979f1bcc5cfdb183bf34b809bf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuestionBoard
+  - hash:
+      serializedVersion: 2
+      Hash: 84902cfd8f8a4c4ecee03be30992e71d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LeaveButton
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity
