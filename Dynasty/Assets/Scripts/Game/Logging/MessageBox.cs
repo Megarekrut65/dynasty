@@ -17,7 +17,7 @@ public class MessageBox : GameLogger {
         scrollRect.normalizedPosition = new Vector2(0f, 0f);
     }
     public override void Log(string text) {
-        if (content.text.Length > 5000) content.text = content.text.Substring(1900);
+        if (content.text.Length > 3000) content.text = content.text.Substring(2900);
         content.text += text + "\r\n";
         scrollRect.normalizedPosition = new Vector2(0f, 0f);
     }

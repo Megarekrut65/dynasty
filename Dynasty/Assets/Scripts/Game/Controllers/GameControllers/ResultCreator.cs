@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ResultCreator {
     private PlayerManager playerManager;
@@ -19,10 +20,19 @@ public class ResultCreator {
     }
     private string GameClosedResult() {
         var players = playerManager.Players;
-        players.Sort((player1, player2) => player2.Coins.CompareTo(player1.Coins));
+        players.Sort((player1, player2) => {
+            if(player1.LeftGame) return 1;
+            if(player2.LeftGame) return -1;
+            return player2.Coins.CompareTo(player1.Coins);
+        });
         string res = "\t1. " + Win(players[0]);
         for (int i = 1; i < players.Count; i++) {
-            res += "\t" + (i + 1) + ". " + (players[i].Coins < players[0].Coins ? Lose(players[i]) : Win(players[i]));
+            res += "\t" + (i + 1) + ". ";
+            if (players[i].LeftGame) {
+                res += Lose(players[i]);
+                continue;
+            }
+            res += (players[i].Coins < players[0].Coins ? Lose(players[i]) : Win(players[i]));
         }
 
         return res;

@@ -17,12 +17,24 @@ public class OnlineEntityController : EntityController {
         : base(player, dependencies, table, takeCard) {
         behaviour = dependencies.cameraMove;
         this.playerReference = playerReference;
+        DatabaseReferences.GetRoomReference().Child(GameKeys.PLAYERS).ChildRemoved += Leave;
         gameReference = playerReference.Child(GameKeys.GAME_STATE);
         gameReference.Child(GameKeys.IS_CLICK).ValueChanged += PlayerClick;
         gameReference.Child(GameKeys.CARD_CLICK).ValueChanged += PlayerCardClick;
         gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).ValueChanged += DoSelectPlayer;
         gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).ValueChanged += DoSelectCard;
         gameReference.Child(GameKeys.AVOID_END).ValueChanged += AvoidEnd;
+    }
+    private void Leave(object sender, ChildChangedEventArgs childChangedEventArgs) {
+        if(player.LeftGame) return;
+        if(childChangedEventArgs.Snapshot.Key != player.Key) return;
+        player.LeftGame = true;
+        playerReference.Parent.ChildRemoved -= Leave;
+        gameReference.Child(GameKeys.IS_CLICK).ValueChanged -= PlayerClick;
+        gameReference.Child(GameKeys.CARD_CLICK).ValueChanged -= PlayerCardClick;
+        gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).ValueChanged -= DoSelectPlayer;
+        gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).ValueChanged -= DoSelectCard;
+        gameReference.Child(GameKeys.AVOID_END).ValueChanged -= AvoidEnd;
     }
     private void AvoidEnd(object sender, ValueChangedEventArgs e) {
         object obj = e.Snapshot.Value;
@@ -86,6 +98,12 @@ public class OnlineEntityController : EntityController {
         throw new NotImplementedException();
     }
     protected override void Next() {
+        if(!player.Equals(dependencies.roundManager.WhoIsNextPlayer())) return;
+        if (player.LeftGame) {
+            dependencies.roundManager.GetTheNextPlayer();
+            dependencies.roundManager.CallNextPlayer();
+            return;
+        }
         foreach (var action in saved) {
             action();
         }

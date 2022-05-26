@@ -26,24 +26,21 @@ public class ConnectToRoom {
             Debug.LogError(task.Exception);
             return;
         }
-
         var roomInfo = JsonUtility.FromJson<RoomInfo>(task.Result.GetRawJsonValue());
         if (roomInfo == null || roomInfo.currentCount == roomInfo.playerCount) return;
-        PlayerPrefs.SetString(LocalStorage.ROOM_NAME, roomName);
-        PlayerPrefs.SetInt(LocalStorage.PLAYER_COUNT, roomInfo.playerCount);
-        PlayerPrefs.SetInt(LocalStorage.DESK_SEED, roomInfo.deskSeed);
-        PlayerPrefs.SetString(LocalStorage.IS_HOST, false.ToString());
-        PrintAboutPlayerInDatabase.Print(roomReference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME, "player"),
-            task2 => IncreasePlayerCount(task2, roomInfo));
+        IncreasePlayerCount(roomInfo);
     }
-    private void IncreasePlayerCount(Task task, RoomInfo roomInfo) {
-        if (task.Exception != null) {
-            Debug.LogError(task.Exception);
-            return;
-        }
-
+    private void IncreasePlayerCount(RoomInfo roomInfo) {
         roomReference.Child(LocalStorage.ROOM_INFO).Child(GameKeys.CURRENT_COUNT)
-            .SetValueAsync(roomInfo.currentCount + 1).ContinueWithOnMainThread(LoadGameScene);
+            .SetValueAsync(roomInfo.currentCount + 1).ContinueWithOnMainThread(
+                task=> {
+                    PlayerPrefs.SetString(LocalStorage.ROOM_NAME, roomName);
+                    PlayerPrefs.SetInt(LocalStorage.PLAYER_COUNT, roomInfo.playerCount);
+                    PlayerPrefs.SetInt(LocalStorage.DESK_SEED, roomInfo.deskSeed);
+                    PlayerPrefs.SetString(LocalStorage.IS_HOST, false.ToString());
+                    PrintAboutPlayerInDatabase.Print(roomReference,
+                        LocalStorage.GetValue(LocalStorage.PLAYER_NAME, "player"), LoadGameScene);
+                });
     }
     private void LoadGameScene(Task task) {
         if (task.Exception != null) {

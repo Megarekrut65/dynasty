@@ -18,9 +18,9 @@ public class ButtonScript : MonoBehaviour,
         buttonEffect = new ButtonEffect(transform, downEvent, upEvent, needSound, soundIndex);
     }
     public void OnPointerDown(PointerEventData eventData) {
-        buttonEffect.Down();
+        buttonEffect?.Down();
     }
     public void OnPointerUp(PointerEventData eventData) {
-        buttonEffect.Up();
+        buttonEffect?.Up();
     }
 }
