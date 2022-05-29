@@ -11,7 +11,7 @@ public class CardFullScreenClick : MonoBehaviour ,
         Click.Down(eventData);
     }
     public void OnPointerUp(PointerEventData eventData) {
-        Click.Up(eventData);
-        HideBackground();
+        if(Click.Up(eventData))
+            HideBackground();
     }
 }

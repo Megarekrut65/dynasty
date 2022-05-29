@@ -29,15 +29,23 @@ public class CardClickEffect:IClick {
 
         buttonEffect = new ButtonEffect(transform, null, up, true, 3);
     }
-    public void Down(PointerEventData eventData) {
+    public bool Down(PointerEventData eventData) {
         if ((canClick || eventData == null)
-            && (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE))) buttonEffect.Down();
+            && (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE))) {
+            buttonEffect.Down();
+            return true;
+        }
+
+        return false;
     }
-    public void Up(PointerEventData eventData) {
+    public bool Up(PointerEventData eventData) {
         if (canClick || eventData == null) {
             if (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE)) buttonEffect.Up();
             bool avoid = click();
             if (key == "avoid-inevitable") clicked = avoid;
+            return true;
         }
+
+        return false;
     }
 }

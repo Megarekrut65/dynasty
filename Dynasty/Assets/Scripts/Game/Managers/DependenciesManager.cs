@@ -42,7 +42,6 @@ public class DependenciesManager {
             PlayerManager playerManager = GetPlayerManager();
             var roundManager = new RoundManager(playerManager.Players);
             dependencies = new GameDependencies {
-                bigCardManager = new BigCardManager(scrollRect, bigCard),
                 scrollManager = new ScrollManager(scrollRect.GetComponent<ScrollRect>(), contentObject, view),
                 playerManager = playerManager,
                 roundManager = roundManager,

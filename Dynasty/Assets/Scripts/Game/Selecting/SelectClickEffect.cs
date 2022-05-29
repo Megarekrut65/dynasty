@@ -29,13 +29,16 @@ public class SelectClickEffect: IClick {
 
         buttonEffect = new ButtonEffect(transform, null, up, true, isPlayer ? 1 : 4);
     }
-    public void Down(PointerEventData eventData) {
-        
+    public bool Down(PointerEventData eventData) {
+        return true;
     }
-    public void Up(PointerEventData eventData) {
+    public bool Up(PointerEventData eventData) {
         if (canClick || eventData == null) {
-            if (eventData != null) buttonEffect.Up();
+            if (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE)) buttonEffect.Up();
             select(id);
+            return true;
         }
+
+        return false;
     }
 }

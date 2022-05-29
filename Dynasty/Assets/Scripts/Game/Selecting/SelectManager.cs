@@ -65,7 +65,7 @@ public class SelectManager {
                     selectPlayer(index);
                 }, canClick, label.transform);
                 AddClick(label, label, owner.GetColor(), SelectData.selectingPlayers, i, pl,
-                    selectClickEffect.Up);
+                    eventData=>selectClickEffect.Up(eventData));
             }
         }
     }

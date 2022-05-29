@@ -19,10 +19,7 @@
         }
 
         cardDependencies.Controller.CreateCard(card);
-        animationManager.PlayCardFromDeskAnimation(card.obj, () => {
-            if (!gameCloser.GameOver)
-                dependencies.bigCardManager.MakeBig(card.obj);
-        });
+        animationManager.PlayCardFromDeskAnimation(card.obj, GameAction.Empty);
         Player next = dependencies.roundManager.WhoIsNextPlayer();
         dependencies.logger.TranslatedLog($"{next.Nickname} took card \'{card.data.name}\' from desk");
         cardDependencies.Controller.AddClickToCard(card,
