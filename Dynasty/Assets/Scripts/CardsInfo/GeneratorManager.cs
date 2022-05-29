@@ -29,13 +29,13 @@ public class GeneratorManager : MonoBehaviour {
         yield return new WaitForSeconds(0.001f);
         CardsGenerator generator = new CardsGenerator(cardObject);
         cards = generator.Generate();
+        foreach (var card in cards) card.transform.SetParent(content.transform, false);
         foreach (var card in cards) {
             card.GetComponent<CardLoader>().LoadData();
             yield return new WaitForSeconds(0.01f);
             card.GetComponent<ResizingTextCard>().Resize(data);
             yield return new WaitForSeconds(0.05f);
         }
-        foreach (var card in cards) card.transform.SetParent(content.transform, false);
         currentColor = -2;
         yield return new WaitForSeconds(0.1f);
         loadBoard.SetActive(false);

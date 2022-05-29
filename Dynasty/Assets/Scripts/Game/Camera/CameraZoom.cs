@@ -13,16 +13,18 @@ public class CameraZoom : MonoBehaviour {
     private int max = 500;
     [SerializeField]
     private float zoomModifierSpeed = 0.1f;
-
+    public delegate void Zooming(bool isStart);
+    public static event Zooming CameraZooming;
     private void Start() {
         targetSize = mainCamera.orthographicSize;
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
-            zoomModifierSpeed /= 40f;
+            zoomModifierSpeed /= 240f;
         }
     }
     private void Update() {
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
             if (Input.touchCount == 2) {
+                CameraZooming?.Invoke(true);
                 float zoomModifier = CountZoom();
                 if (touchesPrevPosDifference > touchesCurPosDifference) {
                     targetSize += zoomModifier;
@@ -31,6 +33,7 @@ public class CameraZoom : MonoBehaviour {
                 if (touchesPrevPosDifference < touchesCurPosDifference) {
                     targetSize -= zoomModifier;
                 }
+                CameraZooming?.Invoke(false);
             }
         } else {
             targetSize -= Input.GetAxis("Mouse ScrollWheel") * zoomModifierSpeed;

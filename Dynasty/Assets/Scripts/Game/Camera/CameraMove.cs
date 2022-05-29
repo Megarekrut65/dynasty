@@ -24,8 +24,8 @@ public class CameraMove : MonoBehaviour {
         targetPosition = cameraTransform.position;
     }
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) start = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        else if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButtonDown(0) && Input.touchCount < 2) start = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        else if (Input.GetMouseButton(0) && Input.touchCount < 2) {
             Vector2 position = (Vector2) mainCamera.ScreenToWorldPoint(Input.mousePosition) - start;
             targetPosition = new Vector3(
                 Mathf.Clamp(cameraTransform.position.x - position.x, min.x, max.x),

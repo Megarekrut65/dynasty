@@ -2125,8 +2125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 570252264}
   min: 150
-  max: 800
-  zoomModifierSpeed: 200
+  max: 2000
+  zoomModifierSpeed: 120
 --- !u!114 &570252267
 MonoBehaviour:
   m_ObjectHideFlags: 0
