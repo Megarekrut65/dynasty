@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardText : MonoBehaviour {
+public class CardTextLoader : MonoBehaviour {
     [SerializeField]
     private Text nameText;
     [SerializeField]

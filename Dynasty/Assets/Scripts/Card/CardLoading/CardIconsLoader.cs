@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardIcons : MonoBehaviour {
+public class CardIconsLoader : MonoBehaviour {
     [SerializeField]
     private Image[] icons = new Image[4];
 

@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Class for button object that open scene by name
+/// </summary>
 public class OpenScene : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]

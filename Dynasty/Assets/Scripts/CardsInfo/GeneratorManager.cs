@@ -27,7 +27,7 @@ public class GeneratorManager : MonoBehaviour {
         LoadBoard loadBoard = new LoadBoard(blackBoard, canvas);
         loadBoard.SetActive(true);
         yield return new WaitForSeconds(0.001f);
-        CardsGenerator generator = new CardsGenerator(cardObject, content);
+        CardsGenerator generator = new CardsGenerator(cardObject);
         cards = generator.Generate();
         foreach (var card in cards) {
             card.GetComponent<CardLoader>().LoadData();
@@ -35,7 +35,7 @@ public class GeneratorManager : MonoBehaviour {
             card.GetComponent<ResizingTextCard>().Resize(data);
             yield return new WaitForSeconds(0.05f);
         }
-
+        foreach (var card in cards) card.transform.SetParent(content.transform, false);
         currentColor = -2;
         yield return new WaitForSeconds(0.1f);
         loadBoard.SetActive(false);

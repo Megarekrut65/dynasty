@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardImage : MonoBehaviour {
+public class CardImageLoader : MonoBehaviour {
     [SerializeField]
     private Image image;
     public void LoadImage(CardData card) {

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Class that add to object button effects
+/// </summary>
 public class ButtonEffect {
     private Transform transform;
     private Vector3 scale;

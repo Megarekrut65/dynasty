@@ -10,18 +10,18 @@ public class CardLoader : MonoBehaviour {
     public CardData Card => LocalizationManager.Instance.GetCard(key);
     [Header("Card parts")]
     [SerializeField]
-    private CardImage cardImage;
+    private CardImageLoader cardImageLoader;
     [SerializeField]
-    private CardText cardText;
+    private CardTextLoader cardTextLoader;
     [SerializeField]
-    private CardIcons cardIcons;
+    private CardIconsLoader cardIconsLoader;
     [SerializeField]
-    private CardAmount cardAmount;
+    private CardAmountLoader cardAmountLoader;
 
     public void LoadData() {
-        cardImage.LoadImage(Card);
-        cardText.LoadText(Card);
-        cardIcons.LoadIcons(Card);
-        cardAmount.LoadAmount(Card);
+        cardImageLoader.LoadImage(Card);
+        cardTextLoader.LoadText(Card);
+        cardIconsLoader.LoadIcons(Card);
+        cardAmountLoader.LoadAmount(Card);
     }
 }

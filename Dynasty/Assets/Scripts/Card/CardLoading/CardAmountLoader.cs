@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardAmount : MonoBehaviour {
+public class CardAmountLoader : MonoBehaviour {
     [SerializeField]
     private Sprite[] amountTypes = new Sprite[2]; //0 - hexagon, 1 - pentagon
     [SerializeField]

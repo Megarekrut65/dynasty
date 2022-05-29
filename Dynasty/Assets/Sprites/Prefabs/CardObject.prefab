@@ -967,10 +967,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 
-  cardImage: {fileID: 4677865639206634272}
-  cardText: {fileID: 6653772644942073652}
-  cardIcons: {fileID: 7117481709392746226}
-  cardAmount: {fileID: 1562275889581944138}
+  cardImageLoader: {fileID: 4677865639206634272}
+  cardTextLoader: {fileID: 6653772644942073652}
+  cardIconsLoader: {fileID: 7117481709392746226}
+  cardAmountLoader: {fileID: 1562275889581944138}
 --- !u!114 &8983876781578251421
 MonoBehaviour:
   m_ObjectHideFlags: 0

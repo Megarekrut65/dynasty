@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Class that hides objects from hide list and shows objects from show list
+/// </summary>
 public class HideShowButton : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]
