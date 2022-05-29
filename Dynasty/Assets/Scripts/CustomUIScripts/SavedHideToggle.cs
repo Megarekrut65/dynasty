@@ -8,7 +8,7 @@ public class SavedHideToggle : SavedToggle {
         toggle.onValueChanged.AddListener(SetActive);
         base.Start();
     }
-    private void SetActive(bool value) {
+    protected virtual void SetActive(bool value) {
         obj.SetActive(!value);
     }
 }

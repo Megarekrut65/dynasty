@@ -2447,7 +2447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d060d0f0ec30b5488f5bac7aeaf4792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClick: {fileID: 0}
   cameraMove: {fileID: 570252267}
   messageBox: {fileID: 1609996976}
 --- !u!1 &674677895
@@ -6484,6 +6483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle: {fileID: 1733024140}
   obj: {fileID: 1609996972}
+  openingButton: {fileID: 619022455}
 --- !u!1 &1837806599
 GameObject:
   m_ObjectHideFlags: 0
@@ -7298,7 +7298,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1837806601}
   m_HandleRect: {fileID: 1837806600}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

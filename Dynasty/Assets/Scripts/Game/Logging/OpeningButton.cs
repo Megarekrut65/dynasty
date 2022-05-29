@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 public class OpeningButton : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]
-    private GameObject soundClick;
-    [SerializeField]
     private CameraMove cameraMove;
     [SerializeField]
     private MessageBox messageBox;
@@ -17,6 +15,7 @@ public class OpeningButton : MonoBehaviour,
     public void OnPointerUp(PointerEventData eventData) {
     }
     public void Change(bool open) {
+        if(isOpen == open) return;
         isOpen = open;
         cameraMove.Stop = isOpen;
         gameObject.transform.Rotate(0f, 0f, isOpen ? -180f : 180f, Space.Self);
