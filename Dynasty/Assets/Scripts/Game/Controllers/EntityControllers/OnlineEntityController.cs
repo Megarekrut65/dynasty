@@ -50,9 +50,9 @@ public class OnlineEntityController : EntityController {
     }
     private void DoSelectCard(object sender, ValueChangedEventArgs e) {
         object obj = e.Snapshot.Value;
-        if (obj == null) return;
+        if (obj == null || Convert.ToInt32(obj) < 0) return;
         Play(() => {
-            gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).SetValueAsync(null);
+            gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_CARD).SetValueAsync(-1);
             if (!(card is {needSelect: true})) return;
             int cardId = Convert.ToInt32(obj);
             var list = SelectManager.SelectData.selectingCards;
@@ -63,14 +63,19 @@ public class OnlineEntityController : EntityController {
     }
     private void DoSelectPlayer(object sender, ValueChangedEventArgs e) {
         object obj = e.Snapshot.Value;
-        if (obj == null) return;
+        if (obj == null || Convert.ToInt32(obj) < 0) return;
+        Debug.Log("Select Player");
         Play(() => {
-            gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).SetValueAsync(null);
+            Debug.Log("Select Player Play");
+            gameReference.Child(GameKeys.SELECTING).Child(GameKeys.SELECT_PLAYER).SetValueAsync(-1);
             if (!(card is {needSelect: true}) || SelectManager.SelectData.toOwner) return;
             int playerId = Convert.ToInt32(obj);
+            Debug.Log("Select Player id " + playerId);
             var list = SelectManager.SelectData.selectingPlayers;
             var pl = list.Find((p) => p.Id == playerId);
+            Debug.Log("Select Player pl " + pl?.owner.Nickname);
             if (pl == null) return;
+            Debug.Log("Select Player Click");
             behaviour.StartCoroutine(Click(pl.cardClick));
         });
     }
@@ -105,9 +110,15 @@ public class OnlineEntityController : EntityController {
             dependencies.roundManager.CallNextPlayer();
             return;
         }
+
+        PlaySavedActions();
+    }
+    
+    private void PlaySavedActions() {
         foreach (var action in saved) {
             action();
         }
+        saved.Clear();
     }
     private bool OwnRound() {
         Player now = dependencies.roundManager.WhoIsNow();

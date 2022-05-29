@@ -29,7 +29,7 @@ public class Table {
         }
 
         rnd = new Random(LocalStorage.GetValue(LocalStorage.DESK_SEED, 0));
-        desk = DeskGenerator.Generate(rnd, card => "wolf-spirit".Contains(card.key), 12);
+        desk = DeskGenerator.Generate(rnd, card => "wolf-spirit".Contains(card.key), 6);
     }
     public void AddPlayer(Player player) {
         playerDesk.Add(player, new List<Card>());

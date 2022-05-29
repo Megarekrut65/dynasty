@@ -25,7 +25,7 @@ public static class PrintAboutPlayerInDatabase {
             }
 
             PlayerPrefs.SetString(LocalStorage.PLAYER_KEY, playerKey);
-            roomReference.Child("players").Child(playerKey).Child(LocalStorage.PLAYER_NAME)
+            roomReference.Child(GameKeys.PLAYERS).Child(playerKey).Child(LocalStorage.PLAYER_NAME)
                 .SetValueAsync(playerName).ContinueWithOnMainThread(end);
         });
     }

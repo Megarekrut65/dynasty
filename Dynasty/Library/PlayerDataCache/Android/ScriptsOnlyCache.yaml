@@ -2,12 +2,13 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AccountManager
-    - BigCard
     - ButtonScript
     - CameraMove
     - CameraZoom
     - CardAmountLoader
     - CardAnimationManager
+    - CardFullScreenClick
+    - CardFullScreenMaker
     - CardIconsLoader
     - CardImageLoader
     - CardLoader
@@ -343,8 +344,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4454}
     - Class: 114
-      Script: {instanceID: 4534}
-    - Class: 114
       Script: {instanceID: 4662}
     - Class: 114
       Script: {instanceID: 4756}
@@ -366,6 +365,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6076}
     - Class: 114
       Script: {instanceID: 6200}
+    - Class: 114
+      Script: {instanceID: 90530}
+    - Class: 114
+      Script: {instanceID: 90544}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1373,7 +1376,7 @@ ScriptsOnlyBuild:
     className: AccountManager
   - hash:
       serializedVersion: 2
-      Hash: 6563827463a1b76c55418f8a594b9d59
+      Hash: 46ce800d4f438f45ebfff3f0aedcb6c3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1383,12 +1386,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
     className: SpriteShapeController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SelectClick
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1545,12 +1542,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioPlayableAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 9f830359d982ed4f9603a0d2251d14e6
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BigCard
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1833,6 +1824,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LocalizationDropdown
+  - hash:
+      serializedVersion: 2
+      Hash: f708bb7d2e62fb538e70b0eb6a2310d7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CardFullScreenMaker
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CardFullScreenClick
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main.unity

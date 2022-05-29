@@ -46,25 +46,22 @@ public abstract class EntityController {
                     var data = SelectCard();
                     yield return new WaitForSeconds(1f);
                     if (data != null) {
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(1f);
                         yield return ClickWithFullScreen(data.cardClick);
                     }
                 }
             }
         }
     }
-    protected IEnumerator Click(object cardClick) {
+    protected virtual IEnumerator Click(object cardClick) {
         (cardClick as IPointerDownHandler)?.OnPointerDown(null);
         yield return new WaitForSeconds(0.1f);
         (cardClick as IPointerUpHandler)?.OnPointerUp(null);
     }
-    protected IEnumerator ClickWithFullScreen(object cardClick) {
+    protected virtual IEnumerator ClickWithFullScreen(object cardClick) {
         (cardClick as IPointerDownHandler)?.OnPointerDown(null);
         yield return new WaitForSeconds(0.1f);
         (cardClick as IPointerUpHandler)?.OnPointerUp(null);
-        yield return new WaitForSeconds(1.5f);
-        cardFullScreenMaker.ClickOnCardDown(null);
-        yield return new WaitForSeconds(0.1f);
         cardFullScreenMaker.ClickOnCardUp(null);
     }
 }
