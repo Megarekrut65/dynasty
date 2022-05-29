@@ -61,7 +61,7 @@ public class OnlineGameController : GameController {
             string playerName = desks[i].Name;
             if ((i + 1) != currentPlayerKey) {
                 var player = gameDependencies.playerManager.AddController(playerName, gameDependencies,
-                    cardDependencies.Table,
+                    cardDependencies.Table, cardDependencies.CardFullScreenMaker,
                     cardTaker.TakeCardFromDesk);
                 cardDependencies.Table.AddPlayer(player);
                 continue;

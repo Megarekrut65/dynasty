@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Firebase.Database;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class OnlineEntityController : EntityController {
     private DatabaseReference playerReference;
@@ -13,8 +14,8 @@ public class OnlineEntityController : EntityController {
     [CanBeNull]
     private Card card = null;
     public OnlineEntityController(Player player,
-        GameDependencies dependencies, Table table, Func<Card> takeCard, DatabaseReference playerReference)
-        : base(player, dependencies, table, takeCard) {
+        GameDependencies dependencies, Table table, CardFullScreenMaker cardFullScreenMaker, Func<Card> takeCard, DatabaseReference playerReference)
+        : base(player, dependencies, table,cardFullScreenMaker, takeCard) {
         behaviour = dependencies.cameraMove;
         this.playerReference = playerReference;
         DatabaseReferences.GetRoomReference().Child(GameKeys.PLAYERS).ChildRemoved += Leave;
@@ -56,8 +57,8 @@ public class OnlineEntityController : EntityController {
             int cardId = Convert.ToInt32(obj);
             var list = SelectManager.SelectData.selectingCards;
             var cardObj = list.Find((c) => c.obj.id == cardId);
-            if (cardObj == null || cardObj.selectClick == null) return;
-            behaviour.StartCoroutine(Click(cardObj.selectClick));
+            if (cardObj == null || cardObj.cardClick == null) return;
+            behaviour.StartCoroutine(ClickWithFullScreen(cardObj.cardClick));
         });
     }
     private void DoSelectPlayer(object sender, ValueChangedEventArgs e) {
@@ -68,9 +69,9 @@ public class OnlineEntityController : EntityController {
             if (!(card is {needSelect: true}) || SelectManager.SelectData.toOwner) return;
             int playerId = Convert.ToInt32(obj);
             var list = SelectManager.SelectData.selectingPlayers;
-            var pl = list.Find((p) => p.selectClick.Id == playerId);
+            var pl = list.Find((p) => p.Id == playerId);
             if (pl == null) return;
-            behaviour.StartCoroutine(Click(pl.selectClick));
+            behaviour.StartCoroutine(Click(pl.cardClick));
         });
     }
     private void PlayerCardClick(object sender, ValueChangedEventArgs e) {
@@ -79,7 +80,7 @@ public class OnlineEntityController : EntityController {
         gameReference.Child(GameKeys.CARD_CLICK).SetValueAsync(false);
         Play(() => {
             if (card == null || card.obj == null) return;
-            behaviour.StartCoroutine(Click(card.obj.GetComponent<CardClick>()));
+            behaviour.StartCoroutine(ClickWithFullScreen(card.obj.GetComponent<CardClick>()));
         });
     }
     private void PlayerClick(object sender, ValueChangedEventArgs e) {

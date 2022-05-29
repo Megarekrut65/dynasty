@@ -6,9 +6,9 @@ public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
     protected SelectManager selectManager;
 
     public SelectEffectGenerator(GameDependencies dependencies,
-        CardController cardController, Table table, AnimationEffectGenerator anim)
+        CardController cardController, Table table, AnimationEffectGenerator anim, CardFullScreenMaker cardFullScreenMaker)
         : base(dependencies, cardController, table, anim) {
-        this.selectManager = new SelectManager(table);
+        this.selectManager = new SelectManager(table, cardFullScreenMaker);
     }
     public override CardEffect GetEffect(Player player, Card card) {
         switch (card.key) {

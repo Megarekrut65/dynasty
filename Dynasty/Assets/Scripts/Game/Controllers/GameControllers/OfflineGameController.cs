@@ -18,7 +18,8 @@
         for (int i = gameDependencies.playerManager.GetPlayersCount();
              i < gameDependencies.playerManager.GetEntityCount(); i++) {
             var player = gameDependencies.playerManager.AddController(
-                botType + i, gameDependencies, cardDependencies.Table, cardTaker.TakeCardFromDesk);
+                botType + i, gameDependencies, cardDependencies.Table, 
+                cardDependencies.CardFullScreenMaker, cardTaker.TakeCardFromDesk);
             cardDependencies.Table.AddPlayer(player);
         }
     }

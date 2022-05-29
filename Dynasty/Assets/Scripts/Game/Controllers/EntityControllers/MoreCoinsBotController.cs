@@ -2,7 +2,8 @@ using System;
 
 public class MoreCoinsBotController : BotController {
     public MoreCoinsBotController(Player player, GameDependencies dependencies,
-        Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {
+        Table table,CardFullScreenMaker cardFullScreenMaker, Func<Card> takeCard) 
+        : base(player, dependencies, table,cardFullScreenMaker, takeCard) {
     }
 
     protected override SelectObjectData<Card> SelectCard() {

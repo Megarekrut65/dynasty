@@ -1,22 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CardEffect = System.Func<bool>;
 
-public class CardClick : MonoBehaviour,
-    IPointerDownHandler, IPointerUpHandler {
-    public string Key { get; set; }
+public class CardClickEffect:IClick {
+    private string key;
     private CardEffect click;
-    public CardEffect Click {
-        set => click = value;
-    }
     private bool canClick;
-    public bool CanClick {
-        set => canClick = value;
-    }
     private ButtonEffect buttonEffect;
     private bool clicked = false;
-    private void Start() {
+    
+    public CardClickEffect(string key, CardEffect click, bool canClick, Transform transform) {
+        this.key = key;
+        this.click = click;
+        this.canClick = canClick;
         UnityEvent up = null;
         if (GameModeFunctions.IsMode(GameMode.ONLINE)) {
             up = new UnityEvent();
@@ -25,22 +22,22 @@ public class CardClick : MonoBehaviour,
                 clicked = true;
                 DatabaseReferences.GetPlayerReference()
                     .Child(GameKeys.GAME_STATE)
-                    .Child(Key == "avoid-inevitable" ? GameKeys.AVOID_END : GameKeys.CARD_CLICK)
+                    .Child(key == "avoid-inevitable" ? GameKeys.AVOID_END : GameKeys.CARD_CLICK)
                     .SetValueAsync(true);
             });
         }
 
         buttonEffect = new ButtonEffect(transform, null, up, true, 3);
     }
-    public void OnPointerDown(PointerEventData eventData) {
+    public void Down(PointerEventData eventData) {
         if ((canClick || eventData == null)
             && (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE))) buttonEffect.Down();
     }
-    public void OnPointerUp(PointerEventData eventData) {
+    public void Up(PointerEventData eventData) {
         if (canClick || eventData == null) {
             if (eventData != null || GameModeFunctions.IsMode(GameMode.OFFLINE)) buttonEffect.Up();
             bool avoid = click();
-            if (Key == "avoid-inevitable") clicked = avoid;
+            if (key == "avoid-inevitable") clicked = avoid;
         }
     }
 }

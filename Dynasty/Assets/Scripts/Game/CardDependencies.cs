@@ -6,16 +6,18 @@ public class CardDependencies {
     public IEffectsGenerator EffectsGenerator { get; }
     public AnimationEffectGenerator AnimationGenerator { get; }
     public CardAnimationManager CardAnimationManager { get; }
+    public CardFullScreenMaker CardFullScreenMaker { get; }
 
     private GameDependencies dependencies;
     public CardDependencies(GameDependencies dependencies, GameObject container,
-        GameObject cardObject, CardAnimationManager animationManager) {
+        GameObject cardObject, CardAnimationManager animationManager, CardFullScreenMaker cardFullScreenMaker) {
         this.dependencies = dependencies;
         this.CardAnimationManager = animationManager;
-        Controller = new CardController(container, cardObject);
+        this.CardFullScreenMaker = cardFullScreenMaker;
+        Controller = new CardController(container, cardObject, cardFullScreenMaker);
         Table = new Table(dependencies.playerManager.Players);
         AnimationGenerator = new AnimationEffectGenerator(Controller, Table, animationManager);
-        EffectsGenerator = new TakingEffectGenerator(dependencies, Controller, Table, AnimationGenerator);
+        EffectsGenerator = new TakingEffectGenerator(dependencies, Controller, Table, AnimationGenerator, cardFullScreenMaker);
     }
     public void AddStartCards() {
         dependencies.playerManager.Players.ForEach(AddStartCards);

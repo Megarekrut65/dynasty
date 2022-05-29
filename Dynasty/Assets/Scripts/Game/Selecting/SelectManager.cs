@@ -1,27 +1,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Object = UnityEngine.Object;
 
 public class SelectManager {
     private Table table;
+    private CardFullScreenMaker cardFullScreenMaker;
     public static SelectData SelectData { get; } = new SelectData();
 
-    public SelectManager(Table table) {
+    public SelectManager(Table table, CardFullScreenMaker cardFullScreenMaker) {
         this.table = table;
-    }
-    public void SelectCard(Player owner, List<Card> cards, Action<int> select, bool canClick) {
-        Select(CardFunctions.MOVE, owner, null, null, canClick, null, false);
-        SelectData.toOwner = true;
-        if (cards.Count == 0) {
-            select(-1);
-            return;
-        }
-
-        foreach (var card in cards) {
-            AddClick(card, card.obj, owner.GetColor(),
-                SelectData.selectingCards, select, canClick, card.id, owner, false);
-        }
+        this.cardFullScreenMaker = cardFullScreenMaker;
     }
     public void SelectMix(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
         Select(CardFunctions.MIX, owner, other, select, canClick, filter);
@@ -57,13 +47,6 @@ public class SelectManager {
         SelectData.toOwner = toOwner;
         if (toOwner) SelectCard(type, owner, other, select, canClick, filter);
     }
-    public void SelectEnemy(Player owner, List<Player> other, Action<Player> select, bool canClick) {
-        Action<int> selectPlayer = i => {
-            ClearSelectingPlayers();
-            select(other[i]);
-        };
-        AddPlayerClick(owner, other, selectPlayer, canClick);
-    }
     private void SelectPlayer(string icon, Player owner, List<Player> other,
         Action<int, Player> select, bool canClick, Predicate<Card> filter) {
         Action<int> selectPlayer = i => {
@@ -77,8 +60,12 @@ public class SelectManager {
             var pl = other[i];
             if (!pl.Equals(owner)) {
                 var label = pl.Label;
-                AddClick(label, label, owner.GetColor(),
-                    SelectData.selectingPlayers, selectPlayer, canClick, i, pl, true);
+                SelectClickEffect selectClickEffect = new SelectClickEffect(i, true, index => {
+                    ClearSelectingCards();
+                    selectPlayer(index);
+                }, canClick, label.transform);
+                AddClick(label, label, owner.GetColor(), SelectData.selectingPlayers, i, pl,
+                    selectClickEffect.Up);
             }
         }
     }
@@ -93,34 +80,36 @@ public class SelectManager {
         Color color = owner.GetColor();
         foreach (var item in playersDesk) {
             foreach (var card in item.Value) {
-                AddClick(card, card.obj, color, SelectData.selectingCards, select, canClick, card.id, item.Key, false);
+                SelectClickEffect selectClickEffect = new SelectClickEffect(card.id, false, i => {
+                    ClearSelectingCards();
+                    select(i);
+                }, canClick, card.obj.transform);
+                AddClick(card, card.obj, color, SelectData.selectingCards, card.id, item.Key,
+                    eventData => {
+                        if (canClick || eventData == null) 
+                            cardFullScreenMaker.TakeCard(card.key, selectClickEffect, color);
+                    });
             }
         }
     }
     private void AddClick<TObjectType>(TObjectType obj, GameObject gameObject, Color color,
-        List<SelectObjectData<TObjectType>> list, Action<int> select, bool canClick,
-        int id, Player owner, bool isPlayer) {
+        List<SelectObjectData<TObjectType>> list, int id, Player owner,  Action<PointerEventData> action) {
         var outline = CardController.CreateOutline(gameObject, color);
-        var selectClick = gameObject.AddComponent<SelectClick>();
-        list.Add(new SelectObjectData<TObjectType>(outline, selectClick, obj, owner));
-        selectClick.Id = id;
-        selectClick.IsPlayer = isPlayer;
-        selectClick.Select = i => {
-            ClearSelectingCards();
-            select(i);
-        };
-        selectClick.CanClick = canClick;
+        var cardClick = gameObject.AddComponent<CardClick>();
+        list.Add(new SelectObjectData<TObjectType>(outline, cardClick, id, obj, owner));
+        cardClick.Down = eventData => { };
+        cardClick.Up = action;
     }
     private void ClearSelectingCards() {
         foreach (var item in SelectData.selectingCards) {
             Object.Destroy(item.outline);
-            Object.Destroy(item.selectClick);
+            Object.Destroy(item.cardClick);
         }
     }
     private void ClearSelectingPlayers() {
         foreach (var item in SelectData.selectingPlayers) {
             Object.Destroy(item.outline);
-            Object.Destroy(item.selectClick);
+            Object.Destroy(item.cardClick);
         }
     }
     private Dictionary<Player, List<Card>> GetDesks(string icon, List<Player> other, Predicate<Card> filter) {

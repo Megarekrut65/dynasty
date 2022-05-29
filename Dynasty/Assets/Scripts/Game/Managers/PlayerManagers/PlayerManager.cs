@@ -24,12 +24,12 @@ public abstract class PlayerManager {
     public List<Player> GetEnemies(Player player) {
         return Players.Where(p => !p.Equals(player)).ToList();
     }
-    public Player AddController(string name, GameDependencies dependencies, Table table, Func<Card> takeCardFromDesk) {
+    public Player AddController(string name, GameDependencies dependencies, Table table,CardFullScreenMaker cardFullScreenMaker, Func<Card> takeCardFromDesk) {
         var player = new Player(name, desks[Players.Count], (Players.Count + 1).ToString());
         Players.Add(player);
         controllers.Add(
             EntityControllerFactory.CreateController(controllerType,
-                player, dependencies, table, takeCardFromDesk));
+                player, dependencies, table,cardFullScreenMaker, takeCardFromDesk));
         return player;
     }
     public abstract int GetEntityCount();

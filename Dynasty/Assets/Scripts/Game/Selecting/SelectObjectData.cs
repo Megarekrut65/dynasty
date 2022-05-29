@@ -2,13 +2,15 @@ using UnityEngine.UI;
 
 public class SelectObjectData<TObjectType> {
     public Outline outline;
-    public SelectClick selectClick;
+    public CardClick cardClick;
     public TObjectType obj;
     public Player owner;
+    public int Id { get; }
 
-    public SelectObjectData(Outline outline, SelectClick selectClick, TObjectType obj, Player owner) {
+    public SelectObjectData(Outline outline, CardClick cardClick, int id, TObjectType obj, Player owner) {
         this.outline = outline;
-        this.selectClick = selectClick;
+        this.cardClick = cardClick;
+        this.Id = id;
         this.obj = obj;
         this.owner = owner;
     }

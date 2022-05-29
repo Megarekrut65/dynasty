@@ -8,12 +8,14 @@ public abstract class EntityController {
     public Player Player => player;
     protected GameDependencies dependencies;
     protected Table table;
+    protected CardFullScreenMaker cardFullScreenMaker;
     protected Func<Card> takeCard;
 
-    public EntityController(Player player, GameDependencies dependencies, Table table, Func<Card> takeCard) {
+    public EntityController(Player player, GameDependencies dependencies, Table table, CardFullScreenMaker cardFullScreenMaker, Func<Card> takeCard) {
         this.player = player;
         this.dependencies = dependencies;
         this.table = table;
+        this.cardFullScreenMaker = cardFullScreenMaker;
         this.takeCard = takeCard;
         dependencies.roundManager.Next += Next;
     }
@@ -33,19 +35,19 @@ public abstract class EntityController {
             if (card.key == "inevitable-end") {
                 yield return InevitableEnd(card);
             } else {
-                yield return Click(card.obj.GetComponent<CardClick>());
+                yield return ClickWithFullScreen(card.obj.GetComponent<CardClick>());
                 if (card.needSelect) {
                     if (!SelectManager.SelectData.toOwner) {
                         yield return new WaitForSeconds(1f);
                         if (SelectManager.SelectData.selectingPlayers.Count > 0)
-                            yield return Click(SelectPlayer().selectClick);
+                            yield return Click(SelectPlayer().cardClick);
                     }
 
                     var data = SelectCard();
                     yield return new WaitForSeconds(1f);
                     if (data != null) {
-                        yield return new WaitForSeconds(1f);
-                        yield return Click(data.selectClick);
+                        yield return new WaitForSeconds(0.5f);
+                        yield return ClickWithFullScreen(data.cardClick);
                     }
                 }
             }
@@ -55,5 +57,14 @@ public abstract class EntityController {
         (cardClick as IPointerDownHandler)?.OnPointerDown(null);
         yield return new WaitForSeconds(0.1f);
         (cardClick as IPointerUpHandler)?.OnPointerUp(null);
+    }
+    protected IEnumerator ClickWithFullScreen(object cardClick) {
+        (cardClick as IPointerDownHandler)?.OnPointerDown(null);
+        yield return new WaitForSeconds(0.1f);
+        (cardClick as IPointerUpHandler)?.OnPointerUp(null);
+        yield return new WaitForSeconds(1.5f);
+        cardFullScreenMaker.ClickOnCardDown(null);
+        yield return new WaitForSeconds(0.1f);
+        cardFullScreenMaker.ClickOnCardUp(null);
     }
 }

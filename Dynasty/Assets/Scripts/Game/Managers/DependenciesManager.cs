@@ -62,10 +62,12 @@ public class DependenciesManager {
     private GameObject cardObject;
     [SerializeField]
     private CardAnimationManager cardAnimationManager;
+    [SerializeField]
+    private CardFullScreenMaker cardFullScreenMaker;
     private CardDependencies cardDependencies;
     public CardDependencies GetCardDependencies() {
         return cardDependencies ??=
-            new CardDependencies(GetGameDependencies(), cardContainer, cardObject, cardAnimationManager);
+            new CardDependencies(GetGameDependencies(), cardContainer, cardObject, cardAnimationManager, cardFullScreenMaker);
     }
     private CardTaker cardTaker;
     public CardTaker GetCardTaker() {

@@ -4,25 +4,24 @@ using UnityEngine.UI;
 using CardEffect = System.Func<bool>;
 
 public class CardController {
+    private CardFullScreenMaker cardFullScreenMaker;
     private GameObject container;
     private GameObject cardObject;
-    private ResizingData data = new ResizingData(1000);
     private Stack<GameObject> cardPool = new Stack<GameObject>();
 
-    public CardController(GameObject container, GameObject cardObject) {
+    public CardController(GameObject container, GameObject cardObject, CardFullScreenMaker cardFullScreenMaker) {
         this.container = container;
         this.cardObject = cardObject;
+        this.cardFullScreenMaker = cardFullScreenMaker;
     }
     public void DeleteCardFromTable(Card card) {
         CardClick cardClick = card.obj.GetComponent<CardClick>();
         if (cardClick != null) Object.Destroy(cardClick);
-        // card.obj.SetActive(false);
-        // cardPool.Push(card.obj);
         Object.Destroy(card.obj);
         card.obj = null;
     }
     public void AddClickToCard(Card card, CardEffect effect, Color color, bool canClick) {
-        CardClick cardClick = card.obj.AddComponent<CardClick>() as CardClick;
+        CardClick cardClick = card.obj.AddComponent<CardClick>();
         var outline = CreateOutline(card.obj, color);
         CardEffect click = () => {
             bool res = effect();
@@ -33,9 +32,13 @@ public class CardController {
 
             return res;
         };
-        cardClick.Click = click;
-        cardClick.Key = card.key;
-        cardClick.CanClick = canClick;
+        var cardClickEffect = new CardClickEffect(card.key, click, canClick, card.obj.transform);
+        cardClick.Down = eventData => { };
+        cardClick.Up = eventData => {
+            if (canClick || eventData == null) {
+                cardFullScreenMaker.TakeCard(card.key, cardClickEffect, color);
+            }
+        };
     }
     public static Outline CreateOutline(GameObject obj, Color color) {
         Outline outline = obj.AddComponent<Outline>();
@@ -54,8 +57,6 @@ public class CardController {
         }
 
         var rect = obj.GetComponent<RectTransform>();
-        // rect.offsetMin = new Vector2(rect.offsetMin.x, 0f);
-        // rect.offsetMax = new Vector2(rect.offsetMax.x, 0f);
         rect.sizeDelta = new Vector2(305f / 4, 495f / 4);
         obj.transform.SetParent(container.transform, false);
         card.obj = obj;

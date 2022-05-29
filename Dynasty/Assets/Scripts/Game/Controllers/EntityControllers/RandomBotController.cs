@@ -3,7 +3,8 @@ using Random = UnityEngine.Random;
 
 public class RandomBotController : BotController {
     public RandomBotController(Player player, GameDependencies dependencies,
-        Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {
+        Table table,CardFullScreenMaker cardFullScreenMaker, Func<Card> takeCard) 
+        : base(player, dependencies, table,cardFullScreenMaker, takeCard) {
     }
 
     protected override SelectObjectData<Card> SelectCard() {

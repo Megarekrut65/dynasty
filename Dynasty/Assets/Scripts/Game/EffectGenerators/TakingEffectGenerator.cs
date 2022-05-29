@@ -6,7 +6,8 @@ using CardEffect = System.Func<bool>;
 
 public class TakingEffectGenerator : SpecialEffectsGenerator {
     public TakingEffectGenerator(GameDependencies dependencies, CardController cardController,
-        Table table, AnimationEffectGenerator anim) : base(dependencies, cardController, table, anim) {
+        Table table, AnimationEffectGenerator anim, CardFullScreenMaker cardFullScreenMaker) 
+        : base(dependencies, cardController, table, anim, cardFullScreenMaker) {
     }
     public override CardEffect GetEffect(Player player, Card card) {
         switch (card.key) {

@@ -5,7 +5,8 @@ using Random = UnityEngine.Random;
 
 public abstract class BotController : EntityController {
     public BotController(Player player, GameDependencies dependencies,
-        Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {
+        Table table, CardFullScreenMaker cardFullScreenMaker, Func<Card> takeCard)
+        : base(player, dependencies, table, cardFullScreenMaker, takeCard) {
     }
 
     protected override IEnumerator InevitableEnd(Card card) {
