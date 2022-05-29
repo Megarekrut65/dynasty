@@ -29,11 +29,11 @@ public class CreateRoom : MonoBehaviour {
                 PlayerPrefs.GetString(LocalStorage
                     .KEEP_PRIVATE)), PlayerPrefs.GetInt(LocalStorage.DESK_SEED, 0));
         reference = reference.Child(roomName);
-        reference.Child(LocalStorage.GAME_STARTED).SetValueAsync(false);
         reference.Child(LocalStorage.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo))
             .ContinueWithOnMainThread(task => {
                 PrintAboutPlayerInDatabase.Print(reference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME), Created);
             });
+        reference.Child(LocalStorage.GAME_STARTED).SetValueAsync(false);
     }
     private void Created(Task task) {
         if (task.Exception != null) {

@@ -35,8 +35,15 @@ public class RoomListGenerator : MonoBehaviour {
             object started = child.Child(LocalStorage.GAME_STARTED).Value;
             var roomInfoJson = child.Child(LocalStorage.ROOM_INFO).GetRawJsonValue();
             var roomInfo = JsonUtility.FromJson<RoomInfo>(roomInfoJson);
-            if (roomInfo == null) continue;
+            if (roomInfoJson == null || roomInfo == null) {
+                roomReference.Child(roomName).RemoveValueAsync();
+                continue;
+            }
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
+            if (delta.Hours > 6 || delta.Days > 0) {
+                roomReference.Child(roomName).RemoveValueAsync();
+                continue;
+            }
             var obj = rooms.Find(room => room.name == roomName);
             if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount
                                                     || started == null || (bool) started
@@ -45,9 +52,6 @@ public class RoomListGenerator : MonoBehaviour {
                 RemoveRoom(obj);
             else if (obj == null) rooms.Add(CreateRoom(roomName, roomInfo));
             else obj.GetComponent<RoomUI>().UpdateData(roomInfo);
-            if (roomInfoJson == null || started == null || delta.Hours > 6 || delta.Days > 0) {
-                roomReference.Child(roomName).RemoveValueAsync();
-            }
         }
 
         UpdateList();
