@@ -31,7 +31,7 @@ public class CreateRoom : MonoBehaviour {
         reference = reference.Child(roomName);
         reference.Child(LocalStorage.ROOM_INFO).SetRawJsonValueAsync(JsonUtility.ToJson(roomInfo))
             .ContinueWithOnMainThread(task => {
-                PrintAboutPlayerInDatabase.Print(reference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME), Created);
+                PlayerDatabaseUtilities.PrintPlayerToDatabase(reference, LocalStorage.GetValue(LocalStorage.PLAYER_NAME), Created);
             });
         reference.Child(LocalStorage.GAME_STARTED).SetValueAsync(false);
     }

@@ -3520,3 +3520,23 @@ C# parse time         : 425ms
 candidates check time : 65ms
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 30.05.2022 11:59:03 : Starting E:/Unity create game/2020.3.33f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 1899,9546ms
+moved types parse time: 112ms
+candidates parse time : 2ms
+C# parse time         : 1525ms
+candidates check time : 58ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 30.05.2022 12:11:21 : Starting E:/Unity create game/2020.3.33f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 164,8965ms
+moved types parse time: 85ms
+candidates parse time : 2ms
+C# parse time         : 311ms
+candidates check time : 70ms
+console write time    : 0ms
+
