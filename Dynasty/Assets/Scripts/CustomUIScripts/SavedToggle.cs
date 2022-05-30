@@ -6,11 +6,11 @@ public class SavedToggle : MonoBehaviour {
     [SerializeField]
     protected Toggle toggle;
     protected string key = "";
-    protected bool def = false;
+    protected bool dif = false;
 
     protected virtual void Start() {
         toggle.onValueChanged.AddListener(Change);
-        toggle.isOn = Convert.ToBoolean(LocalStorage.GetValue(key, def.ToString()));
+        toggle.isOn = Convert.ToBoolean(LocalStorage.GetValue(key, dif.ToString()));
     }
     private void Change(bool value) {
         PlayerPrefs.SetString(key, value.ToString());

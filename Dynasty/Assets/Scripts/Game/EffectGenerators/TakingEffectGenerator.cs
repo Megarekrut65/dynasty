@@ -73,7 +73,7 @@ public class TakingEffectGenerator : SpecialEffectsGenerator {
     private void TakingCardEffect(Player player, Card card, Action<bool> end) {
         card.obj.GetComponent<CoverCard>().Uncover();
         CardEffect effect = GetEffect(player, card);
-        if (!card.needSelect) {
+        if (!card.needSelect && card.type != CardType.KNIGHT) {
             effect();
             end(false);
             return;

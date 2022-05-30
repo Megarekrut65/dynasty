@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Class that make from GameObject button
+/// </summary>
 public class ButtonScript : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]

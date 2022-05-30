@@ -40,15 +40,13 @@ public class RoomListGenerator : MonoBehaviour {
                 continue;
             }
             TimeSpan delta = DateTime.UtcNow.Subtract(Convert.ToDateTime(roomInfo.date));
-            if (delta.Hours > 6 || delta.Days > 0) {
+            if (Math.Abs(delta.Hours) > 6 || Math.Abs(delta.Days) > 0) {
                 roomReference.Child(roomName).RemoveValueAsync();
                 continue;
             }
             var obj = rooms.Find(room => room.name == roomName);
             if (obj != null && roomInfo.keepPrivate || roomInfo.currentCount >= roomInfo.playerCount
-                                                    || started == null || (bool) started
-                                                    || delta.Days > 0
-                                                    || delta.Hours > 6)
+                                                    || started == null || (bool) started)
                 RemoveRoom(obj);
             else if (obj == null) rooms.Add(CreateRoom(roomName, roomInfo));
             else obj.GetComponent<RoomUI>().UpdateData(roomInfo);
