@@ -5,23 +5,12 @@ using Object = UnityEngine.Object;
 
 public class SelectManager {
     private Table table;
+    private FullScreenCardMaker fullScreenCardMaker;
     public static SelectData SelectData { get; } = new SelectData();
 
-    public SelectManager(Table table) {
+    public SelectManager(Table table, FullScreenCardMaker fullScreenCardMaker) {
         this.table = table;
-    }
-    public void SelectCard(Player owner, List<Card> cards, Action<int> select, bool canClick) {
-        Select(CardFunctions.MOVE, owner, null, null, canClick, null, false);
-        SelectData.toOwner = true;
-        if (cards.Count == 0) {
-            select(-1);
-            return;
-        }
-
-        foreach (var card in cards) {
-            AddClick(card, card.obj, owner.GetColor(),
-                SelectData.selectingCards, select, canClick, card.id, owner, false);
-        }
+        this.fullScreenCardMaker = fullScreenCardMaker;
     }
     public void SelectMix(Predicate<Card> filter, Player owner, List<Player> other, Action<int> select, bool canClick) {
         Select(CardFunctions.MIX, owner, other, select, canClick, filter);
@@ -57,13 +46,6 @@ public class SelectManager {
         SelectData.toOwner = toOwner;
         if (toOwner) SelectCard(type, owner, other, select, canClick, filter);
     }
-    public void SelectEnemy(Player owner, List<Player> other, Action<Player> select, bool canClick) {
-        Action<int> selectPlayer = i => {
-            ClearSelectingPlayers();
-            select(other[i]);
-        };
-        AddPlayerClick(owner, other, selectPlayer, canClick);
-    }
     private void SelectPlayer(string icon, Player owner, List<Player> other,
         Action<int, Player> select, bool canClick, Predicate<Card> filter) {
         Action<int> selectPlayer = i => {
@@ -78,7 +60,7 @@ public class SelectManager {
             if (!pl.Equals(owner)) {
                 var label = pl.Label;
                 AddClick(label, label, owner.GetColor(),
-                    SelectData.selectingPlayers, selectPlayer, canClick, i, pl, true);
+                    SelectData.selectingPlayers, selectPlayer, canClick, i, pl, true, null);
             }
         }
     }
@@ -93,23 +75,35 @@ public class SelectManager {
         Color color = owner.GetColor();
         foreach (var item in playersDesk) {
             foreach (var card in item.Value) {
-                AddClick(card, card.obj, color, SelectData.selectingCards, select, canClick, card.id, item.Key, false);
+                AddClick(card, card.obj, color, SelectData.selectingCards, select, 
+                    canClick, card.id, item.Key, false, card.key);
             }
         }
     }
     private void AddClick<TObjectType>(TObjectType obj, GameObject gameObject, Color color,
         List<SelectObjectData<TObjectType>> list, Action<int> select, bool canClick,
-        int id, Player owner, bool isPlayer) {
+        int id, Player owner, bool isPlayer, string key) {
         var outline = CardController.CreateOutline(gameObject, color);
         var selectClick = gameObject.AddComponent<SelectClick>();
         list.Add(new SelectObjectData<TObjectType>(outline, selectClick, obj, owner));
         selectClick.Id = id;
-        selectClick.IsPlayer = isPlayer;
-        selectClick.Select = i => {
+        Action<int> newSelect = i => {
             ClearSelectingCards();
             select(i);
         };
-        selectClick.CanClick = canClick;
+        SelectClickEffect selectClickEffect = new SelectClickEffect(id, isPlayer, newSelect, 
+            canClick, gameObject.transform);
+        if (canClick && !isPlayer) {
+            ButtonEffect buttonEffect = new ButtonEffect(gameObject.transform, null, null, true, 3);
+            selectClick.Down = e => {buttonEffect.Down(); };
+            selectClick.Up = eventData => {
+                buttonEffect.Up();
+                fullScreenCardMaker.Make(selectClickEffect, key, color);
+            };
+            return;
+        }
+        selectClick.Down = eventData=>selectClickEffect.Down(eventData);
+        selectClick.Up = eventData=>selectClickEffect.Up(eventData);
     }
     private void ClearSelectingCards() {
         foreach (var item in SelectData.selectingCards) {

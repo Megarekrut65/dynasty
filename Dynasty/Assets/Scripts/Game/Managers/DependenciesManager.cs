@@ -10,6 +10,8 @@ public class DependenciesManager {
     [Header("Big Card")]
     [SerializeField]
     private Toggle bigCard;
+    [SerializeField]
+    private FullScreenCardMaker fullScreenCardMaker;
     [Header("Camera Controller")]
     [SerializeField]
     private CameraMove cameraMove;
@@ -49,7 +51,8 @@ public class DependenciesManager {
                 cameraMove = cameraMove,
                 logger = logger,
                 gameStarter = new GameStarter(logger, roundManager),
-                gameCloser = new GameCloser()
+                gameCloser = new GameCloser(),
+                fullScreenCardMaker = fullScreenCardMaker
             };
         }
 

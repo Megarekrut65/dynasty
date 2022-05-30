@@ -7,4 +7,5 @@ public class GameDependencies {
     public GameLogger logger;
     public GameStarter gameStarter;
     public GameCloser gameCloser;
+    public FullScreenCardMaker fullScreenCardMaker;
 }
