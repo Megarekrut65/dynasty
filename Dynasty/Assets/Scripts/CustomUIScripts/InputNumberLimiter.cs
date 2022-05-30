@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class for control input value (number)
+/// </summary>
 public class InputNumberLimiter : MonoBehaviour {
     [SerializeField]
     private InputField field;

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Class that saves state of toggle in scene and hide GameObject
+/// </summary>
 public class SavedHideToggle : SavedToggle {
     [SerializeField]
     protected GameObject obj;

@@ -2,11 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that control card covering
+/// </summary>
 public class CoverCard : MonoBehaviour {
     [SerializeField]
     private GameObject coverImage;
     [SerializeField]
     public GameObject coverContainer;
+    
     public void Cover() {
         coverImage.SetActive(true);
     }

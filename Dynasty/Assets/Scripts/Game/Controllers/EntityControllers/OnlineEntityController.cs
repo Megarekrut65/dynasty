@@ -5,6 +5,9 @@ using Firebase.Database;
 using JetBrains.Annotations;
 using UnityEngine;
 
+/// <summary>
+/// Class that control clicking by other users from database 
+/// </summary>
 public class OnlineEntityController : EntityController {
     private DatabaseReference playerReference;
     private DatabaseReference gameReference;

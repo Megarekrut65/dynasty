@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Base class for control all no-user clicks
+/// </summary>
 public abstract class EntityController {
     protected Player player;
     public Player Player => player;

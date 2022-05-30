@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that saves state of toggle in scene
+/// </summary>
 public class SavedToggle : MonoBehaviour {
     [SerializeField]
     protected Toggle toggle;

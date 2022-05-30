@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Class that call some method after animation end
+/// </summary>
 public class CardAnimation : MonoBehaviour {
     public void Play(string animationName, Action end) {
         var anim = gameObject.GetComponent<Animation>();

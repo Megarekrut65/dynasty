@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class that control zooming camera by user
+/// </summary>
 public class CameraZoom : MonoBehaviour {
     [SerializeField]
     private Camera mainCamera;

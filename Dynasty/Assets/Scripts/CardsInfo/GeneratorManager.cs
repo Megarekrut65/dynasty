@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Creates all cards in scene
+/// </summary>
 public class GeneratorManager : MonoBehaviour {
     [SerializeField]
     private GameObject cardObject;
@@ -23,6 +26,10 @@ public class GeneratorManager : MonoBehaviour {
         canvas = GameObject.Find("Canvas");
         StartCoroutine(Generate());
     }
+    /// <summary>
+    /// Generates all cards and loads all card data
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Generate() {
         LoadBoard loadBoard = new LoadBoard(blackBoard, canvas);
         loadBoard.SetActive(true);
@@ -40,7 +47,9 @@ public class GeneratorManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         loadBoard.SetActive(false);
     }
-
+    /// <summary>
+    /// Hides all cards
+    /// </summary>
     private void MakeInvisible() {
         foreach (var card in cards) {
             card.SetActive(false);
@@ -48,14 +57,25 @@ public class GeneratorManager : MonoBehaviour {
 
         scrollRect.normalizedPosition = new Vector2(0, 0);
     }
+    /// <summary>
+    /// Changes current color
+    /// </summary>
+    /// <param name="value"></param>
     public void SelectColor(int value) {
         currentColor = value - 2;
         Filter();
     }
+    /// <summary>
+    /// Changes name pattern
+    /// </summary>
+    /// <param name="cardName">new name pattern</param>
     public void SelectName(string cardName) {
         currentName = cardName;
         Filter();
     }
+    /// <summary>
+    /// Filters cards by name and color
+    /// </summary>
     private void Filter() {
         MakeInvisible();
         foreach (var card in cards) {

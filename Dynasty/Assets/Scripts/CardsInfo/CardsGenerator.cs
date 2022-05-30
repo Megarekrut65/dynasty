@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Generates card objects in scene
+/// </summary>
 public class CardsGenerator {
     private GameObject cardObject;
     public CardsGenerator(GameObject cardObject) {

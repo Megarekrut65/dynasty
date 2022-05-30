@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using CardEffect = System.Func<bool>;
 
+/// <summary>
+/// Class that creates and deletes cards
+/// </summary>
 public class CardController {
     private GameObject container;
     private GameObject cardObject;
-    private ResizingData data = new ResizingData(1000);
     private Stack<GameObject> cardPool = new Stack<GameObject>();
 
     public CardController(GameObject container, GameObject cardObject) {
@@ -16,8 +18,6 @@ public class CardController {
     public void DeleteCardFromTable(Card card) {
         CardClick cardClick = card.obj.GetComponent<CardClick>();
         if (cardClick != null) Object.Destroy(cardClick);
-        // card.obj.SetActive(false);
-        // cardPool.Push(card.obj);
         Object.Destroy(card.obj);
         card.obj = null;
     }
@@ -54,8 +54,6 @@ public class CardController {
         }
 
         var rect = obj.GetComponent<RectTransform>();
-        // rect.offsetMin = new Vector2(rect.offsetMin.x, 0f);
-        // rect.offsetMax = new Vector2(rect.offsetMax.x, 0f);
         rect.sizeDelta = new Vector2(305f / 4, 495f / 4);
         obj.transform.SetParent(container.transform, false);
         card.obj = obj;

@@ -415,6 +415,10 @@
         {
             "key": "back-question",
             "value": "Sind Sie sicher, dass Sie aufhören wollen?\nEs wird unmöglich sein, zurückzukehren!"
+        },
+        {
+            "key": "update-body",
+            "value": "Die aktuelle Version des Spiels ist veraltet. Aktualisieren Sie die Anwendung."
         }
     ]
 }

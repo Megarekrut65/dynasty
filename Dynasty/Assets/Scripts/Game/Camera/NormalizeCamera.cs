@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Stops camera moving and go to center of scene
+/// </summary>
 public class NormalizeCamera : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]

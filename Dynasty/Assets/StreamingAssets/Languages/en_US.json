@@ -415,6 +415,10 @@
         {
             "key": "back-question",
             "value": "Are you sure you want to quit?\nIt will be impossible to return!"
+        },
+        {
+            "key": "update-body",
+            "value": "The current version of the game is outdated. Update the application."
         }
     ]
 }

@@ -3,6 +3,9 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CardEffect = System.Func<bool>;
 
+/// <summary>
+/// Class that manage clicking to card
+/// </summary>
 public class CardClick : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     public string Key { get; set; }

@@ -1,6 +1,9 @@
 using System;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Implementation of bot controller. Select random card and player
+/// </summary>
 public class RandomBotController : BotController {
     public RandomBotController(Player player, GameDependencies dependencies,
         Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {

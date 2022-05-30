@@ -3,8 +3,11 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Base class that control bot clicks
+/// </summary>
 public abstract class BotController : EntityController {
-    public BotController(Player player, GameDependencies dependencies,
+    protected BotController(Player player, GameDependencies dependencies,
         Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {
     }
 

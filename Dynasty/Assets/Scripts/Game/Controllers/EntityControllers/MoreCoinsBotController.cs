@@ -1,5 +1,8 @@
 using System;
 
+/// <summary>
+/// Implementation of bot controller. Select card with max coins and random player
+/// </summary>
 public class MoreCoinsBotController : BotController {
     public MoreCoinsBotController(Player player, GameDependencies dependencies,
         Table table, Func<Card> takeCard) : base(player, dependencies, table, takeCard) {

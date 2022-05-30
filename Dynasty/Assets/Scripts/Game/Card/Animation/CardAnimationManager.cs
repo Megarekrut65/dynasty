@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Class that add and play animations of cards
+/// </summary>
 public class CardAnimationManager : MonoBehaviour {
     [SerializeField]
     private AnimationClip[] clips;

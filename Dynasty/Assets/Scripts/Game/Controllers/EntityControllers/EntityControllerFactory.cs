@@ -1,6 +1,9 @@
 using System;
 using Firebase.Database;
 
+/// <summary>
+/// Factory that creates correct controller
+/// </summary>
 public static class EntityControllerFactory {
     public static EntityController CreateController(string name, Player player,
         GameDependencies dependencies, Table table, Func<Card> takeCard) {

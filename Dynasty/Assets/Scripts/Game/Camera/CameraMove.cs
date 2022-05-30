@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class that control moving camera by user
+/// </summary>
 public class CameraMove : MonoBehaviour {
     [Header("Camera")]
     [SerializeField]
