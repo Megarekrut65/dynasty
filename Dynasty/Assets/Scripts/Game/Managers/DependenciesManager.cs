@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that contains all objects to create dependencies
+/// </summary>
 [Serializable]
 public class DependenciesManager {
     [SerializeField]

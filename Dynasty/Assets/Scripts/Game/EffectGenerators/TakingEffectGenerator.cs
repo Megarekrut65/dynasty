@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using CardEffect = System.Func<bool>;
 
+/// <summary>
+/// Class that creates cards effect that take or move cards
+/// </summary>
 public class TakingEffectGenerator : SpecialEffectsGenerator {
     public TakingEffectGenerator(GameDependencies dependencies, CardController cardController,
         Table table, AnimationEffectGenerator anim) : base(dependencies, cardController, table, anim) {

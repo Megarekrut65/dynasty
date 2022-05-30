@@ -1,3 +1,6 @@
+/// <summary>
+/// All dependencies for game manage
+/// </summary>
 public class GameDependencies {
     public BigCardManager bigCardManager;
     public ScrollManager scrollManager;

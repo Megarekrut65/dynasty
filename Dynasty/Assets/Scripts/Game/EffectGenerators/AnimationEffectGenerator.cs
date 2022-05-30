@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+/// <summary>
+/// Class that creates effects with animations for cards
+/// </summary>
 public class AnimationEffectGenerator {
     private CardController cardController;
     private Table table;

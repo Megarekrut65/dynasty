@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class that manage some game ports
+/// </summary>
 public class GameManager : MonoBehaviour {
     [SerializeField]
     private RoomUI roomUI;

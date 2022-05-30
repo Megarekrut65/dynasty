@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class with all player data
+/// </summary>
 public class Player {
     private static int _id = 0;
     private readonly int id;

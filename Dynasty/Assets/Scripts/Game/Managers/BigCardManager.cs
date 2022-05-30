@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that add card to big place that make card big
+/// </summary>
 public class BigCardManager {
     public bool NeedMakeBig { get; set; }
     private GameObject cardPlace;

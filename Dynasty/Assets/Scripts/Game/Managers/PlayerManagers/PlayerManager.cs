@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Class that manage all players and other controllers
+/// </summary>
 public abstract class PlayerManager {
     public List<Player> Players { get; }
     protected int playersCount;

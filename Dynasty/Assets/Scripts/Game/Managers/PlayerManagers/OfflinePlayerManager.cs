@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Implementation of PlayerManager for offline mode
+/// </summary>
 public class OfflinePlayerManager : PlayerManager {
     private int botsCount;
 

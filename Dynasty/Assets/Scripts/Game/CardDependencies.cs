@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// All dependencies for card managing 
+/// </summary>
 public class CardDependencies {
     public Table Table { get; }
     public CardController Controller { get; }

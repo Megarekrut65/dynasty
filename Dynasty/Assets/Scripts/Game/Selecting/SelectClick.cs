@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Class that manage click during selecting
+/// </summary>
 public class SelectClick : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     public int Id { get; set; }

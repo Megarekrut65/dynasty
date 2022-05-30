@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that adds messages to box in scene
+/// </summary>
 public class MessageBox : GameLogger {
     [SerializeField]
     private Scrollbar verticalScroll;

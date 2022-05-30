@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 
+/// <summary>
+/// Class that control players rounds
+/// </summary>
 public class RoundManager {
     public delegate void NextRound();
     public event NextRound Next;

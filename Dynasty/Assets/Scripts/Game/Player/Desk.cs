@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Player desk in scene
+/// </summary>
 public class Desk : MonoBehaviour {
     [SerializeField]
     private int order = 0;

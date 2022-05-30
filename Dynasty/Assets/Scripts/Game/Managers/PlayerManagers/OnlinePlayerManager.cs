@@ -1,4 +1,7 @@
-﻿public class OnlinePlayerManager : PlayerManager {
+﻿/// <summary>
+/// Implementation of PlayerManager for online mode
+/// </summary>
+public class OnlinePlayerManager : PlayerManager {
     public Player Current { private get; set; } = null;
 
     public OnlinePlayerManager(Desk[] desks, int playerCount)

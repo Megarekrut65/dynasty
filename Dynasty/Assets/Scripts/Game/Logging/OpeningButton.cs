@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Button that show and hide message box
+/// </summary>
 public class OpeningButton : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]

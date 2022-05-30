@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using CardEffect = System.Func<bool>;
 
+/// <summary>
+/// Class that creates effects for cards with selecting
+/// </summary>
 public abstract class SelectEffectGenerator : SimpleEffectsGenerator {
     protected SelectManager selectManager;
 
-    public SelectEffectGenerator(GameDependencies dependencies,
+    protected SelectEffectGenerator(GameDependencies dependencies,
         CardController cardController, Table table, AnimationEffectGenerator anim)
         : base(dependencies, cardController, table, anim) {
         this.selectManager = new SelectManager(table, dependencies.fullScreenCardMaker);

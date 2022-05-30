@@ -1,3 +1,6 @@
+/// <summary>
+/// Class that logs cards effects
+/// </summary>
 public class EffectLogger {
     private GameLogger logger;
     private Table table;

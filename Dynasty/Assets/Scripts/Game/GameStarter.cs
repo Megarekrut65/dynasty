@@ -1,4 +1,7 @@
-﻿public class GameStarter {
+﻿/// <summary>
+/// Class that start game
+/// </summary>
+public class GameStarter {
     private GameLogger logger;
     private RoundManager roundManager;
     public bool GameStarted { get; private set; }

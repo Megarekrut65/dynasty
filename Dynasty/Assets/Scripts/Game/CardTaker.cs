@@ -1,4 +1,7 @@
-﻿public class CardTaker {
+﻿/// <summary>
+/// Class for taking card from desk
+/// </summary>
+public class CardTaker {
     private CardAnimationManager animationManager;
     private GameDependencies dependencies;
     private CardDependencies cardDependencies;

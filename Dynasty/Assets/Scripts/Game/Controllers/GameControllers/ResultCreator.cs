@@ -1,6 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Class that creates result text
+/// </summary>
 public class ResultCreator {
     private PlayerManager playerManager;
     private GameCloser gameCloser;

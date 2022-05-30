@@ -1,13 +1,16 @@
-﻿public class OfflineGameController : GameController {
+﻿/// <summary>
+/// Implementation of GameController for offline mode
+/// </summary>
+public class OfflineGameController : GameController {
     public OfflineGameController(GameDependencies gameDependencies, CardDependencies cardDependencies,
         CardTaker cardTaker) :
         base(gameDependencies, cardDependencies, cardTaker) {
         LoadPlayers();
         StartGame();
-        GameCloser.theGameOver += Leave;
+        GameCloser.GameOverEvent += Leave;
     }
     public override void Leave() {
-        GameCloser.theGameOver -= Leave;
+        GameCloser.GameOverEvent -= Leave;
         resultCreator.MakeResult();
         OpenScene("GameOver");
     }

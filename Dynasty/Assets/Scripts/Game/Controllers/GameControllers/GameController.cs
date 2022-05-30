@@ -1,5 +1,8 @@
 ﻿using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Base class for controlling game starting and finishing  
+/// </summary>
 public abstract class GameController {
     protected GameDependencies gameDependencies;
     protected CardDependencies cardDependencies;

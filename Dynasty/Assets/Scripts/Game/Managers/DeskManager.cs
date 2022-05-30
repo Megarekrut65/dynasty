@@ -21,7 +21,7 @@ public class DeskManager : MonoBehaviour,
         if (canTake) {
             canTake = false;
             deskAnimation.Stop("DeskActive");
-            DatabaseReferences.GetPlayerReference()
+            if(GameModeFunctions.IsMode(GameMode.ONLINE)) DatabaseReferences.GetPlayerReference()
                 .Child(GameKeys.GAME_STATE)
                 .Child(GameKeys.IS_CLICK)
                 .SetValueAsync(true);

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class that count coins of all players at the end of game
+/// </summary>
 public class CoinsCounter {
     private GameDependencies gameDependencies;
     private AnimationEffectGenerator anim;

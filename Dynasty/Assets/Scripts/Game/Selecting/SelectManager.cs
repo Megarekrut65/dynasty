@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+/// <summary>
+/// Class that creates all parts of selecting
+/// </summary>
 public class SelectManager {
     private Table table;
     private FullScreenCardMaker fullScreenCardMaker;

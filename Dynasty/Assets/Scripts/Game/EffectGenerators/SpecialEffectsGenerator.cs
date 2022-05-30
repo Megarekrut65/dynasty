@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using CardEffect = System.Func<bool>;
 
-public class SpecialEffectsGenerator : SelectEffectGenerator {
-    public SpecialEffectsGenerator(GameDependencies dependencies,
+/// <summary>
+/// Class that creates unusual cards effects
+/// </summary>
+public abstract class SpecialEffectsGenerator : SelectEffectGenerator {
+    protected SpecialEffectsGenerator(GameDependencies dependencies,
         CardController cardController, Table table, AnimationEffectGenerator anim)
         : base(dependencies, cardController, table, anim) {
     }

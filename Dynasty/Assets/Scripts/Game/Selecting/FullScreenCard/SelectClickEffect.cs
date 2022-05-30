@@ -2,7 +2,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-
+/// <summary>
+/// Effects of card or player selecting
+/// </summary>
 public class SelectClickEffect:IClick {
     private int id;
     private Action<int> select;

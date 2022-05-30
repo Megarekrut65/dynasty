@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that adds cards to scroll in scene
+/// </summary>
 public class ScrollManager {
     private ScrollRect scrollRect;
     private RectTransform content;

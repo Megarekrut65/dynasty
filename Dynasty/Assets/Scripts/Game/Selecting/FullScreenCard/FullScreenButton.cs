@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Class for big card in scene
+/// </summary>
 public class FullScreenButton : MonoBehaviour ,
     IPointerDownHandler, IPointerUpHandler {
     [SerializeField]

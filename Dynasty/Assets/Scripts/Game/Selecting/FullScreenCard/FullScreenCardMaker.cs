@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Adds card to big place
+/// </summary>
 public class FullScreenCardMaker:MonoBehaviour {
     [SerializeField]
     private CardLoader cardLoader;

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using CardEffect = System.Func<bool>;
 
+/// <summary>
+/// Class that creates simple cards effects
+/// </summary>
 public abstract class SimpleEffectsGenerator : IEffectsGenerator {
     protected AnimationEffectGenerator anim;
     protected GameDependencies dependencies;
@@ -12,7 +15,7 @@ public abstract class SimpleEffectsGenerator : IEffectsGenerator {
     protected EffectLogger logger;
     protected MonoBehaviour behaviour;
 
-    public SimpleEffectsGenerator(GameDependencies dependencies,
+    protected SimpleEffectsGenerator(GameDependencies dependencies,
         CardController cardController, Table table, AnimationEffectGenerator anim) {
         this.dependencies = dependencies;
         this.cardController = cardController;

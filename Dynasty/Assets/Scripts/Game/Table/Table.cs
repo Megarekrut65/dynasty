@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using Random = System.Random;
 
+/// <summary>
+/// Class that manage all cards in game
+/// </summary>
 [Serializable]
 public class Table {
     [SerializeField]
@@ -29,7 +32,7 @@ public class Table {
         }
 
         rnd = new Random(LocalStorage.GetValue(LocalStorage.DESK_SEED, 0));
-        desk = DeskGenerator.Generate(rnd, card => false, 5);
+        desk = DeskGenerator.Generate(rnd);
     }
     public void AddPlayer(Player player) {
         playerDesk.Add(player, new List<Card>());
