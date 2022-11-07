@@ -1,2 +1,2 @@
-# Dynasty - це мобільна карткова онлайн гра, яка була розроблена з використанням платформ Unity та Firebase.
+## Dynasty is a mobile online card game that was developed using the Unity and Firebase platforms.
  
